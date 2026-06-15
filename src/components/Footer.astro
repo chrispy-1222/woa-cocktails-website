@@ -1,0 +1,73 @@
+---
+// Shared site footer.
+const year = new Date().getFullYear();
+---
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand">WOA<span class="diamond"></span></div>
+        <p style="color:var(--fg-dim);max-width:32ch;font-size:14px;line-height:1.7">
+          A luxury hospitality &amp; beverage house. Mobile bar experiences,
+          consulting and curated activations across New York and Miami.
+        </p>
+        <div style="display:flex;gap:14px;margin-top:24px">
+          <a
+            href="https://www.instagram.com/woacocktails"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="eyebrow fg">Instagram</a
+          >
+          <a
+            href="https://www.tiktok.com/@woa.cocktails"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="eyebrow dim">· TikTok</a
+          >
+        </div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/mobile-bar">Mobile Bar Experience</a></li>
+          <li><a href="/brand-experiences">Bar Takeovers</a></li>
+          <li><a href="/brand-experiences">Beverage Consulting</a></li>
+          <li><a href="/staffing">Bartender Services</a></li>
+          <li><a href="/classes">Mixology Classes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>House</h4>
+        <ul>
+          <li><a href="/#about">About / Founders</a></li>
+          <li><a href="/pricing">Packages &amp; Pricing</a></li>
+          <li><a href="/#testimonials">Testimonials</a></li>
+          <li><a href="/contact">FAQ</a></li>
+          <li><a href="/contact">Contact / Book Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Markets</h4>
+        <ul>
+          <li>
+            <b style="color:var(--fg)">New York</b><br />
+            <span style="color:var(--fg-mute);font-size:12px">NYC · Tri-state · The Hamptons</span>
+          </li>
+          <li style="margin-top:8px">
+            <b style="color:var(--fg)">Miami</b><br />
+            <span style="color:var(--fg-mute);font-size:12px">Miami · Beach · Brickell · Coral Gables</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© {year} WOA Cocktails · All rights reserved</span>
+      <div class="legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Press</a>
+      </div>
+    </div>
+  </div>
+</footer>

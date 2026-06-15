@@ -1,0 +1,146 @@
+---
+// Shared top navigation — fixed bar + full-screen mobile drawer + services dropdown.
+// Interactivity (scroll state, drawer, dropdown) is a tiny vanilla island; no framework runtime.
+const services = [
+  { label: 'Mobile bar for Events', href: '/mobile-bar', num: '01' },
+  { label: 'Brand & Hospitality Experiences', href: '/brand-experiences', num: '02' },
+  { label: 'Bartending & Hospitality Staffing', href: '/staffing', num: '03' },
+  { label: 'Mixology Private Classes', href: '/classes', num: '04' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = path === '/';
+---
+
+<nav class="nav" data-nav>
+  <a href="/" class="logo" aria-label="WOA — Work Of Art · Home">
+    <span class="seg"><span class="cap">W</span><span class="tail">ork</span></span>
+    <span class="sep">·</span>
+    <span class="seg"><span class="cap">O</span><span class="tail">f</span></span>
+    <span class="sep">·</span>
+    <span class="seg"><span class="cap">A</span><span class="tail">rt</span></span>
+    <span class="diamond" aria-hidden="true"></span>
+  </a>
+  <div class="nav-links">
+    <div class="nav-svc" data-svc>
+      <button
+        type="button"
+        class="nav-svc-trigger"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-svc-trigger
+      >
+        Services <span class="chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="nav-svc-menu" role="menu">
+        {
+          services.map((s) => (
+            <a href={s.href} role="menuitem" class="nav-svc-item">
+              <span class="num">{s.num}</span>
+              <span class="lbl">{s.label}</span>
+              <span class="arr">→</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    {
+      !isHome && (
+        <a href="/" class="nav-home" aria-label="Home" title="Home">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M 3 11 L 12 3 L 21 11" />
+            <path d="M 5 10 L 5 21 L 19 21 L 19 10" />
+            <path d="M 10 21 L 10 15 L 14 15 L 14 21" />
+          </svg>
+        </a>
+      )
+    }
+    <a href="/contact" class="btn btn-solid nav-book">
+      Book Now <span class="arr">→</span>
+    </a>
+    <button class="nav-burger" aria-label="Open menu" aria-expanded="false" data-burger>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-drawer" aria-hidden="true" data-drawer>
+  <div class="nav-drawer-inner">
+    <div class="drawer-group">
+      <div class="drawer-label">Services</div>
+      {
+        services.map((s) => (
+          <a href={s.href} class="drawer-sub">
+            <span class="num">{s.num}</span>
+            {s.label}
+          </a>
+        ))
+      }
+    </div>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/#founders">Founders</a>
+    <a href="/contact">Contact</a>
+    <div class="nav-drawer-foot">
+      <a href="/contact" class="btn btn-solid">
+        Book Now <span class="arr">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const logo = nav?.querySelector<HTMLElement>('.logo');
+  const burger = document.querySelector<HTMLButtonElement>('[data-burger]');
+  const drawer = document.querySelector<HTMLElement>('[data-drawer]');
+  const svc = document.querySelector<HTMLElement>('[data-svc]');
+  const svcTrigger = document.querySelector<HTMLButtonElement>('[data-svc-trigger]');
+
+  // Scroll state — wordmark expands to "Work · Of · Art ◆" away from the top.
+  const onScroll = () => {
+    const scrolled = window.scrollY > 30;
+    nav?.classList.toggle('scrolled', scrolled);
+    logo?.classList.toggle('peek', scrolled);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile drawer.
+  const setDrawer = (open: boolean) => {
+    drawer?.classList.toggle('open', open);
+    burger?.classList.toggle('open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+    burger?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    drawer?.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  burger?.addEventListener('click', () => setDrawer(!drawer?.classList.contains('open')));
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setDrawer(false)));
+
+  // Services dropdown.
+  const setSvc = (open: boolean) => {
+    svc?.classList.toggle('open', open);
+    svcTrigger?.setAttribute('aria-expanded', String(open));
+  };
+  svcTrigger?.addEventListener('click', () => setSvc(!svc?.classList.contains('open')));
+  svc?.querySelectorAll('.nav-svc-item').forEach((a) => a.addEventListener('click', () => setSvc(false)));
+  document.addEventListener('mousedown', (e) => {
+    if (svc?.classList.contains('open') && !svc.contains(e.target as Node)) setSvc(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setSvc(false);
+  });
+</script>

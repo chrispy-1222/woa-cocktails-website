@@ -1,0 +1,355 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// ── CHAPTER 01 — BAR TAKEOVERS ───────────────────────────────────────
+const BX_POINTS = [
+  { n: '01', t: 'A custom menu',
+    d: "A named, themed cocktail list designed to the occasion — your brand, your crowd, the night we're building." },
+  { n: '02', t: 'Our full crew',
+    d: 'Bartenders, barbacks and a captain arrive briefed and uniformed. We run the bar end to end so your team can breathe.' },
+  { n: '03', t: 'The whole show',
+    d: "Energy, music, branded touchpoints, presentation. A takeover isn't a shift — it's a performance that draws a crowd." },
+];
+
+// ── CHAPTER 02 — CONSULTING ──────────────────────────────────────────
+const BX_SCOPE = [
+  { n: '01', title: 'Bar design — aesthetic & logistical', desc: 'We design the bar itself — look, layout and workflow. Where the coolers, shelving and stations go, sized and measured to your seat count and floor plan. We design and spec it; your builder builds it.' },
+  { n: '02', title: 'Menu & cocktail development', desc: 'A signature list built to your concept and your margins — costed, speced, and designed to lead the room.' },
+  { n: '03', title: 'Staff training', desc: 'Technique, speed and hospitality standards. We train your team to run the bar to a WOA standard.' },
+  { n: '04', title: 'Opening support', desc: "Pre-launch buildout, par levels, ordering and soft-open coverage. We're on the floor when it counts." },
+  { n: '05', title: 'Beverage direction', desc: 'Spirit selection, supplier relationships and seasonal refreshes that keep the program current.' },
+  { n: '06', title: 'Operations & costing', desc: "Pour costs, spec sheets and SOPs that hold the standard long after we've left the building." },
+];
+
+const BX_FORMATS = [
+  { tag: 'Half / full day', title: 'The Audit',
+    desc: 'A focused review of an existing bar — menu, flow, costs and service — with a clear, prioritized action plan.',
+    best: 'A bar that needs a tune-up' },
+  { tag: 'Multi-week', title: 'The Program',
+    desc: 'End-to-end build of a new or relaunched bar program, from design through a fully trained team.',
+    best: 'Openings & relaunches' },
+  { tag: 'Monthly', title: 'On Retainer',
+    desc: 'An ongoing partnership — seasonal menus, continued training, and a beverage team on call.',
+    best: 'Groups & growing concepts' },
+];
+
+// ── PROCESS (covers both services) ───────────────────────────────────
+const BX_STEPS = [
+  { n: '01', t: 'Discovery call', d: "30 minutes. Whether it's a one-night takeover or a full bar program, we start with the brief." },
+  { n: '02', t: 'Proposal & scope', d: 'Within two business days — concept direction, scope, timeline and an all-in quote.' },
+  { n: '03', t: 'Design & build', d: 'Menu, staffing and run-of-show for takeovers; design, training and documentation for consulting.' },
+  { n: '04', t: 'Execution', d: 'We run the night — or stand up the program and train your team to own it.' },
+];
+
+// ── FAQ ──────────────────────────────────────────────────────────────
+const BX_FAQ = [
+  { q: 'What exactly is a bar takeover?',
+    a: 'For one event — often a single night — WOA takes over an existing bar. We bring our own team, a custom menu, and the guests: a curated WOA guest list that comes out for the night and spends at your venue. The space is the vessel; the experience — and the crowd — is ours. It’s ideal for pop-ups, brand nights and restaurant collaborations.' },
+  { q: 'Do we need our own venue for a takeover?',
+    a: 'Either way. We can take over your bar, partner with a venue we both choose, or fold a takeover into a larger event. We coordinate directly with the space on logistics, licensing and timing.' },
+  { q: 'What does a consulting engagement cover?',
+    a: 'Anything from a one-time menu refresh to a full pre-opening bar program — menu development, costing, equipment, staff training and launch support. It also covers the bar’s design itself, both aesthetic and logistical: where coolers, shelving and stations should go, sized to your seat count and layout. We design, measure and spec the bar — your contractor handles the physical build.' },
+  { q: 'Will you train our existing staff?',
+    a: 'Yes — it’s central to consulting. We train your team on technique, speed and hospitality standards, and leave spec sheets and SOPs so the program holds long after we’ve gone.' },
+  { q: 'How is this different from the mobile bar service?',
+    a: 'The mobile bar brings a WOA-built bar to your event. A takeover uses someone else’s bar as the stage; consulting builds a bar program you keep. Different tools — same standard.' },
+];
+---
+
+<Layout
+  title="Brand & Hospitality Experiences — WOA Cocktails · Bar Takeovers & Consulting"
+  description="WOA's bar takeovers and bar consulting — a one-night takeover of your bar with a custom menu and full crew, or the design, menu and training behind a brand-new bar program. NYC & Miami."
+  styles={['woa-service.css', 'woa-svc-brand.css']}
+>
+  <main class="svc-page bx-page">
+    {/* ── DISTINCT HERO — the diptych ── */}
+    <section class="bx-hero" aria-label="Brand & Hospitality Experiences">
+      <div class="bx-hero-split">
+        <a class="bx-panel" href="#takeover" aria-label="Explore bar takeovers">
+          <div class="bx-panel-bg">
+            <img src="/img/bx-takeover-crew.jpg" alt="The WOA crew in custom shirts behind a venue's bar during a takeover" />
+          </div>
+          <div class="bx-panel-body">
+            <span class="bx-panel-num">— 01</span>
+            <span class="bx-panel-kicker">Pop-ups · Brand nights</span>
+            <h2 class="bx-panel-title">Bar <span class="it">Takeovers</span></h2>
+            <p class="bx-panel-line">
+              We borrow your bar for the night, bring our crew and a custom
+              menu, and put on a show.
+            </p>
+            <span class="bx-panel-go">Explore takeovers <span class="ar">→</span></span>
+          </div>
+        </a>
+
+        <a class="bx-panel" href="#consulting" aria-label="Explore bar consulting">
+          <div class="bx-panel-bg">
+            <img src="/img/bx-consult-emma2.webp" alt="WOA founders at a restaurant bar program they designed" />
+          </div>
+          <div class="bx-panel-body">
+            <span class="bx-panel-num">— 02</span>
+            <span class="bx-panel-kicker">Openings · Bar programs</span>
+            <h2 class="bx-panel-title">Bar <span class="it">Consulting</span></h2>
+            <p class="bx-panel-line">
+              We design, build and train the bar program behind a restaurant —
+              from concept to open doors.
+            </p>
+            <span class="bx-panel-go">Explore consulting <span class="ar">→</span></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="bx-hero-plaque">
+        <div class="top">
+          <span class="ln"></span><span class="eyebrow">Service 02 · The WOA House</span><span class="ln"></span>
+        </div>
+        <h1 class="bx-hero-plaque-title">
+          Brand &amp;<br />Hospitality <span class="it">Experiences</span>
+          <span class="dia" aria-hidden="true"></span>
+        </h1>
+        <p class="bx-hero-plaque-sub">
+          Two ways we bring the WOA standard beyond our own events — a one-night
+          takeover of your bar, or the program behind a brand-new one.
+        </p>
+      </div>
+    </section>
+
+    {/* ── MANIFESTO BAND ── */}
+    <section class="bx-manifesto">
+      <div class="wrap">
+        <p class="display">
+          Give us a bar and one night, and we'll fill the room.
+          Give us a concept and a season, and we'll build one
+          that <span class="it">fills itself</span>.
+        </p>
+        <div class="sig">— The WOA House · NYC &amp; Miami</div>
+      </div>
+    </section>
+
+    {/* ── CHAPTER 01 — BAR TAKEOVERS ── */}
+    <section class="svp-chapter bx-takeover" id="takeover">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 01 / Bar Takeovers ]</span>
+          <h2 class="svp-chapter-title">
+            For one night, your bar <span class="it">becomes ours</span>.
+          </h2>
+        </header>
+
+        <div class="bx-lead">
+          <div class="bx-lead-copy">
+            <p class="bx-lede">
+              We don't just bring a bar. We bring the <span class="it">show</span> —
+              and run it from behind yours.
+            </p>
+            <p>
+              A WOA takeover is exactly that: for an evening, your bar is ours. We
+              bring the full team, design a custom menu to the occasion, and turn an
+              ordinary service into an event people talk about.
+            </p>
+            <p>
+              It's the fastest way to fill a room — built for <b>pop-ups, brand nights,
+              restaurant collaborations and one-off activations</b>. And we don't arrive
+              alone: WOA brings the guests too, a curated guest list that shows up ready
+              to spend the night at your venue.
+            </p>
+          </div>
+          <figure class="bx-lead-photo">
+            <img src="/img/bx-takeover-popup.webp" alt="Fabio and Hector running a WOA pop-up takeover behind a venue's full backbar" loading="lazy" />
+            <figcaption>Pop-up · in service</figcaption>
+          </figure>
+        </div>
+
+        <div class="bx-points">
+          {BX_POINTS.map((p) => (
+            <article class="bx-point">
+              <span class="n">— {p.n}</span>
+              <h4>{p.t}</h4>
+              <p>{p.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Featured takeover: WOA × Style Bender · Cinco de Mayo ── */}
+    <section class="svp-feature bx-feature">
+      <div class="wrap">
+        <header class="svp-feature-head">
+          <span class="svp-feature-stamp">Featured · 2025</span>
+          <div>
+            <span class="svp-chapter-num">[ In Action ]</span>
+            <h2 class="svp-feature-title" style="margin-top:14px">
+              <span class="it">WOA × Style Bender</span><br />Cinco de Mayo · Soho House NYC.
+            </h2>
+            <p style="margin-top:18px;max-width:56ch;color:var(--fg-dim);font-size:15px;line-height:1.7">
+              A members-only Cinco de Mayo takeover at Soho House NYC. We took over
+              the house bar for the night — a custom mezcal- and tequila-led menu,
+              a fully branded WOA × Style Bender crew, a DJ holding the floor, and a
+              room that ran from first guest to last call.
+            </p>
+          </div>
+        </header>
+
+        <div class="svp-grid g-asym bx-feature-grid">
+          <div class="ph" style="grid-column:span 7;grid-row:span 2">
+            <img src="/img/bx-takeover-crew.jpg" alt="The full WOA × Style Bender crew behind the Soho House bar" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 5;grid-row:span 1">
+            <img src="/img/bx-takeover-menu.jpg" alt="The custom WOA × Style Bender Cinco de Mayo cocktail menu" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 5;grid-row:span 1">
+            <img src="/img/bx-takeover-bottles.jpg" alt="WOA bartenders presenting the night's tequila line-up" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 4;grid-row:span 1">
+            <img src="/img/bx-takeover-toss.jpg" alt="A WOA bartender mid-toss behind the bar" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 4;grid-row:span 1">
+            <img src="/img/bx-takeover-dj.jpg" alt="The DJ holding the floor during the takeover" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 4;grid-row:span 1">
+            <img src="/img/bx-takeover-guests.jpg" alt="Guests being served at the bar during the takeover" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="bx-feature-meta">
+          <div><div class="ix">Venue</div><b>Soho House NYC</b></div>
+          <div><div class="ix">Collab</div><b>Style Bender</b></div>
+          <div><div class="ix">Format</div><b>Bar takeover · 1 night</b></div>
+          <div><div class="ix">Occasion</div><b>Cinco de Mayo · 2025</b></div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CHAPTER 02 — CONSULTING ── */}
+    <section class="svp-chapter bx-consulting" id="consulting">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 02 / Consulting ]</span>
+          <h2 class="svp-chapter-title">
+            The program <span class="it">behind</span> the pour.
+          </h2>
+        </header>
+
+        <div class="bx-lead rev">
+          <figure class="bx-lead-photo">
+            <img src="/img/bx-consult-koncon.webp" alt="A WOA-designed restaurant bar program in service — Koncon Quemao" loading="lazy" />
+            <figcaption>Bar program · designed</figcaption>
+          </figure>
+          <div class="bx-lead-copy">
+            <p class="bx-lede">
+              Opening a bar, or fixing one? We build the <span class="it">program</span> behind it.
+            </p>
+            <p>
+              We partner with restaurants, hotels and venues to design — or elevate —
+              their bar from the ground up: the room, the menu, the workflow, the people.
+            </p>
+            <p>
+              From a single menu refresh to a full pre-opening program, WOA brings the
+              same standard we hold at our own events into <b>your house</b> — and trains
+              your team to keep it there long after we leave.
+            </p>
+          </div>
+        </div>
+
+        <div class="svp-include" style="margin-top:clamp(40px,5vw,64px)">
+          {BX_SCOPE.map((s) => (
+            <article class="svp-include-item">
+              <span class="n">— {s.n}</span>
+              <div class="body">
+                <h4>{s.title}</h4>
+                <p>{s.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="bx-svc-tag" style="margin-top:clamp(40px,5vw,64px);margin-bottom:18px">
+          <span class="d"></span> Engagement formats
+        </div>
+        <div class="bx-formats" style="margin-top:0">
+          {BX_FORMATS.map((f) => (
+            <article class="bx-format">
+              <span class="tag">{f.tag}</span>
+              <h4>{f.title}</h4>
+              <p>{f.desc}</p>
+              <div class="meta">Best for: <b>{f.best}</b></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── PROCESS (covers both services) ── */}
+    <section class="svp-chapter bx-process">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ How It Works ]</span>
+          <h2 class="svp-chapter-title">From first call to <span class="it">open doors</span>.</h2>
+        </header>
+        <div class="svp-steps">
+          {BX_STEPS.map((s) => (
+            <article class="svp-step">
+              <span class="n">— {s.n}</span>
+              <h4>{s.t}</h4>
+              <p>{s.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="svp-faq">
+      <div class="wrap">
+        <div class="svp-faq-grid">
+          <div>
+            <span class="svp-chapter-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">Common questions</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
+              Takeovers &amp; <span class="it" style="color:var(--crimson)">consulting</span>.
+            </h2>
+          </div>
+          <div>
+            {BX_FAQ.map((f, i) => (
+              <details class="svp-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CTA + prev/next ── */}
+    <section class="svp-cta">
+      <div class="svp-cta-bg">
+        <img src="/img/bx-takeover-crew.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="wrap">
+        <span class="eyebrow">— Inquire</span>
+        <h2 class="display">
+          Take over a <span class="it" style="color:var(--crimson)">room</span> —<br />or build your own.
+        </h2>
+        <p>
+          30-minute discovery call. Tell us whether it's a one-night takeover or a
+          full bar program — we'll send a tailored proposal within two business days.
+        </p>
+        <div class="cta-row">
+          <a href="/contact" class="btn btn-solid">Book a discovery call <span class="arr">→</span></a>
+          <a href="/contact" class="btn btn-ghost">All ways to reach us</a>
+        </div>
+      </div>
+    </section>
+    <nav class="svp-nav" aria-label="Other services">
+      <a href="/mobile-bar">
+        <span class="dir">← Previous service</span>
+        <span class="ttl">Mobile Bar <span class="it">Experience</span></span>
+      </a>
+      <a href="/staffing">
+        <span class="dir">Next service →</span>
+        <span class="ttl">Bartending <span class="it">&amp; Staffing</span></span>
+      </a>
+    </nav>
+  </main>
+</Layout>

@@ -1,0 +1,295 @@
+/* staffing.css — Bartending & Hospitality Staffing service page */
+
+/* ── HERO: split, photo on right (NOT full-bleed background) ──── */
+.st-hero{
+  padding:140px 0 96px;
+  background:var(--bg);
+  overflow:hidden;
+}
+.st-hero::before{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(60% 70% at 15% 30%, rgba(197,48,45,0.10) 0%, transparent 60%),
+    radial-gradient(50% 60% at 90% 70%, rgba(210,160,92,0.05) 0%, transparent 65%);
+  pointer-events:none;z-index:0;
+}
+.st-hero .wrap{position:relative;z-index:1}
+
+.st-hero-grid{
+  display:grid;grid-template-columns:1.1fr 0.95fr;gap:72px;align-items:center;
+}
+@media (max-width:980px){.st-hero-grid{grid-template-columns:1fr;gap:48px}}
+
+.st-hero-copy{display:flex;flex-direction:column;gap:0}
+.st-hero-copy h1{margin:0 0 32px}
+.st-hero-title{
+  font-weight:300;letter-spacing:-0.02em;line-height:0.98;
+  /* tighter clamp than .h-xl so "Bartending" never overflows the column */
+  font-size:clamp(40px, 7vw, 96px);
+  overflow-wrap:break-word;hyphens:auto;
+  max-width:11ch;
+}
+.st-hero-title em{font-style:italic;font-weight:400;color:var(--crimson)}
+@media (max-width:520px){.st-hero-title{font-size:clamp(36px, 11vw, 56px)}}
+.st-hero-copy .svp-hero-rule{margin-bottom:24px;margin-top:0}
+.st-hero-lede{
+  color:var(--fg-dim);font-size:17px;line-height:1.7;margin:0 0 32px;max-width:48ch;
+}
+.st-hero-pitch{
+  display:inline-flex;align-items:center;gap:14px;align-self:flex-start;
+  padding:16px 24px;border:1px solid var(--crimson);
+  background:var(--crimson);color:var(--fg);
+  font-family:var(--sans);font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  text-decoration:none;
+  transition:background .3s ease, color .3s ease, padding-right .3s ease;
+  min-height:46px;
+}
+.st-hero-pitch:hover{background:transparent;color:var(--fg);padding-right:32px}
+.st-hero-pitch:hover .d{background:var(--crimson)}
+.st-hero-pitch .d{
+  display:inline-block;width:7px;height:7px;background:var(--fg);
+  transform:rotate(45deg);transition:background .3s ease;
+}
+
+.st-hero-photo{
+  position:relative;margin:0;
+  aspect-ratio:4/5;overflow:hidden;background:var(--surface);
+}
+.st-hero-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  object-position:center 35%;
+}
+.st-hero-photo::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, rgba(11,9,7,0) 50%, rgba(11,9,7,0.85) 100%);
+}
+.st-hero-photo figcaption{
+  position:absolute;left:24px;bottom:24px;right:24px;z-index:1;
+  display:flex;flex-direction:column;gap:6px;
+  font-family:var(--display);font-size:20px;line-height:1.3;color:var(--fg);
+  font-style:italic;letter-spacing:-0.005em;
+}
+.st-hero-photo figcaption .eyebrow{font-style:normal;font-family:var(--sans)}
+.st-hero-photo figcaption i{font-style:italic;color:var(--crimson)}
+
+/* ── Interactive team rolodex ──────────────────────────────── */
+.st-rolo{
+  position:relative;
+  width:100%;max-width:380px;
+  justify-self:end;
+  display:flex;flex-direction:column;gap:18px;
+  outline:none;
+  z-index:0;
+}
+.st-hero-copy{position:relative;z-index:1}
+.st-rolo:focus-visible{outline:1px solid var(--crimson);outline-offset:8px}
+
+.st-rolo-hint{
+  position:absolute;left:-16px;top:-14px;z-index:5;
+  font-family:var(--mono);font-size:10.5px;color:var(--crimson);
+  letter-spacing:0.18em;text-transform:uppercase;
+  background:rgba(11,9,7,0.9);
+  padding:6px 10px;border:1px solid var(--crimson);
+  transform:rotate(-3deg);
+  pointer-events:none;
+  white-space:nowrap;
+  animation:rolo-hint-blink 3.6s ease-in-out infinite;
+}
+@keyframes rolo-hint-blink{
+  0%,100%{opacity:1}
+  50%{opacity:0.4}
+}
+
+.st-rolo-stack{
+  position:relative;
+  aspect-ratio:4/5;
+  width:100%;
+  /* perspective for subtle 3D feel without going overboard */
+  perspective:1400px;
+}
+
+.st-rolo-card{
+  position:absolute;inset:0;
+  appearance:none;background:var(--surface);border:1px solid var(--line-strong);
+  padding:0;cursor:default;overflow:hidden;
+  /* stacked offset based on --off (0 = front, then 1,2,3...) */
+  --rot: calc(var(--off) * -4deg);
+  --tx:  calc(var(--off) * -18px);
+  --ty:  calc(var(--off) * 14px);
+  --sc:  calc(1 - var(--off) * 0.04);
+  transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(var(--sc));
+  transform-origin: 50% 100%;
+  transition: transform .55s cubic-bezier(.6,.05,.2,1),
+              box-shadow .4s ease,
+              opacity .4s ease,
+              border-color .3s ease;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.45), 0 4px 10px rgba(0,0,0,0.35);
+  filter: brightness(calc(1 - var(--off) * 0.07));
+}
+/* hide cards beyond the visible 4 */
+.st-rolo-card{ display: block }
+
+.st-rolo-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  object-position:center 30%;
+}
+.st-rolo-card::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, rgba(11,9,7,0) 45%, rgba(11,9,7,0.85) 100%);
+}
+
+.st-rolo-card.front{
+  --rot: 0deg; --tx: 0; --ty: 0; --sc: 1;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55), 0 8px 18px rgba(0,0,0,0.4);
+  border-color: var(--crimson);
+  filter: none;
+}
+.st-rolo-card.front:hover{
+  transform: translate(0, -6px) rotate(0.6deg) scale(1);
+}
+
+/* the caption sits on the bottom of EVERY card so the back peeks show name */
+.st-rolo-cap{
+  position:absolute;left:20px;right:20px;bottom:18px;z-index:1;
+  display:flex;flex-direction:column;gap:4px;
+  text-align:left;
+}
+.st-rolo-cap .role{
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:0.24em;text-transform:uppercase;color:var(--crimson);
+}
+.st-rolo-cap .name{
+  font-family:var(--display);font-size:clamp(20px, 2.2vw, 26px);font-weight:300;
+  letter-spacing:-0.005em;color:var(--fg);line-height:1.1;
+  font-style:italic;
+}
+.st-rolo-card:not(.front) .st-rolo-cap{opacity:0;transition:opacity .25s}
+
+/* controls below the stack */
+.st-rolo-controls{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:8px;
+}
+.st-rolo-arr{
+  appearance:none;background:transparent;border:1px solid var(--line-strong);
+  color:var(--fg);width:46px;height:46px;cursor:default;
+  font-family:var(--mono);font-size:16px;
+  transition:all .25s ease;
+}
+.st-rolo-arr:hover{background:var(--crimson);border-color:var(--crimson)}
+.st-rolo-count{
+  font-family:var(--mono);font-size:11px;color:var(--fg-mute);letter-spacing:0.22em;text-transform:uppercase;
+}
+.st-rolo-count b{color:var(--fg);font-weight:500;letter-spacing:0.06em;font-size:13px;font-family:var(--display);font-style:italic}
+
+@media (max-width:980px){
+  .st-rolo{max-width:380px;margin:0 auto;justify-self:auto}
+  .st-rolo-hint{left:-12px;top:-10px;font-size:9.5px}
+}
+@media (max-width:480px){
+  .st-rolo{max-width:300px}
+  .st-rolo-card{ --tx: calc(var(--off) * -12px); --ty: calc(var(--off) * 10px); }
+}
+
+/* ── Pull quote band ───────────────────────────────────────── */
+.st-pull{
+  padding:120px 0;background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  text-align:center;
+}
+.st-pull-text{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(28px, 4.5vw, 56px);line-height:1.22;letter-spacing:-0.01em;
+  color:var(--fg);max-width:24ch;margin:0 auto;
+}
+
+/* ── 01 Roles spread ──────────────────────────────────────── */
+.st-roles-grid{
+  display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;
+}
+@media (max-width:980px){.st-roles-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.st-roles-grid{grid-template-columns:1fr}}
+
+.st-role-card{
+  display:flex;flex-direction:column;
+  background:var(--surface);
+  border:1px solid var(--line);
+  transition:border-color .35s ease, transform .4s ease;
+}
+.st-role-card:hover{border-color:var(--crimson);transform:translateY(-4px)}
+.st-role-img{
+  margin:0;aspect-ratio:4/5;overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.st-role-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(0.15) contrast(1.05);
+  transition:filter .6s ease;
+}
+.st-role-card:hover .st-role-img img{filter:grayscale(0) contrast(1)}
+.st-role-body{padding:24px 22px 28px;display:flex;flex-direction:column;gap:8px}
+.st-role-body .n{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
+.st-role-body h3{
+  font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
+  margin:0;color:var(--fg);
+}
+.st-role-body p{color:var(--fg-dim);font-size:13.5px;line-height:1.65;margin:6px 0 0}
+
+/* ── stats ─────────────────────────────────────────────────── */
+.st-stats{padding:96px 0;border-bottom:1px solid var(--line)}
+.st-stats-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--line);
+}
+@media (max-width:820px){.st-stats-grid{grid-template-columns:1fr}}
+.st-stat{
+  padding:48px 36px;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:8px;
+}
+.st-stat:last-child{border-right:none}
+@media (max-width:820px){
+  .st-stat{border-right:none;border-bottom:1px solid var(--line);padding:36px 28px}
+  .st-stat:last-child{border-bottom:none}
+}
+.st-stat b{
+  font-family:var(--display);font-size:clamp(56px, 6vw, 88px);font-weight:300;
+  letter-spacing:-0.02em;color:var(--fg);line-height:0.95;
+}
+.st-stat span{
+  font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--crimson);margin-top:8px;
+}
+.st-stat p{color:var(--fg-dim);font-size:14px;line-height:1.6;margin:14px 0 0;max-width:32ch}
+
+/* ── feature event grid ─────────────────────────────────────── */
+.st-feature-grid{margin-bottom:32px}
+.st-feature-grid .ph{min-height:240px;aspect-ratio:auto}
+.st-feature-grid .ph img{
+  transition:transform 1.4s ease;
+  filter:contrast(1.03);
+}
+.st-feature-grid .ph:hover img{transform:scale(1.04)}
+@media (max-width:820px){
+  .st-feature-grid .ph{min-height:0;aspect-ratio:4/5}
+}
+.st-feature-meta{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  padding-top:28px;border-top:1px solid var(--line);
+}
+@media (max-width:720px){.st-feature-meta{grid-template-columns:repeat(2,1fr)}}
+.st-feature-meta .ix{
+  font-family:var(--mono);font-size:10px;color:var(--fg-mute);letter-spacing:0.22em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.st-feature-meta b{
+  font-family:var(--display);font-size:20px;font-weight:300;color:var(--fg);letter-spacing:-0.005em;
+}
+
+/* mobile pass */
+@media (max-width:720px){
+  .st-hero{padding:96px 0 64px}
+  .st-hero-copy h1{margin-bottom:24px}
+  .st-pull{padding:72px 0}
+  .st-stats{padding:64px 0}
+  .st-stat{padding:32px 24px}
+  .st-stat b{font-size:48px}
+}

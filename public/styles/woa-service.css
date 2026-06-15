@@ -1,0 +1,242 @@
+/* woa-service.css — shared service-page tokens & components
+   Loaded after woa-styles.css. Each service page layers its own
+   personality CSS on top of this. */
+
+/* page bg matches main */
+.svc-page{padding-top:0;background:var(--bg)}
+
+/* ── universal eyebrow + index marker pattern ───────────────── */
+.svp-ix{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
+
+/* ── universal hero scaffolding ─────────────────────────────── */
+.svp-hero{
+  position:relative;border-bottom:1px solid var(--line);
+  overflow:hidden;background:var(--bg);
+}
+.svp-hero-bg{position:absolute;inset:0;z-index:0}
+.svp-hero-bg img{width:100%;height:100%;object-fit:cover;display:block}
+.svp-hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(11,9,7,0.55) 0%, rgba(11,9,7,0.25) 30%, rgba(11,9,7,0.65) 70%, rgba(11,9,7,0.98) 100%),
+    linear-gradient(90deg, rgba(11,9,7,0.55) 0%, rgba(11,9,7,0.15) 55%, rgba(11,9,7,0) 100%);
+}
+.svp-hero-content{
+  position:relative;z-index:1;
+  min-height:88vh;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:140px 0 56px;
+}
+.svp-hero-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.svp-hero-body{padding:80px 0 0;display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end}
+@media (max-width:980px){.svp-hero-body{grid-template-columns:1fr}}
+.svp-hero h1{margin:0}
+.svp-hero-rule{display:inline-block;width:64px;height:1px;background:var(--crimson);margin-bottom:24px}
+.svp-hero-aside{color:var(--fg-dim);font-size:14.5px;line-height:1.7;max-width:38ch;align-self:end}
+
+.svp-hero-meta{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;
+  padding-top:18px;margin-top:48px;border-top:1px solid var(--line);
+  font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--fg-mute);
+}
+
+/* ── section head reused ─────────────────────────────────────── */
+.svp-head{
+  display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:end;
+  padding:128px 0 56px;
+}
+@media (max-width:820px){.svp-head{grid-template-columns:1fr;gap:24px;padding:80px 0 32px}}
+
+/* ── numbered editorial section ──────────────────────────────── */
+.svp-chapter{padding:0 0 96px;border-bottom:1px solid var(--line)}
+.svp-chapter-head{
+  display:grid;grid-template-columns:auto 1fr;gap:24px 48px;align-items:baseline;
+  padding:64px 0 32px;
+}
+@media (max-width:720px){.svp-chapter-head{grid-template-columns:1fr;gap:6px}}
+.svp-chapter-num{
+  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.08em;
+}
+.svp-chapter-title{
+  font-family:var(--display);font-weight:300;letter-spacing:-0.01em;line-height:1;
+  font-size:clamp(36px,5vw,72px);max-width:24ch;
+}
+.svp-chapter-title .it{font-style:italic;color:var(--crimson);font-weight:400}
+
+/* ── inclusions list (used by Mobile Bar mostly) ─────────────── */
+.svp-include{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+  border-top:1px solid var(--line);
+}
+@media (max-width:720px){.svp-include{grid-template-columns:1fr}}
+.svp-include-item{
+  padding:32px 24px;
+  border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+  display:flex;gap:16px;align-items:flex-start;
+}
+.svp-include-item:nth-child(2n){border-right:none}
+@media (max-width:720px){.svp-include-item{border-right:none}}
+.svp-include-item .n{
+  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.04em;
+  flex-shrink:0;padding-top:6px;
+}
+.svp-include-item .body h4{
+  font-family:var(--display);font-size:22px;font-weight:300;letter-spacing:-0.005em;
+  margin:0 0 6px;color:var(--fg);
+}
+.svp-include-item .body p{color:var(--fg-dim);font-size:13.5px;line-height:1.6;margin:0;max-width:42ch}
+
+/* ── ideal for chip grid ─────────────────────────────────────── */
+.svp-ideal{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.svp-ideal-chip{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;
+  border:1px solid var(--line-strong);
+  color:var(--fg);
+  font-family:var(--display);font-size:18px;font-weight:300;letter-spacing:-0.005em;
+  transition:all .25s ease;
+}
+.svp-ideal-chip:hover{background:var(--crimson);border-color:var(--crimson);color:var(--fg)}
+.svp-ideal-chip .d{display:inline-block;width:5px;height:5px;background:var(--crimson);transform:rotate(45deg)}
+
+/* ── process timeline ────────────────────────────────────────── */
+.svp-steps{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+}
+@media (max-width:920px){.svp-steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.svp-steps{grid-template-columns:1fr}}
+.svp-step{
+  padding:28px 0 0;border-top:1px solid var(--line);
+  position:relative;
+}
+.svp-step:not(:last-child)::after{
+  content:"";position:absolute;top:-1px;right:-12px;width:8px;height:1px;background:var(--crimson);
+}
+.svp-step .n{
+  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em;
+}
+.svp-step h4{
+  font-family:var(--display);font-size:24px;font-weight:300;margin:12px 0 8px;letter-spacing:-0.005em;
+}
+.svp-step p{color:var(--fg-dim);font-size:13.5px;line-height:1.65;margin:0}
+
+/* ── feature event spread ────────────────────────────────────── */
+.svp-feature{
+  padding:0 0 96px;border-bottom:1px solid var(--line);
+  background:var(--surface);
+}
+.svp-feature-head{
+  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:baseline;
+  padding:96px 0 32px;
+}
+.svp-feature-stamp{
+  font-family:var(--mono);font-size:10.5px;color:var(--crimson);letter-spacing:0.22em;text-transform:uppercase;
+  border:1px solid var(--crimson);padding:6px 10px;align-self:center;justify-self:start;
+}
+.svp-feature-title{
+  font-family:var(--display);font-size:clamp(28px,3.4vw,48px);font-weight:300;
+  letter-spacing:-0.01em;line-height:1.1;
+}
+.svp-feature-title .it{font-style:italic;color:var(--crimson)}
+
+/* ── photo grid ─────────────────────────────────────────────── */
+.svp-grid{display:grid;gap:14px}
+.svp-grid img{width:100%;height:100%;object-fit:cover;display:block}
+
+.svp-grid.g-2{grid-template-columns:1fr 1fr}
+.svp-grid.g-3{grid-template-columns:1.4fr 0.85fr 0.85fr}
+.svp-grid.g-4{grid-template-columns:repeat(4,1fr)}
+.svp-grid.g-asym{
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(140px,auto);
+}
+.svp-grid.g-asym .ph{position:relative;overflow:hidden;background:var(--surface)}
+.svp-grid.g-asym .ph img{width:100%;height:100%;object-fit:cover}
+@media (max-width:820px){
+  .svp-grid.g-3,.svp-grid.g-4{grid-template-columns:repeat(2,1fr)}
+  .svp-grid.g-asym{grid-template-columns:repeat(2,1fr);grid-auto-rows:auto}
+  .svp-grid.g-asym .ph{aspect-ratio:4/5;grid-column:auto !important;grid-row:auto !important}
+}
+
+/* ── FAQ (reused from contact, scoped to .svp- ) ────────────── */
+.svp-faq{padding:128px 0;border-bottom:1px solid var(--line)}
+.svp-faq-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start}
+@media (max-width:1020px){.svp-faq-grid{grid-template-columns:1fr;gap:32px}}
+.svp-q{border-top:1px solid var(--line)}
+.svp-q:last-child{border-bottom:1px solid var(--line)}
+.svp-q summary{
+  list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:24px;
+  padding:24px 0;cursor:default;
+  font-family:var(--display);font-size:22px;font-weight:300;letter-spacing:-0.005em;
+  color:var(--fg);transition:color .25s;
+}
+.svp-q summary::-webkit-details-marker{display:none}
+.svp-q summary:hover{color:var(--crimson)}
+.svp-q summary::after{
+  content:"+";font-family:var(--sans);font-size:24px;font-weight:300;color:var(--crimson);
+  flex-shrink:0;transition:transform .3s ease;
+}
+.svp-q[open] summary::after{content:"−";transform:rotate(180deg)}
+.svp-q .ans{padding:0 0 28px;color:var(--fg-dim);font-size:15px;line-height:1.7;max-width:64ch}
+
+/* ── bottom CTA band linking to Contact (Calendly) ──────────── */
+.svp-cta{
+  position:relative;padding:160px 0;text-align:center;overflow:hidden;
+}
+.svp-cta-bg{position:absolute;inset:0;z-index:0}
+.svp-cta-bg img{width:100%;height:100%;object-fit:cover;opacity:0.5;filter:grayscale(0.2) contrast(1.05)}
+.svp-cta-bg::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,9,7,0.62),rgba(11,9,7,0.72) 50%,rgba(11,9,7,0.92));
+}
+.svp-cta .wrap{position:relative;z-index:1}
+.svp-cta h2{margin:24px auto 28px;font-size:clamp(48px,7vw,104px);font-weight:300}
+.svp-cta p{max-width:48ch;margin:0 auto 36px;color:var(--fg-dim);font-size:16px;line-height:1.7}
+.svp-cta .cta-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+/* ── prev / next service nav ────────────────────────────────── */
+.svp-nav{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line);
+}
+@media (max-width:720px){.svp-nav{grid-template-columns:1fr}}
+.svp-nav a{
+  padding:48px 32px;display:flex;flex-direction:column;gap:8px;
+  border-right:1px solid var(--line);
+  transition:background .35s ease, padding-left .35s ease;
+}
+.svp-nav a:last-child{border-right:none;text-align:right;align-items:flex-end}
+@media (max-width:720px){
+  .svp-nav a{border-right:none;border-bottom:1px solid var(--line);text-align:left;align-items:flex-start !important;padding:32px 24px}
+}
+.svp-nav a:hover{background:var(--surface);padding-left:48px}
+.svp-nav a:last-child:hover{padding-left:32px;padding-right:48px}
+.svp-nav .dir{font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--fg-mute)}
+.svp-nav .ttl{
+  font-family:var(--display);font-size:clamp(28px,3vw,40px);font-weight:300;letter-spacing:-0.01em;
+  color:var(--fg);
+}
+.svp-nav .ttl .it{font-style:italic;color:var(--crimson)}
+
+/* ── mobile pass ────────────────────────────────────────────── */
+@media (max-width:720px){
+  .svp-hero-content{padding:104px 0 36px;min-height:84vh}
+  .svp-hero-body{padding:48px 0 0;gap:28px}
+  .svp-hero-rule{margin-bottom:18px;width:48px}
+  .svp-hero-meta{flex-direction:column;align-items:flex-start;gap:12px;margin-top:32px;font-size:10px}
+  .svp-chapter{padding:0 0 64px}
+  .svp-chapter-head{padding:56px 0 24px}
+  .svp-feature-head{padding:64px 0 24px}
+  .svp-feature{padding:0 0 64px}
+  .svp-steps{gap:32px}
+  .svp-step h4{font-size:20px}
+  .svp-include-item{padding:24px 20px}
+  .svp-include-item .body h4{font-size:18px}
+  .svp-faq{padding:80px 0}
+  .svp-q summary{font-size:18px;padding:20px 0}
+  .svp-cta{padding:96px 0}
+  .svp-cta .btn{justify-content:center;min-height:50px}
+}

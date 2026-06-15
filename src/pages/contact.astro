@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Live Calendly scheduler URL (dark-themed via params).
+const CALENDLY_URL = "https://calendly.com/woacocktails/30min?hide_gdpr_banner=1&background_color=0b0907&text_color=ebe3d2&primary_color=c5302d";
+
+// Live Tally embed src — "Request a Quote".
+const TALLY_SRC = "https://tally.so/embed/2ERkDj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+
+// FAQ accordion content.
+const FAQS = [
+  {
+    q: "What is the minimum I can book an event for?",
+    a: "Our packages start at 20 guests and a minimum of 3 hours of full beverage service.",
+  },
+  {
+    q: "How far in advance do I need to reach out for an event?",
+    a: "For larger events such as weddings, we can book up to a year in advance. We're also flexible with last-minute requests: full-service events can be booked with as little as 3 days' notice, and bartending staff-only services with as little as 24 hours' notice, depending on availability.",
+  },
+  {
+    q: "What is included in the mobile bar package?",
+    a: "Luxury mobile bar setup, signature cocktail menu design, premium mixers and fresh garnish, all bar tools and equipment, professional bartenders and hospitality staff, setup and breakdown. Pricing is scoped per event.",
+  },
+  {
+    q: "Can you match the setup with my event theme or aesthetic?",
+    a: "Yes. We can customize the bar setup, menu design, décor, and overall presentation to match your event theme and aesthetic.",
+  },
+  {
+    q: "Does WOA Cocktails provide alcohol?",
+    a: "WOA Cocktails coordinates and curates the complete beverage experience. We can assist with menu planning, shopping lists, quantities, mixers, garnishes, and all beverage-related details to ensure a seamless service.",
+  },
+  {
+    q: "Can you accommodate non-alcoholic and zero-proof menus?",
+    a: "Absolutely. Our zero-proof and low-ABV programs are built with the same care as our spirited menus — same craft, same hospitality, same presentation.",
+  },
+  {
+    q: "Do you travel outside NYC and Miami?",
+    a: "Yes — we regularly travel the tri-state and South Florida, and accept select destination events nationwide. Travel and accommodation are quoted separately.",
+  },
+  {
+    q: "Is WOA Cocktails insured?",
+    a: "Yes — WOA Cocktails is insured.",
+  },
+  {
+    q: "What happens if I cancel an event I have booked?",
+    a: "If an event is canceled 72 hours or more before the event date, the deposit remains available as a credit, valid for up to one year from the cancellation date.",
+  },
+];
+---
+
+<Layout
+  title="Contact & Book — WOA Cocktails · Luxury Hospitality & Beverage House"
+  description="Inquire for your event — luxury mobile bar experiences, beverage consulting and curated hospitality activations across New York and Miami."
+  styles={['woa-contact.css']}
+  headScripts={['https://assets.calendly.com/assets/external/widget.js']}
+>
+  <main class="contact-page">
+    {/* ── Hero band ── */}
+    <section class="cx-hero">
+      <div class="wrap">
+        <div class="cx-hero-grid">
+          <div class="cx-hero-copy">
+            <span class="eyebrow">— Inquire · Book a Consult</span>
+            <h1 class="display h-lg">
+              Let's host <span class="it" style="color:var(--crimson)">something</span><br />unforgettable.
+            </h1>
+            <p>
+              Book a discovery call with WOA — we'll listen, share ideas
+              and send a tailored proposal within two business days.
+            </p>
+            <div class="cx-meta">
+              <div>
+                <span class="stat-lg">2-Day</span>
+                Response
+              </div>
+              <div>
+                <span class="stat-lg">500+</span>
+                Events curated
+              </div>
+              <div>
+                <span class="stat-lg">5★</span>
+                Avg. rating
+              </div>
+            </div>
+            <a href="#schedule" class="btn btn-solid cx-hero-cta">
+              Jump to scheduler <span class="arr">↓</span>
+            </a>
+          </div>
+          <figure class="cx-hero-photo">
+            <img src="/img/founders-cheers.jpg" alt="WOA co-founders Fabio Perez and Hector Taveras sharing a laugh and a toast at the bar" />
+            <figcaption>
+              <span class="eyebrow amber">— Your hosts</span>
+              <span>Fabio &amp; Hector,<br />co-founders</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Live Calendly scheduler ── */}
+    <section class="cx-main">
+      <div class="wrap">
+        <div class="cx-sched" id="schedule">
+          <header class="cx-sched-head">
+            <div class="lhs">
+              <span class="eyebrow">— Discovery Call</span>
+              <h2 class="display h-md" style="margin:10px 0 6px;font-size:clamp(28px, 3.6vw, 44px)">
+                Book a <span class="it" style="color:var(--crimson)">discovery</span> call.
+              </h2>
+              <p>30 minutes · Video call · No commitment · NYC &amp; Miami</p>
+            </div>
+            <div class="rhs">
+              <div class="cx-badge">
+                <span>30</span><small>MIN</small>
+              </div>
+            </div>
+          </header>
+
+          {/* Calendly inline widget begin */}
+          <div
+            class="calendly-inline-widget cx-calendly"
+            data-url={CALENDLY_URL}
+            style="min-width:320px;height:700px"
+          ></div>
+          {/* Calendly inline widget end */}
+
+          <footer class="cx-sched-foot">
+            <span>Pick any time that works — the call is with Hector or Fabio.</span>
+            <span class="pwby">Powered by <b>Calendly</b></span>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Inquiry form — live Tally embed ── */}
+    <section class="cx-form-sec" id="inquiry-form">
+      <div class="wrap">
+        <div class="cx-form-head">
+          <span class="eyebrow">— Or skip the call</span>
+          <h2 class="display h-md" style="margin-top:14px">
+            Already know exactly <span class="it" style="color:var(--crimson)">what you need?</span>
+          </h2>
+          <p>Send the details and we'll come back with ideas and a tailored quote.</p>
+        </div>
+
+        <div class="cx-form-layout">
+          <div class="cx-form-panel">
+            <div class="cx-form-panel-head">
+              <span class="cx-form-mark" aria-hidden="true">◆</span>
+              <span class="cx-form-panel-label">Request a Quote</span>
+              <span class="cx-form-panel-meta">WOA Cocktails</span>
+            </div>
+            {/* Live Tally embed — "Request a Quote" */}
+            <iframe
+              data-tally-src={TALLY_SRC}
+              loading="lazy"
+              width="100%"
+              height="1013"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              title="Request a Quote"
+              class="cx-tally"></iframe>
+          </div>
+
+          <aside class="cx-form-aside">
+            <div class="cx-aside-block">
+              <span class="eyebrow dim">— What happens next</span>
+              <ol class="cx-steps">
+                <li>
+                  <span class="cx-step-n">01</span>
+                  <div>
+                    <b>We read it ourselves</b>
+                    <p>Every inquiry goes straight to Hector and Fabio — no inbox, no middleman.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="cx-step-n">02</span>
+                  <div>
+                    <b>You hear back within 2 business days</b>
+                    <p>With first ideas, availability, and a quote tailored to your event.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="cx-step-n">03</span>
+                  <div>
+                    <b>We dial in the details</b>
+                    <p>Menu, staffing and timeline — shaped around your space and guest count.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <div class="cx-aside-foot">
+              <div class="cx-aside-stat">
+                <b>≤ 2 days</b>
+                <span>Typical reply time</span>
+              </div>
+              <div class="cx-aside-stat">
+                <b>NYC · MIA</b>
+                <span>Where we serve</span>
+              </div>
+            </div>
+
+            <p class="cx-aside-alt">
+              Prefer to talk it through?{" "}
+              <a href="#schedule">Book a call instead →</a>
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Below-scheduler trust row ── */}
+    <section class="cx-trust">
+      <div class="wrap">
+        <div class="cx-trust-grid">
+          <div class="cx-trust-card">
+            <span class="cx-trust-icon">·</span>
+            <div>
+              <div class="title">Reply within 2 business days</div>
+              <p>
+                Every inquiry is read and answered personally by Fabio, Hector,
+                or a member of the WOA team. No autoreplies.
+              </p>
+            </div>
+          </div>
+          <div class="cx-trust-card">
+            <span class="cx-trust-icon">·</span>
+            <div>
+              <div class="title">No pressure, no obligation</div>
+              <p>
+                The discovery call is a 30-minute conversation. We'll share
+                ideas, listen to your vision and send a proposal — no pitch.
+              </p>
+            </div>
+          </div>
+          <div class="cx-trust-card">
+            <span class="cx-trust-icon">·</span>
+            <div>
+              <div class="title">Or reach us directly</div>
+              <p>
+                <a href="mailto:woacocktails@gmail.com">woacocktails@gmail.com</a><br />
+                NYC · Hector <a href="tel:+16463386739">646-338-6739</a><br />
+                MIA · Fabio <a href="tel:+12159390476">215-939-0476</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="cx-faq">
+      <div class="wrap">
+        <div class="cx-faq-grid">
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em">[ FAQ ]</div>
+            <div class="eyebrow" style="margin-top:18px">Common questions</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:12ch">
+              Answers, <span class="it" style="color:var(--crimson)">before</span> you ask.
+            </h2>
+            <p style="margin-top:20px;color:var(--fg-dim);font-size:14px;line-height:1.7;max-width:32ch">
+              Don't see your question? Send us a note — we'll reply personally.
+            </p>
+          </div>
+          <div>
+            {FAQS.map((f, i) => (
+              <details class="cx-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Coverage cities ── */}
+    <section class="cx-cov">
+      <div class="wrap">
+        <div class="cx-cov-grid">
+          <div class="cx-loc">
+            <span class="eyebrow">— Market 01</span>
+            <div class="city">New <span class="it">York.</span></div>
+            <p class="areas">
+              Manhattan · Brooklyn · Queens · The Hamptons · Westchester ·
+              New Jersey · Connecticut shoreline · Hudson Valley.
+            </p>
+            <div class="meta">
+              <div><b>2020</b>Founded</div>
+              <div><b>NYC</b>Headquarters</div>
+            </div>
+          </div>
+          <div class="cx-loc">
+            <span class="eyebrow">— Market 02</span>
+            <div class="city">Mi<span class="it">ami.</span></div>
+            <p class="areas">
+              Miami · Miami Beach · Brickell · Coral Gables · Bal Harbour ·
+              Fort Lauderdale · Palm Beach (select dates).
+            </p>
+            <div class="meta">
+              <div><b>2026</b>Expansion</div>
+              <div><b>Wynwood</b>Local HQ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+{/* ── Tally embed loader (mirrors the CX_InquiryForm useEffect) ── */}
+<script>
+  const el = document.querySelector('iframe.cx-tally') as HTMLIFrameElement | null;
+  const TALLY_SRC = "https://tally.so/embed/2ERkDj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+
+  // Directly set src (equivalent to Tally.loadEmbeds / its documented
+  // fallback) so the form loads regardless of script timing.
+  if (el && !el.src) el.src = TALLY_SRC;
+
+  const refreshHeights = () => {
+    if ((window as any).Tally) (window as any).Tally.loadEmbeds();
+  };
+
+  if ((window as any).Tally) {
+    refreshHeights();
+  } else {
+    const existing = document.querySelector('script[src="https://tally.so/widgets/embed.js"]');
+    if (existing) {
+      existing.addEventListener("load", refreshHeights);
+    } else {
+      const s = document.createElement("script");
+      s.src = "https://tally.so/widgets/embed.js";
+      s.onload = refreshHeights;
+      s.onerror = refreshHeights;
+      document.body.appendChild(s);
+    }
+  }
+</script>

@@ -1,0 +1,198 @@
+/* classes.css — Mixology Private Classes — energetic, color-rich */
+
+/* ── HERO ───────────────────────────────────────────────────── */
+.c-hero{padding:140px 0 96px;background:var(--bg);overflow:hidden}
+.c-hero::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(55% 70% at 85% 25%, rgba(197,48,45,0.12) 0%, transparent 60%),
+    radial-gradient(40% 55% at 10% 80%, rgba(210,160,92,0.08) 0%, transparent 65%);
+  pointer-events:none;
+}
+.c-hero .wrap{position:relative;z-index:1}
+.c-hero-grid{
+  display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center;
+}
+@media (max-width:980px){.c-hero-grid{grid-template-columns:1fr;gap:48px}}
+
+.c-hero-copy{display:flex;flex-direction:column;gap:0}
+.c-hero-copy h1{margin:0 0 28px}
+.c-hero-copy .svp-hero-rule{margin-bottom:24px}
+.c-hero-lede{
+  color:var(--fg-dim);font-size:17px;line-height:1.7;margin:0 0 36px;max-width:46ch;
+}
+
+/* hero quick-mark stats */
+.c-hero-marks{
+  display:grid;grid-template-columns:repeat(4, auto);gap:0;
+  border:1px solid var(--line-strong);
+}
+.c-hero-marks > span{
+  padding:18px 22px;display:flex;flex-direction:column;gap:6px;
+  border-right:1px solid var(--line);
+}
+.c-hero-marks > span:last-child{border-right:none}
+.c-hero-marks b{
+  font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;color:var(--fg);line-height:1;
+}
+.c-hero-marks small{
+  font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute);
+}
+@media (max-width:720px){
+  .c-hero-marks{grid-template-columns:repeat(2,1fr)}
+  .c-hero-marks > span{border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .c-hero-marks > span:nth-child(2n){border-right:none}
+  .c-hero-marks > span:nth-last-child(-n+2){border-bottom:none}
+}
+
+/* hero photo with taped label */
+.c-hero-photo{
+  position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--surface);
+  transform:rotate(-1deg);
+  transform-origin:center;
+  box-shadow:0 30px 60px rgba(0,0,0,0.4), 0 8px 18px rgba(0,0,0,0.35);
+}
+.c-hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.c-hero-photo::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg, rgba(11,9,7,0) 70%, rgba(11,9,7,0.55) 100%);
+}
+.c-hero-tape{
+  position:absolute;top:24px;right:-32px;z-index:1;
+  background:var(--crimson);color:var(--fg);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;
+  padding:8px 40px;
+  transform:rotate(8deg);
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ── 01 Formats ─────────────────────────────────────────────── */
+.c-formats-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;
+}
+@media (max-width:720px){.c-formats-grid{grid-template-columns:1fr}}
+.c-format-card{
+  display:grid;grid-template-columns:0.85fr 1fr;gap:0;
+  background:var(--surface);border:1px solid var(--line);
+  transition:border-color .3s ease;
+}
+.c-format-card:hover{border-color:var(--crimson)}
+.c-format-img{
+  position:relative;margin:0;overflow:hidden;
+  border-right:1px solid var(--line);
+}
+.c-format-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.4s ease;
+}
+.c-format-card:hover .c-format-img img{transform:scale(1.05)}
+.c-format-tag{
+  position:absolute;top:14px;left:14px;
+  background:var(--crimson);color:var(--fg);
+  font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;
+  padding:5px 9px;
+}
+.c-format-body{padding:28px 26px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.c-format-body .n{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
+.c-format-body h3{
+  font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
+  margin:6px 0 4px;color:var(--fg);
+}
+.c-format-body p{color:var(--fg-dim);font-size:13.5px;line-height:1.6;margin:0}
+
+/* ── 02 Menu — featured cocktails ───────────────────────────── */
+.c-menu{background:var(--surface);border-top:1px solid var(--line)}
+.c-menu-note{
+  color:var(--fg-dim);font-size:13.5px;line-height:1.7;margin:0 0 32px;
+  max-width:54ch;font-style:italic;
+}
+.c-menu-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+}
+@media (max-width:980px){.c-menu-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media (max-width:560px){.c-menu-grid{grid-template-columns:1fr;gap:24px}}
+.c-cocktail{margin:0;display:flex;flex-direction:column}
+.c-cocktail-img{
+  position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--bg);
+}
+.c-cocktail-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.5s ease;
+}
+.c-cocktail:hover .c-cocktail-img img{transform:scale(1.05)}
+.c-cocktail-num{
+  position:absolute;top:14px;right:14px;z-index:1;
+  font-family:var(--mono);font-size:11px;color:var(--fg);letter-spacing:0.04em;
+  background:rgba(11,9,7,0.55);padding:5px 9px;border:1px solid var(--line-strong);
+}
+.c-cocktail figcaption{
+  padding:18px 4px 0;display:flex;flex-direction:column;gap:4px;
+}
+.c-cocktail figcaption h4{
+  font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
+  margin:0;color:var(--fg);
+}
+.c-cocktail figcaption span{
+  font-family:var(--mono);font-size:11px;color:var(--fg-mute);letter-spacing:0.04em;
+}
+
+/* ── 03 Flow timeline ───────────────────────────────────────── */
+.c-flow-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.c-flow-row{
+  display:grid;grid-template-columns:120px 1fr auto;gap:32px;align-items:center;
+  padding:28px 0;border-bottom:1px solid var(--line);
+  transition:padding-left .35s ease, background .35s ease;
+}
+.c-flow-row:hover{padding-left:16px;background:var(--surface)}
+.c-flow-row .t{
+  font-family:var(--mono);font-size:18px;color:var(--crimson);letter-spacing:0.04em;
+}
+.c-flow-row .b h4{
+  font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
+  margin:0 0 6px;color:var(--fg);
+}
+.c-flow-row .b p{color:var(--fg-dim);font-size:14px;line-height:1.6;margin:0;max-width:60ch}
+.c-flow-row .ix{font-family:var(--mono);font-size:11px;color:var(--fg-mute);letter-spacing:0.06em}
+@media (max-width:720px){
+  .c-flow-row{grid-template-columns:80px 1fr;gap:18px}
+  .c-flow-row .ix{display:none}
+  .c-flow-row .b h4{font-size:20px}
+  .c-flow-row .t{font-size:15px}
+}
+
+/* ── 04 Where ───────────────────────────────────────────────── */
+.c-where-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--line);
+}
+@media (max-width:820px){.c-where-grid{grid-template-columns:1fr}}
+.c-where-card{
+  padding:48px 32px;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:10px;
+  transition:background .3s;
+}
+.c-where-card:hover{background:var(--surface)}
+.c-where-card:last-child{border-right:none}
+@media (max-width:820px){
+  .c-where-card{border-right:none;border-bottom:1px solid var(--line)}
+  .c-where-card:last-child{border-bottom:none}
+}
+.c-where-card .ix{
+  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em;
+}
+.c-where-card h3{
+  font-family:var(--display);font-size:32px;font-weight:300;letter-spacing:-0.005em;
+  margin:8px 0 6px;color:var(--fg);
+}
+.c-where-card p{color:var(--fg-dim);font-size:14px;line-height:1.65;margin:0;max-width:36ch}
+
+/* ── mobile pass ───────────────────────────────────────────── */
+@media (max-width:720px){
+  .c-hero{padding:96px 0 64px}
+  .c-hero-photo{transform:rotate(-0.5deg);max-width:380px;margin:0 auto}
+  .c-format-card{grid-template-columns:1fr}
+  .c-format-img{border-right:none;border-bottom:1px solid var(--line);aspect-ratio:16/10}
+  .c-format-body{padding:22px 22px 26px}
+  .c-where-card{padding:36px 24px}
+  .c-where-card h3{font-size:24px}
+}

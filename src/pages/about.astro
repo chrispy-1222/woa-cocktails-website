@@ -1,0 +1,227 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// ── Card data ────────────────────────────────────────────────────────
+const CARDS = [
+  {
+    id: 'fabio',
+    kind: 'photo',
+    front: { img: '/img/founder-fabio.jpg', pos: 'center 20%', label: 'Co-Founder' },
+    back: {
+      eyebrow: '— Co-Founder',
+      title: 'Fabio Perez.',
+      body: 'A hospitality professional with years in NYC luxury restaurants and beverage operations. Fabio leads guest experience, hospitality standards, and the WOA team philosophy: every pour is a posture.',
+    },
+  },
+  {
+    id: 'hector',
+    kind: 'photo',
+    front: { img: '/img/cocktail-work-of-art.jpg', pos: 'center 35%', label: 'Co-Founder' },
+    back: {
+      eyebrow: '— Co-Founder',
+      title: 'Hector Taveras.',
+      body: 'A beverage director and event execution lead with deep experience in restaurant leadership. Hector drives menu architecture, cocktail development, and the craft side of every WOA experience.',
+    },
+  },
+  {
+    id: 'founders',
+    kind: 'photo',
+    front: { img: '/img/framed-founders.png', pos: 'center 32%', label: 'The Founders' },
+    back: {
+      eyebrow: '— The Founders',
+      title: 'Fabio & Hector.',
+      body: 'Longtime friends and hospitality professionals who founded WOA in 2020 during the pandemic. What started as cocktail content on social became a full hospitality house — now operating across New York and Miami.',
+    },
+  },
+  {
+    id: 'nyc',
+    kind: 'photo',
+    front: { img: '/img/city-nyc.jpg', pos: 'center 45%', label: 'Market 01' },
+    back: {
+      eyebrow: '— Market 01',
+      title: 'The Big Apple.',
+      body: "Born here. Built here. Hundreds of events across Manhattan, Brooklyn, Queens, the Hamptons and the tri-state. WOA's roots — and still our home market.",
+    },
+  },
+  {
+    id: 'miami',
+    kind: 'photo',
+    front: { img: '/img/city-miami.jpeg', pos: 'center 55%', label: 'Market 02' },
+    back: {
+      eyebrow: '— Market 02',
+      title: 'Dade County.',
+      body: 'Now serving Miami, Miami Beach, Brickell, Coral Gables, Bal Harbour and Fort Lauderdale. Rooftops, estates and brand activations — the same WOA standard, in a new climate.',
+    },
+  },
+  {
+    id: 'origin',
+    kind: 'text',
+    front: { lg: '2020', sm: 'Est.' },
+    back: {
+      eyebrow: '— The Origin',
+      title: 'Born in a pandemic.',
+      body: "WOA started in 2020 when NYC's bars went dark. Two friends made cocktails on camera as a creative outlet. The community built itself. The brand followed.",
+    },
+  },
+  {
+    id: 'events',
+    kind: 'text',
+    front: { lg: '500+', sm: 'Events curated' },
+    back: {
+      eyebrow: '— Scale',
+      title: '500+ events.',
+      body: 'Weddings, corporate activations, brand launches, rooftop parties, intimate dinners. Every one custom-built to the moment — never a template, never a copy.',
+    },
+  },
+  {
+    id: 'drink',
+    kind: 'photo',
+    front: { img: '/img/founder-hector.jpg', pos: 'center 25%', label: 'The Signature' },
+    back: {
+      eyebrow: '— The Work',
+      title: 'A work of art.',
+      body: 'Every cocktail is built with care — fresh ingredients, balanced spec, named to the moment. The drinks are why people remember the night. We treat each one like a piece of art.',
+    },
+  },
+  {
+    id: 'cart',
+    kind: 'photo',
+    front: { img: '/img/mb-rooftop-black.jpg', pos: 'center 64%', label: 'The Mobile Bar' },
+    back: {
+      eyebrow: '— The Cart',
+      title: 'Wheels & all.',
+      body: 'Our signature luxury mobile bar — wheeled into rooftops, gardens, estates and hotel ballrooms. The first thing your guests notice. The last thing they forget.',
+    },
+  },
+];
+
+// ── Pre-set float positions per card (% of playground) ───────────────
+const POSITIONS = {
+  fabio:    { x: '6%',   y: '5%',   r:  -4, dur: 22 },
+  hector:   { x: '72%',  y: '7%',   r:   3, dur: 26 },
+  founders: { x: '40%',  y: '18%',  r:  -2, dur: 24 },
+  nyc:      { x: '74%',  y: '38%',  r:   2, dur: 25 },
+  miami:    { x: '5%',   y: '42%',  r:  -3, dur: 28 },
+  origin:   { x: '44%',  y: '50%',  r:   4, dur: 21 },
+  events:   { x: '74%',  y: '65%',  r:  -2, dur: 23 },
+  drink:    { x: '18%',  y: '66%',  r:   3, dur: 27 },
+  cart:     { x: '46%',  y: '75%',  r:  -3, dur: 25 },
+};
+---
+
+<Layout
+  title="About — WOA Cocktails · Luxury Hospitality & Beverage House"
+  description="The WOA story — founders, markets, origin, philosophy. A floating constellation of moments."
+  styles={['woa-about.css']}
+>
+  <main class="ab-page">
+    {/* The constellation playground — the entire page */}
+    <section
+      class="ab-stage"
+      data-ab-stage
+      aria-label="Floating constellation of WOA story cards"
+    >
+      <div class="ab-stage-inner">
+        {
+          CARDS.map((card, i) => {
+            const pos = POSITIONS[card.id];
+            const inactiveStyle =
+              `left:${pos.x};top:${pos.y};` +
+              `--rot:${pos.r}deg;--dur:${pos.dur}s;--delay:${-i * 1.4}s;`;
+            return (
+              <button
+                type="button"
+                class={'fc fc-' + card.kind + ' fc-id-' + card.id}
+                style={inactiveStyle}
+                data-inactive-style={inactiveStyle}
+                aria-pressed="false"
+                aria-label={`Card: ${card.back.title}`}
+              >
+                <span class="fc-inner">
+                  <span class="fc-face fc-front">
+                    {card.kind === 'photo' && (
+                      <>
+                        <img src={card.front.img} alt="" style={`object-position:${card.front.pos}`} />
+                        <span class="fc-label">{card.front.label}</span>
+                      </>
+                    )}
+                    {card.kind === 'text' && (
+                      <div class="fc-text">
+                        <span class="fc-lg">{card.front.lg}</span>
+                        <span class="fc-sm">{card.front.sm}</span>
+                      </div>
+                    )}
+                  </span>
+                  <span class="fc-face fc-back">
+                    <span class="fc-back-eyebrow">{card.back.eyebrow}</span>
+                    <span class="fc-back-title">{card.back.title}</span>
+                    <span class="fc-back-body">{card.back.body}</span>
+                    <span class="fc-back-hint">tap to close ✕</span>
+                  </span>
+                </span>
+              </button>
+            );
+          })
+        }
+      </div>
+      <span class="ab-hint" data-ab-hint>↻ floating · tap any card</span>
+    </section>
+  </main>
+</Layout>
+
+<script>
+  const stage = document.querySelector('[data-ab-stage]');
+  if (stage) {
+    const cards = Array.from(stage.querySelectorAll('.fc'));
+    const hint = stage.querySelector('[data-ab-hint]');
+
+    function close() {
+      let changed = false;
+      cards.forEach((c) => {
+        if (c.classList.contains('is-active')) changed = true;
+        c.classList.remove('is-active');
+        c.setAttribute('aria-pressed', 'false');
+        // restore the floating position/animation inline style
+        c.setAttribute('style', c.dataset.inactiveStyle || '');
+      });
+      stage.classList.remove('has-active');
+      if (hint) hint.classList.remove('hidden');
+      return changed;
+    }
+
+    function activate(card) {
+      cards.forEach((c) => {
+        const on = c === card;
+        c.classList.toggle('is-active', on);
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (on) {
+          // active state uses the CSS class, not the inline float style
+          c.removeAttribute('style');
+        } else {
+          c.setAttribute('style', c.dataset.inactiveStyle || '');
+        }
+      });
+      stage.classList.add('has-active');
+      if (hint) hint.classList.add('hidden');
+    }
+
+    cards.forEach((card) => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (card.classList.contains('is-active')) {
+          close();
+        } else {
+          activate(card);
+        }
+      });
+    });
+
+    // Clicking the stage background closes any open card
+    stage.addEventListener('click', () => close());
+
+    // Close on Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+</script>

@@ -1,0 +1,359 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// ── Hero: interactive team rolodex ───────────────────────────────────
+// Real WOA team — names + roles surface as a caption on the front card.
+const TEAM = [
+  { img: '/img/team-fabio-hector.webp', pos: '58% 38%', name: 'Fabio & Hector', role: 'Mixologist Captains' },
+  { img: '/img/team-phillip.webp', pos: 'center 46%', name: 'Phillip Guzman', role: 'Bartender' },
+  { img: '/img/team-jonathan.webp', pos: 'center 44%', name: 'Jonathan Acqui', role: 'Bartender' },
+  { img: '/img/team-anthony.webp', pos: '82% 44%', name: 'Anthony Guzman', role: 'Bartender' },
+  { img: '/img/team-jeimy.webp', pos: '56% 24%', name: 'Jeimy Manón', role: 'Server' },
+  { img: '/img/team-dj-many.webp', pos: 'center 15%', name: 'DJ Many', role: 'Resident DJ' },
+  { img: '/img/team-dj-ultraviolet.webp', pos: '38% 30%', name: 'DJ UltraViolet', role: 'Resident DJ' },
+];
+const N = TEAM.length;
+
+// ── The roles spread ─────────────────────────────────────────────────
+// Real WOA team members from Fabio's Drive folder, captioned by name.
+const ROLES = [
+  {
+    n: '01', role: 'Bartenders',
+    pitch: 'Years of luxury hospitality. Cocktail craft, technique, presentation. The face of the bar.',
+    img: '/img/staff-jonathan.webp', cap: 'Jonathan Acqui',
+  },
+  {
+    n: '02', role: 'Hosts & Captains',
+    pitch: 'Front-of-house leadership. Guest greeting, flow management, the orchestrator on the floor.',
+    img: '/img/staff-phillip.webp', cap: 'Phillip Guzman & Team',
+  },
+  {
+    n: '03', role: 'Barbacks',
+    pitch: 'The invisible engine. Keeps ice, glass and garnish moving so the bar never breaks rhythm.',
+    img: '/img/staff-manuel.webp', cap: 'Manuel Brache',
+  },
+  {
+    n: '04', role: 'Event Leads & Servers',
+    pitch: 'On-the-day captain. Single point of contact for the host. Owns timeline, team and recovery.',
+    img: '/img/staff-anthony.webp', cap: 'Anthony Guzman & Team',
+  },
+];
+
+// ── How it works ─────────────────────────────────────────────────────
+const ST_STEPS = [
+  { n: '01', t: 'Discovery call', d: '30 minutes — date, guest count, event style, scope. We assess fit and staffing needs.' },
+  { n: '02', t: 'Tailored team', d: 'Within two business days — proposed team composition, ratios, lead, all-in quote.' },
+  { n: '03', t: 'Pre-event briefing', d: 'Captain meets host, walks the venue. Timing, run-of-show, contingencies aligned.' },
+  { n: '04', t: 'Event day', d: 'Team arrives uniformed and briefed. We host. You enjoy your own event.' },
+];
+
+// ── FAQ ──────────────────────────────────────────────────────────────
+const ST_FAQ = [
+  { q: 'Can we book bartenders alone, without the full mobile bar?',
+    a: "Absolutely. Staffing-only is one of our most common bookings — a venue's bar with our team running it, or a private home with our bartenders behind the host's own setup. We staff to the format." },
+  { q: "What's the bartender-to-guest ratio?",
+    a: "It depends heavily on the event — the cocktail menu, guest count, service style and length all change the answer. Rather than quote a flat ratio, we advise on the right staffing for your event on the discovery call, based on exactly what you're hosting." },
+  { q: 'Do you provide uniforms?',
+    a: 'Yes — a clean, presentation-ready WOA standard by default. We can also custom-uniform the team to match a brand activation, wedding palette, or venue aesthetic on request.' },
+  { q: "What if a staff member doesn't show up?",
+    a: 'It rarely ever happens — our staff is highly professional and shows up prepared. But every event still has a designated Event Lead plus backup and on-call staff ready for emergencies. If a swap is ever needed, it happens behind the scenes; the host never feels it.' },
+  { q: 'How far in advance do I need to reach out?',
+    a: "For larger events such as weddings, we can book up to a year in advance. We're also flexible with last-minute requests: full-service events can be booked with as little as 3 days' notice, and bartending staff-only services with as little as 24 hours' notice, depending on availability." },
+];
+---
+
+<Layout
+  title="Bartending & Hospitality Staffing — WOA Cocktails"
+  description="WOA places experienced bartenders, hosts, captains and event leads — trained in luxury hospitality standards. NYC & Miami."
+  styles={['woa-service.css', 'woa-svc-staffing.css']}
+>
+  <main class="svc-page st-page">
+    {/* ── Hero: interactive team rolodex ── */}
+    <section class="svp-hero st-hero">
+      <div class="wrap st-hero-grid">
+        <div class="st-hero-copy">
+          <div style="display:flex;justify-content:space-between;margin-bottom:32px">
+            <span class="eyebrow">— Service 03 · The People</span>
+          </div>
+          <span class="svp-hero-rule"></span>
+          <h1 class="display st-hero-title">
+            Bartending &amp;<br /><em>staffing.</em>
+          </h1>
+          <p class="st-hero-lede">
+            Professional bartending and hospitality staffing for private, corporate
+            and luxury events. WOA places <b style="color:var(--fg)">experienced</b> bartenders and
+            hospitality professionals — trained to deliver elevated service,
+            quiet professionalism, and guest-focused warmth.
+          </p>
+          <a href="/contact" class="st-hero-pitch">
+            <span class="d"></span>
+            <span>Staff your next event <span style="color:var(--crimson);margin-left:6px">→</span></span>
+          </a>
+        </div>
+
+        {/* Interactive team rolodex */}
+        <div
+          class="st-rolo"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="WOA hospitality team"
+          tabindex="0"
+        >
+          <span class="st-rolo-hint">— the team</span>
+          <div class="st-rolo-stack">
+            {TEAM.map((m, i) => {
+              const off = (i - 0 + N) % N;
+              const hidden = off > 3;
+              return (
+                <button
+                  type="button"
+                  class={'st-rolo-card' + (off === 0 ? ' front' : '')}
+                  data-index={i}
+                  style={`z-index:${N - off};--off:${Math.min(off, 3)};display:${hidden ? 'none' : 'block'}`}
+                  aria-label={`${m.name} — ${m.role}`}
+                  aria-current={off === 0 ? 'true' : 'false'}
+                  aria-hidden={hidden ? 'true' : 'false'}
+                  tabindex={off === 0 ? 0 : -1}
+                >
+                  <img src={m.img} alt={`${m.name}, ${m.role} at WOA Cocktails`} style={`object-position:${m.pos}`} />
+                  <span class="st-rolo-cap">
+                    <span class="role">{m.role}</span>
+                    <span class="name">{m.name}</span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div class="st-rolo-controls">
+            <button type="button" class="st-rolo-arr" data-rolo-prev aria-label="Previous">←</button>
+            <span class="st-rolo-count">
+              <b>01</b> / {String(N).padStart(2, '0')}
+            </span>
+            <button type="button" class="st-rolo-arr" data-rolo-next aria-label="Next">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Pull-quote band ── */}
+    <section class="st-pull">
+      <div class="wrap">
+        <p class="display st-pull-text">
+          We don't think of ourselves as bartenders.<br />
+          <span style="color:var(--crimson)">We think of ourselves as hosts</span> who happen to
+          run the best bar in the room.
+        </p>
+      </div>
+    </section>
+
+    {/* ── The roles spread ── */}
+    <section class="svp-chapter st-roles">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 01 / The Roles ]</span>
+          <h2 class="svp-chapter-title">
+            Four roles. <span class="it">One</span> standard.
+          </h2>
+        </header>
+
+        <div class="st-roles-grid">
+          {ROLES.map((r) => (
+            <article class="st-role-card">
+              <figure class="st-role-img">
+                <img src={r.img} alt={r.cap || r.role} loading="lazy" />
+                {r.cap && <figcaption style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">{r.cap}</figcaption>}
+              </figure>
+              <div class="st-role-body">
+                <span class="n">— {r.n}</span>
+                <h3>{r.role}</h3>
+                <p>{r.pitch}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Featured event: WOA Summer Party × Dumbo House ── */}
+    <section class="svp-feature st-feature">
+      <div class="wrap">
+        <header class="svp-feature-head">
+          <span class="svp-feature-stamp">Featured · 2025</span>
+          <div>
+            <span class="svp-chapter-num">[ 02 / In Action ]</span>
+            <h2 class="svp-feature-title" style="margin-top:14px">
+              <span class="it">WOA Summer Party</span><br />Dumbo House NYC.
+            </h2>
+            <p style="margin-top:18px;max-width:54ch;color:var(--fg-dim);font-size:15px;line-height:1.7">
+              A WOA-hosted summer rooftop. Full hospitality team — bartenders,
+              hosts and event leads — running an open-bar, sunset-to-late service
+              on Dumbo House's roof, framed by the Manhattan skyline.
+            </p>
+          </div>
+        </header>
+
+        <div class="svp-grid g-asym st-feature-grid">
+          <div class="ph" style="grid-column:span 6;grid-row:span 2">
+            <img src="/img/gal-rooftop-team.jpg" alt="WOA team on the rooftop bar at Dumbo House" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-bartender.jpg" alt="Bartender pouring with the bridge backdrop" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-shake.jpg" alt="Mid-shake on the rooftop bar" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-portrait.jpg" alt="Hospitality team portrait" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-group.jpg" alt="Hosts mid-service" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="st-feature-meta">
+          <div><div class="ix">Venue</div><b>Dumbo House NYC</b></div>
+          <div><div class="ix">Format</div><b>Rooftop · Open bar</b></div>
+          <div><div class="ix">Team</div><b>9 hospitality staff</b></div>
+          <div><div class="ix">Date</div><b>Summer 2025</b></div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── How it works ── */}
+    <section class="svp-chapter st-process">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 03 / How It Works ]</span>
+          <h2 class="svp-chapter-title">From inquiry to <span class="it">last call</span>.</h2>
+        </header>
+        <div class="svp-steps">
+          {ST_STEPS.map((s) => (
+            <article class="svp-step">
+              <span class="n">— {s.n}</span>
+              <h4>{s.t}</h4>
+              <p>{s.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="svp-faq">
+      <div class="wrap">
+        <div class="svp-faq-grid">
+          <div>
+            <span class="svp-chapter-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">Common questions</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
+              About <span class="it" style="color:var(--crimson)">the team</span>.
+            </h2>
+          </div>
+          <div>
+            {ST_FAQ.map((f, i) => (
+              <details class="svp-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CTA + prev/next ── */}
+    <section class="svp-cta">
+      <div class="svp-cta-bg">
+        <img src="/img/gal-rooftop-team.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="wrap">
+        <span class="eyebrow">— Inquire</span>
+        <h2 class="display">
+          Staff your <span class="it" style="color:var(--crimson)">next</span> event.
+        </h2>
+        <p>
+          30-minute discovery call. We'll assess the brief, propose the right team
+          shape, and send a quote within two business days.
+        </p>
+        <div class="cta-row">
+          <a href="/contact" class="btn btn-solid">Book a discovery call <span class="arr">→</span></a>
+          <a href="/contact" class="btn btn-ghost">All ways to reach us</a>
+        </div>
+      </div>
+    </section>
+    <nav class="svp-nav" aria-label="Other services">
+      <a href="/brand-experiences">
+        <span class="dir">← Previous service</span>
+        <span class="ttl">Brand &amp; <span class="it">Hospitality</span></span>
+      </a>
+      <a href="/classes">
+        <span class="dir">Next service →</span>
+        <span class="ttl">Mixology <span class="it">Classes</span></span>
+      </a>
+    </nav>
+  </main>
+</Layout>
+
+<script>
+  // ── Team rolodex (ports StHero React state/hooks to vanilla JS) ──
+  const rolo = document.querySelector('.st-rolo');
+  if (rolo) {
+    const stack = rolo.querySelector('.st-rolo-stack');
+    const cards = Array.from(stack.querySelectorAll('.st-rolo-card'));
+    const countEl = rolo.querySelector('.st-rolo-count b');
+    const prevBtn = rolo.querySelector('[data-rolo-prev]');
+    const nextBtn = rolo.querySelector('[data-rolo-next]');
+    const N = cards.length;
+    let active = 0;
+    let paused = false;
+    let timer = null;
+
+    function render() {
+      cards.forEach((card, i) => {
+        const off = (i - active + N) % N;
+        const hidden = off > 3;
+        const front = off === 0;
+        card.classList.toggle('front', front);
+        card.style.zIndex = String(N - off);
+        card.style.setProperty('--off', String(Math.min(off, 3)));
+        card.style.display = hidden ? 'none' : 'block';
+        card.setAttribute('aria-current', front ? 'true' : 'false');
+        card.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+        card.tabIndex = front ? 0 : -1;
+      });
+      countEl.textContent = String(active + 1).padStart(2, '0');
+    }
+
+    function next() { active = (active + 1) % N; render(); }
+    function prev() { active = (active - 1 + N) % N; render(); }
+
+    function start() {
+      stop();
+      if (!paused) timer = setInterval(next, 3600);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    cards.forEach((card) => {
+      const i = Number(card.dataset.index);
+      card.addEventListener('click', () => { active = i; render(); start(); });
+    });
+
+    prevBtn.addEventListener('click', () => { prev(); start(); });
+    nextBtn.addEventListener('click', () => { next(); start(); });
+
+    rolo.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { next(); start(); }
+      if (e.key === 'ArrowLeft') { prev(); start(); }
+    });
+
+    rolo.addEventListener('mouseenter', () => { paused = true; stop(); });
+    rolo.addEventListener('mouseleave', () => { paused = false; start(); });
+    rolo.addEventListener('focusin', () => { paused = true; stop(); });
+    rolo.addEventListener('focusout', () => { paused = false; start(); });
+
+    render();
+    start();
+  }
+</script>

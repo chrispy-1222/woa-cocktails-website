@@ -1,0 +1,289 @@
+/* mobile-bar.css — page-specific layers for the Mobile Bar Experience page */
+
+/* ─────────────────────────────────────────────────────────────
+   HERO — asymmetric editorial split. Bold type pane on the left,
+   the bar photo bleeding to the right viewport edge (skyline +
+   product). Distinct from the full-bleed & diptych service heroes.
+   ───────────────────────────────────────────────────────── */
+.mb-hero{
+  position:relative;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,0.92fr);
+  align-items:stretch;
+  min-height:min(88vh,860px);
+  background:var(--bg);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+
+/* text pane — left edge aligns to the site container */
+.mb-hero-text{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:center;
+  padding:140px clamp(40px,5vw,88px) 72px max(48px, calc((100vw - 1440px)/2 + 48px));
+}
+
+.mb-hero-kicker{
+  display:flex;align-items:center;gap:14px;margin-bottom:30px;
+}
+.mb-hero-kicker .num{
+  font-family:var(--mono);font-size:11px;color:var(--crimson);
+  letter-spacing:0.12em;border:1px solid var(--crimson);
+  padding:4px 9px;border-radius:2px;
+}
+.mb-hero-kicker .lbl{
+  font-family:var(--mono);font-size:11px;color:var(--fg-mute);
+  letter-spacing:0.28em;text-transform:uppercase;
+}
+
+.mb-hero-title{
+  font-size:clamp(48px,5.6vw,104px);font-weight:300;letter-spacing:-0.028em;line-height:1.0;
+  margin:0 0 34px;
+}
+.mb-hero-title em{font-style:italic;color:var(--crimson);font-weight:400}
+
+.mb-hero-lede{
+  color:var(--fg-dim);font-size:clamp(15px,1.35vw,18px);line-height:1.65;
+  max-width:42ch;margin:0 0 34px;
+}
+
+.mb-hero-uses{
+  list-style:none;margin:0 0 38px;padding:0;
+  display:flex;flex-wrap:wrap;gap:10px 26px;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg-mute);
+}
+.mb-hero-uses li{display:inline-flex;align-items:center;gap:10px}
+.mb-hero-uses .d{width:5px;height:5px;background:var(--crimson);transform:rotate(45deg);display:inline-block}
+
+.mb-hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.mb-hero-cta{min-height:50px}
+
+/* media pane — photo bleeds to the right viewport edge, full height */
+.mb-hero-media{
+  position:relative;margin:0;overflow:hidden;
+  background:var(--surface);
+}
+.mb-hero-media img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;
+}
+.mb-hero-media::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg, var(--bg) 0%, rgba(11,9,7,0.35) 16%, transparent 42%);
+}
+.mb-hero-media figcaption{
+  position:absolute;left:22px;bottom:20px;z-index:2;
+  font-family:var(--mono);font-size:10.5px;color:var(--fg-dim);letter-spacing:0.04em;
+  background:rgba(11,9,7,0.55);padding:6px 9px;border:1px solid var(--line-strong);
+}
+
+/* floating badge — the page's core promise */
+.mb-hero-badge{
+  position:absolute;top:34px;right:34px;z-index:3;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--crimson);color:#fff;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+  padding:9px 16px;border-radius:2px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.35);
+}
+.mb-hero-badge .bx{opacity:0.6}
+.mb-hero-badge .b2{font-style:normal;opacity:0.92}
+
+@media (max-width:980px){
+  .mb-hero{
+    grid-template-columns:1fr;
+    min-height:0;
+  }
+  .mb-hero-text{
+    order:1;
+    padding:118px 24px 40px;
+  }
+  .mb-hero-media{
+    order:2;
+    aspect-ratio:4/3;min-height:340px;
+  }
+  .mb-hero-media img{object-position:50% 38%}
+  .mb-hero-media::after{
+    background:linear-gradient(0deg, var(--bg) 0%, transparent 30%);
+  }
+}
+@media (max-width:720px){
+  .mb-hero-kicker{margin-bottom:22px}
+  .mb-hero-title{margin-bottom:22px}
+  .mb-hero-lede{margin-bottom:26px}
+  .mb-hero-uses{margin-bottom:30px;gap:8px 18px;font-size:10px}
+  .mb-hero-actions{width:100%}
+  .mb-hero-actions .btn{justify-content:center;flex:1 1 100%}
+  .mb-hero-badge{top:auto;bottom:18px;right:18px;left:auto;font-size:10px;padding:8px 13px}
+  .mb-hero-media figcaption{display:none}
+}
+
+/* ── 01 The Setup — split tall photo + copy ─────────────────── */
+.mb-setup-spread{
+  display:grid;grid-template-columns:0.95fr 1.05fr;gap:64px;align-items:center;
+}
+@media (max-width:980px){.mb-setup-spread{grid-template-columns:1fr;gap:40px}}
+.mb-photo-tall{
+  position:relative;margin:0;aspect-ratio:4/5;overflow:hidden;background:var(--surface);
+}
+.mb-photo-tall img{width:100%;height:100%;object-fit:cover}
+.mb-photo-tall figcaption{
+  position:absolute;left:18px;bottom:16px;z-index:1;
+  font-family:var(--mono);font-size:10.5px;color:var(--fg-dim);letter-spacing:0.04em;
+  background:rgba(11,9,7,0.55);padding:5px 8px;border:1px solid var(--line-strong);
+}
+.mb-setup-copy{display:flex;flex-direction:column;gap:36px}
+.mb-lede{
+  font-family:var(--display);font-size:clamp(22px,2.4vw,30px);
+  font-weight:300;line-height:1.45;color:var(--fg);letter-spacing:-0.005em;
+  margin:0;max-width:38ch;
+}
+.mb-lede em{font-style:italic;color:var(--crimson)}
+.mb-quote{
+  position:relative;
+  font-family:var(--display);font-size:18px;font-style:italic;color:var(--fg-dim);
+  line-height:1.55;letter-spacing:-0.005em;max-width:34ch;
+  padding-left:24px;border-left:1px solid var(--crimson);
+}
+.mb-quote .qmark{
+  font-family:var(--display);font-size:36px;color:var(--crimson);
+  line-height:0;vertical-align:-0.2em;margin-right:6px;
+}
+.mb-quote .sig{
+  display:block;margin-top:14px;font-style:normal;
+  font-family:var(--sans);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute);
+}
+
+/* ── 02 Make it yours — intro + tags on the inclusions list ──── */
+.mb-included-intro{
+  color:var(--fg-dim);font-size:clamp(15px,1.5vw,17px);line-height:1.7;
+  max-width:62ch;margin:0 0 8px;
+}
+.svp-include-item.is-core{background:rgba(197,48,45,0.05)}
+.svp-include-item.is-wide{grid-column:1 / -1;border-right:none}
+@media (max-width:720px){.svp-include-item.is-wide{grid-column:auto}}
+.svp-include-item .body h4{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.mb-tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--fg-mute);border:1px solid var(--line-strong);
+  padding:3px 7px;border-radius:2px;font-weight:400;
+  white-space:nowrap;
+}
+.mb-tag-core{color:var(--crimson);border-color:var(--crimson)}
+
+/* ── 03 Bar-only rental ─────────────────────────────────────── */
+.mb-rental{background:var(--surface)}
+.mb-rental-spread{
+  display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center;
+}
+@media (max-width:980px){.mb-rental-spread{grid-template-columns:1fr;gap:40px}}
+.mb-rental-copy{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.mb-rental-note{color:var(--fg-dim);font-size:15px;line-height:1.7;max-width:46ch;margin:0}
+.mb-rental-list{
+  list-style:none;margin:6px 0 0;padding:0;
+  display:flex;flex-direction:column;gap:14px;
+}
+.mb-rental-list li{
+  display:flex;align-items:center;gap:14px;
+  font-family:var(--display);font-size:21px;font-weight:300;color:var(--fg);letter-spacing:-0.005em;
+  padding-bottom:14px;border-bottom:1px solid var(--line);
+}
+.mb-rental-list li:last-child{border-bottom:none;padding-bottom:0}
+.mb-rental-list .d{width:6px;height:6px;background:var(--crimson);transform:rotate(45deg);flex-shrink:0}
+.mb-rental-foot{
+  color:var(--fg-mute);font-size:13px;line-height:1.65;max-width:44ch;margin:6px 0 0;
+  font-style:italic;
+}
+.mb-rental-cta{margin-top:8px;min-height:48px}
+.mb-rental-photo{aspect-ratio:4/5}
+
+/* ── 04 Ideal note ──────────────────────────────────────────── */
+.mb-ideal-note{
+  margin-top:32px;color:var(--fg-dim);font-size:14.5px;line-height:1.7;max-width:52ch;
+  padding-top:20px;border-top:1px solid var(--line);
+}
+
+/* ── Roll-in divider — "the bar arrives" line-art cart ──────── */
+.mb-roll{
+  background:var(--bg);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:clamp(48px,7vw,84px) 24px;
+  display:flex;justify-content:center;
+  overflow:hidden;
+}
+.mb-roll-inner{
+  display:flex;align-items:center;gap:clamp(22px,5vw,60px);
+  width:min(720px,100%);
+}
+.mb-roll-rule{
+  flex:1;height:1px;
+  background:linear-gradient(90deg,transparent,var(--line-strong) 65%,transparent);
+}
+.mb-roll-inner > .mb-roll-rule:last-child{
+  background:linear-gradient(90deg,transparent,var(--line-strong) 35%,transparent);
+}
+.mb-roll-art{
+  flex:0 0 auto;
+  width:clamp(108px,13vw,158px);height:auto;display:block;
+  filter:drop-shadow(0 8px 26px rgba(197,48,45,0.16));
+}
+.mb-roll-art .line{
+  fill:none;stroke:var(--crimson);stroke-width:9;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.mb-roll-art .thin{
+  fill:none;stroke:var(--crimson);stroke-width:5;
+  stroke-linecap:round;stroke-linejoin:round;opacity:0.72;
+}
+.mb-roll-art .wheel{transform-box:fill-box;transform-origin:center}
+
+/* JS-armed: hidden + waiting (only when JS can animate it back in) */
+.mb-roll.armed .mb-roll-art{transform:translateX(-200%);opacity:0}
+.mb-roll.armed .mb-roll-art .speed-lines{opacity:0}
+
+/* play once, when scrolled into view */
+.mb-roll.is-in .mb-roll-art{
+  animation:mb-roll-in 1.5s cubic-bezier(.22,.61,.36,1) forwards;
+}
+.mb-roll.is-in .mb-roll-art .wheel{
+  animation:mb-roll-spin 1.5s cubic-bezier(.22,.61,.36,1) forwards;
+}
+.mb-roll.is-in .mb-roll-art .speed-lines{animation:mb-roll-flick 1.5s ease-out forwards}
+.mb-roll.is-in .mb-roll-art .speed-lines.two{animation-delay:.08s}
+.mb-roll.is-in .mb-roll-art .speed-lines.three{animation-delay:.04s}
+
+@keyframes mb-roll-in{
+  0%{transform:translateX(-200%);opacity:0}
+  14%{opacity:1}
+  100%{transform:translateX(0);opacity:1}
+}
+@keyframes mb-roll-spin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(560deg)}
+}
+@keyframes mb-roll-flick{
+  0%{opacity:0}
+  18%{opacity:.85}
+  62%{opacity:.85}
+  100%{opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .mb-roll.armed .mb-roll-art{transform:none;opacity:1}
+  .mb-roll.armed .mb-roll-art .speed-lines{opacity:.55}
+  .mb-roll.is-in .mb-roll-art,
+  .mb-roll.is-in .mb-roll-art .wheel,
+  .mb-roll.is-in .mb-roll-art .speed-lines{animation:none}
+}
+
+/* ── mobile pass ────────────────────────────────────────────── */
+@media (max-width:720px){
+  .mb-setup-spread{gap:28px}
+  .mb-setup-copy{gap:24px}
+  .mb-quote{font-size:16px;padding-left:18px}
+  .mb-rental-spread{gap:28px}
+  .mb-rental-list li{font-size:18px}
+  .mb-included-intro{font-size:15px}
+}

@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// ── Packages ─────────────────────────────────────────────────────────
+const PACKAGES = [
+  {
+    id: 'pkg-01',
+    n: '01',
+    name: 'Mobile Bar Experience',
+    sub: 'The flagship — full hospitality, end-to-end.',
+    price: '$2,500',
+    unit: 'starting',
+    tag: 'Most booked',
+    includes: [
+      'Luxury mobile bar setup (delivery & install)',
+      'Custom cocktail menu design',
+      'Up to 3 signature cocktails developed for the event',
+      'Professional bartenders & hospitality staff',
+      'Premium mixers, garnishes, fresh ice',
+      'Full bar tools, equipment & glassware',
+      'Setup & breakdown',
+      '4-hour service window (extendable)',
+    ],
+    notes: 'Final quote scales with guest count, hours, market, menu complexity and bar build.',
+    cta: 'Inquire for Mobile Bar',
+  },
+  {
+    id: 'pkg-02',
+    n: '02',
+    name: 'Bartending & Hospitality Staffing',
+    sub: 'Experienced WOA team. By the event or by the hour.',
+    price: '$85',
+    unit: 'per bartender / hour',
+    tag: 'Flexible',
+    includes: [
+      'WOA-trained bartenders, hosts, barbacks & event leads',
+      'Pre-event briefing with venue walkthrough',
+      'Uniformed, presentation-ready',
+      'Backup roster on call',
+      'Captain assigned for events of 80+ guests',
+      'Travel within NYC / Miami included',
+      'Custom uniforms available on request',
+    ],
+    notes: '4-hour minimum per booking. Travel outside NYC/MIA quoted separately.',
+    cta: 'Inquire for Staffing',
+  },
+  {
+    id: 'pkg-03',
+    n: '03',
+    name: 'Mixology Private Class',
+    sub: 'Hands-on cocktail class led by a WOA mixologist.',
+    price: '$150',
+    unit: 'per guest',
+    tag: 'Per guest',
+    includes: [
+      '90-minute hands-on class',
+      '3 cocktails learned & made',
+      'Mixers, garnishes & ice — spirits coordinated',
+      'Tools, jiggers, shakers, glassware',
+      'Recipe cards sent after class',
+      'Professional WOA mixologist leading',
+      'On-site at office, home or venue',
+    ],
+    notes: '10-guest minimum. Group rates available for 30+. Brand-themed menus available.',
+    cta: 'Inquire for a Class',
+  },
+];
+
+// ── A la carte add-ons ───────────────────────────────────────────────
+const ADDONS = [
+  { name: 'Signature cocktail (additional)', price: '$200 / each' },
+  { name: 'Branded menu cards + signage', price: '$300+' },
+  { name: 'Custom uniforms', price: '$80 / person' },
+  { name: 'Premium glassware upgrade', price: '$2.50 / guest' },
+  { name: 'Zero-proof program', price: 'Included' },
+  { name: 'Live ice carving', price: '$1,500+' },
+  { name: 'Travel outside NYC / Miami', price: 'Quoted' },
+  { name: 'Multi-day event (per day)', price: '$1,200+' },
+];
+
+// ── FAQ ──────────────────────────────────────────────────────────────
+const PR_FAQ = [
+  {
+    q: 'Why custom-quoted instead of flat packages?',
+    a: 'Too many honest variables. Guest count, hours, market, venue access, bar build, menu complexity and staffing all shift the cost. A flat package would either over-charge small events or under-deliver on large ones. The starting prices above are a fair floor — we send a full proposal within two business days after a 30-minute discovery call.',
+  },
+  {
+    q: 'What is the minimum I can book an event for?',
+    a: 'Our packages start at 20 guests and a minimum of 3 hours of full beverage service.',
+  },
+  {
+    q: 'Do you require a deposit?',
+    a: 'Yes — 50% to hold the date, with the balance due 7 days before the event. Full terms live in the proposal.',
+  },
+  {
+    q: 'What happens if I cancel an event I have booked?',
+    a: 'If an event is canceled 72 hours or more before the event date, the deposit remains available as a credit, valid for up to one year from the cancellation date.',
+  },
+  {
+    q: 'Does WOA Cocktails provide alcohol?',
+    a: 'WOA Cocktails coordinates and curates the complete beverage experience. We can assist with menu planning, shopping lists, quantities, mixers, garnishes, and all beverage-related details to ensure a seamless service.',
+  },
+  {
+    q: 'Do you charge for travel?',
+    a: 'Travel within NYC and Miami metro is included. Tri-state, South Florida and destination events are quoted separately based on distance, crew size and accommodation needs.',
+  },
+  {
+    q: 'Are gratuity and taxes included?',
+    a: "Tax is added at quote. Gratuity is optional and at the host's discretion — for events where we manage cash/card sales (rare), a standard 18% gratuity is applied at the bar.",
+  },
+];
+---
+
+<Layout
+  title="Packages & Pricing — WOA Cocktails · Luxury Hospitality & Beverage House"
+  description="WOA Cocktails pricing — starting points for our mobile bar, staffing and mixology class services. Custom-quoted per event. NYC & Miami."
+  styles={['woa-pricing.css']}
+>
+  <main class="pr-page">
+    {/* ── Hero ── */}
+    <section class="pr-hero">
+      <div class="wrap">
+        <div class="pr-hero-top">
+          <span class="eyebrow">— Packages &amp; Pricing</span>
+          <span class="pr-hero-stamp">Rate Card · 2026</span>
+        </div>
+        <h1 class="display pr-hero-title">
+          Pricing<span class="pr-dot">.</span>
+        </h1>
+        <p class="pr-hero-lede">
+          Every event is unique, so every WOA event is custom-quoted.
+          Below are the <em>starting points</em> for each service —
+          a simple, honest place to begin a conversation.
+        </p>
+        <div class="pr-hero-jump">
+          <a href="#pkg-01" class="pr-jump">
+            <span class="num">01</span>
+            <span class="lbl">Mobile Bar</span>
+            <span class="from">from <b>$2,500</b></span>
+          </a>
+          <a href="#pkg-02" class="pr-jump">
+            <span class="num">02</span>
+            <span class="lbl">Staffing</span>
+            <span class="from">from <b>$85<small>/hr</small></b></span>
+          </a>
+          <a href="#pkg-03" class="pr-jump">
+            <span class="num">03</span>
+            <span class="lbl">Mixology Class</span>
+            <span class="from">from <b>$150<small>/guest</small></b></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Packages ── */}
+    <section class="pr-packages">
+      <div class="wrap">
+        {PACKAGES.map((p) => (
+          <article class="pr-pkg" id={p.id}>
+            <header class="pr-pkg-head">
+              <div class="lhs">
+                <span class="pr-pkg-n">— No. {p.n}</span>
+                <h2 class="pr-pkg-name">{p.name}</h2>
+                <p class="pr-pkg-sub">{p.sub}</p>
+                <span class="pr-pkg-tag">{p.tag}</span>
+              </div>
+              <div class="rhs">
+                <span class="pr-pkg-from">Starting from</span>
+                <span class="pr-pkg-price">{p.price}</span>
+                <span class="pr-pkg-unit">{p.unit}</span>
+              </div>
+            </header>
+
+            <div class="pr-pkg-body">
+              <div class="pr-pkg-incl">
+                <span class="eyebrow">— Included</span>
+                <ul>
+                  {p.includes.map((line) => (
+                    <li>
+                      <span class="bullet" />
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <aside class="pr-pkg-aside">
+                <div class="pr-pkg-notes">
+                  <span class="eyebrow dim">— Note</span>
+                  <p>{p.notes}</p>
+                </div>
+                <a href="/contact" class="btn btn-solid pr-pkg-cta">
+                  {p.cta} <span class="arr">→</span>
+                </a>
+              </aside>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {/* ── A la carte add-ons ── */}
+    <section class="pr-addons">
+      <div class="wrap">
+        <header class="pr-section-head">
+          <span class="pr-section-num">[ A LA CARTE ]</span>
+          <h2 class="display pr-section-title">
+            Add to <span class="it">any</span> package.
+          </h2>
+        </header>
+        <ul class="pr-addons-list">
+          {ADDONS.map((a) => (
+            <li>
+              <span class="name">{a.name}</span>
+              <span class="dots" aria-hidden="true" />
+              <span class="price">{a.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {/* ── What you don't pay for ── */}
+    <section class="pr-included">
+      <div class="wrap">
+        <header class="pr-section-head">
+          <span class="pr-section-num">[ ALWAYS INCLUDED ]</span>
+          <h2 class="display pr-section-title">
+            Things you'll <span class="it">never</span> see on the invoice.
+          </h2>
+        </header>
+        <div class="pr-included-grid">
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Discovery call</h4>
+            <p>30 minutes. Listening, ideas, scope. No charge, no pressure.</p>
+          </div>
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Tailored proposal</h4>
+            <p>Within 2 business days. Itemized, no surprises.</p>
+          </div>
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Pre-event walkthrough</h4>
+            <p>We meet you and the venue. Locations, timing, contingencies.</p>
+          </div>
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Hospitality</h4>
+            <p>The standard isn't bartending. The standard is feeling hosted.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="pr-faq">
+      <div class="wrap">
+        <div class="pr-faq-grid">
+          <div>
+            <span class="pr-section-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">About pricing</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
+              The <span class="it" style="color:var(--crimson)">fine</span> print.
+            </h2>
+          </div>
+          <div>
+            {PR_FAQ.map((f, i) => (
+              <details class="pr-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Final CTA ── */}
+    <section class="pr-cta">
+      <div class="wrap">
+        <span class="eyebrow">— Next step</span>
+        <h2 class="display">
+          Ready for a <span class="it" style="color:var(--crimson)">real</span> quote?
+        </h2>
+        <p>
+          30-minute discovery call. We'll listen, share ideas, and have a
+          tailored proposal in your inbox within two business days.
+        </p>
+        <div class="pr-cta-row">
+          <a href="/contact" class="btn btn-solid">Book a discovery call <span class="arr">→</span></a>
+          <a href="/contact" class="btn btn-ghost">All ways to reach us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
