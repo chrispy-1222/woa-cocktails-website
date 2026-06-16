@@ -2,32 +2,60 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import { getLang, alternates } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
 
 export interface Props {
   title: string;
   description?: string;
+  /** Locale override; defaults to detection from the URL (/es → es). */
+  lang?: Lang;
   /** Extra stylesheet paths (under /styles) loaded after the global sheet. */
   styles?: string[];
   /** Third-party head scripts (e.g. Calendly widget). */
   headScripts?: string[];
 }
 
+const lang = Astro.props.lang ?? getLang(Astro.url.pathname);
+
+const defaultDescription = {
+  en: 'WOA is a luxury hospitality and beverage house creating elevated mobile bar experiences, cocktail programs and curated activations across New York and Miami.',
+  es: 'WOA es una casa de hospitalidad y bebidas de lujo que crea experiencias de barra móvil, programas de coctelería y activaciones a medida en Nueva York y Miami.',
+};
+
 const {
   title,
-  description = 'WOA is a luxury hospitality and beverage house creating elevated mobile bar experiences, cocktail programs and curated activations across New York and Miami.',
+  description = defaultDescription[lang],
   styles = [],
   headScripts = [],
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const alt = alternates(Astro.url.pathname, Astro.site);
+const ogLocale = lang === 'es' ? 'es_LA' : 'en_US';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={alt.en} />
+    <link rel="alternate" hreflang="es" href={alt.es} />
+    <link rel="alternate" hreflang="x-default" href={alt.xDefault} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={new URL('/img/hero-bridge.jpg', Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -42,9 +70,9 @@ const {
     {headScripts.map((src) => <script type="text/javascript" src={src} async></script>)}
   </head>
   <body>
-    <Nav />
+    <Nav lang={lang} />
     <slot />
-    <Footer />
-    <CookieConsent />
+    <Footer lang={lang} />
+    <CookieConsent lang={lang} />
   </body>
 </html>

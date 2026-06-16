@@ -1,0 +1,361 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// ── Hero: interactive team rolodex ───────────────────────────────────
+// Real WOA team — names + roles surface as a caption on the front card.
+const TEAM = [
+  { img: '/img/team-fabio-hector.webp', pos: '58% 38%', name: 'Fabio & Hector', role: 'Capitanes mixólogos' },
+  { img: '/img/team-phillip.webp', pos: 'center 46%', name: 'Phillip Guzman', role: 'Bartender' },
+  { img: '/img/team-jonathan.webp', pos: 'center 44%', name: 'Jonathan Acqui', role: 'Bartender' },
+  { img: '/img/team-anthony.webp', pos: '82% 44%', name: 'Anthony Guzman', role: 'Bartender' },
+  { img: '/img/team-jeimy.webp', pos: '56% 24%', name: 'Jeimy Manón', role: 'Mesera' },
+  { img: '/img/team-dj-many.webp', pos: 'center 15%', name: 'DJ Many', role: 'DJ residente' },
+  { img: '/img/team-dj-ultraviolet.webp', pos: '38% 30%', name: 'DJ UltraViolet', role: 'DJ residente' },
+];
+const N = TEAM.length;
+
+// ── The roles spread ─────────────────────────────────────────────────
+// Real WOA team members from Fabio's Drive folder, captioned by name.
+const ROLES = [
+  {
+    n: '01', role: 'Bartenders',
+    pitch: 'Años de hospitalidad de lujo. Arte, técnica y presentación del cóctel. La cara de la barra.',
+    img: '/img/staff-jonathan.webp', cap: 'Jonathan Acqui',
+  },
+  {
+    n: '02', role: 'Anfitriones y capitanes',
+    pitch: 'Liderazgo de sala. Recepción de invitados, gestión del flujo, el orquestador en el piso.',
+    img: '/img/staff-phillip.webp', cap: 'Phillip Guzman y equipo',
+  },
+  {
+    n: '03', role: 'Barbacks',
+    pitch: 'El motor invisible. Mantiene el hielo, la cristalería y los garnish en movimiento para que la barra nunca pierda el ritmo.',
+    img: '/img/staff-manuel.webp', cap: 'Manuel Brache',
+  },
+  {
+    n: '04', role: 'Líderes de evento y meseros',
+    pitch: 'Capitán del día. Único punto de contacto para el anfitrión. Dueño del cronograma, el equipo y la solución de imprevistos.',
+    img: '/img/staff-anthony.webp', cap: 'Anthony Guzman y equipo',
+  },
+];
+
+// ── How it works ─────────────────────────────────────────────────────
+const ST_STEPS = [
+  { n: '01', t: 'Llamada de descubrimiento', d: '30 minutos — fecha, número de invitados, estilo del evento, alcance. Evaluamos la afinidad y las necesidades de personal.' },
+  { n: '02', t: 'Equipo a la medida', d: 'En dos días hábiles — composición de equipo propuesta, proporciones, líder y cotización todo incluido.' },
+  { n: '03', t: 'Briefing previo al evento', d: 'El capitán se reúne con el anfitrión y recorre el lugar. Se alinean tiempos, run-of-show y contingencias.' },
+  { n: '04', t: 'Día del evento', d: 'El equipo llega uniformado e informado. Nosotros somos los anfitriones. Usted disfruta su propio evento.' },
+];
+
+// ── FAQ ──────────────────────────────────────────────────────────────
+const ST_FAQ = [
+  { q: '¿Podemos contratar bartenders solos, sin la barra móvil completa?',
+    a: "Por supuesto. El servicio solo de personal es una de nuestras reservas más comunes — la barra de un lugar operada por nuestro equipo, o una casa privada con nuestros bartenders detrás del montaje del propio anfitrión. Dotamos de personal según el formato." },
+  { q: "¿Cuál es la proporción de bartenders por invitado?",
+    a: "Depende mucho del evento — la carta de cócteles, el número de invitados, el estilo de servicio y la duración cambian la respuesta. En lugar de citar una proporción fija, en la llamada de descubrimiento asesoramos sobre el personal adecuado para su evento, según exactamente lo que vaya a ofrecer." },
+  { q: '¿Proveen uniformes?',
+    a: 'Sí — un estándar WOA limpio y listo para presentación por defecto. También podemos uniformar al equipo a la medida para combinar con una activación de marca, la paleta de una boda o la estética del lugar, a solicitud.' },
+  { q: "¿Qué pasa si un miembro del personal no se presenta?",
+    a: 'Casi nunca sucede — nuestro personal es altamente profesional y llega preparado. Pero cada evento cuenta con un Líder de evento designado más personal de respaldo y de guardia listo para emergencias. Si alguna vez se necesita un reemplazo, ocurre tras bambalinas; el anfitrión nunca lo nota.' },
+  { q: '¿Con cuánta anticipación debo contactarlos?',
+    a: "Para eventos más grandes, como bodas, podemos reservar con hasta un año de anticipación. También somos flexibles con solicitudes de último momento: los eventos de servicio completo pueden reservarse con tan solo 3 días de anticipación, y los servicios solo de personal de bartending con tan solo 24 horas de anticipación, según disponibilidad." },
+];
+---
+
+<Layout
+  lang="es"
+  title="Personal de bartending y hospitalidad — WOA Cocktails"
+  description="WOA coloca bartenders, anfitriones, capitanes y líderes de evento experimentados — formados en estándares de hospitalidad de lujo. NYC y Miami."
+  styles={['woa-service.css', 'woa-svc-staffing.css']}
+>
+  <main class="svc-page st-page">
+    {/* ── Hero: interactive team rolodex ── */}
+    <section class="svp-hero st-hero">
+      <div class="wrap st-hero-grid">
+        <div class="st-hero-copy">
+          <div style="display:flex;justify-content:space-between;margin-bottom:32px">
+            <span class="eyebrow">— Servicio 03 · La gente</span>
+          </div>
+          <span class="svp-hero-rule"></span>
+          <h1 class="display st-hero-title">
+            Bartending y<br /><em>personal.</em>
+          </h1>
+          <p class="st-hero-lede">
+            Bartending profesional y dotación de personal de hospitalidad para eventos
+            privados, corporativos y de lujo. WOA coloca <b style="color:var(--fg)">bartenders
+            experimentados</b> y profesionales de la hospitalidad — formados para ofrecer
+            un servicio elevado, profesionalismo discreto y una calidez centrada en el invitado.
+          </p>
+          <a href="/es/contact" class="st-hero-pitch">
+            <span class="d"></span>
+            <span>Dote de personal su próximo evento <span style="color:var(--crimson);margin-left:6px">→</span></span>
+          </a>
+        </div>
+
+        {/* Interactive team rolodex */}
+        <div
+          class="st-rolo"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Equipo de hospitalidad de WOA"
+          tabindex="0"
+        >
+          <span class="st-rolo-hint">— el equipo</span>
+          <div class="st-rolo-stack">
+            {TEAM.map((m, i) => {
+              const off = (i - 0 + N) % N;
+              const hidden = off > 3;
+              return (
+                <button
+                  type="button"
+                  class={'st-rolo-card' + (off === 0 ? ' front' : '')}
+                  data-index={i}
+                  style={`z-index:${N - off};--off:${Math.min(off, 3)};display:${hidden ? 'none' : 'block'}`}
+                  aria-label={`${m.name} — ${m.role}`}
+                  aria-current={off === 0 ? 'true' : 'false'}
+                  aria-hidden={hidden ? 'true' : 'false'}
+                  tabindex={off === 0 ? 0 : -1}
+                >
+                  <img src={m.img} alt={`${m.name}, ${m.role} en WOA Cocktails`} style={`object-position:${m.pos}`} />
+                  <span class="st-rolo-cap">
+                    <span class="role">{m.role}</span>
+                    <span class="name">{m.name}</span>
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div class="st-rolo-controls">
+            <button type="button" class="st-rolo-arr" data-rolo-prev aria-label="Anterior">←</button>
+            <span class="st-rolo-count">
+              <b>01</b> / {String(N).padStart(2, '0')}
+            </span>
+            <button type="button" class="st-rolo-arr" data-rolo-next aria-label="Siguiente">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Pull-quote band ── */}
+    <section class="st-pull">
+      <div class="wrap">
+        <p class="display st-pull-text">
+          No nos consideramos bartenders.<br />
+          <span style="color:var(--crimson)">Nos consideramos anfitriones</span> que, además,
+          manejan la mejor barra del lugar.
+        </p>
+      </div>
+    </section>
+
+    {/* ── The roles spread ── */}
+    <section class="svp-chapter st-roles">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 01 / Los roles ]</span>
+          <h2 class="svp-chapter-title">
+            Cuatro roles. <span class="it">Un</span> estándar.
+          </h2>
+        </header>
+
+        <div class="st-roles-grid">
+          {ROLES.map((r) => (
+            <article class="st-role-card">
+              <figure class="st-role-img">
+                <img src={r.img} alt={r.cap || r.role} loading="lazy" />
+                {r.cap && <figcaption style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">{r.cap}</figcaption>}
+              </figure>
+              <div class="st-role-body">
+                <span class="n">— {r.n}</span>
+                <h3>{r.role}</h3>
+                <p>{r.pitch}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Featured event: WOA Summer Party × Dumbo House ── */}
+    <section class="svp-feature st-feature">
+      <div class="wrap">
+        <header class="svp-feature-head">
+          <span class="svp-feature-stamp">Destacado · 2025</span>
+          <div>
+            <span class="svp-chapter-num">[ 02 / En acción ]</span>
+            <h2 class="svp-feature-title" style="margin-top:14px">
+              <span class="it">WOA Summer Party</span><br />Dumbo House NYC.
+            </h2>
+            <p style="margin-top:18px;max-width:54ch;color:var(--fg-dim);font-size:15px;line-height:1.7">
+              Un rooftop de verano organizado por WOA. Equipo completo de hospitalidad —
+              bartenders, anfitriones y líderes de evento — operando un servicio de barra
+              libre, del atardecer hasta tarde, en la azotea de Dumbo House, enmarcado por
+              el horizonte de Manhattan.
+            </p>
+          </div>
+        </header>
+
+        <div class="svp-grid g-asym st-feature-grid">
+          <div class="ph" style="grid-column:span 6;grid-row:span 2">
+            <img src="/img/gal-rooftop-team.jpg" alt="Equipo de WOA en la barra de la azotea de Dumbo House" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-bartender.jpg" alt="Bartender sirviendo con el puente de fondo" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-shake.jpg" alt="En pleno shake en la barra de la azotea" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-portrait.jpg" alt="Retrato del equipo de hospitalidad" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 6;grid-row:span 1">
+            <img src="/img/gal-rooftop-group.jpg" alt="Anfitriones en pleno servicio" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="st-feature-meta">
+          <div><div class="ix">Lugar</div><b>Dumbo House NYC</b></div>
+          <div><div class="ix">Formato</div><b>Rooftop · Barra libre</b></div>
+          <div><div class="ix">Equipo</div><b>9 personas de hospitalidad</b></div>
+          <div><div class="ix">Fecha</div><b>Verano 2025</b></div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── How it works ── */}
+    <section class="svp-chapter st-process">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 03 / Cómo funciona ]</span>
+          <h2 class="svp-chapter-title">De la consulta a la <span class="it">última ronda</span>.</h2>
+        </header>
+        <div class="svp-steps">
+          {ST_STEPS.map((s) => (
+            <article class="svp-step">
+              <span class="n">— {s.n}</span>
+              <h4>{s.t}</h4>
+              <p>{s.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="svp-faq">
+      <div class="wrap">
+        <div class="svp-faq-grid">
+          <div>
+            <span class="svp-chapter-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
+              Sobre <span class="it" style="color:var(--crimson)">el equipo</span>.
+            </h2>
+          </div>
+          <div>
+            {ST_FAQ.map((f, i) => (
+              <details class="svp-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CTA + prev/next ── */}
+    <section class="svp-cta">
+      <div class="svp-cta-bg">
+        <img src="/img/gal-rooftop-team.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="wrap">
+        <span class="eyebrow">— Solicite</span>
+        <h2 class="display">
+          Dote de personal su <span class="it" style="color:var(--crimson)">próximo</span> evento.
+        </h2>
+        <p>
+          Llamada de descubrimiento de 30 minutos. Evaluaremos el brief, propondremos la
+          forma de equipo adecuada y enviaremos una cotización en dos días hábiles.
+        </p>
+        <div class="cta-row">
+          <a href="/es/contact" class="btn btn-solid">Reserve una llamada de descubrimiento <span class="arr">→</span></a>
+          <a href="/es/contact" class="btn btn-ghost">Todas las formas de contactarnos</a>
+        </div>
+      </div>
+    </section>
+    <nav class="svp-nav" aria-label="Otros servicios">
+      <a href="/es/brand-experiences">
+        <span class="dir">← Servicio anterior</span>
+        <span class="ttl">Marca y <span class="it">hospitalidad</span></span>
+      </a>
+      <a href="/es/classes">
+        <span class="dir">Siguiente servicio →</span>
+        <span class="ttl">Clases de <span class="it">coctelería</span></span>
+      </a>
+    </nav>
+  </main>
+</Layout>
+
+<script>
+  // ── Team rolodex (ports StHero React state/hooks to vanilla JS) ──
+  const rolo = document.querySelector('.st-rolo');
+  if (rolo) {
+    const stack = rolo.querySelector('.st-rolo-stack');
+    const cards = Array.from(stack.querySelectorAll('.st-rolo-card'));
+    const countEl = rolo.querySelector('.st-rolo-count b');
+    const prevBtn = rolo.querySelector('[data-rolo-prev]');
+    const nextBtn = rolo.querySelector('[data-rolo-next]');
+    const N = cards.length;
+    let active = 0;
+    let paused = false;
+    let timer = null;
+
+    function render() {
+      cards.forEach((card, i) => {
+        const off = (i - active + N) % N;
+        const hidden = off > 3;
+        const front = off === 0;
+        card.classList.toggle('front', front);
+        card.style.zIndex = String(N - off);
+        card.style.setProperty('--off', String(Math.min(off, 3)));
+        card.style.display = hidden ? 'none' : 'block';
+        card.setAttribute('aria-current', front ? 'true' : 'false');
+        card.setAttribute('aria-hidden', hidden ? 'true' : 'false');
+        card.tabIndex = front ? 0 : -1;
+      });
+      countEl.textContent = String(active + 1).padStart(2, '0');
+    }
+
+    function next() { active = (active + 1) % N; render(); }
+    function prev() { active = (active - 1 + N) % N; render(); }
+
+    function start() {
+      stop();
+      if (!paused) timer = setInterval(next, 3600);
+    }
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    cards.forEach((card) => {
+      const i = Number(card.dataset.index);
+      card.addEventListener('click', () => { active = i; render(); start(); });
+    });
+
+    prevBtn.addEventListener('click', () => { prev(); start(); });
+    nextBtn.addEventListener('click', () => { next(); start(); });
+
+    rolo.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { next(); start(); }
+      if (e.key === 'ArrowLeft') { prev(); start(); }
+    });
+
+    rolo.addEventListener('mouseenter', () => { paused = true; stop(); });
+    rolo.addEventListener('mouseleave', () => { paused = false; start(); });
+    rolo.addEventListener('focusin', () => { paused = true; stop(); });
+    rolo.addEventListener('focusout', () => { paused = false; start(); });
+
+    render();
+    start();
+  }
+</script>

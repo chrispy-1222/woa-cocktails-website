@@ -1,5 +1,10 @@
 ---
 // Shared site footer.
+import type { Lang } from '../i18n/ui';
+import { t, localizePath } from '../i18n/utils';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const L = (path: string) => localizePath(path, lang);
 const year = new Date().getFullYear();
 ---
 
@@ -9,8 +14,7 @@ const year = new Date().getFullYear();
       <div>
         <div class="brand">WOA<span class="diamond"></span></div>
         <p style="color:var(--fg-dim);max-width:32ch;font-size:14px;line-height:1.7">
-          A luxury hospitality &amp; beverage house. Mobile bar experiences,
-          consulting and curated activations across New York and Miami.
+          {t(lang, 'footer.blurb')}
         </p>
         <div style="display:flex;gap:14px;margin-top:24px">
           <a
@@ -28,45 +32,45 @@ const year = new Date().getFullYear();
         </div>
       </div>
       <div>
-        <h4>Services</h4>
+        <h4>{t(lang, 'footer.services')}</h4>
         <ul>
-          <li><a href="/mobile-bar">Mobile Bar Experience</a></li>
-          <li><a href="/brand-experiences">Bar Takeovers</a></li>
-          <li><a href="/brand-experiences">Beverage Consulting</a></li>
-          <li><a href="/staffing">Bartender Services</a></li>
-          <li><a href="/classes">Mixology Classes</a></li>
+          <li><a href={L('/mobile-bar')}>{t(lang, 'footer.svc.mobilebar')}</a></li>
+          <li><a href={L('/brand-experiences')}>{t(lang, 'footer.svc.takeovers')}</a></li>
+          <li><a href={L('/brand-experiences')}>{t(lang, 'footer.svc.consulting')}</a></li>
+          <li><a href={L('/staffing')}>{t(lang, 'footer.svc.bartenders')}</a></li>
+          <li><a href={L('/classes')}>{t(lang, 'footer.svc.classes')}</a></li>
         </ul>
       </div>
       <div>
-        <h4>House</h4>
+        <h4>{t(lang, 'footer.house')}</h4>
         <ul>
-          <li><a href="/#about">About / Founders</a></li>
-          <li><a href="/pricing">Packages &amp; Pricing</a></li>
-          <li><a href="/#testimonials">Testimonials</a></li>
-          <li><a href="/contact">FAQ</a></li>
-          <li><a href="/contact">Contact / Book Now</a></li>
+          <li><a href={L('/#about')}>{t(lang, 'footer.house.about')}</a></li>
+          <li><a href={L('/pricing')}>{t(lang, 'footer.house.pricing')}</a></li>
+          <li><a href={L('/#testimonials')}>{t(lang, 'footer.house.testimonials')}</a></li>
+          <li><a href={L('/contact')}>{t(lang, 'footer.house.faq')}</a></li>
+          <li><a href={L('/contact')}>{t(lang, 'footer.house.contact')}</a></li>
         </ul>
       </div>
       <div>
-        <h4>Markets</h4>
+        <h4>{t(lang, 'footer.markets')}</h4>
         <ul>
           <li>
-            <b style="color:var(--fg)">New York</b><br />
-            <span style="color:var(--fg-mute);font-size:12px">NYC · Tri-state · The Hamptons</span>
+            <b style="color:var(--fg)">{t(lang, 'footer.ny')}</b><br />
+            <span style="color:var(--fg-mute);font-size:12px">{t(lang, 'footer.ny.sub')}</span>
           </li>
           <li style="margin-top:8px">
-            <b style="color:var(--fg)">Miami</b><br />
-            <span style="color:var(--fg-mute);font-size:12px">Miami · Beach · Brickell · Coral Gables</span>
+            <b style="color:var(--fg)">{t(lang, 'footer.mia')}</b><br />
+            <span style="color:var(--fg-mute);font-size:12px">{t(lang, 'footer.mia.sub')}</span>
           </li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© {year} WOA Cocktails · All rights reserved</span>
+      <span>© {year} WOA Cocktails · {t(lang, 'footer.rights')}</span>
       <div class="legal">
-        <a href="/privacy">Privacy</a>
-        <a href="/terms">Terms</a>
-        <a href="#">Press</a>
+        <a href={L('/privacy')}>{t(lang, 'footer.privacy')}</a>
+        <a href={L('/terms')}>{t(lang, 'footer.terms')}</a>
+        <a href="#">{t(lang, 'footer.press')}</a>
       </div>
     </div>
   </div>

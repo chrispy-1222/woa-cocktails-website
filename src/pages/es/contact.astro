@@ -1,0 +1,341 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Live Calendly scheduler URL (dark-themed via params).
+const CALENDLY_URL = "https://calendly.com/woacocktails/30min?hide_gdpr_banner=1&background_color=0b0907&text_color=ebe3d2&primary_color=c5302d";
+
+// Live Tally embed src — "Request a Quote".
+const TALLY_SRC = "https://tally.so/embed/2ERkDj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+
+// FAQ accordion content.
+const FAQS = [
+  {
+    q: "¿Cuál es el mínimo para reservar un evento?",
+    a: "Nuestros paquetes comienzan con 20 invitados y un mínimo de 3 horas de servicio completo de bebidas.",
+  },
+  {
+    q: "¿Con cuánta anticipación debo comunicarme para un evento?",
+    a: "Para eventos más grandes como bodas, podemos reservar hasta con un año de anticipación. También somos flexibles con solicitudes de último momento: los eventos de servicio completo pueden reservarse con tan solo 3 días de aviso, y los servicios de solo personal de bartenders con tan solo 24 horas de aviso, según la disponibilidad.",
+  },
+  {
+    q: "¿Qué incluye el paquete de barra móvil?",
+    a: "Montaje de barra móvil de lujo, diseño de menú de cócteles de autor, mezcladores premium y guarniciones frescas, todas las herramientas y el equipo de barra, bartenders profesionales y personal de hospitalidad, montaje y desmontaje. El precio se define por evento.",
+  },
+  {
+    q: "¿Pueden adaptar el montaje al tema o la estética de mi evento?",
+    a: "Sí. Podemos personalizar el montaje de la barra, el diseño del menú, la decoración y la presentación general para que coincidan con el tema y la estética de su evento.",
+  },
+  {
+    q: "¿WOA Cocktails provee el alcohol?",
+    a: "WOA Cocktails coordina y cura la experiencia completa de bebidas. Podemos ayudar con la planificación del menú, las listas de compras, las cantidades, los mezcladores, las guarniciones y todos los detalles relacionados con las bebidas para garantizar un servicio impecable.",
+  },
+  {
+    q: "¿Pueden ofrecer menús sin alcohol y de cero grados?",
+    a: "Por supuesto. Nuestros programas de cero alcohol y baja graduación se elaboran con el mismo cuidado que nuestros menús con alcohol: la misma artesanía, la misma hospitalidad, la misma presentación.",
+  },
+  {
+    q: "¿Viajan fuera de Nueva York y Miami?",
+    a: "Sí: viajamos con regularidad por el área triestatal y el sur de Florida, y aceptamos eventos selectos de destino en todo el país. El viaje y el alojamiento se cotizan por separado.",
+  },
+  {
+    q: "¿WOA Cocktails cuenta con seguro?",
+    a: "Sí: WOA Cocktails cuenta con seguro.",
+  },
+  {
+    q: "¿Qué sucede si cancelo un evento que ya reservé?",
+    a: "Si un evento se cancela 72 horas o más antes de la fecha del evento, el depósito queda disponible como crédito, válido hasta por un año a partir de la fecha de cancelación.",
+  },
+];
+---
+
+<Layout
+  lang="es"
+  title="Contacto y Reservas — WOA Cocktails · Casa de hospitalidad y bebidas de lujo"
+  description="Solicite su evento — experiencias de barra móvil de lujo, consultoría de bebidas y activaciones de hospitalidad curadas en Nueva York y Miami."
+  styles={['woa-contact.css']}
+  headScripts={['https://assets.calendly.com/assets/external/widget.js']}
+>
+  <main class="contact-page">
+    {/* ── Hero band ── */}
+    <section class="cx-hero">
+      <div class="wrap">
+        <div class="cx-hero-grid">
+          <div class="cx-hero-copy">
+            <span class="eyebrow">— Solicite · Reserve una consulta</span>
+            <h1 class="display h-lg">
+              Creemos <span class="it" style="color:var(--crimson)">algo</span><br />inolvidable.
+            </h1>
+            <p>
+              Reserve una llamada de descubrimiento con WOA — escucharemos, compartiremos ideas
+              y le enviaremos una propuesta a la medida en un plazo de dos días hábiles.
+            </p>
+            <div class="cx-meta">
+              <div>
+                <span class="stat-lg">2 días</span>
+                de respuesta
+              </div>
+              <div>
+                <span class="stat-lg">500+</span>
+                Eventos producidos
+              </div>
+              <div>
+                <span class="stat-lg">5★</span>
+                Calificación promedio
+              </div>
+            </div>
+            <a href="#schedule" class="btn btn-solid cx-hero-cta">
+              Ir al programador <span class="arr">↓</span>
+            </a>
+          </div>
+          <figure class="cx-hero-photo">
+            <img src="/img/founders-cheers.jpg" alt="Los cofundadores de WOA, Fabio Perez y Hector Taveras, compartiendo una risa y un brindis en la barra" />
+            <figcaption>
+              <span class="eyebrow amber">— Sus anfitriones</span>
+              <span>Fabio y Hector,<br />cofundadores</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Live Calendly scheduler ── */}
+    <section class="cx-main">
+      <div class="wrap">
+        <div class="cx-sched" id="schedule">
+          <header class="cx-sched-head">
+            <div class="lhs">
+              <span class="eyebrow">— Llamada de descubrimiento</span>
+              <h2 class="display h-md" style="margin:10px 0 6px;font-size:clamp(28px, 3.6vw, 44px)">
+                Reserve una llamada de <span class="it" style="color:var(--crimson)">descubrimiento</span>.
+              </h2>
+              <p>30 minutos · Videollamada · Sin compromiso · Nueva York y Miami</p>
+            </div>
+            <div class="rhs">
+              <div class="cx-badge">
+                <span>30</span><small>MIN</small>
+              </div>
+            </div>
+          </header>
+
+          {/* Calendly inline widget begin */}
+          <div
+            class="calendly-inline-widget cx-calendly"
+            data-url={CALENDLY_URL}
+            style="min-width:320px;height:700px"
+          ></div>
+          {/* Calendly inline widget end */}
+
+          <footer class="cx-sched-foot">
+            <span>Elija el horario que le convenga — la llamada es con Hector o Fabio.</span>
+            <span class="pwby">Con tecnología de <b>Calendly</b></span>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Inquiry form — live Tally embed ── */}
+    <section class="cx-form-sec" id="inquiry-form">
+      <div class="wrap">
+        <div class="cx-form-head">
+          <span class="eyebrow">— O sáltese la llamada</span>
+          <h2 class="display h-md" style="margin-top:14px">
+            ¿Ya sabe exactamente <span class="it" style="color:var(--crimson)">lo que necesita?</span>
+          </h2>
+          <p>Envíe los detalles y volveremos con ideas y una cotización a la medida.</p>
+        </div>
+
+        <div class="cx-form-layout">
+          <div class="cx-form-panel">
+            <div class="cx-form-panel-head">
+              <span class="cx-form-mark" aria-hidden="true">◆</span>
+              <span class="cx-form-panel-label">Solicite una cotización</span>
+              <span class="cx-form-panel-meta">WOA Cocktails</span>
+            </div>
+            {/* Live Tally embed — "Request a Quote" */}
+            <iframe
+              data-tally-src={TALLY_SRC}
+              loading="lazy"
+              width="100%"
+              height="1013"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              title="Solicite una cotización"
+              class="cx-tally"></iframe>
+          </div>
+
+          <aside class="cx-form-aside">
+            <div class="cx-aside-block">
+              <span class="eyebrow dim">— Qué sucede después</span>
+              <ol class="cx-steps">
+                <li>
+                  <span class="cx-step-n">01</span>
+                  <div>
+                    <b>Lo leemos nosotros mismos</b>
+                    <p>Cada solicitud llega directamente a Hector y Fabio — sin bandeja de entrada, sin intermediarios.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="cx-step-n">02</span>
+                  <div>
+                    <b>Tendrá respuesta en un plazo de 2 días hábiles</b>
+                    <p>Con las primeras ideas, la disponibilidad y una cotización a la medida de su evento.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="cx-step-n">03</span>
+                  <div>
+                    <b>Afinamos los detalles</b>
+                    <p>Menú, personal y cronograma — diseñados en torno a su espacio y número de invitados.</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+
+            <div class="cx-aside-foot">
+              <div class="cx-aside-stat">
+                <b>≤ 2 días</b>
+                <span>Tiempo de respuesta típico</span>
+              </div>
+              <div class="cx-aside-stat">
+                <b>NYC · MIA</b>
+                <span>Dónde trabajamos</span>
+              </div>
+            </div>
+
+            <p class="cx-aside-alt">
+              ¿Prefiere conversarlo?{" "}
+              <a href="#schedule">Reserve una llamada →</a>
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Below-scheduler trust row ── */}
+    <section class="cx-trust">
+      <div class="wrap">
+        <div class="cx-trust-grid">
+          <div class="cx-trust-card">
+            <span class="cx-trust-icon">·</span>
+            <div>
+              <div class="title">Respuesta en un plazo de 2 días hábiles</div>
+              <p>
+                Cada solicitud es leída y respondida personalmente por Fabio, Hector
+                o un miembro del equipo de WOA. Sin respuestas automáticas.
+              </p>
+            </div>
+          </div>
+          <div class="cx-trust-card">
+            <span class="cx-trust-icon">·</span>
+            <div>
+              <div class="title">Sin presión, sin compromiso</div>
+              <p>
+                La llamada de descubrimiento es una conversación de 30 minutos. Compartiremos
+                ideas, escucharemos su visión y le enviaremos una propuesta — sin discurso de ventas.
+              </p>
+            </div>
+          </div>
+          <div class="cx-trust-card">
+            <span class="cx-trust-icon">·</span>
+            <div>
+              <div class="title">O contáctenos directamente</div>
+              <p>
+                <a href="mailto:woacocktails@gmail.com">woacocktails@gmail.com</a><br />
+                NYC · Hector <a href="tel:+16463386739">646-338-6739</a><br />
+                MIA · Fabio <a href="tel:+12159390476">215-939-0476</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="cx-faq">
+      <div class="wrap">
+        <div class="cx-faq-grid">
+          <div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em">[ FAQ ]</div>
+            <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:12ch">
+              Respuestas, <span class="it" style="color:var(--crimson)">antes</span> de preguntar.
+            </h2>
+            <p style="margin-top:20px;color:var(--fg-dim);font-size:14px;line-height:1.7;max-width:32ch">
+              ¿No encuentra su pregunta? Escríbanos — le responderemos personalmente.
+            </p>
+          </div>
+          <div>
+            {FAQS.map((f, i) => (
+              <details class="cx-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Coverage cities ── */}
+    <section class="cx-cov">
+      <div class="wrap">
+        <div class="cx-cov-grid">
+          <div class="cx-loc">
+            <span class="eyebrow">— Mercado 01</span>
+            <div class="city">Nueva <span class="it">York.</span></div>
+            <p class="areas">
+              Manhattan · Brooklyn · Queens · Los Hamptons · Westchester ·
+              Nueva Jersey · costa de Connecticut · Valle del Hudson.
+            </p>
+            <div class="meta">
+              <div><b>2020</b>Fundada</div>
+              <div><b>NYC</b>Sede</div>
+            </div>
+          </div>
+          <div class="cx-loc">
+            <span class="eyebrow">— Mercado 02</span>
+            <div class="city">Mi<span class="it">ami.</span></div>
+            <p class="areas">
+              Miami · Miami Beach · Brickell · Coral Gables · Bal Harbour ·
+              Fort Lauderdale · Palm Beach (fechas selectas).
+            </p>
+            <div class="meta">
+              <div><b>2026</b>Expansión</div>
+              <div><b>Wynwood</b>Sede local</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+{/* ── Tally embed loader (mirrors the CX_InquiryForm useEffect) ── */}
+<script>
+  const el = document.querySelector('iframe.cx-tally') as HTMLIFrameElement | null;
+  const TALLY_SRC = "https://tally.so/embed/2ERkDj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+
+  // Directly set src (equivalent to Tally.loadEmbeds / its documented
+  // fallback) so the form loads regardless of script timing.
+  if (el && !el.src) el.src = TALLY_SRC;
+
+  const refreshHeights = () => {
+    if ((window as any).Tally) (window as any).Tally.loadEmbeds();
+  };
+
+  if ((window as any).Tally) {
+    refreshHeights();
+  } else {
+    const existing = document.querySelector('script[src="https://tally.so/widgets/embed.js"]');
+    if (existing) {
+      existing.addEventListener("load", refreshHeights);
+    } else {
+      const s = document.createElement("script");
+      s.src = "https://tally.so/widgets/embed.js";
+      s.onload = refreshHeights;
+      s.onerror = refreshHeights;
+      document.body.appendChild(s);
+    }
+  }
+</script>

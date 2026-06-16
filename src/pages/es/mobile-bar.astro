@@ -1,0 +1,385 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// ── Chapter 02 — Make it yours (customizable, NOT a fixed package) ──
+const INCLUDES = [
+  { n: '01', core: true, title: 'La barra móvil', desc: 'Nuestra barra de autor — adaptada en tamaño, acabado y estilo a tu espacio. Es el punto de partida de toda reserva.' },
+  { n: '02', title: 'Bartenders profesionales', desc: 'Suma nuestro equipo de hospitalidad, experimentado y listo para escena — o maneja la barra con tu propio personal.' },
+  { n: '03', title: 'Menú de cócteles personalizado', desc: 'Un menú a la medida creado en torno a tu evento — cócteles de autor destacados, clásicos y opciones bajas en alcohol y sin alcohol.' },
+  { n: '04', title: 'Desarrollo de cóctel de autor', desc: 'Cócteles originales de la casa creados para tu evento, bautizados para el momento, diseñados para liderar la noche.' },
+  { n: '05', title: 'Mixers, garnishes y hielo premium', desc: 'Solo ingredientes frescos y bien seleccionados. Hielo cortado a mano, cítricos de temporada y jarabes artesanales.' },
+  { n: '06', title: 'Herramientas de bar y cristalería', desc: 'Equipo completo — cocteleras, jiggers, coladores y cristalería fina de bar. Podemos llegar listos, o tú traes lo tuyo.' },
+  { n: '07', title: 'Montaje, desmontaje y logística', desc: 'Llegamos temprano y nos vamos sin dejar rastro. Los anfitriones no deberían pensar en la logística.' },
+];
+
+// ── Chapter 04 — Ideal for ──
+const IDEAL = [
+  'Bodas',
+  'Eventos corporativos',
+  'Eventos privados de lujo',
+  'Activaciones de marca',
+  'Eventos en rooftop',
+  'Celebraciones sociales',
+];
+
+// ── Chapter 05 — Process ──
+const STEPS = [
+  { n: '01', t: 'Llamada de descubrimiento', d: 'Una consulta de 30 minutos — fecha, visión, mercado y alcance. Sin presión.' },
+  { n: '02', t: 'Propuesta a la medida', d: 'En un plazo de dos días hábiles — diseño de la barra, opciones de personal, dirección del menú y cotización todo incluido.' },
+  { n: '03', t: 'Menú y montaje', d: 'Degustación (opcional). Cócteles de autor finalizados. Diseño y estilo de la barra confirmados.' },
+  { n: '04', t: 'Día del evento', d: 'Llegamos temprano. Montamos, atendemos, desmontamos y nos vamos sin dejar rastro. Tú sigues siendo un invitado en tu propio evento.' },
+];
+
+// ── FAQ ──
+const MB_FAQ = [
+  { q: '¿Cómo se estructura el precio?',
+    a: 'Cada evento se cotiza a la medida — hay demasiadas variables (número de invitados, horas, mercado, diseño de la barra, complejidad del menú, personal) para que una tarifa fija sea honesta. Después de una llamada de descubrimiento de 30 minutos, enviamos una propuesta completa en un plazo de dos días hábiles.' },
+  { q: '¿WOA Cocktails provee el alcohol?',
+    a: 'WOA Cocktails coordina y cura la experiencia de bebidas completa. Podemos ayudar con la planificación del menú, listas de compras, cantidades, mixers, garnishes y todos los detalles relacionados con las bebidas para garantizar un servicio impecable.' },
+  { q: '¿Pueden adaptar el montaje al tema o la estética de mi evento?',
+    a: 'Sí. Podemos personalizar el montaje de la barra, el diseño del menú, la decoración y la presentación general para que coincidan con el tema y la estética de tu evento.' },
+  { q: '¿Qué incluye la barra móvil de lujo?',
+    a: 'El montaje completo de la barra — front bar y back bar, cristalería, pozo de hielo, estación de garnishes y señalización si aplica. Nuestras barras vienen en varios tamaños; especificamos el tamaño adecuado para tu espacio y número de invitados.' },
+  { q: '¿A cuántos invitados puede atender WOA?',
+    a: 'Los paquetes parten de un mínimo de 20 invitados y escalan a eventos de más de 500. El personal y la cantidad de barras escalan con el número de invitados para mantener un estándar de servicio de menos de 3 minutos en los momentos pico.' },
+  { q: '¿Pueden crear un cóctel de autor para nuestro evento?',
+    a: 'Sí — el desarrollo de cócteles de autor personalizados está disponible como complemento si lo necesitas. Podemos crearlo en torno a un tema, una paleta de colores, un nombre o incluso un invitado de honor.' },
+];
+---
+
+<Layout
+  lang="es"
+  title="Experiencia de barra móvil — WOA Cocktails · Casa de hospitalidad y bebidas de lujo"
+  description="La experiencia de barra móvil con servicio completo de WOA — barras de lujo, menús de cócteles de autor y bartenders profesionales, ejecutados de principio a fin. NYC y Miami."
+  styles={['woa-service.css', 'woa-svc-mobilebar.css']}
+>
+  <main class="svc-page mb-page">
+    {/* ── MB_Hero ── */}
+    <section class="mb-hero" data-screen-label="Mobile Bar — Hero">
+      <div class="mb-hero-text">
+        <div class="mb-hero-kicker">
+          <span class="num">01</span>
+          <span class="lbl">Barra Móvil</span>
+        </div>
+
+        <h1 class="display mb-hero-title">
+          Llevamos<br />la barra <em>hasta&nbsp;ti</em>.
+        </h1>
+
+        <p class="mb-hero-lede">
+          Una barra completamente armada y abastecida — montada donde sea que estés
+          celebrando. Réntala por su cuenta, o deja que nuestro equipo maneje toda la noche.
+        </p>
+
+        <ul class="mb-hero-uses">
+          <li><span class="d" />Bodas</li>
+          <li><span class="d" />Corporativo</li>
+          <li><span class="d" />Eventos privados</li>
+        </ul>
+
+        <div class="mb-hero-actions">
+          <a href="/es/contact" class="btn btn-solid mb-hero-cta">
+            Solicite su evento <span class="arr">→</span>
+          </a>
+          <a href="#rental" class="btn btn-ghost">Solo renta de barra</a>
+        </div>
+      </div>
+
+      <figure class="mb-hero-media">
+        <img src="/img/mb-hero-puma.webp" alt="Un bartender de WOA atendiendo una barra móvil personalizada en la activación de la tienda insignia de Puma" />
+        <figcaption><span class="mono">[ barra móvil WOA · activación tienda insignia Puma ]</span></figcaption>
+      </figure>
+    </section>
+
+    {/* ── MB_Roll ── */}
+    <div class="mb-roll" aria-hidden="true">
+      <div class="mb-roll-inner">
+        <span class="mb-roll-rule" />
+        <svg class="mb-roll-art" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <g class="cart-body">
+            <path class="line" d="M82 145 H179 V398" />
+            <path class="line" d="M179 180 H420" />
+            <path class="line" d="M179 218 H420" />
+            <path class="line" d="M179 398 H420" />
+            <path class="line" d="M420 218 V398" />
+            <path class="line" d="M438 205 V398" />
+
+            <path class="thin" d="M160 165 H435" />
+            <path class="thin" d="M179 195 H420" />
+            <path class="thin" d="M179 382 H390" />
+
+            <path class="thin" d="M250 165 V120 C250 108 266 108 266 120 V165" />
+            <path class="thin" d="M238 165 V133 C238 123 250 118 250 108 V82 H266 V108 C266 118 278 123 278 133 V165" />
+            <path class="thin" d="M240 134 H276" />
+
+            <g class="thin">
+              <path d="M306 144 H336 L331 166 C329 174 313 174 311 166 Z" />
+              <path d="M351 144 H381 L376 166 C374 174 358 174 356 166 Z" />
+              <path d="M396 144 H426 L421 166 C419 174 403 174 401 166 Z" />
+              <path d="M321 174 V194" />
+              <path d="M366 174 V194" />
+              <path d="M411 174 V194" />
+            </g>
+
+            <g class="thin">
+              <path d="M214 289 H244 V313 C244 329 214 329 214 313 Z" />
+              <path d="M259 289 H289 V313 C289 329 259 329 259 313 Z" />
+              <path d="M304 289 H334 V313 C334 329 304 329 304 313 Z" />
+              <path d="M349 289 H379 V313 C379 329 349 329 349 313 Z" />
+              <path d="M394 289 H424 V313 C424 329 394 329 394 313 Z" />
+              <path d="M229 329 V381" />
+              <path d="M274 329 V381" />
+              <path d="M319 329 V381" />
+              <path d="M364 329 V381" />
+              <path d="M409 329 V381" />
+            </g>
+
+            <g class="wheel">
+              <circle class="line" cx="179" cy="398" r="39" />
+              <circle class="thin" cx="179" cy="398" r="21" />
+              <circle fill="var(--crimson)" stroke="none" cx="179" cy="398" r="5" />
+              <path class="thin" d="M179 377 V419 M158 398 H200" />
+            </g>
+
+            <g class="wheel">
+              <circle class="line" cx="420" cy="398" r="55" />
+              <circle class="thin" cx="420" cy="398" r="32" />
+              <circle fill="var(--crimson)" stroke="none" cx="420" cy="398" r="6" />
+              <path class="thin" d="M420 343 V453 M365 398 H475 M381 359 L459 437 M459 359 L381 437" />
+            </g>
+          </g>
+
+          <g class="speed-lines" stroke="var(--crimson)" stroke-width="8" stroke-linecap="round">
+            <path d="M105 411 H136" />
+          </g>
+          <g class="speed-lines two" stroke="var(--crimson)" stroke-width="8" stroke-linecap="round">
+            <path d="M96 392 H127" />
+          </g>
+          <g class="speed-lines three" stroke="var(--crimson)" stroke-width="8" stroke-linecap="round">
+            <path d="M374 416 H405" />
+          </g>
+        </svg>
+        <span class="mb-roll-rule" />
+      </div>
+    </div>
+
+    {/* ── MB_Setup ── */}
+    <section class="svp-chapter mb-setup">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 01 / El Montaje ]</span>
+          <h2 class="svp-chapter-title">
+            Entregamos la barra — <span class="it">lista</span> para el momento.
+          </h2>
+        </header>
+
+        <div class="mb-setup-spread">
+          <figure class="mb-photo-tall">
+            <img src="/img/mb-services.webp" alt="Bartenders de WOA atendiendo una barra móvil en un rooftop con el skyline de Nueva York detrás" loading="lazy" />
+            <figcaption><span class="mono">[ barra móvil · rooftop, NYC ]</span></figcaption>
+          </figure>
+          <div class="mb-setup-copy">
+            <p class="mb-lede">
+              Rooftops, lofts, jardines, salones de fiesta — nuestra barra móvil llega
+              estilizada, abastecida y lista para servir. Nos encargamos de la entrega, el
+              montaje y el desmontaje, para que la barra encaje en el espacio y la noche
+              fluya sin tropiezos.
+            </p>
+            <div class="mb-quote">
+              <span class="qmark">"</span>
+              Tratamos la barra como un escenario. Cada invitado que se acerca debe sentir
+              que es el único al que estamos atendiendo.
+              <span class="sig">— La Casa WOA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── MB_Included ── */}
+    <section class="svp-chapter mb-included">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 02 / Hazla Tuya ]</span>
+          <h2 class="svp-chapter-title">
+            Una barra. Creada a <span class="it">tu</span> manera.
+          </h2>
+        </header>
+        <p class="mb-included-intro">
+          La barra móvil es el eje central — todo lo que la rodea lo decides tú. ¿Quieres
+          solo la barra? Listo. ¿La quieres con bartenders profesionales y un menú
+          personalizado? También podemos hacerlo. Agrega únicamente lo que tu evento necesita.
+        </p>
+        <div class="svp-include">
+          {INCLUDES.map((i, idx) => (
+            <article class={'svp-include-item' + (i.core ? ' is-core' : '') + (idx === INCLUDES.length - 1 && INCLUDES.length % 2 === 1 ? ' is-wide' : '')}>
+              <span class="n">— {i.n}</span>
+              <div class="body">
+                <h4>
+                  {i.title}
+                  {i.core && <span class="mb-tag mb-tag-core">el núcleo</span>}
+                  {!i.core && <span class="mb-tag">agrega según necesites</span>}
+                </h4>
+                <p>{i.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── MB_Rental ── */}
+    <section class="svp-chapter mb-rental" id="rental">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 03 / Solo Renta de Barra ]</span>
+          <h2 class="svp-chapter-title">
+            Renta la barra. <span class="it">Manéjala</span> a tu manera.
+          </h2>
+        </header>
+
+        <div class="mb-rental-spread">
+          <div class="mb-rental-copy">
+            <p class="mb-lede">
+              ¿Solo necesitas la barra? Entregamos y montamos la barra móvil en tu
+              espacio — y de ahí en adelante, la noche es tuya para manejarla.
+            </p>
+            <p class="mb-rental-note">
+              Tú mantienes el control total. Trae tus propios bartenders, abastece tus
+              propios licores y maneja el servicio exactamente como quieras. La barra llega
+              estilizada y lista — el resto lo decides tú.
+            </p>
+            <ul class="mb-rental-list">
+              <li><span class="d" />Tú eliges quién la atiende</li>
+              <li><span class="d" />Tú defines el menú y abasteces la barra</li>
+              <li><span class="d" />Tú manejas el servicio a tu manera</li>
+            </ul>
+            <p class="mb-rental-foot">
+              ¿Cambias de opinión? Puedes agregar bartenders de WOA, un menú personalizado o
+              servicio completo a cualquier renta — en cualquier momento.
+            </p>
+            <a href="/es/contact" class="btn btn-ghost mb-rental-cta">
+              Pregunte por la renta de barra <span class="arr">→</span>
+            </a>
+          </div>
+
+          <figure class="mb-photo-tall mb-rental-photo">
+            <img src="/img/mb-office-white.jpg" alt="Una barra móvil de WOA entregada y montada, lista para que el anfitrión la maneje" loading="lazy" />
+            <figcaption><span class="mono">[ solo barra · entregada y montada ]</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    {/* ── MB_Ideal ── */}
+    <section class="svp-chapter mb-ideal-sec">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 04 / Ideal Para ]</span>
+          <h2 class="svp-chapter-title">
+            Creada para los <span class="it">momentos</span> que merecen una barra de verdad.
+          </h2>
+        </header>
+        <div class="svp-ideal">
+          {IDEAL.map((i) => (
+            <span class="svp-ideal-chip"><span class="d" />{i}</span>
+          ))}
+        </div>
+        <p class="mb-ideal-note">
+          Desde reuniones íntimas hasta experiencias de hospitalidad a gran escala — rentada
+          por su cuenta, o manejada de principio a fin por el <b style="color:var(--fg)">equipo WOA</b>.
+        </p>
+      </div>
+    </section>
+
+    {/* ── MB_Process ── */}
+    <section class="svp-chapter mb-process">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 05 / Cómo Funciona ]</span>
+          <h2 class="svp-chapter-title">Cuatro pasos hacia una <span class="it">obra de arte</span>.</h2>
+        </header>
+        <div class="svp-steps">
+          {STEPS.map((s) => (
+            <article class="svp-step">
+              <span class="n">— {s.n}</span>
+              <h4>{s.t}</h4>
+              <p>{s.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── MB_Faq ── */}
+    <section class="svp-faq">
+      <div class="wrap">
+        <div class="svp-faq-grid">
+          <div>
+            <span class="svp-chapter-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
+              Sobre la <span class="it" style="color:var(--crimson)">experiencia</span>.
+            </h2>
+          </div>
+          <div>
+            {MB_FAQ.map((f, i) => (
+              <details class="svp-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── MB_Cta ── */}
+    <section class="svp-cta">
+      <div class="svp-cta-bg">
+        <img src="/img/cocktail-foam.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="wrap">
+        <span class="eyebrow">— Solicite</span>
+        <h2 class="display">
+          Construyamos <span class="it" style="color:var(--crimson)">tu</span> barra.
+        </h2>
+        <p>
+          Llamada de descubrimiento de 30 minutos. Escuchamos, compartimos ideas y tendrás
+          una propuesta a la medida en tu bandeja de entrada en un plazo de dos días hábiles.
+        </p>
+        <div class="cta-row">
+          <a href="/es/contact" class="btn btn-solid">Reserve una llamada de descubrimiento <span class="arr">→</span></a>
+          <a href="/es/contact" class="btn btn-ghost">Todas las formas de contactarnos</a>
+        </div>
+      </div>
+    </section>
+    <nav class="svp-nav" aria-label="Otros servicios">
+      <a href="/es">
+        <span class="dir">← Inicio</span>
+        <span class="ttl">Todos los <span class="it">servicios</span></span>
+      </a>
+      <a href="/es/brand-experiences">
+        <span class="dir">Siguiente servicio →</span>
+        <span class="ttl">Marca y <span class="it">Hospitalidad</span></span>
+      </a>
+    </nav>
+  </main>
+</Layout>
+
+<script>
+  // MB_Roll — line-art cart rolls in once when scrolled into view.
+  const roll = document.querySelector('.mb-roll');
+  if (roll) {
+    roll.classList.add('armed');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          roll.classList.add('is-in');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.45 });
+    io.observe(roll);
+  }
+</script>

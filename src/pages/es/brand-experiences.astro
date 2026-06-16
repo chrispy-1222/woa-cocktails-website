@@ -1,0 +1,359 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// ── CHAPTER 01 — BAR TAKEOVERS ───────────────────────────────────────
+const BX_POINTS = [
+  { n: '01', t: 'Una carta a la medida',
+    d: 'Una carta de cócteles con nombre y temática, diseñada para la ocasión: tu marca, tu público, la noche que estamos construyendo.' },
+  { n: '02', t: 'Nuestro equipo completo',
+    d: 'Bartenders, barbacks y un capitán llegan informados y uniformados. Manejamos la barra de principio a fin para que tu equipo pueda respirar.' },
+  { n: '03', t: 'Todo el espectáculo',
+    d: 'Energía, música, puntos de contacto con la marca, presentación. Una toma de bar no es un turno: es un espectáculo que atrae a la gente.' },
+];
+
+// ── CHAPTER 02 — CONSULTING ──────────────────────────────────────────
+const BX_SCOPE = [
+  { n: '01', title: 'Diseño de barra — estético y logístico', desc: 'Diseñamos la barra en sí: su aspecto, distribución y flujo de trabajo. Dónde van los refrigeradores, la estantería y las estaciones, dimensionados y medidos según tu aforo y tu plano. Nosotros la diseñamos y especificamos; tu constructor la construye.' },
+  { n: '02', title: 'Desarrollo de carta y cócteles', desc: 'Una carta de autor creada según tu concepto y tus márgenes: costeada, especificada y diseñada para destacar en el salón.' },
+  { n: '03', title: 'Capacitación del personal', desc: 'Técnica, velocidad y estándares de hospitalidad. Entrenamos a tu equipo para manejar la barra al estándar WOA.' },
+  { n: '04', title: 'Apoyo en la apertura', desc: 'Montaje previo al lanzamiento, niveles de par, pedidos y cobertura del soft opening. Estamos en el piso cuando más importa.' },
+  { n: '05', title: 'Dirección de bebidas', desc: 'Selección de destilados, relaciones con proveedores y renovaciones de temporada que mantienen el programa vigente.' },
+  { n: '06', title: 'Operaciones y costeo', desc: 'Costos de pour, hojas de especificaciones y procedimientos (SOP) que mantienen el estándar mucho después de que nos hayamos ido.' },
+];
+
+const BX_FORMATS = [
+  { tag: 'Medio día / día completo', title: 'La Auditoría',
+    desc: 'Una revisión enfocada de una barra existente — carta, flujo, costos y servicio — con un plan de acción claro y priorizado.',
+    best: 'Una barra que necesita una puesta a punto' },
+  { tag: 'Varias semanas', title: 'El Programa',
+    desc: 'Construcción integral de un programa de barra nuevo o relanzado, desde el diseño hasta un equipo plenamente capacitado.',
+    best: 'Aperturas y relanzamientos' },
+  { tag: 'Mensual', title: 'Por Iguala',
+    desc: 'Una alianza continua: cartas de temporada, capacitación permanente y un equipo de bebidas a tu disposición.',
+    best: 'Grupos y conceptos en crecimiento' },
+];
+
+// ── PROCESS (covers both services) ───────────────────────────────────
+const BX_STEPS = [
+  { n: '01', t: 'Llamada de descubrimiento', d: '30 minutos. Ya sea una toma de bar de una noche o un programa de barra completo, empezamos por el brief.' },
+  { n: '02', t: 'Propuesta y alcance', d: 'En un plazo de dos días hábiles: dirección de concepto, alcance, cronograma y una cotización todo incluido.' },
+  { n: '03', t: 'Diseño y construcción', d: 'Carta, personal y guion de la noche para las tomas de bar; diseño, capacitación y documentación para la consultoría.' },
+  { n: '04', t: 'Ejecución', d: 'Manejamos la noche, o ponemos en marcha el programa y entrenamos a tu equipo para que lo haga suyo.' },
+];
+
+// ── FAQ ──────────────────────────────────────────────────────────────
+const BX_FAQ = [
+  { q: '¿Qué es exactamente una toma de bar?',
+    a: 'Para un solo evento —a menudo una sola noche— WOA toma el control de una barra existente. Llevamos nuestro propio equipo, una carta a la medida y los invitados: una lista de invitados WOA curada que sale esa noche y consume en tu local. El espacio es el recipiente; la experiencia —y la gente— es nuestra. Es ideal para pop-ups, noches de marca y colaboraciones con restaurantes.' },
+  { q: '¿Necesitamos nuestro propio local para una toma de bar?',
+    a: 'De cualquier forma. Podemos tomar tu barra, asociarnos con un local que ambos elijamos, o integrar una toma de bar dentro de un evento mayor. Coordinamos directamente con el espacio en logística, licencias y tiempos.' },
+  { q: '¿Qué cubre un proyecto de consultoría?',
+    a: 'Desde una renovación puntual de la carta hasta un programa de barra completo previo a la apertura: desarrollo de carta, costeo, equipamiento, capacitación del personal y apoyo en el lanzamiento. También cubre el diseño de la barra en sí, tanto estético como logístico: dónde deben ir los refrigeradores, la estantería y las estaciones, dimensionados según tu aforo y distribución. Nosotros diseñamos, medimos y especificamos la barra; tu contratista se encarga de la construcción física.' },
+  { q: '¿Capacitan a nuestro personal actual?',
+    a: 'Sí: es central en la consultoría. Entrenamos a tu equipo en técnica, velocidad y estándares de hospitalidad, y dejamos hojas de especificaciones y procedimientos (SOP) para que el programa se sostenga mucho después de que nos hayamos ido.' },
+  { q: '¿En qué se diferencia esto del servicio de barra móvil?',
+    a: 'La barra móvil lleva una barra construida por WOA a tu evento. Una toma de bar usa la barra de otro como escenario; la consultoría construye un programa de barra que tú conservas. Herramientas distintas, el mismo estándar.' },
+];
+---
+
+<Layout
+  lang="es"
+  title="Experiencias de Marca y Hospitalidad — WOA Cocktails · Tomas de Bar y Consultoría"
+  description="Las tomas de bar y la consultoría de barra de WOA: una toma de tu bar por una noche con carta a la medida y equipo completo, o el diseño, la carta y la capacitación detrás de un programa de barra nuevo. Nueva York y Miami."
+  styles={['woa-service.css', 'woa-svc-brand.css']}
+>
+  <main class="svc-page bx-page">
+    {/* ── DISTINCT HERO — the diptych ── */}
+    <section class="bx-hero" aria-label="Experiencias de Marca y Hospitalidad">
+      <div class="bx-hero-split">
+        <a class="bx-panel" href="#takeover" aria-label="Explorar tomas de bar">
+          <div class="bx-panel-bg">
+            <img src="/img/bx-takeover-crew.jpg" alt="El equipo de WOA con camisas personalizadas detrás de la barra de un local durante una toma de bar" />
+          </div>
+          <div class="bx-panel-body">
+            <span class="bx-panel-num">— 01</span>
+            <span class="bx-panel-kicker">Pop-ups · Noches de marca</span>
+            <h2 class="bx-panel-title">Tomas de <span class="it">Bar</span></h2>
+            <p class="bx-panel-line">
+              Tomamos prestada tu barra por la noche, llevamos nuestro equipo y una
+              carta a la medida, y montamos un espectáculo.
+            </p>
+            <span class="bx-panel-go">Explorar tomas de bar <span class="ar">→</span></span>
+          </div>
+        </a>
+
+        <a class="bx-panel" href="#consulting" aria-label="Explorar consultoría de barra">
+          <div class="bx-panel-bg">
+            <img src="/img/bx-consult-emma2.webp" alt="Los fundadores de WOA en un programa de barra de restaurante que diseñaron" />
+          </div>
+          <div class="bx-panel-body">
+            <span class="bx-panel-num">— 02</span>
+            <span class="bx-panel-kicker">Aperturas · Programas de barra</span>
+            <h2 class="bx-panel-title">Consultoría de <span class="it">Barra</span></h2>
+            <p class="bx-panel-line">
+              Diseñamos, construimos y capacitamos el programa de barra detrás de un
+              restaurante, del concepto a las puertas abiertas.
+            </p>
+            <span class="bx-panel-go">Explorar consultoría <span class="ar">→</span></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="bx-hero-plaque">
+        <div class="top">
+          <span class="ln"></span><span class="eyebrow">Servicio 02 · La Casa WOA</span><span class="ln"></span>
+        </div>
+        <h1 class="bx-hero-plaque-title">
+          Experiencias de<br />Marca y <span class="it">Hospitalidad</span>
+          <span class="dia" aria-hidden="true"></span>
+        </h1>
+        <p class="bx-hero-plaque-sub">
+          Dos formas en que llevamos el estándar WOA más allá de nuestros propios
+          eventos: una toma de tu bar por una noche, o el programa detrás de uno
+          completamente nuevo.
+        </p>
+      </div>
+    </section>
+
+    {/* ── MANIFESTO BAND ── */}
+    <section class="bx-manifesto">
+      <div class="wrap">
+        <p class="display">
+          Danos una barra y una noche, y llenaremos el salón.
+          Danos un concepto y una temporada, y construiremos uno
+          que <span class="it">se llene solo</span>.
+        </p>
+        <div class="sig">— La Casa WOA · Nueva York y Miami</div>
+      </div>
+    </section>
+
+    {/* ── CHAPTER 01 — BAR TAKEOVERS ── */}
+    <section class="svp-chapter bx-takeover" id="takeover">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 01 / Tomas de Bar ]</span>
+          <h2 class="svp-chapter-title">
+            Por una noche, tu barra <span class="it">se vuelve nuestra</span>.
+          </h2>
+        </header>
+
+        <div class="bx-lead">
+          <div class="bx-lead-copy">
+            <p class="bx-lede">
+              No solo llevamos una barra. Llevamos el <span class="it">espectáculo</span> —
+              y lo manejamos desde detrás de la tuya.
+            </p>
+            <p>
+              Una toma de bar de WOA es exactamente eso: por una noche, tu barra es
+              nuestra. Llevamos el equipo completo, diseñamos una carta a la medida de la
+              ocasión y convertimos un servicio cualquiera en un evento del que la gente habla.
+            </p>
+            <p>
+              Es la forma más rápida de llenar un salón, pensada para <b>pop-ups, noches de
+              marca, colaboraciones con restaurantes y activaciones puntuales</b>. Y no
+              llegamos solos: WOA también lleva a los invitados, una lista de invitados curada
+              que llega lista para pasar la noche consumiendo en tu local.
+            </p>
+          </div>
+          <figure class="bx-lead-photo">
+            <img src="/img/bx-takeover-popup.webp" alt="Fabio y Hector manejando una toma de bar pop-up de WOA detrás de la barra completa de un local" loading="lazy" />
+            <figcaption>Pop-up · en servicio</figcaption>
+          </figure>
+        </div>
+
+        <div class="bx-points">
+          {BX_POINTS.map((p) => (
+            <article class="bx-point">
+              <span class="n">— {p.n}</span>
+              <h4>{p.t}</h4>
+              <p>{p.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Featured takeover: WOA × Style Bender · Cinco de Mayo ── */}
+    <section class="svp-feature bx-feature">
+      <div class="wrap">
+        <header class="svp-feature-head">
+          <span class="svp-feature-stamp">Destacado · 2025</span>
+          <div>
+            <span class="svp-chapter-num">[ En Acción ]</span>
+            <h2 class="svp-feature-title" style="margin-top:14px">
+              <span class="it">WOA × Style Bender</span><br />Cinco de Mayo · Soho House NYC.
+            </h2>
+            <p style="margin-top:18px;max-width:56ch;color:var(--fg-dim);font-size:15px;line-height:1.7">
+              Una toma de bar de Cinco de Mayo solo para miembros en Soho House NYC.
+              Tomamos la barra de la casa por la noche: una carta a la medida liderada por
+              mezcal y tequila, un equipo WOA × Style Bender con marca completa, un DJ
+              sosteniendo el piso, y un salón que funcionó desde el primer invitado hasta
+              la última ronda.
+            </p>
+          </div>
+        </header>
+
+        <div class="svp-grid g-asym bx-feature-grid">
+          <div class="ph" style="grid-column:span 7;grid-row:span 2">
+            <img src="/img/bx-takeover-crew.jpg" alt="El equipo completo de WOA × Style Bender detrás de la barra de Soho House" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 5;grid-row:span 1">
+            <img src="/img/bx-takeover-menu.jpg" alt="La carta de cócteles a la medida WOA × Style Bender de Cinco de Mayo" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 5;grid-row:span 1">
+            <img src="/img/bx-takeover-bottles.jpg" alt="Bartenders de WOA presentando la línea de tequilas de la noche" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 4;grid-row:span 1">
+            <img src="/img/bx-takeover-toss.jpg" alt="Un bartender de WOA en pleno lanzamiento detrás de la barra" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 4;grid-row:span 1">
+            <img src="/img/bx-takeover-dj.jpg" alt="El DJ sosteniendo el piso durante la toma de bar" loading="lazy" />
+          </div>
+          <div class="ph" style="grid-column:span 4;grid-row:span 1">
+            <img src="/img/bx-takeover-guests.jpg" alt="Invitados siendo atendidos en la barra durante la toma de bar" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="bx-feature-meta">
+          <div><div class="ix">Local</div><b>Soho House NYC</b></div>
+          <div><div class="ix">Colaboración</div><b>Style Bender</b></div>
+          <div><div class="ix">Formato</div><b>Toma de bar · 1 noche</b></div>
+          <div><div class="ix">Ocasión</div><b>Cinco de Mayo · 2025</b></div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CHAPTER 02 — CONSULTING ── */}
+    <section class="svp-chapter bx-consulting" id="consulting">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 02 / Consultoría ]</span>
+          <h2 class="svp-chapter-title">
+            El programa <span class="it">detrás</span> del trago.
+          </h2>
+        </header>
+
+        <div class="bx-lead rev">
+          <figure class="bx-lead-photo">
+            <img src="/img/bx-consult-koncon.webp" alt="Un programa de barra de restaurante diseñado por WOA en servicio — Koncon Quemao" loading="lazy" />
+            <figcaption>Programa de barra · diseñado</figcaption>
+          </figure>
+          <div class="bx-lead-copy">
+            <p class="bx-lede">
+              ¿Abriendo una barra, o arreglando una? Construimos el <span class="it">programa</span> detrás de ella.
+            </p>
+            <p>
+              Nos asociamos con restaurantes, hoteles y locales para diseñar —o elevar—
+              su barra desde cero: el salón, la carta, el flujo de trabajo, la gente.
+            </p>
+            <p>
+              Desde una sola renovación de carta hasta un programa completo previo a la
+              apertura, WOA lleva el mismo estándar que mantenemos en nuestros propios eventos
+              a <b>tu casa</b>, y entrena a tu equipo para mantenerlo ahí mucho después de irnos.
+            </p>
+          </div>
+        </div>
+
+        <div class="svp-include" style="margin-top:clamp(40px,5vw,64px)">
+          {BX_SCOPE.map((s) => (
+            <article class="svp-include-item">
+              <span class="n">— {s.n}</span>
+              <div class="body">
+                <h4>{s.title}</h4>
+                <p>{s.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div class="bx-svc-tag" style="margin-top:clamp(40px,5vw,64px);margin-bottom:18px">
+          <span class="d"></span> Formatos de contratación
+        </div>
+        <div class="bx-formats" style="margin-top:0">
+          {BX_FORMATS.map((f) => (
+            <article class="bx-format">
+              <span class="tag">{f.tag}</span>
+              <h4>{f.title}</h4>
+              <p>{f.desc}</p>
+              <div class="meta">Ideal para: <b>{f.best}</b></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── PROCESS (covers both services) ── */}
+    <section class="svp-chapter bx-process">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ Cómo Funciona ]</span>
+          <h2 class="svp-chapter-title">De la primera llamada a las <span class="it">puertas abiertas</span>.</h2>
+        </header>
+        <div class="svp-steps">
+          {BX_STEPS.map((s) => (
+            <article class="svp-step">
+              <span class="n">— {s.n}</span>
+              <h4>{s.t}</h4>
+              <p>{s.d}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="svp-faq">
+      <div class="wrap">
+        <div class="svp-faq-grid">
+          <div>
+            <span class="svp-chapter-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
+              Tomas de bar y <span class="it" style="color:var(--crimson)">consultoría</span>.
+            </h2>
+          </div>
+          <div>
+            {BX_FAQ.map((f, i) => (
+              <details class="svp-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CTA + prev/next ── */}
+    <section class="svp-cta">
+      <div class="svp-cta-bg">
+        <img src="/img/bx-takeover-crew.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="wrap">
+        <span class="eyebrow">— Solicite</span>
+        <h2 class="display">
+          Tome un <span class="it" style="color:var(--crimson)">salón</span> —<br />o construya el suyo.
+        </h2>
+        <p>
+          Llamada de descubrimiento de 30 minutos. Cuéntenos si se trata de una toma de bar
+          de una noche o de un programa de barra completo, y le enviaremos una propuesta a la
+          medida en un plazo de dos días hábiles.
+        </p>
+        <div class="cta-row">
+          <a href="/es/contact" class="btn btn-solid">Reserve una llamada de descubrimiento <span class="arr">→</span></a>
+          <a href="/es/contact" class="btn btn-ghost">Todas las formas de contactarnos</a>
+        </div>
+      </div>
+    </section>
+    <nav class="svp-nav" aria-label="Otros servicios">
+      <a href="/es/mobile-bar">
+        <span class="dir">← Servicio anterior</span>
+        <span class="ttl">Experiencia de <span class="it">Barra Móvil</span></span>
+      </a>
+      <a href="/es/staffing">
+        <span class="dir">Siguiente servicio →</span>
+        <span class="ttl">Bartending <span class="it">y Personal</span></span>
+      </a>
+    </nav>
+  </main>
+</Layout>

@@ -1,19 +1,27 @@
 ---
-// Shared top navigation — fixed bar + full-screen mobile drawer + services dropdown.
-// Interactivity (scroll state, drawer, dropdown) is a tiny vanilla island; no framework runtime.
-const services = [
-  { label: 'Mobile bar for Events', href: '/mobile-bar', num: '01' },
-  { label: 'Brand & Hospitality Experiences', href: '/brand-experiences', num: '02' },
-  { label: 'Bartending & Hospitality Staffing', href: '/staffing', num: '03' },
-  { label: 'Mixology Private Classes', href: '/classes', num: '04' },
-];
+// Shared top navigation — fixed bar + full-screen mobile drawer + services dropdown
+// + language switcher. Interactivity is a tiny vanilla island; no framework runtime.
+import { services, type Lang } from '../i18n/ui';
+import { t, localizePath, stripLocale } from '../i18n/utils';
 
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isHome = path === '/';
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+
+const base = stripLocale(Astro.url.pathname);
+const isHome = base === '/';
+const L = (path: string) => localizePath(path, lang);
+
+const otherLang: Lang = lang === 'es' ? 'en' : 'es';
+const switchHref = localizePath(base, otherLang);
+
+const navServices = services.map((s) => ({
+  num: s.num,
+  href: L(s.path),
+  label: lang === 'es' ? s.es : s.en,
+}));
 ---
 
 <nav class="nav" data-nav>
-  <a href="/" class="logo" aria-label="WOA — Work Of Art · Home">
+  <a href={L('/')} class="logo" aria-label="WOA — Work Of Art · Home">
     <span class="seg"><span class="cap">W</span><span class="tail">ork</span></span>
     <span class="sep">·</span>
     <span class="seg"><span class="cap">O</span><span class="tail">f</span></span>
@@ -30,11 +38,11 @@ const isHome = path === '/';
         aria-expanded="false"
         data-svc-trigger
       >
-        Services <span class="chev" aria-hidden="true">▾</span>
+        {t(lang, 'nav.services')} <span class="chev" aria-hidden="true">▾</span>
       </button>
       <div class="nav-svc-menu" role="menu">
         {
-          services.map((s) => (
+          navServices.map((s) => (
             <a href={s.href} role="menuitem" class="nav-svc-item">
               <span class="num">{s.num}</span>
               <span class="lbl">{s.label}</span>
@@ -44,13 +52,16 @@ const isHome = path === '/';
         }
       </div>
     </div>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
+    <a href={L('/about')}>{t(lang, 'nav.about')}</a>
+    <a href={L('/contact')}>{t(lang, 'nav.contact')}</a>
   </div>
   <div class="nav-right">
+    <a href={switchHref} class="nav-lang" aria-label={t(lang, 'lang.switchTo')} title={t(lang, 'lang.switchTo')}>
+      {t(lang, 'lang.label')}
+    </a>
     {
       !isHome && (
-        <a href="/" class="nav-home" aria-label="Home" title="Home">
+        <a href={L('/')} class="nav-home" aria-label={t(lang, 'nav.home')} title={t(lang, 'nav.home')}>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -67,10 +78,10 @@ const isHome = path === '/';
         </a>
       )
     }
-    <a href="/contact" class="btn btn-solid nav-book">
-      Book Now <span class="arr">→</span>
+    <a href={L('/contact')} class="btn btn-solid nav-book">
+      {t(lang, 'nav.book')} <span class="arr">→</span>
     </a>
-    <button class="nav-burger" aria-label="Open menu" aria-expanded="false" data-burger>
+    <button class="nav-burger" aria-label={t(lang, 'nav.openMenu')} aria-expanded="false" data-burger>
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -79,9 +90,9 @@ const isHome = path === '/';
 <div class="nav-drawer" aria-hidden="true" data-drawer>
   <div class="nav-drawer-inner">
     <div class="drawer-group">
-      <div class="drawer-label">Services</div>
+      <div class="drawer-label">{t(lang, 'nav.servicesGroup')}</div>
       {
-        services.map((s) => (
+        navServices.map((s) => (
           <a href={s.href} class="drawer-sub">
             <span class="num">{s.num}</span>
             {s.label}
@@ -89,17 +100,45 @@ const isHome = path === '/';
         ))
       }
     </div>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/#founders">Founders</a>
-    <a href="/contact">Contact</a>
+    <a href={L('/')}>{t(lang, 'nav.home')}</a>
+    <a href={L('/about')}>{t(lang, 'nav.about')}</a>
+    <a href={L('/#founders')}>{t(lang, 'nav.founders')}</a>
+    <a href={L('/contact')}>{t(lang, 'nav.contact')}</a>
+    <a href={switchHref} class="drawer-lang">{t(lang, 'lang.switchTo')}</a>
     <div class="nav-drawer-foot">
-      <a href="/contact" class="btn btn-solid">
-        Book Now <span class="arr">→</span>
+      <a href={L('/contact')} class="btn btn-solid">
+        {t(lang, 'nav.book')} <span class="arr">→</span>
       </a>
     </div>
   </div>
 </div>
+
+<style>
+  .nav-lang {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--fg-dim);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 7px 12px;
+    line-height: 1;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .nav-lang:hover {
+    color: var(--fg);
+    border-color: var(--fg-dim);
+  }
+  .drawer-lang {
+    color: var(--fg-dim) !important;
+  }
+  @media (max-width: 720px) {
+    /* The pill switcher lives in the drawer on phones to keep the bar uncluttered. */
+    .nav-right .nav-lang {
+      display: none;
+    }
+  }
+</style>
 
 <script>
   const nav = document.querySelector<HTMLElement>('[data-nav]');
@@ -123,7 +162,6 @@ const isHome = path === '/';
     drawer?.classList.toggle('open', open);
     burger?.classList.toggle('open', open);
     burger?.setAttribute('aria-expanded', String(open));
-    burger?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     drawer?.setAttribute('aria-hidden', String(!open));
     document.body.style.overflow = open ? 'hidden' : '';
   };

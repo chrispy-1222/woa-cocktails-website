@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// ── Class formats (4) ──
+const FORMATS = [
+  { n: "01", title: "Team-building corporativo",
+    desc: "Offsites, fiestas de fin de año, retiros de liderazgo. Reemplaza la caída de confianza.",
+    img: "/img/class-corporate.webp", tag: "Más reservado" },
+  { n: "02", title: "Activaciones de marca",
+    desc: "Menús de marca, cócteles personalizados, presentación lista para prensa. Diseñado en torno a su lanzamiento.",
+    img: "/img/class-brand.webp", tag: "Personalizado" },
+  { n: "03", title: "Grupos privados",
+    desc: "Cumpleaños, despedidas de soltera, cenas, momentos memorables — y clases personales uno a uno. Vamos a su cocina.",
+    img: "/img/class-guest.webp", tag: "Íntimo" },
+  { n: "04", title: "Grupos de hospitalidad",
+    desc: "Capacitación de personal para restaurantes y bares — técnica, menú, fundamentos de hospitalidad.",
+    img: "/img/founders-bar.jpg", tag: "Profesional" },
+];
+
+// ── Featured cocktails (sample menu) ──
+const COCKTAILS = [
+  { name: "Old Fashioned Clásico", img: "/img/cocktail-oldfashioned.webp" },
+  { name: "Sour de Betabel y Granada", img: "/img/cocktail-beet-pom.webp" },
+  { name: "WOA Classic", img: "/img/cocktail-woa-classic.webp" },
+  { name: "Margarita Sunset", img: "/img/cocktail-sunset-marg.webp" },
+];
+
+// ── FAQ ──
+const C_FAQ = [
+  { q: "¿Cuántos invitados puede recibir una clase?",
+    a: "Desde clases personales uno a uno hasta grandes sesiones corporativas de 60. Más allá de eso, organizamos clases de varias estaciones con mixólogos adicionales, o convertimos el formato en una expo de cócteles." },
+  { q: "¿Cuánto dura una clase?",
+    a: "Nuestra clase estándar dura 2 horas de principio a fin, y las clases van de 1 a 3 horas según el formato. Los offsites corporativos a menudo agregan una degustación o una cena con maridaje." },
+  { q: "¿Quién provee el alcohol y el equipo?",
+    a: "WOA trae el kit completo — herramientas, cristalería, mezcladores, garnishes y tarjetas de recetas para cada invitado. Para los destilados, WOA Cocktails coordina y cura la experiencia de bebidas: ayudamos con la planeación del menú, las listas de compras, las cantidades y todos los detalles relacionados con las bebidas para una clase sin contratiempos. Usted aporta el espacio y las personas." },
+  { q: "¿Pueden crear un menú temático o de marca?",
+    a: "Sí. Para activaciones de marca o eventos privados creamos cócteles con nombre acordes a la ocasión — invitado de honor, identidad de marca, paleta de colores, la historia que estamos contando. Esto se incluye en las propuestas personalizadas." },
+  { q: "¿Podemos reservar una clase como parte de un evento más grande?",
+    a: "A menudo es el formato más sólido. Una clase de 60 minutos para abrir la noche, seguida de un servicio completo de barra móvil WOA durante el resto de la velada. Aplica precio en paquete." },
+];
+---
+
+<Layout
+  lang="es"
+  title="Clases Privadas de Coctelería — WOA Cocktails"
+  description="Clases de coctelería prácticas dirigidas por mixólogos profesionales de WOA. Offsites corporativos, team-building, grupos privados, activaciones de marca. Nueva York y Miami."
+  styles={['woa-service.css', 'woa-svc-classes.css']}
+>
+  <main class="svc-page c-page">
+    {/* ── Hero ── */}
+    <section class="svp-hero c-hero">
+      <div class="wrap c-hero-grid">
+        <div class="c-hero-copy">
+          <div style="display:flex;justify-content:space-between;margin-bottom:32px">
+            <span class="eyebrow">— Servicio 04 · Práctico</span>
+          </div>
+          <span class="svp-hero-rule"></span>
+          <h1 class="display h-xl">
+            Aprenda de un <em>profesional</em>.<br />
+            Y luzca <span class="it">bien</span> haciéndolo.
+          </h1>
+          <p class="c-hero-lede">
+            Clases interactivas de cócteles para offsites corporativos, team-building,
+            activaciones de marca y grupos privados — incluyendo clases personales
+            uno a uno. Un mixólogo profesional de WOA dirige la sala — y usted sale
+            preparando cócteles que de verdad servirá en casa.
+          </p>
+          <div class="c-hero-marks">
+            <span><b>2h</b><small>Duración de la clase</small></span>
+            <span><b>1–60</b><small>Invitados</small></span>
+            <span><b>NYC · MIA</b><small>Vamos a usted</small></span>
+          </div>
+        </div>
+        <figure class="c-hero-photo">
+          <img src="/img/class-hero.webp" alt="Un mixólogo de WOA dirigiendo una clase práctica de cócteles" />
+          <span class="c-hero-tape">CLASE · EN SESIÓN</span>
+        </figure>
+      </div>
+    </section>
+
+    {/* ── Formats ── */}
+    <section class="svp-chapter c-formats">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 01 / Formatos de Clase ]</span>
+          <h2 class="svp-chapter-title">
+            Cuatro formatos. <span class="it">Un</span> mixólogo.
+          </h2>
+        </header>
+        <div class="c-formats-grid">
+          {FORMATS.map((f) => (
+            <article class="c-format-card">
+              <figure class="c-format-img">
+                <img src={f.img} alt={f.title} loading="lazy" />
+                <span class="c-format-tag">{f.tag}</span>
+              </figure>
+              <div class="c-format-body">
+                <span class="n">— {f.n}</span>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Menu (What You'll Make) ── */}
+    <section class="svp-chapter c-menu">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 02 / Lo Que Prepararás ]</span>
+          <h2 class="svp-chapter-title">
+            Los cócteles son <span class="it">tuyos</span> para llevar a casa.
+          </h2>
+        </header>
+        <p class="c-menu-note">
+          Se muestra un menú de ejemplo — cada clase se diseña según el grupo y la ocasión.
+          Menús temáticos, activaciones de marca y creaciones de temporada disponibles.
+        </p>
+        <div class="c-menu-grid">
+          {COCKTAILS.map((c, i) => (
+            <figure class="c-cocktail">
+              <div class="c-cocktail-img">
+                <img src={c.img} alt={c.name} loading="lazy" />
+                <span class="c-cocktail-num">{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              <figcaption>
+                <h4>{c.name}</h4>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ── Where ── */}
+    <section class="svp-chapter c-where">
+      <div class="wrap">
+        <header class="svp-chapter-head">
+          <span class="svp-chapter-num">[ 03 / Dónde ]</span>
+          <h2 class="svp-chapter-title">Vamos a <span class="it">usted</span>.</h2>
+        </header>
+        <div class="c-where-grid">
+          <div class="c-where-card">
+            <div class="ix">01</div>
+            <h3>Su oficina</h3>
+            <p>El más reservado. Sala de juntas, cocina, lounge — cualquier superficie plana con electricidad y agua cerca. Nosotros traemos todo lo demás.</p>
+          </div>
+          <div class="c-where-card">
+            <div class="ix">02</div>
+            <h3>Su hogar</h3>
+            <p>Departamentos, lofts, residencias. Cocinas, comedores, terrazas. Cumpleaños, despedidas de soltera, cenas. Adaptamos el montaje a su espacio.</p>
+          </div>
+          <div class="c-where-card">
+            <div class="ix">03</div>
+            <h3>Un venue</h3>
+            <p>Salones privados de restaurantes, suites de hotel, espacios de eventos en rooftop, pop-ups de marca. Coordinamos directamente con el venue.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="svp-faq">
+      <div class="wrap">
+        <div class="svp-faq-grid">
+          <div>
+            <span class="svp-chapter-num">[ FAQ ]</span>
+            <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
+              Sobre <span class="it" style="color:var(--crimson)">la clase</span>.
+            </h2>
+          </div>
+          <div>
+            {C_FAQ.map((f, i) => (
+              <details class="svp-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── CTA + prev/next ── */}
+    <section class="svp-cta">
+      <div class="svp-cta-bg">
+        <img src="/img/svc-class.jpg" alt="" aria-hidden="true" />
+      </div>
+      <div class="wrap">
+        <span class="eyebrow">— Solicite</span>
+        <h2 class="display">
+          Reserve su <span class="it" style="color:var(--crimson)">clase</span>.
+        </h2>
+        <p>
+          Llamada de exploración de 30 minutos. Definiremos el formato, el menú y la fecha — y
+          tendrá una propuesta personalizada en su bandeja de entrada en dos días hábiles.
+        </p>
+        <div class="cta-row">
+          <a href="/es/contact" class="btn btn-solid">Reserve una llamada de exploración <span class="arr">→</span></a>
+          <a href="/es/contact" class="btn btn-ghost">Todas las formas de contactarnos</a>
+        </div>
+      </div>
+    </section>
+    <nav class="svp-nav" aria-label="Otros servicios">
+      <a href="/es/staffing">
+        <span class="dir">← Servicio anterior</span>
+        <span class="ttl">Bartending <span class="it">y Personal</span></span>
+      </a>
+      <a href="/es">
+        <span class="dir">Inicio →</span>
+        <span class="ttl">Todos los <span class="it">servicios</span></span>
+      </a>
+    </nav>
+  </main>
+</Layout>

@@ -3,6 +3,10 @@
 // Choice is stored in localStorage; other scripts can gate non-essential
 // cookies by reading `localStorage['woa-cookie-consent']` or listening for
 // the `woa:cookie-consent` event dispatched on choice.
+import type { Lang } from '../i18n/ui';
+import { t, localizePath } from '../i18n/utils';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
 ---
 
 <div
@@ -10,22 +14,18 @@
   id="cookie-consent"
   role="dialog"
   aria-live="polite"
-  aria-label="Cookie consent"
+  aria-label={t(lang, 'cookie.title')}
   hidden
 >
-  <button class="cookie-close" type="button" data-cc-close aria-label="Close">&times;</button>
+  <button class="cookie-close" type="button" data-cc-close aria-label={t(lang, 'cookie.close')}>&times;</button>
   <div class="cookie-body">
-    <h2 class="cookie-title">We value your privacy</h2>
-    <p class="cookie-text">
-      We use cookies to enhance your browsing experience, serve personalized ads, and analyze our
-      traffic. By continuing to browse, you consent to the use of cookies. Choose &ldquo;Opt
-      out&rdquo; to disable them.
-    </p>
+    <h2 class="cookie-title">{t(lang, 'cookie.title')}</h2>
+    <p class="cookie-text">{t(lang, 'cookie.body')}</p>
   </div>
   <div class="cookie-actions">
-    <a class="cookie-link" href="/privacy">Privacy Policy</a>
-    <button class="cookie-link" type="button" data-cc-optout>Opt out</button>
-    <button class="btn btn-solid cookie-accept" type="button" data-cc-accept>Got it</button>
+    <a class="cookie-link" href={localizePath('/privacy', lang)}>{t(lang, 'cookie.privacy')}</a>
+    <button class="cookie-link" type="button" data-cc-optout>{t(lang, 'cookie.optout')}</button>
+    <button class="btn btn-solid cookie-accept" type="button" data-cc-accept>{t(lang, 'cookie.accept')}</button>
   </div>
 </div>
 

@@ -1,0 +1,344 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// Home services rail (3 of the 4 services are featured here).
+const SERVICES = [
+  {
+    id: 'svc-mobile-bar',
+    n: '01', img: '/img/hero-pour.jpg', tag: 'Insignia', href: '/es/mobile-bar',
+    title: ['Barra Móvil ', 'de Servicio'], it: ' Completo',
+    desc: 'Nuestra experiencia de autor. Barras móviles de lujo, cócteles de autor y un equipo completo de hospitalidad — producidos de principio a fin para bodas, eventos privados y momentos de marca.',
+    list: ['Montaje de barra de lujo', 'Cócteles de autor', 'Mezcladores y decoración premium', 'Bartenders y anfitriones', 'Montaje y desmontaje'],
+    meta: 'El más reservado',
+  },
+  {
+    id: 'svc-staffing',
+    n: '02', img: '/img/svc-team.jpg', tag: 'Personal', href: '/es/staffing',
+    title: ['Bartending y', 'Personal de'], it: ' Hospitalidad',
+    desc: 'Bartenders experimentados y profesionales de la hospitalidad capacitados en un servicio elevado y centrado en el invitado para eventos privados, corporativos y de lujo.',
+    list: ['Bartenders', 'Anfitriones y capitanes', 'Barbacks', 'Líderes de evento'],
+    meta: 'Por evento',
+  },
+  {
+    id: 'svc-classes',
+    n: '03', img: '/img/class-hero.webp', tag: 'Experiencias', href: '/es/classes',
+    title: ['Clases de'], it: ' Coctelería',
+    desc: 'Clases interactivas de cócteles que combinan entretenimiento, educación y hospitalidad — dirigidas por mixólogos profesionales, prácticas desde el primer agite hasta el último trago.',
+    list: ['Team building', 'Activaciones de marca', 'Grupos privados', 'Off-sites'],
+    meta: '1–60 invitados',
+  },
+];
+
+const MARQUEE = [
+  'Bodas', '★', 'Eventos Privados de Lujo', '★', 'Activaciones Corporativas',
+  '★', 'Veladas en Rooftop', '★', 'Pop-Ups de Marca', '★',
+  'Clases de Coctelería', '★', 'Personal de Hospitalidad',
+];
+const MARQUEE_ALL = [...MARQUEE, ...MARQUEE];
+
+// Real client testimonials — drawn from emails and reviews supplied by Fabio.
+const TESTI = [
+  { body: 'WOA Cocktails elevó por completo nuestra boda. Los tragos estuvieron increíbles, los bartenders fueron profesionales y amables, y el montaje de la barra móvil se veía espectacular. Nuestros invitados todavía hablan de los espresso martinis.', who: 'Boda', role: 'Celebración Privada' },
+  { body: 'Muchísimas gracias por atender nuestro evento — el servicio de barra fue excelente, y recibimos comentarios muy positivos, en gran parte gracias a su aporte. Sin duda los contactaremos para futuros eventos.', who: 'Nina Sevilla', role: 'Evento Corporativo' },
+  { body: 'Contratamos a WOA para un evento corporativo en Miami y superaron las expectativas. La carta de cócteles se sintió a la medida y elevada, y el equipo le dio una energía estupenda al lugar.', who: 'Corporativo', role: 'Miami' },
+  { body: 'La atención al detalle fue asombrosa. Desde las decoraciones hasta la presentación de la cristalería, todo se sintió de lujo y producido al detalle. Honestamente se sintió como tener un bar de cócteles de alta gama en nuestra casa.', who: 'Evento Privado', role: 'Celebración en Casa' },
+  { body: 'Bartenders profesionales, puntuales y genuinamente talentosos. Los cócteles de autor fueron todo un éxito y el equipo manejó a la perfección nuestro evento de más de 250 invitados.', who: 'Evento de Gran Formato', role: 'Más de 250 Invitados' },
+  { body: 'WOA nos ayudó a rediseñar nuestro programa de bebidas y marcó una gran diferencia. Su consultoría fue organizada, creativa y realmente práctica para la operación y la rentabilidad.', who: 'Grupo de Hospitalidad', role: 'Consultoría' },
+];
+---
+
+<Layout lang="es" title="WOA Cocktails — Casa de hospitalidad y bebidas de lujo · NYC y Miami" description="WOA Cocktails es una casa de hospitalidad y bebidas de lujo de servicio completo — experiencias de barra móvil, cócteles de autor y activaciones producidas para bodas, eventos corporativos y momentos de marca en Nueva York y Miami.">
+  {/* ── Hero ── */}
+  <section class="hero" id="top">
+    <div class="hero-bg">
+      <img src="/img/hero-bridge.jpg" alt="WOA Cocktails — servicio de barra móvil de lujo" />
+    </div>
+    <div class="hero-content wrap">
+      <div class="hero-top">
+        <span class="eyebrow">Una casa de hospitalidad y bebidas · Desde 2020</span>
+        <span class="eyebrow dim" style="text-align:right;line-height:1.7">
+          Nueva York · Tri-State<br />Miami · Downtown
+        </span>
+      </div>
+
+      <div class="hero-body">
+        <div>
+          <span class="hero-rule"></span>
+          <h1 class="display h-xl">Una obra de <em>arte</em><br />en cada trago.</h1>
+          <div class="hero-cta">
+            <a href="/es/contact" class="btn btn-solid">Solicite su evento <span class="arr">→</span></a>
+            <a href="#services" class="btn btn-ghost">Explore los servicios</a>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          WOA es una casa de hospitalidad y bebidas de lujo de servicio completo —
+          creamos experiencias elevadas de barra móvil, programas de cócteles y
+          activaciones producidas para bodas, eventos corporativos y momentos de marca
+          en <b style="color:var(--fg)">Nueva York</b> y <b style="color:var(--fg)">Miami</b>.
+          <div class="stat-row">
+            <div class="stat"><b>25yr</b><span>de experiencia combinada</span></div>
+            <div class="stat"><b>500+</b><span>eventos producidos</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="hero-meta">
+        <div class="markets">
+          <span><span class="dotmark"></span><b>NYC</b>&nbsp;·&nbsp;desde 2020</span>
+          <span><span class="dotmark"></span><b>Miami</b>&nbsp;·&nbsp;reservas abiertas</span>
+        </div>
+        <span>Destacado · Bodas · Corporativo · Activaciones de Marca</span>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Marquee ── */}
+  <div class="marquee">
+    <div class="marquee-track">
+      {MARQUEE_ALL.map((t) => (t === '★' ? <span class="star"></span> : <span>{t}</span>))}
+    </div>
+  </div>
+
+  {/* ── Belt (editorial intro / manifesto) ── */}
+  <section class="belt" id="about">
+    <div class="wrap">
+      <div class="belt-grid">
+        <figure class="framed">
+          <img src="/img/framed-founders.png" alt="Los cofundadores de WOA, Fabio Perez y Hector Taveras, detrás de su barra, en un marco dorado" />
+        </figure>
+        <div class="belt-text">
+          <span class="eyebrow">— La Casa</span>
+          <p class="display" style="margin-top:16px">
+            La hospitalidad es más que servir tragos. Es <span class="it" style="color:var(--crimson)">atmósfera</span>,
+            <span class="it"> intención</span> y la coreografía silenciosa que
+            convierte una velada en algo <span class="it">memorable</span>.
+          </p>
+          <p style="margin-top:28px;color:var(--fg-dim);font-size:15px;line-height:1.7;max-width:44ch">
+            Fundada en 2020 por los profesionales de la hospitalidad Fabio Perez y Hector Taveras,
+            WOA — abreviatura de <em>Work of Art</em> — ha crecido de un estudio de
+            cócteles nacido en la pandemia en Nueva York a una casa completa de bebidas
+            y hospitalidad que ahora atiende Miami.
+          </p>
+
+          <div class="stats">
+            <div class="stat-card"><b>25yr</b><span>De experiencia combinada</span></div>
+            <div class="stat-card"><b>500+</b><span>Eventos producidos</span></div>
+            <div class="stat-card"><b>NYC · MIA</b><span>Mercados activos</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Services ── */}
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="ix">[ 01 / Servicios ]</div>
+          <div class="eyebrow" style="margin-top:18px">Lo que hacemos</div>
+        </div>
+        <h2 class="display h-lg" style="max-width:16ch">
+          Tres servicios, <span class="it" style="color:var(--crimson)">un</span> estándar.
+        </h2>
+      </div>
+    </div>
+    <div class="wrap" style="padding:0">
+      <div class="svc">
+        {
+          SERVICES.map((s) => (
+            <article class="svc-card" id={s.id}>
+              <div class="svc-thumb">
+                <img src={s.img} alt={s.title.join('') + s.it} loading="lazy" />
+                <span class="svc-num">— {s.n}</span>
+                <span class="svc-tag">{s.tag}</span>
+              </div>
+              <div class="svc-body">
+                <h3 class="svc-title">
+                  {s.title.map((t, j) => (
+                    <span>{t}{j < s.title.length - 1 ? ' ' : ''}</span>
+                  ))}
+                  <span class="it">{s.it}</span>
+                </h3>
+                <p class="svc-desc">{s.desc}</p>
+                <ul class="svc-list">{s.list.map((l) => <li>{l}</li>)}</ul>
+                <div class="svc-meta">
+                  <span>{s.meta}</span>
+                  <span class="arr">Conozca más →</span>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* ── Miami ── */}
+  <section id="miami">
+    <div class="miami">
+      <div class="miami-img">
+        <img src="/img/miami-sunset.jpg" alt="Barra de WOA en rooftop al atardecer, Miami" />
+        <span class="miami-stamp">Nuevo · Expansión 2026</span>
+        <span class="miami-cap">[ rooftop · hora dorada · barra móvil WOA ]</span>
+      </div>
+      <div class="miami-body">
+        <div class="ix" style="font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em">[ 02 / Expansión ]</div>
+        <div class="eyebrow" style="margin-top:18px">De NYC a Miami</div>
+        <h2 class="display h-lg" style="margin-top:18px;max-width:14ch">
+          WOA ya está <span class="it" style="color:var(--crimson)">en Miami.</span>
+        </h2>
+        <p style="margin-top:24px;color:var(--fg-dim);max-width:44ch;font-size:16px;line-height:1.7">
+          Con 25 años de experiencia combinada en hospitalidad y cientos de
+          eventos realizados en Nueva York, WOA Cocktails se ha expandido
+          oficialmente a Miami — llevando el mismo servicio elevado a rooftops, fincas, hoteles y activaciones de marca
+          desde Brickell hasta Miami Beach.
+        </p>
+        <ul class="checks">
+          <li>Eventos privados de lujo</li>
+          <li>Bodas</li>
+          <li>Eventos en rooftop</li>
+          <li>Activaciones corporativas</li>
+          <li>Experiencias de barra móvil</li>
+          <li>Clases de coctelería</li>
+          <li>Consultoría de bebidas</li>
+          <li>Personal de hospitalidad</li>
+          <li>Alianzas con hoteles</li>
+          <li>Prensa y activaciones de marca</li>
+        </ul>
+        <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap">
+          <a href="/es/contact" class="btn btn-solid">Reserve un evento en Miami <span class="arr">→</span></a>
+          <a href="/es/contact" class="btn btn-ghost">Hable con Fabio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Founders ── */}
+  <section class="founders" id="founders">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="ix">[ 03 / Fundadores ]</div>
+          <div class="eyebrow" style="margin-top:18px">Una nota de la casa</div>
+        </div>
+        <h2 class="display h-lg" style="max-width:16ch">
+          Fundada por amigos. <span class="it" style="color:var(--crimson)">Construida</span> sobre la hospitalidad.
+        </h2>
+      </div>
+
+      <div class="founders-grid">
+        <div class="founder-stack">
+          <figure class="ph founder-img">
+            <img src="/img/cocktail-hector-mocktail.webp" alt="Hector Taveras, cofundador de WOA Cocktails, detrás de la barra" />
+            <figcaption style="margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">HECTOR TAVERAS · NUEVA YORK</figcaption>
+          </figure>
+          <figure class="ph founder-img tall" style="transform:translateY(48px)">
+            <img src="/img/founder-fabio-portrait.jpg" alt="Fabio Perez, cofundador de WOA Cocktails, sirviendo detrás de la barra" />
+            <figcaption style="margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">FABIO PEREZ · MIAMI</figcaption>
+          </figure>
+        </div>
+        <div style="padding-top:24px">
+          <p class="quote">
+            Lo que comenzó durante una pandemia — dos amigos preparando cócteles frente a la cámara — se convirtió en una casa de hospitalidad. Creemos que cada trago es una postura. Cada reunión, una oportunidad de hacer que algo se sienta intencional. Gracias por dejarnos ser sus anfitriones.
+          </p>
+          <div class="quote-sig">
+            <span class="line"></span>
+            <span>Fabio Perez y Hector Taveras · Cofundadores</span>
+          </div>
+
+          <div style="margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:32px;padding-top:32px;border-top:1px solid var(--line)">
+            <div>
+              <div class="eyebrow dim">Origen</div>
+              <p style="margin-top:10px;color:var(--fg-dim);font-size:14px;line-height:1.7">
+                Fundada en 2020 en Nueva York durante la pandemia — nacida de
+                tutoriales de cócteles en redes, evolucionó a entregas privadas
+                y creció hasta convertirse en una marca completa de hospitalidad.
+              </p>
+            </div>
+            <div>
+              <div class="eyebrow dim">Trayectoria</div>
+              <p style="margin-top:10px;color:var(--fg-dim);font-size:14px;line-height:1.7">
+                Años de hospitalidad de lujo, operaciones de bebidas, liderazgo
+                en restaurantes y ejecución de eventos — canalizados en una sola casa producida al detalle.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top:40px">
+            <a href="/es/about" class="link-arrow">Lea la historia completa →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Testimonials ── */}
+  <section class="testi" id="testimonials">
+    <div class="wrap">
+      <div class="section-head" style="padding:0">
+        <div>
+          <div class="ix">[ 05 / Elogios ]</div>
+          <div class="eyebrow amber" style="margin-top:18px">De nuestros anfitriones</div>
+        </div>
+        <h2 class="display h-lg" style="max-width:20ch">
+          La hospitalidad se siente, <span class="it" style="color:var(--crimson)">no se anuncia.</span>
+        </h2>
+      </div>
+      <div class="testi-grid">
+        {
+          TESTI.map((t) => (
+            <article class="testi-card">
+              <div>
+                <div class="stars">★ ★ ★ ★ ★</div>
+                <div class="body">"{t.body}"</div>
+              </div>
+              <div class="author"><b>{t.who}</b>{t.role}</div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {/* ── CTA Band ── */}
+  <section class="cta-band" id="contact">
+    <div class="cta-band-bg">
+      <img src="/img/cocktail-sunset-marg.webp" alt="" aria-hidden="true" />
+    </div>
+    <div class="wrap">
+      <div class="eyebrow">— Solicite</div>
+      <h2 class="display h-xl">
+        Creemos <span class="it" style="color:var(--crimson)">algo</span><br /> inolvidable juntos.
+      </h2>
+      <p>
+        Cuéntenos sobre su evento — fecha, mercado, visión. Le enviaremos una
+        propuesta a la medida en un plazo de dos días hábiles.
+      </p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:woacocktails@gmail.com" class="btn btn-solid">Comience una consulta <span class="arr">→</span></a>
+        <a href="tel:+16463386739" class="btn btn-ghost">Llame a la casa</a>
+      </div>
+      <div style="margin:80px auto 0;display:grid;grid-template-columns:repeat(3, 1fr);gap:32px;max-width:720px">
+        <div>
+          <div class="eyebrow dim">Correo</div>
+          <div style="margin-top:10px;font-size:15px">
+            <a href="mailto:woacocktails@gmail.com" style="color:var(--fg);text-decoration:none">woacocktails@gmail.com</a>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow dim">Nueva York · Hector</div>
+          <div style="margin-top:10px;font-size:15px">
+            <a href="tel:+16463386739" style="color:var(--fg);text-decoration:none">646-338-6739</a>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow dim">Miami · Fabio</div>
+          <div style="margin-top:10px;font-size:15px">
+            <a href="tel:+12159390476" style="color:var(--fg);text-decoration:none">215-939-0476</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

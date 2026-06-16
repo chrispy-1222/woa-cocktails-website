@@ -1,0 +1,298 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+// ── Packages ─────────────────────────────────────────────────────────
+const PACKAGES = [
+  {
+    id: 'pkg-01',
+    n: '01',
+    name: 'Experiencia de barra móvil',
+    sub: 'Nuestro servicio insignia: hospitalidad completa, de principio a fin.',
+    price: '$2,500',
+    unit: 'desde',
+    tag: 'El más reservado',
+    includes: [
+      'Montaje de barra móvil de lujo (entrega e instalación)',
+      'Diseño de menú de cócteles personalizado',
+      'Hasta 3 cócteles de autor desarrollados para el evento',
+      'Bartenders profesionales y personal de hospitalidad',
+      'Mezcladores premium, garnishes y hielo fresco',
+      'Herramientas de bar completas, equipo y cristalería',
+      'Montaje y desmontaje',
+      'Ventana de servicio de 4 horas (ampliable)',
+    ],
+    notes: 'La cotización final varía según el número de invitados, las horas, el mercado, la complejidad del menú y el armado de la barra.',
+    cta: 'Solicite la barra móvil',
+  },
+  {
+    id: 'pkg-02',
+    n: '02',
+    name: 'Personal de bartending y hospitalidad',
+    sub: 'Equipo WOA con experiencia. Por evento o por hora.',
+    price: '$85',
+    unit: 'por bartender / hora',
+    tag: 'Flexible',
+    includes: [
+      'Bartenders, anfitriones, barbacks y líderes de evento capacitados por WOA',
+      'Briefing previo al evento con recorrido del lugar',
+      'Uniformados y listos para la presentación',
+      'Lista de respaldo disponible',
+      'Capitán asignado para eventos de más de 80 invitados',
+      'Traslado dentro de Nueva York / Miami incluido',
+      'Uniformes personalizados disponibles bajo pedido',
+    ],
+    notes: 'Mínimo de 4 horas por reserva. El traslado fuera de Nueva York/Miami se cotiza por separado.',
+    cta: 'Solicite personal',
+  },
+  {
+    id: 'pkg-03',
+    n: '03',
+    name: 'Clase privada de coctelería',
+    sub: 'Clase práctica de cócteles dirigida por un mixólogo de WOA.',
+    price: '$150',
+    unit: 'por invitado',
+    tag: 'Por invitado',
+    includes: [
+      'Clase práctica de 90 minutos',
+      '3 cócteles aprendidos y preparados',
+      'Mezcladores, garnishes y hielo — licores coordinados',
+      'Herramientas, jiggers, shakers y cristalería',
+      'Tarjetas de recetas enviadas después de la clase',
+      'Mixólogo profesional de WOA a cargo',
+      'En sitio: oficina, hogar o lugar del evento',
+    ],
+    notes: 'Mínimo de 10 invitados. Tarifas grupales disponibles para más de 30. Menús temáticos de marca disponibles.',
+    cta: 'Solicite una clase',
+  },
+];
+
+// ── A la carte add-ons ───────────────────────────────────────────────
+const ADDONS = [
+  { name: 'Cóctel de autor (adicional)', price: '$200 / cada uno' },
+  { name: 'Tarjetas de menú y señalización de marca', price: '$300+' },
+  { name: 'Uniformes personalizados', price: '$80 / persona' },
+  { name: 'Mejora a cristalería premium', price: '$2.50 / invitado' },
+  { name: 'Programa sin alcohol', price: 'Incluido' },
+  { name: 'Tallado de hielo en vivo', price: '$1,500+' },
+  { name: 'Traslado fuera de Nueva York / Miami', price: 'Cotizado' },
+  { name: 'Evento de varios días (por día)', price: '$1,200+' },
+];
+
+// ── FAQ ──────────────────────────────────────────────────────────────
+const PR_FAQ = [
+  {
+    q: '¿Por qué cotizan a la medida en lugar de ofrecer paquetes fijos?',
+    a: 'Hay demasiadas variables reales. El número de invitados, las horas, el mercado, el acceso al lugar, el armado de la barra, la complejidad del menú y el personal modifican el costo. Un paquete fijo cobraría de más en eventos pequeños o quedaría corto en los grandes. Los precios de inicio anteriores son un piso justo: enviamos una propuesta completa dentro de los dos días hábiles posteriores a una llamada de descubrimiento de 30 minutos.',
+  },
+  {
+    q: '¿Cuál es el mínimo para reservar un evento?',
+    a: 'Nuestros paquetes comienzan a partir de 20 invitados y un mínimo de 3 horas de servicio completo de bebidas.',
+  },
+  {
+    q: '¿Requieren un depósito?',
+    a: 'Sí — 50% para apartar la fecha, y el saldo se paga 7 días antes del evento. Los términos completos están en la propuesta.',
+  },
+  {
+    q: '¿Qué sucede si cancelo un evento que ya reservé?',
+    a: 'Si un evento se cancela con 72 horas o más de anticipación a la fecha del evento, el depósito queda disponible como crédito, válido hasta por un año a partir de la fecha de cancelación.',
+  },
+  {
+    q: '¿WOA Cocktails proporciona el alcohol?',
+    a: 'WOA Cocktails coordina y cura la experiencia completa de bebidas. Podemos ayudar con la planificación del menú, las listas de compras, las cantidades, los mezcladores, los garnishes y todos los detalles relacionados con las bebidas para garantizar un servicio impecable.',
+  },
+  {
+    q: '¿Cobran por el traslado?',
+    a: 'El traslado dentro del área metropolitana de Nueva York y Miami está incluido. Los eventos en el área tri-estatal, el sur de Florida y en destino se cotizan por separado según la distancia, el tamaño del equipo y las necesidades de alojamiento.',
+  },
+  {
+    q: '¿Están incluidas la propina y los impuestos?',
+    a: 'El impuesto se agrega en la cotización. La propina es opcional y queda a discreción del anfitrión — en los eventos donde gestionamos ventas en efectivo/tarjeta (poco frecuente), se aplica una propina estándar del 18% en la barra.',
+  },
+];
+---
+
+<Layout
+  lang="es"
+  title="Paquetes y precios — WOA Cocktails · Casa de hospitalidad y bebidas de lujo"
+  description="Precios de WOA Cocktails — puntos de partida para nuestros servicios de barra móvil, personal y clases de coctelería. Cotizados a la medida de cada evento. Nueva York y Miami."
+  styles={['woa-pricing.css']}
+>
+  <main class="pr-page">
+    {/* ── Hero ── */}
+    <section class="pr-hero">
+      <div class="wrap">
+        <div class="pr-hero-top">
+          <span class="eyebrow">— Paquetes &amp; precios</span>
+          <span class="pr-hero-stamp">Lista de tarifas · 2026</span>
+        </div>
+        <h1 class="display pr-hero-title">
+          Precios<span class="pr-dot">.</span>
+        </h1>
+        <p class="pr-hero-lede">
+          Cada evento es único, por eso cada evento de WOA se cotiza a la medida.
+          A continuación están los <em>puntos de partida</em> de cada servicio —
+          un lugar simple y honesto para iniciar una conversación.
+        </p>
+        <div class="pr-hero-jump">
+          <a href="#pkg-01" class="pr-jump">
+            <span class="num">01</span>
+            <span class="lbl">Barra móvil</span>
+            <span class="from">desde <b>$2,500</b></span>
+          </a>
+          <a href="#pkg-02" class="pr-jump">
+            <span class="num">02</span>
+            <span class="lbl">Personal</span>
+            <span class="from">desde <b>$85<small>/hr</small></b></span>
+          </a>
+          <a href="#pkg-03" class="pr-jump">
+            <span class="num">03</span>
+            <span class="lbl">Clase de coctelería</span>
+            <span class="from">desde <b>$150<small>/invitado</small></b></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Packages ── */}
+    <section class="pr-packages">
+      <div class="wrap">
+        {PACKAGES.map((p) => (
+          <article class="pr-pkg" id={p.id}>
+            <header class="pr-pkg-head">
+              <div class="lhs">
+                <span class="pr-pkg-n">— No. {p.n}</span>
+                <h2 class="pr-pkg-name">{p.name}</h2>
+                <p class="pr-pkg-sub">{p.sub}</p>
+                <span class="pr-pkg-tag">{p.tag}</span>
+              </div>
+              <div class="rhs">
+                <span class="pr-pkg-from">A partir de</span>
+                <span class="pr-pkg-price">{p.price}</span>
+                <span class="pr-pkg-unit">{p.unit}</span>
+              </div>
+            </header>
+
+            <div class="pr-pkg-body">
+              <div class="pr-pkg-incl">
+                <span class="eyebrow">— Incluido</span>
+                <ul>
+                  {p.includes.map((line) => (
+                    <li>
+                      <span class="bullet" />
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <aside class="pr-pkg-aside">
+                <div class="pr-pkg-notes">
+                  <span class="eyebrow dim">— Nota</span>
+                  <p>{p.notes}</p>
+                </div>
+                <a href="/es/contact" class="btn btn-solid pr-pkg-cta">
+                  {p.cta} <span class="arr">→</span>
+                </a>
+              </aside>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {/* ── A la carte add-ons ── */}
+    <section class="pr-addons">
+      <div class="wrap">
+        <header class="pr-section-head">
+          <span class="pr-section-num">[ A LA CARTA ]</span>
+          <h2 class="display pr-section-title">
+            Agregue a <span class="it">cualquier</span> paquete.
+          </h2>
+        </header>
+        <ul class="pr-addons-list">
+          {ADDONS.map((a) => (
+            <li>
+              <span class="name">{a.name}</span>
+              <span class="dots" aria-hidden="true" />
+              <span class="price">{a.price}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    {/* ── What you don't pay for ── */}
+    <section class="pr-included">
+      <div class="wrap">
+        <header class="pr-section-head">
+          <span class="pr-section-num">[ SIEMPRE INCLUIDO ]</span>
+          <h2 class="display pr-section-title">
+            Cosas que <span class="it">nunca</span> verá en la factura.
+          </h2>
+        </header>
+        <div class="pr-included-grid">
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Llamada de descubrimiento</h4>
+            <p>30 minutos. Escuchamos, proponemos ideas, definimos el alcance. Sin costo, sin presión.</p>
+          </div>
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Propuesta a la medida</h4>
+            <p>Dentro de 2 días hábiles. Detallada, sin sorpresas.</p>
+          </div>
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Recorrido previo al evento</h4>
+            <p>Nos reunimos con usted y el lugar. Ubicaciones, tiempos, contingencias.</p>
+          </div>
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h4>Hospitalidad</h4>
+            <p>El estándar no es servir tragos. El estándar es sentirse bien atendido.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── FAQ ── */}
+    <section class="pr-faq">
+      <div class="wrap">
+        <div class="pr-faq-grid">
+          <div>
+            <span class="pr-section-num">[ PREGUNTAS FRECUENTES ]</span>
+            <div class="eyebrow" style="margin-top:18px">Sobre los precios</div>
+            <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
+              La letra <span class="it" style="color:var(--crimson)">pequeña</span>.
+            </h2>
+          </div>
+          <div>
+            {PR_FAQ.map((f, i) => (
+              <details class="pr-q" open={i === 0}>
+                <summary>{f.q}</summary>
+                <div class="ans">{f.a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Final CTA ── */}
+    <section class="pr-cta">
+      <div class="wrap">
+        <span class="eyebrow">— Siguiente paso</span>
+        <h2 class="display">
+          ¿Listo para una cotización <span class="it" style="color:var(--crimson)">real</span>?
+        </h2>
+        <p>
+          Llamada de descubrimiento de 30 minutos. Escucharemos, compartiremos ideas y
+          tendrá una propuesta a la medida en su bandeja de entrada dentro de dos días hábiles.
+        </p>
+        <div class="pr-cta-row">
+          <a href="/es/contact" class="btn btn-solid">Reserve una llamada de descubrimiento <span class="arr">→</span></a>
+          <a href="/es/contact" class="btn btn-ghost">Todas las formas de contactarnos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
