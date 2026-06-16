@@ -1,0 +1,108 @@
+/* Legal / content pages — Privacy Policy, Terms of Service */
+.legal {
+  padding: clamp(120px, 16vh, 184px) 24px 110px;
+  background: var(--bg);
+}
+.legal-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.legal-head {
+  padding-bottom: 40px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.legal-head .display {
+  font-size: clamp(42px, 7vw, 70px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  margin: 14px 0 0;
+}
+.legal-updated {
+  margin: 20px 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg-mute);
+}
+.legal-prose .lede {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--fg-dim);
+  margin: 0 0 40px;
+}
+.legal-prose h2 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  margin: 46px 0 14px;
+}
+.legal-prose p,
+.legal-prose li {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--fg-dim);
+}
+.legal-prose p {
+  margin: 0 0 16px;
+}
+.legal-prose ul {
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+.legal-prose li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 10px;
+}
+.legal-prose li::before {
+  content: "·";
+  position: absolute;
+  left: 6px;
+  color: var(--amber);
+}
+.legal-prose a {
+  color: var(--crimson);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.legal-prose strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+.legal-prose .legal-contact {
+  margin-top: 14px;
+  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  color: var(--fg-dim);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.legal-prose .legal-contact a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .legal {
+    padding: 108px 18px 76px;
+  }
+  .legal-head {
+    margin-bottom: 36px;
+    padding-bottom: 30px;
+  }
+  .legal-prose .lede {
+    font-size: 15.5px;
+  }
+  .legal-prose h2 {
+    font-size: 21px;
+    margin: 38px 0 12px;
+  }
+}
