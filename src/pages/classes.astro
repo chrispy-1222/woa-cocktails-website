@@ -1,28 +1,39 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Pic from '../components/Pic.astro';
+import classHero from '../assets/img/class-hero.webp';
+import classCorporate from '../assets/img/class-corporate.webp';
+import classBrand from '../assets/img/class-brand.webp';
+import classGuest from '../assets/img/class-guest.webp';
+import foundersBar from '../assets/img/founders-bar.jpg';
+import cocktailOldfashioned from '../assets/img/cocktail-oldfashioned.webp';
+import cocktailBeetPom from '../assets/img/cocktail-beet-pom.webp';
+import cocktailWoaClassic from '../assets/img/cocktail-woa-classic.webp';
+import cocktailSunsetMarg from '../assets/img/cocktail-sunset-marg.webp';
+import svcClass from '../assets/img/svc-class.jpg';
 
 // ── Class formats (4) ──
 const FORMATS = [
   { n: "01", title: "Corporate team-building",
     desc: "Offsites, holiday parties, leadership retreats. Replaces the trust fall.",
-    img: "/img/class-corporate.webp", tag: "Most booked" },
+    img: classCorporate, tag: "Most booked" },
   { n: "02", title: "Brand activations",
     desc: "Branded menus, custom cocktails, press-ready presentation. Built around your launch.",
-    img: "/img/class-brand.webp", tag: "Custom" },
+    img: classBrand, tag: "Custom" },
   { n: "03", title: "Private groups",
     desc: "Birthdays, bachelorettes, dinner parties, milestone moments — and one-on-one personal classes. We come to your kitchen.",
-    img: "/img/class-guest.webp", tag: "Intimate" },
+    img: classGuest, tag: "Intimate" },
   { n: "04", title: "Hospitality groups",
     desc: "Staff training for restaurants and bars — technique, menu, hospitality fundamentals.",
-    img: "/img/founders-bar.jpg", tag: "Trade" },
+    img: foundersBar, tag: "Trade" },
 ];
 
 // ── Featured cocktails (sample menu) ──
 const COCKTAILS = [
-  { name: "Classic Old Fashioned", img: "/img/cocktail-oldfashioned.webp" },
-  { name: "Beet & Pomegranate Sour", img: "/img/cocktail-beet-pom.webp" },
-  { name: "WOA Classic", img: "/img/cocktail-woa-classic.webp" },
-  { name: "Sunset Margarita", img: "/img/cocktail-sunset-marg.webp" },
+  { name: "Classic Old Fashioned", img: cocktailOldfashioned },
+  { name: "Beet & Pomegranate Sour", img: cocktailBeetPom },
+  { name: "WOA Classic", img: cocktailWoaClassic },
+  { name: "Sunset Margarita", img: cocktailSunsetMarg },
 ];
 
 // ── FAQ ──
@@ -71,7 +82,7 @@ const C_FAQ = [
           </div>
         </div>
         <figure class="c-hero-photo">
-          <img src="/img/class-hero.webp" alt="A WOA mixologist leading a hands-on cocktail class" />
+          <Pic src={classHero} alt="A WOA mixologist leading a hands-on cocktail class" kind="half" priority />
           <span class="c-hero-tape">CLASS · IN SESSION</span>
         </figure>
       </div>
@@ -90,7 +101,7 @@ const C_FAQ = [
           {FORMATS.map((f) => (
             <article class="c-format-card">
               <figure class="c-format-img">
-                <img src={f.img} alt={f.title} loading="lazy" />
+                <Pic src={f.img} alt={f.title} kind="card" />
                 <span class="c-format-tag">{f.tag}</span>
               </figure>
               <div class="c-format-body">
@@ -121,11 +132,11 @@ const C_FAQ = [
           {COCKTAILS.map((c, i) => (
             <figure class="c-cocktail">
               <div class="c-cocktail-img">
-                <img src={c.img} alt={c.name} loading="lazy" />
+                <Pic src={c.img} alt={c.name} kind="card" />
                 <span class="c-cocktail-num">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <figcaption>
-                <h4>{c.name}</h4>
+                <h3>{c.name}</h3>
               </figcaption>
             </figure>
           ))}
@@ -168,7 +179,7 @@ const C_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Common questions</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
-              About <span class="it" style="color:var(--crimson)">the class</span>.
+              About <span class="it" style="color:var(--crimson-text)">the class</span>.
             </h2>
           </div>
           <div>
@@ -186,12 +197,12 @@ const C_FAQ = [
     {/* ── CTA + prev/next ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/svc-class.jpg" alt="" aria-hidden="true" />
+        <Pic src={svcClass} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Inquire</span>
         <h2 class="display">
-          Book your <span class="it" style="color:var(--crimson)">class</span>.
+          Book your <span class="it" style="color:var(--crimson-text)">class</span>.
         </h2>
         <p>
           30-minute discovery call. We'll lock format, menu and date — and have a

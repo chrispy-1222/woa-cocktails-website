@@ -29,7 +29,7 @@
   overflow-wrap:break-word;hyphens:auto;
   max-width:11ch;
 }
-.st-hero-title em{font-style:italic;font-weight:400;color:var(--crimson)}
+.st-hero-title em{font-style:italic;font-weight:400;color:var(--crimson-text)}
 @media (max-width:520px){.st-hero-title{font-size:clamp(36px, 11vw, 56px)}}
 .st-hero-copy .svp-hero-rule{margin-bottom:24px;margin-top:0}
 .st-hero-lede{
@@ -38,7 +38,7 @@
 .st-hero-pitch{
   display:inline-flex;align-items:center;gap:14px;align-self:flex-start;
   padding:16px 24px;border:1px solid var(--crimson);
-  background:var(--crimson);color:var(--fg);
+  background:var(--crimson);color:#fff;
   font-family:var(--sans);font-size:11px;font-weight:500;
   letter-spacing:0.22em;text-transform:uppercase;
   text-decoration:none;
@@ -71,7 +71,7 @@
   font-style:italic;letter-spacing:-0.005em;
 }
 .st-hero-photo figcaption .eyebrow{font-style:normal;font-family:var(--sans)}
-.st-hero-photo figcaption i{font-style:italic;color:var(--crimson)}
+.st-hero-photo figcaption i{font-style:italic;color:var(--crimson-text)}
 
 /* ── Interactive team rolodex ──────────────────────────────── */
 .st-rolo{
@@ -87,7 +87,7 @@
 
 .st-rolo-hint{
   position:absolute;left:-16px;top:-14px;z-index:5;
-  font-family:var(--mono);font-size:10.5px;color:var(--crimson);
+  font-family:var(--mono);font-size:10.5px;color:var(--crimson-text);
   letter-spacing:0.18em;text-transform:uppercase;
   background:rgba(11,9,7,0.9);
   padding:6px 10px;border:1px solid var(--crimson);
@@ -157,7 +157,7 @@
 }
 .st-rolo-cap .role{
   font-family:var(--sans);font-size:10px;font-weight:500;
-  letter-spacing:0.24em;text-transform:uppercase;color:var(--crimson);
+  letter-spacing:0.24em;text-transform:uppercase;color:var(--crimson-text);
 }
 .st-rolo-cap .name{
   font-family:var(--display);font-size:clamp(20px, 2.2vw, 26px);font-weight:300;
@@ -228,7 +228,7 @@
 }
 .st-role-card:hover .st-role-img img{filter:grayscale(0) contrast(1)}
 .st-role-body{padding:24px 22px 28px;display:flex;flex-direction:column;gap:8px}
-.st-role-body .n{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
+.st-role-body .n{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em}
 .st-role-body h3{
   font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
   margin:0;color:var(--fg);
@@ -256,7 +256,7 @@
   letter-spacing:-0.02em;color:var(--fg);line-height:0.95;
 }
 .st-stat span{
-  font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--crimson);margin-top:8px;
+  font-size:10.5px;letter-spacing:0.28em;text-transform:uppercase;color:var(--crimson-text);margin-top:8px;
 }
 .st-stat p{color:var(--fg-dim);font-size:14px;line-height:1.6;margin:14px 0 0;max-width:32ch}
 

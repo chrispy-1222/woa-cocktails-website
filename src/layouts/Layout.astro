@@ -4,6 +4,9 @@ import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { getLang, alternates } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
+// Social-share image. Imported (not a /public URL) so it survives the move to
+// src/assets; `.src` is the hashed, build-emitted path.
+import ogImage from '../assets/img/hero-bridge.jpg';
 
 export interface Props {
   title: string;
@@ -54,15 +57,16 @@ const ogLocale = lang === 'es' ? 'es_LA' : 'en_US';
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale} />
-    <meta property="og:image" content={new URL('/img/hero-bridge.jpg', Astro.site).href} />
+    <meta property="og:image" content={new URL(ogImage.src, Astro.site).href} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Italiana&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&display=swap"
-      rel="stylesheet"
-    />
+    {/* Self-hosted fonts (same-origin woff2) — no render-blocking third-party
+        request. Preload the display + body weights used above the fold so the
+        LCP heading paints in the real font on the first frame (no swap → no CLS). */}
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-300.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-italic-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/outfit-300.woff2" crossorigin />
+    <link rel="stylesheet" href="/styles/woa-fonts.css" />
 
     <link rel="stylesheet" href="/styles/woa-styles.css" />
     {styles.map((href) => <link rel="stylesheet" href={`/styles/${href}`} />)}

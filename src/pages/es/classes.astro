@@ -1,28 +1,39 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pic from '../../components/Pic.astro';
+import classHero from '../../assets/img/class-hero.webp';
+import classCorporate from '../../assets/img/class-corporate.webp';
+import classBrand from '../../assets/img/class-brand.webp';
+import classGuest from '../../assets/img/class-guest.webp';
+import foundersBar from '../../assets/img/founders-bar.jpg';
+import cocktailOldfashioned from '../../assets/img/cocktail-oldfashioned.webp';
+import cocktailBeetPom from '../../assets/img/cocktail-beet-pom.webp';
+import cocktailWoaClassic from '../../assets/img/cocktail-woa-classic.webp';
+import cocktailSunsetMarg from '../../assets/img/cocktail-sunset-marg.webp';
+import svcClass from '../../assets/img/svc-class.jpg';
 
 // ── Class formats (4) ──
 const FORMATS = [
   { n: "01", title: "Team-building corporativo",
     desc: "Offsites, fiestas de fin de año, retiros de liderazgo. Reemplaza la caída de confianza.",
-    img: "/img/class-corporate.webp", tag: "Más reservado" },
+    img: classCorporate, tag: "Más reservado" },
   { n: "02", title: "Activaciones de marca",
     desc: "Menús de marca, cócteles personalizados, presentación lista para prensa. Diseñado en torno a su lanzamiento.",
-    img: "/img/class-brand.webp", tag: "Personalizado" },
+    img: classBrand, tag: "Personalizado" },
   { n: "03", title: "Grupos privados",
     desc: "Cumpleaños, despedidas de soltera, cenas, momentos memorables — y clases personales uno a uno. Vamos a su cocina.",
-    img: "/img/class-guest.webp", tag: "Íntimo" },
+    img: classGuest, tag: "Íntimo" },
   { n: "04", title: "Grupos de hospitalidad",
     desc: "Capacitación de personal para restaurantes y bares — técnica, menú, fundamentos de hospitalidad.",
-    img: "/img/founders-bar.jpg", tag: "Profesional" },
+    img: foundersBar, tag: "Profesional" },
 ];
 
 // ── Featured cocktails (sample menu) ──
 const COCKTAILS = [
-  { name: "Old Fashioned Clásico", img: "/img/cocktail-oldfashioned.webp" },
-  { name: "Sour de Betabel y Granada", img: "/img/cocktail-beet-pom.webp" },
-  { name: "WOA Classic", img: "/img/cocktail-woa-classic.webp" },
-  { name: "Margarita Sunset", img: "/img/cocktail-sunset-marg.webp" },
+  { name: "Old Fashioned Clásico", img: cocktailOldfashioned },
+  { name: "Sour de Betabel y Granada", img: cocktailBeetPom },
+  { name: "WOA Classic", img: cocktailWoaClassic },
+  { name: "Margarita Sunset", img: cocktailSunsetMarg },
 ];
 
 // ── FAQ ──
@@ -72,7 +83,7 @@ const C_FAQ = [
           </div>
         </div>
         <figure class="c-hero-photo">
-          <img src="/img/class-hero.webp" alt="Un mixólogo de WOA dirigiendo una clase práctica de cócteles" />
+          <Pic src={classHero} alt="Un mixólogo de WOA dirigiendo una clase práctica de cócteles" kind="half" priority />
           <span class="c-hero-tape">CLASE · EN SESIÓN</span>
         </figure>
       </div>
@@ -91,7 +102,7 @@ const C_FAQ = [
           {FORMATS.map((f) => (
             <article class="c-format-card">
               <figure class="c-format-img">
-                <img src={f.img} alt={f.title} loading="lazy" />
+                <Pic src={f.img} alt={f.title} kind="card" />
                 <span class="c-format-tag">{f.tag}</span>
               </figure>
               <div class="c-format-body">
@@ -122,11 +133,11 @@ const C_FAQ = [
           {COCKTAILS.map((c, i) => (
             <figure class="c-cocktail">
               <div class="c-cocktail-img">
-                <img src={c.img} alt={c.name} loading="lazy" />
+                <Pic src={c.img} alt={c.name} kind="card" />
                 <span class="c-cocktail-num">{String(i + 1).padStart(2, "0")}</span>
               </div>
               <figcaption>
-                <h4>{c.name}</h4>
+                <h3>{c.name}</h3>
               </figcaption>
             </figure>
           ))}
@@ -169,7 +180,7 @@ const C_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
-              Sobre <span class="it" style="color:var(--crimson)">la clase</span>.
+              Sobre <span class="it" style="color:var(--crimson-text)">la clase</span>.
             </h2>
           </div>
           <div>
@@ -187,12 +198,12 @@ const C_FAQ = [
     {/* ── CTA + prev/next ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/svc-class.jpg" alt="" aria-hidden="true" />
+        <Pic src={svcClass} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Solicite</span>
         <h2 class="display">
-          Reserve su <span class="it" style="color:var(--crimson)">clase</span>.
+          Reserve su <span class="it" style="color:var(--crimson-text)">clase</span>.
         </h2>
         <p>
           Llamada de exploración de 30 minutos. Definiremos el formato, el menú y la fecha — y

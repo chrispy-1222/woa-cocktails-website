@@ -67,7 +67,7 @@
   color: var(--amber);
 }
 .legal-prose a {
-  color: var(--crimson);
+  color:var(--crimson-text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -87,7 +87,10 @@
 }
 .legal-prose .legal-contact a {
   color: var(--fg);
-  text-decoration: none;
+  /* Underlined so the link is distinguishable from surrounding text without
+     relying on colour alone (WCAG link-in-text-block). */
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 @media (max-width: 720px) {

@@ -6,7 +6,7 @@
 .svc-page{padding-top:0;background:var(--bg)}
 
 /* ── universal eyebrow + index marker pattern ───────────────── */
-.svp-ix{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
+.svp-ix{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em}
 
 /* ── universal hero scaffolding ─────────────────────────────── */
 .svp-hero{
@@ -55,13 +55,13 @@
 }
 @media (max-width:720px){.svp-chapter-head{grid-template-columns:1fr;gap:6px}}
 .svp-chapter-num{
-  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.08em;
+  font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.08em;
 }
 .svp-chapter-title{
   font-family:var(--display);font-weight:300;letter-spacing:-0.01em;line-height:1;
   font-size:clamp(36px,5vw,72px);max-width:24ch;
 }
-.svp-chapter-title .it{font-style:italic;color:var(--crimson);font-weight:400}
+.svp-chapter-title .it{font-style:italic;color:var(--crimson-text);font-weight:400}
 
 /* ── inclusions list (used by Mobile Bar mostly) ─────────────── */
 .svp-include{
@@ -77,10 +77,10 @@
 .svp-include-item:nth-child(2n){border-right:none}
 @media (max-width:720px){.svp-include-item{border-right:none}}
 .svp-include-item .n{
-  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.04em;
+  font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.04em;
   flex-shrink:0;padding-top:6px;
 }
-.svp-include-item .body h4{
+.svp-include-item .body h3{
   font-family:var(--display);font-size:22px;font-weight:300;letter-spacing:-0.005em;
   margin:0 0 6px;color:var(--fg);
 }
@@ -98,7 +98,7 @@
   font-family:var(--display);font-size:18px;font-weight:300;letter-spacing:-0.005em;
   transition:all .25s ease;
 }
-.svp-ideal-chip:hover{background:var(--crimson);border-color:var(--crimson);color:var(--fg)}
+.svp-ideal-chip:hover{background:var(--crimson);border-color:var(--crimson);color:#fff}
 .svp-ideal-chip .d{display:inline-block;width:5px;height:5px;background:var(--crimson);transform:rotate(45deg)}
 
 /* ── process timeline ────────────────────────────────────────── */
@@ -115,9 +115,9 @@
   content:"";position:absolute;top:-1px;right:-12px;width:8px;height:1px;background:var(--crimson);
 }
 .svp-step .n{
-  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em;
+  font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em;
 }
-.svp-step h4{
+.svp-step h3{
   font-family:var(--display);font-size:24px;font-weight:300;margin:12px 0 8px;letter-spacing:-0.005em;
 }
 .svp-step p{color:var(--fg-dim);font-size:13.5px;line-height:1.65;margin:0}
@@ -132,14 +132,14 @@
   padding:96px 0 32px;
 }
 .svp-feature-stamp{
-  font-family:var(--mono);font-size:10.5px;color:var(--crimson);letter-spacing:0.22em;text-transform:uppercase;
+  font-family:var(--mono);font-size:10.5px;color:var(--crimson-text);letter-spacing:0.22em;text-transform:uppercase;
   border:1px solid var(--crimson);padding:6px 10px;align-self:center;justify-self:start;
 }
 .svp-feature-title{
   font-family:var(--display);font-size:clamp(28px,3.4vw,48px);font-weight:300;
   letter-spacing:-0.01em;line-height:1.1;
 }
-.svp-feature-title .it{font-style:italic;color:var(--crimson)}
+.svp-feature-title .it{font-style:italic;color:var(--crimson-text)}
 
 /* ── photo grid ─────────────────────────────────────────────── */
 .svp-grid{display:grid;gap:14px}
@@ -174,9 +174,9 @@
   color:var(--fg);transition:color .25s;
 }
 .svp-q summary::-webkit-details-marker{display:none}
-.svp-q summary:hover{color:var(--crimson)}
+.svp-q summary:hover{color:var(--crimson-text)}
 .svp-q summary::after{
-  content:"+";font-family:var(--sans);font-size:24px;font-weight:300;color:var(--crimson);
+  content:"+";font-family:var(--sans);font-size:24px;font-weight:300;color:var(--crimson-text);
   flex-shrink:0;transition:transform .3s ease;
 }
 .svp-q[open] summary::after{content:"−";transform:rotate(180deg)}
@@ -219,7 +219,7 @@
   font-family:var(--display);font-size:clamp(28px,3vw,40px);font-weight:300;letter-spacing:-0.01em;
   color:var(--fg);
 }
-.svp-nav .ttl .it{font-style:italic;color:var(--crimson)}
+.svp-nav .ttl .it{font-style:italic;color:var(--crimson-text)}
 
 /* ── mobile pass ────────────────────────────────────────────── */
 @media (max-width:720px){
@@ -232,9 +232,9 @@
   .svp-feature-head{padding:64px 0 24px}
   .svp-feature{padding:0 0 64px}
   .svp-steps{gap:32px}
-  .svp-step h4{font-size:20px}
+  .svp-step h3{font-size:20px}
   .svp-include-item{padding:24px 20px}
-  .svp-include-item .body h4{font-size:18px}
+  .svp-include-item .body h3{font-size:18px}
   .svp-faq{padding:80px 0}
   .svp-q summary{font-size:18px;padding:20px 0}
   .svp-cta{padding:96px 0}

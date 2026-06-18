@@ -1,5 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pic from '../../components/Pic.astro';
+import foundersCheers from '../../assets/img/founders-cheers.jpg';
 
 // Live Calendly scheduler URL (dark-themed via params).
 const CALENDLY_URL = "https://calendly.com/woacocktails/30min?hide_gdpr_banner=1&background_color=0b0907&text_color=ebe3d2&primary_color=c5302d";
@@ -53,7 +55,6 @@ const FAQS = [
   title="Contacto y Reservas — WOA Cocktails · Casa de hospitalidad y bebidas de lujo"
   description="Solicite su evento — experiencias de barra móvil de lujo, consultoría de bebidas y activaciones de hospitalidad curadas en Nueva York y Miami."
   styles={['woa-contact.css']}
-  headScripts={['https://assets.calendly.com/assets/external/widget.js']}
 >
   <main class="contact-page">
     {/* ── Hero band ── */}
@@ -63,7 +64,7 @@ const FAQS = [
           <div class="cx-hero-copy">
             <span class="eyebrow">— Solicite · Reserve una consulta</span>
             <h1 class="display h-lg">
-              Creemos <span class="it" style="color:var(--crimson)">algo</span><br />inolvidable.
+              Creemos <span class="it" style="color:var(--crimson-text)">algo</span><br />inolvidable.
             </h1>
             <p>
               Reserve una llamada de descubrimiento con WOA — escucharemos, compartiremos ideas
@@ -88,7 +89,7 @@ const FAQS = [
             </a>
           </div>
           <figure class="cx-hero-photo">
-            <img src="/img/founders-cheers.jpg" alt="Los cofundadores de WOA, Fabio Perez y Hector Taveras, compartiendo una risa y un brindis en la barra" />
+            <Pic src={foundersCheers} alt="Los cofundadores de WOA, Fabio Perez y Hector Taveras, compartiendo una risa y un brindis en la barra" kind="half" priority />
             <figcaption>
               <span class="eyebrow amber">— Sus anfitriones</span>
               <span>Fabio y Hector,<br />cofundadores</span>
@@ -106,7 +107,7 @@ const FAQS = [
             <div class="lhs">
               <span class="eyebrow">— Llamada de descubrimiento</span>
               <h2 class="display h-md" style="margin:10px 0 6px;font-size:clamp(28px, 3.6vw, 44px)">
-                Reserve una llamada de <span class="it" style="color:var(--crimson)">descubrimiento</span>.
+                Reserve una llamada de <span class="it" style="color:var(--crimson-text)">descubrimiento</span>.
               </h2>
               <p>30 minutos · Videollamada · Sin compromiso · Nueva York y Miami</p>
             </div>
@@ -117,13 +118,20 @@ const FAQS = [
             </div>
           </header>
 
-          {/* Calendly inline widget begin */}
+          {/* Calendly scheduler — deferred (loads on view / click / #schedule
+              deep-link) to keep the initial page light and avoid eager
+              third-party cookies. Reserves its full height → no layout shift. */}
           <div
-            class="calendly-inline-widget cx-calendly"
+            class="cx-calendly"
+            data-embed-calendly
             data-url={CALENDLY_URL}
             style="min-width:320px;height:700px"
-          ></div>
-          {/* Calendly inline widget end */}
+          >
+            <button type="button" class="cx-embed-cta" data-embed-trigger>
+              <span class="cx-embed-cta-main">Cargar el programador</span>
+              <span class="cx-embed-cta-sub">Calendly · llamada de 30 minutos</span>
+            </button>
+          </div>
 
           <footer class="cx-sched-foot">
             <span>Elija el horario que le convenga — la llamada es con Hector o Fabio.</span>
@@ -139,7 +147,7 @@ const FAQS = [
         <div class="cx-form-head">
           <span class="eyebrow">— O sáltese la llamada</span>
           <h2 class="display h-md" style="margin-top:14px">
-            ¿Ya sabe exactamente <span class="it" style="color:var(--crimson)">lo que necesita?</span>
+            ¿Ya sabe exactamente <span class="it" style="color:var(--crimson-text)">lo que necesita?</span>
           </h2>
           <p>Envíe los detalles y volveremos con ideas y una cotización a la medida.</p>
         </div>
@@ -256,10 +264,10 @@ const FAQS = [
       <div class="wrap">
         <div class="cx-faq-grid">
           <div>
-            <div style="font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em">[ FAQ ]</div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em">[ FAQ ]</div>
             <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:12ch">
-              Respuestas, <span class="it" style="color:var(--crimson)">antes</span> de preguntar.
+              Respuestas, <span class="it" style="color:var(--crimson-text)">antes</span> de preguntar.
             </h2>
             <p style="margin-top:20px;color:var(--fg-dim);font-size:14px;line-height:1.7;max-width:32ch">
               ¿No encuentra su pregunta? Escríbanos — le responderemos personalmente.
@@ -311,31 +319,81 @@ const FAQS = [
   </main>
 </Layout>
 
-{/* ── Tally embed loader (mirrors the CX_InquiryForm useEffect) ── */}
+{/* ── Deferred embed loader: Calendly + Tally load only on view / deep-link /
+      click, keeping the initial Contact page light (LCP) and free of eager
+      third-party cookies. ── */}
 <script>
-  const el = document.querySelector('iframe.cx-tally') as HTMLIFrameElement | null;
+  const CALENDLY_URL = "https://calendly.com/woacocktails/30min?hide_gdpr_banner=1&background_color=0b0907&text_color=ebe3d2&primary_color=c5302d";
   const TALLY_SRC = "https://tally.so/embed/2ERkDj?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
 
-  // Directly set src (equivalent to Tally.loadEmbeds / its documented
-  // fallback) so the form loads regardless of script timing.
-  if (el && !el.src) el.src = TALLY_SRC;
-
-  const refreshHeights = () => {
-    if ((window as any).Tally) (window as any).Tally.loadEmbeds();
-  };
-
-  if ((window as any).Tally) {
-    refreshHeights();
-  } else {
-    const existing = document.querySelector('script[src="https://tally.so/widgets/embed.js"]');
-    if (existing) {
-      existing.addEventListener("load", refreshHeights);
-    } else {
-      const s = document.createElement("script");
-      s.src = "https://tally.so/widgets/embed.js";
-      s.onload = refreshHeights;
-      s.onerror = refreshHeights;
-      document.body.appendChild(s);
-    }
+  function loadScript(src: string): Promise<void> {
+    return new Promise((resolve) => {
+      const existing = document.querySelector(`script[src="${src}"]`) as HTMLScriptElement | null;
+      if (existing) {
+        if (existing.dataset.loaded === '1') resolve();
+        else existing.addEventListener('load', () => resolve(), { once: true });
+        return;
+      }
+      const s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.addEventListener('load', () => { s.dataset.loaded = '1'; resolve(); }, { once: true });
+      s.addEventListener('error', () => resolve(), { once: true });
+      document.head.appendChild(s);
+    });
   }
+
+  // ── Calendly (deferred) ──
+  const calWrap = document.querySelector('[data-embed-calendly]') as HTMLElement | null;
+  let calDone = false;
+  function loadCalendly() {
+    if (calDone || !calWrap) return;
+    calDone = true;
+    calWrap.innerHTML = '';
+    loadScript('https://assets.calendly.com/assets/external/widget.js').then(() => {
+      const C = (window as any).Calendly;
+      if (C) C.initInlineWidget({ url: CALENDLY_URL, parentElement: calWrap });
+    });
+  }
+  calWrap?.querySelector('[data-embed-trigger]')?.addEventListener('click', loadCalendly);
+
+  // ── Tally (deferred) ──
+  const tally = document.querySelector('iframe.cx-tally') as HTMLIFrameElement | null;
+  let tallyDone = false;
+  function loadTally() {
+    if (tallyDone || !tally) return;
+    tallyDone = true;
+    if (!tally.src) tally.src = TALLY_SRC;
+    loadScript('https://tally.so/widgets/embed.js').then(() => {
+      const T = (window as any).Tally;
+      if (T) T.loadEmbeds();
+    });
+  }
+
+  // ── Load each embed just before it scrolls into view ──
+  const schedule = document.getElementById('schedule');
+  const inquiry = document.getElementById('inquiry-form');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        if (e.target === schedule) loadCalendly();
+        if (e.target === inquiry) loadTally();
+        obs.unobserve(e.target);
+      });
+    }, { rootMargin: '200px 0px' });
+    if (schedule) io.observe(schedule);
+    if (inquiry) io.observe(inquiry);
+  } else {
+    loadCalendly();
+    loadTally();
+  }
+
+  // ── Deep links (#schedule / #inquiry-form) load their embed immediately ──
+  function handleHash() {
+    if (location.hash === '#schedule') loadCalendly();
+    if (location.hash === '#inquiry-form') loadTally();
+  }
+  handleHash();
+  window.addEventListener('hashchange', handleHash);
 </script>

@@ -103,7 +103,7 @@
   line-height:1;letter-spacing:-0.02em;
 }
 .cx-badge small{
-  font-size:10px;letter-spacing:0.28em;color:var(--crimson);
+  font-size:10px;letter-spacing:0.28em;color:var(--crimson-text);
   margin-top:4px;
 }
 
@@ -125,7 +125,7 @@
 .cx-cal-month > span{
   font-family:var(--display);font-size:24px;color:var(--fg);font-weight:300;letter-spacing:-0.005em;
 }
-.cx-cal-month em{font-style:italic;color:var(--crimson);font-weight:400}
+.cx-cal-month em{font-style:italic;color:var(--crimson-text);font-weight:400}
 .cx-cal-arrows{display:flex;gap:8px}
 .cx-cal-arrows span{
   display:inline-flex;align-items:center;justify-content:center;
@@ -150,8 +150,8 @@
   letter-spacing:0.02em;
 }
 .cx-cal-grid .d.av{color:var(--fg);border-color:var(--line);background:var(--bg);cursor:default}
-.cx-cal-grid .d.av:hover{background:var(--crimson);color:var(--fg);border-color:var(--crimson)}
-.cx-cal-grid .d.sel{background:var(--crimson);color:var(--fg);border-color:var(--crimson);font-weight:500}
+.cx-cal-grid .d.av:hover{background:var(--crimson);color:#fff;border-color:var(--crimson)}
+.cx-cal-grid .d.sel{background:var(--crimson);color:#fff;border-color:var(--crimson);font-weight:500}
 .cx-cal-grid .d.off{color:var(--fg-mute);opacity:0.25}
 .cx-cal-grid .d:disabled{cursor:default}
 
@@ -197,7 +197,7 @@
 .cx-time:hover{border-color:var(--fg-mute)}
 .cx-time:hover .dot{background:var(--crimson)}
 .cx-time.on{
-  background:var(--crimson);color:var(--fg);border-color:var(--crimson);
+  background:var(--crimson);color:#fff;border-color:var(--crimson);
 }
 .cx-time.on .dot{background:var(--fg)}
 
@@ -269,7 +269,7 @@
   font-size:14px;line-height:1.7;color:var(--fg-dim);margin:0;
 }
 .cx-trust-card p a{color:var(--fg);border-bottom:1px solid var(--line-strong);padding-bottom:1px;transition:border-color .25s}
-.cx-trust-card p a:hover{border-color:var(--crimson);color:var(--crimson)}
+.cx-trust-card p a:hover{border-color:var(--crimson);color:var(--crimson-text)}
 
 /* ─────────────────────────────────────────────────────────────
    FAQ
@@ -287,9 +287,9 @@
   color:var(--fg);transition:color .25s;
 }
 .cx-q summary::-webkit-details-marker{display:none}
-.cx-q summary:hover{color:var(--crimson)}
+.cx-q summary:hover{color:var(--crimson-text)}
 .cx-q summary::after{
-  content:"+";font-family:var(--sans);font-size:24px;font-weight:300;color:var(--crimson);
+  content:"+";font-family:var(--sans);font-size:24px;font-weight:300;color:var(--crimson-text);
   flex-shrink:0;transition:transform .3s ease;
 }
 .cx-q[open] summary::after{content:"−";transform:rotate(180deg)}
@@ -359,6 +359,20 @@
    ───────────────────────────────────────────────────────── */
 .cx-calendly{background:var(--bg);border-top:1px solid var(--line)}
 .cx-calendly iframe{display:block}
+/* Deferred-embed placeholder — fills the reserved scheduler area (so loading
+   the real embed causes no layout shift) with an on-brand "load" affordance. */
+.cx-embed-cta{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  width:100%;height:100%;min-height:inherit;padding:24px;
+  background:transparent;border:0;cursor:pointer;text-align:center;
+}
+.cx-embed-cta-main{
+  font-family:var(--display);font-size:23px;font-weight:400;letter-spacing:0.01em;color:var(--fg);
+  display:inline-flex;align-items:center;gap:11px;transition:color .25s ease;
+}
+.cx-embed-cta-main::before{content:"▶";font-size:12px;color:var(--crimson-text);transform:translateY(1px)}
+.cx-embed-cta:hover .cx-embed-cta-main{color:var(--crimson-text)}
+.cx-embed-cta-sub{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg-mute)}
 
 /* ─────────────────────────────────────────────────────────────
    INQUIRY FORM (live Tally embed)
@@ -387,7 +401,7 @@
   border-bottom:1px solid rgba(11,9,7,0.14);
   margin-bottom:8px;
 }
-.cx-form-mark{color:var(--crimson);font-size:13px;line-height:1}
+.cx-form-mark{color:var(--crimson-text);font-size:13px;line-height:1}
 .cx-form-panel-label{
   font-family:var(--mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
   color:#0B0907;font-weight:500;white-space:nowrap;
@@ -395,7 +409,7 @@
 .cx-form-panel-meta{
   margin-left:auto;
   font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
-  color:rgba(11,9,7,0.5);
+  color:rgba(11,9,7,0.7); /* on the ivory panel → ≥4.5:1 for this 10px label */
 }
 .cx-tally{
   display:block;width:100%;border:0;background:transparent;
@@ -413,7 +427,7 @@
 .cx-steps li{display:flex;gap:18px;align-items:flex-start}
 .cx-step-n{
   flex:0 0 auto;font-family:var(--mono);font-size:12px;letter-spacing:0.08em;
-  color:var(--crimson);padding-top:3px;min-width:22px;
+  color:var(--crimson-text);padding-top:3px;min-width:22px;
 }
 .cx-steps li > div{display:flex;flex-direction:column;gap:6px}
 .cx-steps b{font-family:var(--sans);font-weight:600;font-size:15.5px;color:var(--fg);letter-spacing:0.005em}
@@ -429,7 +443,7 @@
 
 .cx-aside-alt{margin:0;font-size:14px;color:var(--fg-dim)}
 .cx-aside-alt a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--crimson);padding-bottom:1px}
-.cx-aside-alt a:hover{color:var(--crimson)}
+.cx-aside-alt a:hover{color:var(--crimson-text)}
 
 @media (max-width:880px){
   .cx-form-layout{grid-template-columns:1fr;gap:48px}

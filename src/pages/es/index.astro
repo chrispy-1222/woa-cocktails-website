@@ -1,11 +1,21 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pic from '../../components/Pic.astro';
+import heroBridge from '../../assets/img/hero-bridge.jpg';
+import framedFounders from '../../assets/img/framed-founders.png';
+import heroPour from '../../assets/img/hero-pour.jpg';
+import svcTeam from '../../assets/img/svc-team.jpg';
+import classHero from '../../assets/img/class-hero.webp';
+import miamiSunset from '../../assets/img/miami-sunset.jpg';
+import cocktailHectorMocktail from '../../assets/img/cocktail-hector-mocktail.webp';
+import founderFabioPortrait from '../../assets/img/founder-fabio-portrait.jpg';
+import cocktailSunsetMarg from '../../assets/img/cocktail-sunset-marg.webp';
 
 // Home services rail (3 of the 4 services are featured here).
 const SERVICES = [
   {
     id: 'svc-mobile-bar',
-    n: '01', img: '/img/hero-pour.jpg', tag: 'Insignia', href: '/es/mobile-bar',
+    n: '01', img: heroPour, tag: 'Insignia', href: '/es/mobile-bar',
     title: ['Barra Móvil ', 'de Servicio'], it: ' Completo',
     desc: 'Nuestra experiencia de autor. Barras móviles de lujo, cócteles de autor y un equipo completo de hospitalidad — producidos de principio a fin para bodas, eventos privados y momentos de marca.',
     list: ['Montaje de barra de lujo', 'Cócteles de autor', 'Mezcladores y decoración premium', 'Bartenders y anfitriones', 'Montaje y desmontaje'],
@@ -13,7 +23,7 @@ const SERVICES = [
   },
   {
     id: 'svc-staffing',
-    n: '02', img: '/img/svc-team.jpg', tag: 'Personal', href: '/es/staffing',
+    n: '02', img: svcTeam, tag: 'Personal', href: '/es/staffing',
     title: ['Bartending y', 'Personal de'], it: ' Hospitalidad',
     desc: 'Bartenders experimentados y profesionales de la hospitalidad capacitados en un servicio elevado y centrado en el invitado para eventos privados, corporativos y de lujo.',
     list: ['Bartenders', 'Anfitriones y capitanes', 'Barbacks', 'Líderes de evento'],
@@ -21,7 +31,7 @@ const SERVICES = [
   },
   {
     id: 'svc-classes',
-    n: '03', img: '/img/class-hero.webp', tag: 'Experiencias', href: '/es/classes',
+    n: '03', img: classHero, tag: 'Experiencias', href: '/es/classes',
     title: ['Clases de'], it: ' Coctelería',
     desc: 'Clases interactivas de cócteles que combinan entretenimiento, educación y hospitalidad — dirigidas por mixólogos profesionales, prácticas desde el primer agite hasta el último trago.',
     list: ['Team building', 'Activaciones de marca', 'Grupos privados', 'Off-sites'],
@@ -51,7 +61,7 @@ const TESTI = [
   {/* ── Hero ── */}
   <section class="hero" id="top">
     <div class="hero-bg">
-      <img src="/img/hero-bridge.jpg" alt="WOA Cocktails — servicio de barra móvil de lujo" />
+      <Pic src={heroBridge} alt="WOA Cocktails — servicio de barra móvil de lujo" kind="hero" priority />
     </div>
     <div class="hero-content wrap">
       <div class="hero-top">
@@ -104,12 +114,12 @@ const TESTI = [
     <div class="wrap">
       <div class="belt-grid">
         <figure class="framed">
-          <img src="/img/framed-founders.png" alt="Los cofundadores de WOA, Fabio Perez y Hector Taveras, detrás de su barra, en un marco dorado" />
+          <Pic src={framedFounders} alt="Los cofundadores de WOA, Fabio Perez y Hector Taveras, detrás de su barra, en un marco dorado" kind="half" />
         </figure>
         <div class="belt-text">
           <span class="eyebrow">— La Casa</span>
           <p class="display" style="margin-top:16px">
-            La hospitalidad es más que servir tragos. Es <span class="it" style="color:var(--crimson)">atmósfera</span>,
+            La hospitalidad es más que servir tragos. Es <span class="it" style="color:var(--crimson-text)">atmósfera</span>,
             <span class="it"> intención</span> y la coreografía silenciosa que
             convierte una velada en algo <span class="it">memorable</span>.
           </p>
@@ -139,7 +149,7 @@ const TESTI = [
           <div class="eyebrow" style="margin-top:18px">Lo que hacemos</div>
         </div>
         <h2 class="display h-lg" style="max-width:16ch">
-          Tres servicios, <span class="it" style="color:var(--crimson)">un</span> estándar.
+          Tres servicios, <span class="it" style="color:var(--crimson-text)">un</span> estándar.
         </h2>
       </div>
     </div>
@@ -149,7 +159,7 @@ const TESTI = [
           SERVICES.map((s) => (
             <a class="svc-card" id={s.id} href={s.href}>
               <div class="svc-thumb">
-                <img src={s.img} alt={s.title.join('') + s.it} loading="lazy" />
+                <Pic src={s.img} alt={s.title.join('') + s.it} kind="card" />
                 <span class="svc-num">— {s.n}</span>
                 <span class="svc-tag">{s.tag}</span>
               </div>
@@ -178,15 +188,15 @@ const TESTI = [
   <section id="miami">
     <div class="miami">
       <div class="miami-img">
-        <img src="/img/miami-sunset.jpg" alt="Barra de WOA en rooftop al atardecer, Miami" />
+        <Pic src={miamiSunset} alt="Barra de WOA en rooftop al atardecer, Miami" kind="half" />
         <span class="miami-stamp">Nuevo · Expansión 2026</span>
         <span class="miami-cap">[ rooftop · hora dorada · barra móvil WOA ]</span>
       </div>
       <div class="miami-body">
-        <div class="ix" style="font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em">[ 02 / Expansión ]</div>
+        <div class="ix" style="font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em">[ 02 / Expansión ]</div>
         <div class="eyebrow" style="margin-top:18px">De NYC a Miami</div>
         <h2 class="display h-lg" style="margin-top:18px;max-width:14ch">
-          WOA ya está <span class="it" style="color:var(--crimson)">en Miami.</span>
+          WOA ya está <span class="it" style="color:var(--crimson-text)">en Miami.</span>
         </h2>
         <p style="margin-top:24px;color:var(--fg-dim);max-width:44ch;font-size:16px;line-height:1.7">
           Con 25 años de experiencia combinada en hospitalidad y cientos de
@@ -223,18 +233,18 @@ const TESTI = [
           <div class="eyebrow" style="margin-top:18px">Una nota de la casa</div>
         </div>
         <h2 class="display h-lg" style="max-width:16ch">
-          Fundada por amigos. <span class="it" style="color:var(--crimson)">Construida</span> sobre la hospitalidad.
+          Fundada por amigos. <span class="it" style="color:var(--crimson-text)">Construida</span> sobre la hospitalidad.
         </h2>
       </div>
 
       <div class="founders-grid">
         <div class="founder-stack">
           <figure class="ph founder-img">
-            <img src="/img/cocktail-hector-mocktail.webp" alt="Hector Taveras, cofundador de WOA Cocktails, detrás de la barra" />
+            <Pic src={cocktailHectorMocktail} alt="Hector Taveras, cofundador de WOA Cocktails, detrás de la barra" kind="portrait" />
             <figcaption style="margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">HECTOR TAVERAS · NUEVA YORK</figcaption>
           </figure>
           <figure class="ph founder-img tall" style="transform:translateY(48px)">
-            <img src="/img/founder-fabio-portrait.jpg" alt="Fabio Perez, cofundador de WOA Cocktails, sirviendo detrás de la barra" />
+            <Pic src={founderFabioPortrait} alt="Fabio Perez, cofundador de WOA Cocktails, sirviendo detrás de la barra" kind="portrait" />
             <figcaption style="margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">FABIO PEREZ · MIAMI</figcaption>
           </figure>
         </div>
@@ -282,7 +292,7 @@ const TESTI = [
           <div class="eyebrow amber" style="margin-top:18px">De nuestros anfitriones</div>
         </div>
         <h2 class="display h-lg" style="max-width:20ch">
-          La hospitalidad se siente, <span class="it" style="color:var(--crimson)">no se anuncia.</span>
+          La hospitalidad se siente, <span class="it" style="color:var(--crimson-text)">no se anuncia.</span>
         </h2>
       </div>
       <div class="testi-grid">
@@ -304,12 +314,12 @@ const TESTI = [
   {/* ── CTA Band ── */}
   <section class="cta-band" id="contact">
     <div class="cta-band-bg">
-      <img src="/img/cocktail-sunset-marg.webp" alt="" aria-hidden="true" />
+      <Pic src={cocktailSunsetMarg} alt="" aria-hidden="true" kind="bg" />
     </div>
     <div class="wrap">
       <div class="eyebrow">— Solicite</div>
       <h2 class="display h-xl">
-        Creemos <span class="it" style="color:var(--crimson)">algo</span><br /> inolvidable juntos.
+        Creemos <span class="it" style="color:var(--crimson-text)">algo</span><br /> inolvidable juntos.
       </h2>
       <p>
         Cuéntenos sobre su evento — fecha, mercado, visión. Le enviaremos una

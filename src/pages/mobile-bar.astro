@@ -1,5 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Pic from '../components/Pic.astro';
+import mbHeroPuma from '../assets/img/mb-hero-puma.webp';
+import mbServices from '../assets/img/mb-services.webp';
+import mbOfficeWhite from '../assets/img/mb-office-white.jpg';
+import cocktailFoam from '../assets/img/cocktail-foam.jpg';
 
 // ── Chapter 02 — Make it yours (customizable, NOT a fixed package) ──
 const INCLUDES = [
@@ -85,7 +90,7 @@ const MB_FAQ = [
       </div>
 
       <figure class="mb-hero-media">
-        <img src="/img/mb-hero-puma.webp" alt="A WOA bartender running a custom mobile bar at the Puma flagship store activation" />
+        <Pic src={mbHeroPuma} alt="A WOA bartender running a custom mobile bar at the Puma flagship store activation" kind="half" priority />
         <figcaption><span class="mono">[ WOA mobile bar · Puma flagship activation ]</span></figcaption>
       </figure>
     </section>
@@ -174,7 +179,7 @@ const MB_FAQ = [
 
         <div class="mb-setup-spread">
           <figure class="mb-photo-tall">
-            <img src="/img/mb-services.webp" alt="WOA bartenders running a mobile bar on a rooftop with the New York skyline behind them" loading="lazy" />
+            <Pic src={mbServices} alt="WOA bartenders running a mobile bar on a rooftop with the New York skyline behind them" kind="portrait" />
             <figcaption><span class="mono">[ mobile bar · rooftop, NYC ]</span></figcaption>
           </figure>
           <div class="mb-setup-copy">
@@ -213,11 +218,11 @@ const MB_FAQ = [
             <article class={'svp-include-item' + (i.core ? ' is-core' : '') + (idx === INCLUDES.length - 1 && INCLUDES.length % 2 === 1 ? ' is-wide' : '')}>
               <span class="n">— {i.n}</span>
               <div class="body">
-                <h4>
+                <h3>
                   {i.title}
                   {i.core && <span class="mb-tag mb-tag-core">the core</span>}
                   {!i.core && <span class="mb-tag">add as needed</span>}
-                </h4>
+                </h3>
                 <p>{i.desc}</p>
               </div>
             </article>
@@ -262,7 +267,7 @@ const MB_FAQ = [
           </div>
 
           <figure class="mb-photo-tall mb-rental-photo">
-            <img src="/img/mb-office-white.jpg" alt="A WOA mobile bar delivered and set up, ready for the host to run" loading="lazy" />
+            <Pic src={mbOfficeWhite} alt="A WOA mobile bar delivered and set up, ready for the host to run" kind="portrait" />
             <figcaption><span class="mono">[ bar-only · delivered &amp; set up ]</span></figcaption>
           </figure>
         </div>
@@ -301,7 +306,7 @@ const MB_FAQ = [
           {STEPS.map((s) => (
             <article class="svp-step">
               <span class="n">— {s.n}</span>
-              <h4>{s.t}</h4>
+              <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
           ))}
@@ -317,7 +322,7 @@ const MB_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Common questions</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
-              About the <span class="it" style="color:var(--crimson)">experience</span>.
+              About the <span class="it" style="color:var(--crimson-text)">experience</span>.
             </h2>
           </div>
           <div>
@@ -335,12 +340,12 @@ const MB_FAQ = [
     {/* ── MB_Cta ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/cocktail-foam.jpg" alt="" aria-hidden="true" />
+        <Pic src={cocktailFoam} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Inquire</span>
         <h2 class="display">
-          Let's build <span class="it" style="color:var(--crimson)">your</span> bar.
+          Let's build <span class="it" style="color:var(--crimson-text)">your</span> bar.
         </h2>
         <p>
           30-minute discovery call. We listen, we share ideas, and you'll have a

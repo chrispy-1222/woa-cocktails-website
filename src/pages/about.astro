@@ -1,12 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Pic from '../components/Pic.astro';
+import founderFabio from '../assets/img/founder-fabio.jpg';
+import cocktailWorkOfArt from '../assets/img/cocktail-work-of-art.jpg';
+import framedFounders from '../assets/img/framed-founders.png';
+import cityNyc from '../assets/img/city-nyc.jpg';
+import cityMiami from '../assets/img/city-miami.jpeg';
+import founderHector from '../assets/img/founder-hector.jpg';
+import mbRooftopBlack from '../assets/img/mb-rooftop-black.jpg';
 
 // ── Card data ────────────────────────────────────────────────────────
 const CARDS = [
   {
     id: 'fabio',
     kind: 'photo',
-    front: { img: '/img/founder-fabio.jpg', pos: 'center 20%', label: 'Co-Founder' },
+    front: { img: founderFabio, pos: 'center 20%', label: 'Co-Founder' },
     back: {
       eyebrow: '— Co-Founder',
       title: 'Fabio Perez.',
@@ -16,7 +24,7 @@ const CARDS = [
   {
     id: 'hector',
     kind: 'photo',
-    front: { img: '/img/cocktail-work-of-art.jpg', pos: 'center 35%', label: 'Co-Founder' },
+    front: { img: cocktailWorkOfArt, pos: 'center 35%', label: 'Co-Founder' },
     back: {
       eyebrow: '— Co-Founder',
       title: 'Hector Taveras.',
@@ -26,7 +34,7 @@ const CARDS = [
   {
     id: 'founders',
     kind: 'photo',
-    front: { img: '/img/framed-founders.png', pos: 'center 32%', label: 'The Founders' },
+    front: { img: framedFounders, pos: 'center 32%', label: 'The Founders' },
     back: {
       eyebrow: '— The Founders',
       title: 'Fabio & Hector.',
@@ -36,7 +44,7 @@ const CARDS = [
   {
     id: 'nyc',
     kind: 'photo',
-    front: { img: '/img/city-nyc.jpg', pos: 'center 45%', label: 'Market 01' },
+    front: { img: cityNyc, pos: 'center 45%', label: 'Market 01' },
     back: {
       eyebrow: '— Market 01',
       title: 'The Big Apple.',
@@ -46,7 +54,7 @@ const CARDS = [
   {
     id: 'miami',
     kind: 'photo',
-    front: { img: '/img/city-miami.jpeg', pos: 'center 55%', label: 'Market 02' },
+    front: { img: cityMiami, pos: 'center 55%', label: 'Market 02' },
     back: {
       eyebrow: '— Market 02',
       title: 'Dade County.',
@@ -76,7 +84,7 @@ const CARDS = [
   {
     id: 'drink',
     kind: 'photo',
-    front: { img: '/img/founder-hector.jpg', pos: 'center 25%', label: 'The Signature' },
+    front: { img: founderHector, pos: 'center 25%', label: 'The Signature' },
     back: {
       eyebrow: '— The Work',
       title: 'A work of art.',
@@ -86,7 +94,7 @@ const CARDS = [
   {
     id: 'cart',
     kind: 'photo',
-    front: { img: '/img/mb-rooftop-black.jpg', pos: 'center 64%', label: 'The Mobile Bar' },
+    front: { img: mbRooftopBlack, pos: 'center 64%', label: 'The Mobile Bar' },
     back: {
       eyebrow: '— The Cart',
       title: 'Wheels & all.',
@@ -141,7 +149,7 @@ const POSITIONS = {
                   <span class="fc-face fc-front">
                     {card.kind === 'photo' && (
                       <>
-                        <img src={card.front.img} alt="" style={`object-position:${card.front.pos}`} />
+                        <Pic src={card.front.img} alt="" style={`object-position:${card.front.pos}`} kind="thumb" priority />
                         <span class="fc-label">{card.front.label}</span>
                       </>
                     )}

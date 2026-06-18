@@ -59,7 +59,7 @@
 }
 .c-hero-tape{
   position:absolute;top:24px;right:-32px;z-index:1;
-  background:var(--crimson);color:var(--fg);
+  background:var(--crimson);color:#fff;
   font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;
   padding:8px 40px;
   transform:rotate(8deg);
@@ -88,12 +88,12 @@
 .c-format-card:hover .c-format-img img{transform:scale(1.05)}
 .c-format-tag{
   position:absolute;top:14px;left:14px;
-  background:var(--crimson);color:var(--fg);
+  background:var(--crimson);color:#fff;
   font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;
   padding:5px 9px;
 }
 .c-format-body{padding:28px 26px;display:flex;flex-direction:column;gap:8px;justify-content:center}
-.c-format-body .n{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
+.c-format-body .n{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em}
 .c-format-body h3{
   font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
   margin:6px 0 4px;color:var(--fg);
@@ -128,7 +128,7 @@
 .c-cocktail figcaption{
   padding:18px 4px 0;display:flex;flex-direction:column;gap:4px;
 }
-.c-cocktail figcaption h4{
+.c-cocktail figcaption h3{
   font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
   margin:0;color:var(--fg);
 }
@@ -145,9 +145,9 @@
 }
 .c-flow-row:hover{padding-left:16px;background:var(--surface)}
 .c-flow-row .t{
-  font-family:var(--mono);font-size:18px;color:var(--crimson);letter-spacing:0.04em;
+  font-family:var(--mono);font-size:18px;color:var(--crimson-text);letter-spacing:0.04em;
 }
-.c-flow-row .b h4{
+.c-flow-row .b h3{
   font-family:var(--display);font-size:26px;font-weight:300;letter-spacing:-0.005em;
   margin:0 0 6px;color:var(--fg);
 }
@@ -156,7 +156,7 @@
 @media (max-width:720px){
   .c-flow-row{grid-template-columns:80px 1fr;gap:18px}
   .c-flow-row .ix{display:none}
-  .c-flow-row .b h4{font-size:20px}
+  .c-flow-row .b h3{font-size:20px}
   .c-flow-row .t{font-size:15px}
 }
 
@@ -178,7 +178,7 @@
   .c-where-card:last-child{border-bottom:none}
 }
 .c-where-card .ix{
-  font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em;
+  font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em;
 }
 .c-where-card h3{
   font-family:var(--display);font-size:32px;font-weight:300;letter-spacing:-0.005em;

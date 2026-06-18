@@ -1,5 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Pic from '../components/Pic.astro';
+import bxTakeoverCrew from '../assets/img/bx-takeover-crew.jpg';
+import bxConsultEmma2 from '../assets/img/bx-consult-emma2.webp';
+import bxTakeoverPopup from '../assets/img/bx-takeover-popup.webp';
+import bxTakeoverMenu from '../assets/img/bx-takeover-menu.jpg';
+import bxTakeoverBottles from '../assets/img/bx-takeover-bottles.jpg';
+import bxTakeoverToss from '../assets/img/bx-takeover-toss.jpg';
+import bxTakeoverDj from '../assets/img/bx-takeover-dj.jpg';
+import bxTakeoverGuests from '../assets/img/bx-takeover-guests.jpg';
+import bxConsultKoncon from '../assets/img/bx-consult-koncon.webp';
 
 // ── CHAPTER 01 — BAR TAKEOVERS ───────────────────────────────────────
 const BX_POINTS = [
@@ -67,7 +77,7 @@ const BX_FAQ = [
       <div class="bx-hero-split">
         <a class="bx-panel" href="#takeover" aria-label="Explore bar takeovers">
           <div class="bx-panel-bg">
-            <img src="/img/bx-takeover-crew.jpg" alt="The WOA crew in custom shirts behind a venue's bar during a takeover" />
+            <Pic src={bxTakeoverCrew} alt="The WOA crew in custom shirts behind a venue's bar during a takeover" kind="half" priority />
           </div>
           <div class="bx-panel-body">
             <span class="bx-panel-num">— 01</span>
@@ -83,7 +93,7 @@ const BX_FAQ = [
 
         <a class="bx-panel" href="#consulting" aria-label="Explore bar consulting">
           <div class="bx-panel-bg">
-            <img src="/img/bx-consult-emma2.webp" alt="WOA founders at a restaurant bar program they designed" />
+            <Pic src={bxConsultEmma2} alt="WOA founders at a restaurant bar program they designed" kind="half" />
           </div>
           <div class="bx-panel-body">
             <span class="bx-panel-num">— 02</span>
@@ -154,7 +164,7 @@ const BX_FAQ = [
             </p>
           </div>
           <figure class="bx-lead-photo">
-            <img src="/img/bx-takeover-popup.webp" alt="Fabio and Hector running a WOA pop-up takeover behind a venue's full backbar" loading="lazy" />
+            <Pic src={bxTakeoverPopup} alt="Fabio and Hector running a WOA pop-up takeover behind a venue's full backbar" kind="half" />
             <figcaption>Pop-up · in service</figcaption>
           </figure>
         </div>
@@ -163,7 +173,7 @@ const BX_FAQ = [
           {BX_POINTS.map((p) => (
             <article class="bx-point">
               <span class="n">— {p.n}</span>
-              <h4>{p.t}</h4>
+              <h3>{p.t}</h3>
               <p>{p.d}</p>
             </article>
           ))}
@@ -192,22 +202,22 @@ const BX_FAQ = [
 
         <div class="svp-grid g-asym bx-feature-grid">
           <div class="ph" style="grid-column:span 7;grid-row:span 2">
-            <img src="/img/bx-takeover-crew.jpg" alt="The full WOA × Style Bender crew behind the Soho House bar" loading="lazy" />
+            <Pic src={bxTakeoverCrew} alt="The full WOA × Style Bender crew behind the Soho House bar" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 5;grid-row:span 1">
-            <img src="/img/bx-takeover-menu.jpg" alt="The custom WOA × Style Bender Cinco de Mayo cocktail menu" loading="lazy" />
+            <Pic src={bxTakeoverMenu} alt="The custom WOA × Style Bender Cinco de Mayo cocktail menu" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 5;grid-row:span 1">
-            <img src="/img/bx-takeover-bottles.jpg" alt="WOA bartenders presenting the night's tequila line-up" loading="lazy" />
+            <Pic src={bxTakeoverBottles} alt="WOA bartenders presenting the night's tequila line-up" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 4;grid-row:span 1">
-            <img src="/img/bx-takeover-toss.jpg" alt="A WOA bartender mid-toss behind the bar" loading="lazy" />
+            <Pic src={bxTakeoverToss} alt="A WOA bartender mid-toss behind the bar" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 4;grid-row:span 1">
-            <img src="/img/bx-takeover-dj.jpg" alt="The DJ holding the floor during the takeover" loading="lazy" />
+            <Pic src={bxTakeoverDj} alt="The DJ holding the floor during the takeover" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 4;grid-row:span 1">
-            <img src="/img/bx-takeover-guests.jpg" alt="Guests being served at the bar during the takeover" loading="lazy" />
+            <Pic src={bxTakeoverGuests} alt="Guests being served at the bar during the takeover" kind="card" />
           </div>
         </div>
 
@@ -232,7 +242,7 @@ const BX_FAQ = [
 
         <div class="bx-lead rev">
           <figure class="bx-lead-photo">
-            <img src="/img/bx-consult-koncon.webp" alt="A WOA-designed restaurant bar program in service — Koncon Quemao" loading="lazy" />
+            <Pic src={bxConsultKoncon} alt="A WOA-designed restaurant bar program in service — Koncon Quemao" kind="half" />
             <figcaption>Bar program · designed</figcaption>
           </figure>
           <div class="bx-lead-copy">
@@ -256,7 +266,7 @@ const BX_FAQ = [
             <article class="svp-include-item">
               <span class="n">— {s.n}</span>
               <div class="body">
-                <h4>{s.title}</h4>
+                <h3>{s.title}</h3>
                 <p>{s.desc}</p>
               </div>
             </article>
@@ -270,7 +280,7 @@ const BX_FAQ = [
           {BX_FORMATS.map((f) => (
             <article class="bx-format">
               <span class="tag">{f.tag}</span>
-              <h4>{f.title}</h4>
+              <h3>{f.title}</h3>
               <p>{f.desc}</p>
               <div class="meta">Best for: <b>{f.best}</b></div>
             </article>
@@ -290,7 +300,7 @@ const BX_FAQ = [
           {BX_STEPS.map((s) => (
             <article class="svp-step">
               <span class="n">— {s.n}</span>
-              <h4>{s.t}</h4>
+              <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
           ))}
@@ -306,7 +316,7 @@ const BX_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Common questions</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
-              Takeovers &amp; <span class="it" style="color:var(--crimson)">consulting</span>.
+              Takeovers &amp; <span class="it" style="color:var(--crimson-text)">consulting</span>.
             </h2>
           </div>
           <div>
@@ -324,12 +334,12 @@ const BX_FAQ = [
     {/* ── CTA + prev/next ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/bx-takeover-crew.jpg" alt="" aria-hidden="true" />
+        <Pic src={bxTakeoverCrew} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Inquire</span>
         <h2 class="display">
-          Take over a <span class="it" style="color:var(--crimson)">room</span> —<br />or build your own.
+          Take over a <span class="it" style="color:var(--crimson-text)">room</span> —<br />or build your own.
         </h2>
         <p>
           30-minute discovery call. Tell us whether it's a one-night takeover or a

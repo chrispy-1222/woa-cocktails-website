@@ -1,16 +1,33 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pic from '../../components/Pic.astro';
+import teamFabioHector from '../../assets/img/team-fabio-hector.webp';
+import teamPhillip from '../../assets/img/team-phillip.webp';
+import teamJonathan from '../../assets/img/team-jonathan.webp';
+import teamAnthony from '../../assets/img/team-anthony.webp';
+import teamJeimy from '../../assets/img/team-jeimy.webp';
+import teamDjMany from '../../assets/img/team-dj-many.webp';
+import teamDjUltraviolet from '../../assets/img/team-dj-ultraviolet.webp';
+import staffJonathan from '../../assets/img/staff-jonathan.webp';
+import staffPhillip from '../../assets/img/staff-phillip.webp';
+import staffManuel from '../../assets/img/staff-manuel.webp';
+import staffAnthony from '../../assets/img/staff-anthony.webp';
+import galRooftopTeam from '../../assets/img/gal-rooftop-team.jpg';
+import galRooftopBartender from '../../assets/img/gal-rooftop-bartender.jpg';
+import galRooftopShake from '../../assets/img/gal-rooftop-shake.jpg';
+import galRooftopPortrait from '../../assets/img/gal-rooftop-portrait.jpg';
+import galRooftopGroup from '../../assets/img/gal-rooftop-group.jpg';
 
 // ── Hero: interactive team rolodex ───────────────────────────────────
 // Real WOA team — names + roles surface as a caption on the front card.
 const TEAM = [
-  { img: '/img/team-fabio-hector.webp', pos: '58% 38%', name: 'Fabio & Hector', role: 'Capitanes mixólogos' },
-  { img: '/img/team-phillip.webp', pos: 'center 46%', name: 'Phillip Guzman', role: 'Bartender' },
-  { img: '/img/team-jonathan.webp', pos: 'center 44%', name: 'Jonathan Acqui', role: 'Bartender' },
-  { img: '/img/team-anthony.webp', pos: '82% 44%', name: 'Anthony Guzman', role: 'Bartender' },
-  { img: '/img/team-jeimy.webp', pos: '56% 24%', name: 'Jeimy Manón', role: 'Mesera' },
-  { img: '/img/team-dj-many.webp', pos: 'center 15%', name: 'DJ Many', role: 'DJ residente' },
-  { img: '/img/team-dj-ultraviolet.webp', pos: '38% 30%', name: 'DJ UltraViolet', role: 'DJ residente' },
+  { img: teamFabioHector, pos: '58% 38%', name: 'Fabio & Hector', role: 'Capitanes mixólogos' },
+  { img: teamPhillip, pos: 'center 46%', name: 'Phillip Guzman', role: 'Bartender' },
+  { img: teamJonathan, pos: 'center 44%', name: 'Jonathan Acqui', role: 'Bartender' },
+  { img: teamAnthony, pos: '82% 44%', name: 'Anthony Guzman', role: 'Bartender' },
+  { img: teamJeimy, pos: '56% 24%', name: 'Jeimy Manón', role: 'Mesera' },
+  { img: teamDjMany, pos: 'center 15%', name: 'DJ Many', role: 'DJ residente' },
+  { img: teamDjUltraviolet, pos: '38% 30%', name: 'DJ UltraViolet', role: 'DJ residente' },
 ];
 const N = TEAM.length;
 
@@ -20,22 +37,22 @@ const ROLES = [
   {
     n: '01', role: 'Bartenders',
     pitch: 'Años de hospitalidad de lujo. Arte, técnica y presentación del cóctel. La cara de la barra.',
-    img: '/img/staff-jonathan.webp', cap: 'Jonathan Acqui',
+    img: staffJonathan, cap: 'Jonathan Acqui',
   },
   {
     n: '02', role: 'Anfitriones y capitanes',
     pitch: 'Liderazgo de sala. Recepción de invitados, gestión del flujo, el orquestador en el piso.',
-    img: '/img/staff-phillip.webp', cap: 'Phillip Guzman y equipo',
+    img: staffPhillip, cap: 'Phillip Guzman y equipo',
   },
   {
     n: '03', role: 'Barbacks',
     pitch: 'El motor invisible. Mantiene el hielo, la cristalería y los garnish en movimiento para que la barra nunca pierda el ritmo.',
-    img: '/img/staff-manuel.webp', cap: 'Manuel Brache',
+    img: staffManuel, cap: 'Manuel Brache',
   },
   {
     n: '04', role: 'Líderes de evento y meseros',
     pitch: 'Capitán del día. Único punto de contacto para el anfitrión. Dueño del cronograma, el equipo y la solución de imprevistos.',
-    img: '/img/staff-anthony.webp', cap: 'Anthony Guzman y equipo',
+    img: staffAnthony, cap: 'Anthony Guzman y equipo',
   },
 ];
 
@@ -88,7 +105,7 @@ const ST_FAQ = [
           </p>
           <a href="/es/contact" class="st-hero-pitch">
             <span class="d"></span>
-            <span>Dote de personal su próximo evento <span style="color:var(--crimson);margin-left:6px">→</span></span>
+            <span>Dote de personal su próximo evento <span style="color:var(--crimson-text);margin-left:6px">→</span></span>
           </a>
         </div>
 
@@ -116,7 +133,7 @@ const ST_FAQ = [
                   aria-hidden={hidden ? 'true' : 'false'}
                   tabindex={off === 0 ? 0 : -1}
                 >
-                  <img src={m.img} alt={`${m.name}, ${m.role} en WOA Cocktails`} style={`object-position:${m.pos}`} />
+                  <Pic src={m.img} alt={`${m.name}, ${m.role} en WOA Cocktails`} kind="portrait" priority={i === 0} style={`object-position:${m.pos}`} />
                   <span class="st-rolo-cap">
                     <span class="role">{m.role}</span>
                     <span class="name">{m.name}</span>
@@ -141,7 +158,7 @@ const ST_FAQ = [
       <div class="wrap">
         <p class="display st-pull-text">
           No nos consideramos bartenders.<br />
-          <span style="color:var(--crimson)">Nos consideramos anfitriones</span> que, además,
+          <span style="color:var(--crimson-text)">Nos consideramos anfitriones</span> que, además,
           manejan la mejor barra del lugar.
         </p>
       </div>
@@ -161,7 +178,7 @@ const ST_FAQ = [
           {ROLES.map((r) => (
             <article class="st-role-card">
               <figure class="st-role-img">
-                <img src={r.img} alt={r.cap || r.role} loading="lazy" />
+                <Pic src={r.img} alt={r.cap || r.role} kind="card" />
                 {r.cap && <figcaption style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">{r.cap}</figcaption>}
               </figure>
               <div class="st-role-body">
@@ -196,19 +213,19 @@ const ST_FAQ = [
 
         <div class="svp-grid g-asym st-feature-grid">
           <div class="ph" style="grid-column:span 6;grid-row:span 2">
-            <img src="/img/gal-rooftop-team.jpg" alt="Equipo de WOA en la barra de la azotea de Dumbo House" loading="lazy" />
+            <Pic src={galRooftopTeam} alt="Equipo de WOA en la barra de la azotea de Dumbo House" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 6;grid-row:span 1">
-            <img src="/img/gal-rooftop-bartender.jpg" alt="Bartender sirviendo con el puente de fondo" loading="lazy" />
+            <Pic src={galRooftopBartender} alt="Bartender sirviendo con el puente de fondo" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 6;grid-row:span 1">
-            <img src="/img/gal-rooftop-shake.jpg" alt="En pleno shake en la barra de la azotea" loading="lazy" />
+            <Pic src={galRooftopShake} alt="En pleno shake en la barra de la azotea" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 6;grid-row:span 1">
-            <img src="/img/gal-rooftop-portrait.jpg" alt="Retrato del equipo de hospitalidad" loading="lazy" />
+            <Pic src={galRooftopPortrait} alt="Retrato del equipo de hospitalidad" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 6;grid-row:span 1">
-            <img src="/img/gal-rooftop-group.jpg" alt="Anfitriones en pleno servicio" loading="lazy" />
+            <Pic src={galRooftopGroup} alt="Anfitriones en pleno servicio" kind="card" />
           </div>
         </div>
 
@@ -232,7 +249,7 @@ const ST_FAQ = [
           {ST_STEPS.map((s) => (
             <article class="svp-step">
               <span class="n">— {s.n}</span>
-              <h4>{s.t}</h4>
+              <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
           ))}
@@ -248,7 +265,7 @@ const ST_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
-              Sobre <span class="it" style="color:var(--crimson)">el equipo</span>.
+              Sobre <span class="it" style="color:var(--crimson-text)">el equipo</span>.
             </h2>
           </div>
           <div>
@@ -266,12 +283,12 @@ const ST_FAQ = [
     {/* ── CTA + prev/next ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/gal-rooftop-team.jpg" alt="" aria-hidden="true" />
+        <Pic src={galRooftopTeam} alt="" kind="bg" aria-hidden="true" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Solicite</span>
         <h2 class="display">
-          Dote de personal su <span class="it" style="color:var(--crimson)">próximo</span> evento.
+          Dote de personal su <span class="it" style="color:var(--crimson-text)">próximo</span> evento.
         </h2>
         <p>
           Llamada de descubrimiento de 30 minutos. Evaluaremos el brief, propondremos la

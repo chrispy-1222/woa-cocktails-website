@@ -1,11 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Pic from '../components/Pic.astro';
+import heroBridge from '../assets/img/hero-bridge.jpg';
+import framedFounders from '../assets/img/framed-founders.png';
+import heroPour from '../assets/img/hero-pour.jpg';
+import svcTeam from '../assets/img/svc-team.jpg';
+import classHero from '../assets/img/class-hero.webp';
+import miamiSunset from '../assets/img/miami-sunset.jpg';
+import cocktailHectorMocktail from '../assets/img/cocktail-hector-mocktail.webp';
+import founderFabioPortrait from '../assets/img/founder-fabio-portrait.jpg';
+import cocktailSunsetMarg from '../assets/img/cocktail-sunset-marg.webp';
 
 // Home services rail (3 of the 4 services are featured here).
 const SERVICES = [
   {
     id: 'svc-mobile-bar',
-    n: '01', img: '/img/hero-pour.jpg', tag: 'Flagship', href: '/mobile-bar',
+    n: '01', img: heroPour, tag: 'Flagship', href: '/mobile-bar',
     title: ['Full-Service ', 'Mobile Bar'], it: ' Experience',
     desc: 'Our signature experience. Luxury mobile bars, signature cocktails and a full hospitality team — curated end-to-end for weddings, private events and brand moments.',
     list: ['Luxury bar setup', 'Signature cocktails', 'Premium mixers & garnish', 'Bartenders & hosts', 'Setup & breakdown'],
@@ -13,7 +23,7 @@ const SERVICES = [
   },
   {
     id: 'svc-staffing',
-    n: '02', img: '/img/svc-team.jpg', tag: 'Staffing', href: '/staffing',
+    n: '02', img: svcTeam, tag: 'Staffing', href: '/staffing',
     title: ['Bartending &', 'Hospitality'], it: ' Staffing',
     desc: 'Experienced bartenders and hospitality professionals trained in elevated, guest-focused service for private, corporate and luxury events.',
     list: ['Bartenders', 'Hosts & captains', 'Barbacks', 'Event leads'],
@@ -21,7 +31,7 @@ const SERVICES = [
   },
   {
     id: 'svc-classes',
-    n: '03', img: '/img/class-hero.webp', tag: 'Experiences', href: '/classes',
+    n: '03', img: classHero, tag: 'Experiences', href: '/classes',
     title: ['Mixology'], it: ' Classes',
     desc: 'Interactive cocktail classes that combine entertainment, education and hospitality — led by professional mixologists, hands-on from first shake to final pour.',
     list: ['Team building', 'Brand activations', 'Private groups', 'Off-sites'],
@@ -51,7 +61,7 @@ const TESTI = [
   {/* ── Hero ── */}
   <section class="hero" id="top">
     <div class="hero-bg">
-      <img src="/img/hero-bridge.jpg" alt="WOA Cocktails — luxury mobile bar service" />
+      <Pic src={heroBridge} alt="WOA Cocktails — luxury mobile bar service" kind="hero" priority />
     </div>
     <div class="hero-content wrap">
       <div class="hero-top">
@@ -104,12 +114,12 @@ const TESTI = [
     <div class="wrap">
       <div class="belt-grid">
         <figure class="framed">
-          <img src="/img/framed-founders.png" alt="WOA co-founders Fabio Perez and Hector Taveras behind their bar, in a gilded frame" />
+          <Pic src={framedFounders} alt="WOA co-founders Fabio Perez and Hector Taveras behind their bar, in a gilded frame" kind="half" />
         </figure>
         <div class="belt-text">
           <span class="eyebrow">— The House</span>
           <p class="display" style="margin-top:16px">
-            Hospitality is more than serving drinks. It's <span class="it" style="color:var(--crimson)">atmosphere</span>,
+            Hospitality is more than serving drinks. It's <span class="it" style="color:var(--crimson-text)">atmosphere</span>,
             <span class="it"> intention</span>, and the quiet choreography that
             turns an evening into something <span class="it">memorable</span>.
           </p>
@@ -139,7 +149,7 @@ const TESTI = [
           <div class="eyebrow" style="margin-top:18px">What we do</div>
         </div>
         <h2 class="display h-lg" style="max-width:16ch">
-          Three services, <span class="it" style="color:var(--crimson)">one</span> standard.
+          Three services, <span class="it" style="color:var(--crimson-text)">one</span> standard.
         </h2>
       </div>
     </div>
@@ -149,7 +159,7 @@ const TESTI = [
           SERVICES.map((s) => (
             <a class="svc-card" id={s.id} href={s.href}>
               <div class="svc-thumb">
-                <img src={s.img} alt={s.title.join('') + s.it} loading="lazy" />
+                <Pic src={s.img} alt={s.title.join('') + s.it} kind="card" />
                 <span class="svc-num">— {s.n}</span>
                 <span class="svc-tag">{s.tag}</span>
               </div>
@@ -178,15 +188,15 @@ const TESTI = [
   <section id="miami">
     <div class="miami">
       <div class="miami-img">
-        <img src="/img/miami-sunset.jpg" alt="WOA rooftop bar at sunset, Miami" />
+        <Pic src={miamiSunset} alt="WOA rooftop bar at sunset, Miami" kind="half" />
         <span class="miami-stamp">New · 2026 Expansion</span>
         <span class="miami-cap">[ rooftop · golden hour · WOA mobile bar ]</span>
       </div>
       <div class="miami-body">
-        <div class="ix" style="font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em">[ 02 / Expansion ]</div>
+        <div class="ix" style="font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em">[ 02 / Expansion ]</div>
         <div class="eyebrow" style="margin-top:18px">From NYC to Miami</div>
         <h2 class="display h-lg" style="margin-top:18px;max-width:14ch">
-          WOA is <span class="it" style="color:var(--crimson)">now in Miami.</span>
+          WOA is <span class="it" style="color:var(--crimson-text)">now in Miami.</span>
         </h2>
         <p style="margin-top:24px;color:var(--fg-dim);max-width:44ch;font-size:16px;line-height:1.7">
           With 25 years of combined hospitality experience and hundreds of
@@ -223,18 +233,18 @@ const TESTI = [
           <div class="eyebrow" style="margin-top:18px">A note from the house</div>
         </div>
         <h2 class="display h-lg" style="max-width:16ch">
-          Founded by friends. <span class="it" style="color:var(--crimson)">Built</span> on hospitality.
+          Founded by friends. <span class="it" style="color:var(--crimson-text)">Built</span> on hospitality.
         </h2>
       </div>
 
       <div class="founders-grid">
         <div class="founder-stack">
           <figure class="ph founder-img">
-            <img src="/img/cocktail-hector-mocktail.webp" alt="Hector Taveras, co-founder of WOA Cocktails, behind the bar" />
+            <Pic src={cocktailHectorMocktail} alt="Hector Taveras, co-founder of WOA Cocktails, behind the bar" kind="portrait" />
             <figcaption style="margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">HECTOR TAVERAS · NEW YORK</figcaption>
           </figure>
           <figure class="ph founder-img tall" style="transform:translateY(48px)">
-            <img src="/img/founder-fabio-portrait.jpg" alt="Fabio Perez, co-founder of WOA Cocktails, pouring behind the bar" />
+            <Pic src={founderFabioPortrait} alt="Fabio Perez, co-founder of WOA Cocktails, pouring behind the bar" kind="portrait" />
             <figcaption style="margin-top:12px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">FABIO PEREZ · MIAMI</figcaption>
           </figure>
         </div>
@@ -282,7 +292,7 @@ const TESTI = [
           <div class="eyebrow amber" style="margin-top:18px">From our hosts</div>
         </div>
         <h2 class="display h-lg" style="max-width:20ch">
-          Hospitality is felt, <span class="it" style="color:var(--crimson)">not announced.</span>
+          Hospitality is felt, <span class="it" style="color:var(--crimson-text)">not announced.</span>
         </h2>
       </div>
       <div class="testi-grid">
@@ -304,12 +314,12 @@ const TESTI = [
   {/* ── CTA Band ── */}
   <section class="cta-band" id="contact">
     <div class="cta-band-bg">
-      <img src="/img/cocktail-sunset-marg.webp" alt="" aria-hidden="true" />
+      <Pic src={cocktailSunsetMarg} alt="" aria-hidden="true" kind="bg" />
     </div>
     <div class="wrap">
       <div class="eyebrow">— Inquire</div>
       <h2 class="display h-xl">
-        Let's host <span class="it" style="color:var(--crimson)">something</span><br /> unforgettable.
+        Let's host <span class="it" style="color:var(--crimson-text)">something</span><br /> unforgettable.
       </h2>
       <p>
         Tell us about your event — date, market, vision. We'll send a tailored

@@ -1,5 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pic from '../../components/Pic.astro';
+import bxTakeoverCrew from '../../assets/img/bx-takeover-crew.jpg';
+import bxConsultEmma2 from '../../assets/img/bx-consult-emma2.webp';
+import bxTakeoverPopup from '../../assets/img/bx-takeover-popup.webp';
+import bxTakeoverMenu from '../../assets/img/bx-takeover-menu.jpg';
+import bxTakeoverBottles from '../../assets/img/bx-takeover-bottles.jpg';
+import bxTakeoverToss from '../../assets/img/bx-takeover-toss.jpg';
+import bxTakeoverDj from '../../assets/img/bx-takeover-dj.jpg';
+import bxTakeoverGuests from '../../assets/img/bx-takeover-guests.jpg';
+import bxConsultKoncon from '../../assets/img/bx-consult-koncon.webp';
 
 // ── CHAPTER 01 — BAR TAKEOVERS ───────────────────────────────────────
 const BX_POINTS = [
@@ -68,7 +78,7 @@ const BX_FAQ = [
       <div class="bx-hero-split">
         <a class="bx-panel" href="#takeover" aria-label="Explorar tomas de bar">
           <div class="bx-panel-bg">
-            <img src="/img/bx-takeover-crew.jpg" alt="El equipo de WOA con camisas personalizadas detrás de la barra de un local durante una toma de bar" />
+            <Pic src={bxTakeoverCrew} alt="El equipo de WOA con camisas personalizadas detrás de la barra de un local durante una toma de bar" kind="half" priority />
           </div>
           <div class="bx-panel-body">
             <span class="bx-panel-num">— 01</span>
@@ -84,7 +94,7 @@ const BX_FAQ = [
 
         <a class="bx-panel" href="#consulting" aria-label="Explorar consultoría de barra">
           <div class="bx-panel-bg">
-            <img src="/img/bx-consult-emma2.webp" alt="Los fundadores de WOA en un programa de barra de restaurante que diseñaron" />
+            <Pic src={bxConsultEmma2} alt="Los fundadores de WOA en un programa de barra de restaurante que diseñaron" kind="half" />
           </div>
           <div class="bx-panel-body">
             <span class="bx-panel-num">— 02</span>
@@ -156,7 +166,7 @@ const BX_FAQ = [
             </p>
           </div>
           <figure class="bx-lead-photo">
-            <img src="/img/bx-takeover-popup.webp" alt="Fabio y Hector manejando una toma de bar pop-up de WOA detrás de la barra completa de un local" loading="lazy" />
+            <Pic src={bxTakeoverPopup} alt="Fabio y Hector manejando una toma de bar pop-up de WOA detrás de la barra completa de un local" kind="half" />
             <figcaption>Pop-up · en servicio</figcaption>
           </figure>
         </div>
@@ -165,7 +175,7 @@ const BX_FAQ = [
           {BX_POINTS.map((p) => (
             <article class="bx-point">
               <span class="n">— {p.n}</span>
-              <h4>{p.t}</h4>
+              <h3>{p.t}</h3>
               <p>{p.d}</p>
             </article>
           ))}
@@ -195,22 +205,22 @@ const BX_FAQ = [
 
         <div class="svp-grid g-asym bx-feature-grid">
           <div class="ph" style="grid-column:span 7;grid-row:span 2">
-            <img src="/img/bx-takeover-crew.jpg" alt="El equipo completo de WOA × Style Bender detrás de la barra de Soho House" loading="lazy" />
+            <Pic src={bxTakeoverCrew} alt="El equipo completo de WOA × Style Bender detrás de la barra de Soho House" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 5;grid-row:span 1">
-            <img src="/img/bx-takeover-menu.jpg" alt="La carta de cócteles a la medida WOA × Style Bender de Cinco de Mayo" loading="lazy" />
+            <Pic src={bxTakeoverMenu} alt="La carta de cócteles a la medida WOA × Style Bender de Cinco de Mayo" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 5;grid-row:span 1">
-            <img src="/img/bx-takeover-bottles.jpg" alt="Bartenders de WOA presentando la línea de tequilas de la noche" loading="lazy" />
+            <Pic src={bxTakeoverBottles} alt="Bartenders de WOA presentando la línea de tequilas de la noche" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 4;grid-row:span 1">
-            <img src="/img/bx-takeover-toss.jpg" alt="Un bartender de WOA en pleno lanzamiento detrás de la barra" loading="lazy" />
+            <Pic src={bxTakeoverToss} alt="Un bartender de WOA en pleno lanzamiento detrás de la barra" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 4;grid-row:span 1">
-            <img src="/img/bx-takeover-dj.jpg" alt="El DJ sosteniendo el piso durante la toma de bar" loading="lazy" />
+            <Pic src={bxTakeoverDj} alt="El DJ sosteniendo el piso durante la toma de bar" kind="card" />
           </div>
           <div class="ph" style="grid-column:span 4;grid-row:span 1">
-            <img src="/img/bx-takeover-guests.jpg" alt="Invitados siendo atendidos en la barra durante la toma de bar" loading="lazy" />
+            <Pic src={bxTakeoverGuests} alt="Invitados siendo atendidos en la barra durante la toma de bar" kind="card" />
           </div>
         </div>
 
@@ -235,7 +245,7 @@ const BX_FAQ = [
 
         <div class="bx-lead rev">
           <figure class="bx-lead-photo">
-            <img src="/img/bx-consult-koncon.webp" alt="Un programa de barra de restaurante diseñado por WOA en servicio — Koncon Quemao" loading="lazy" />
+            <Pic src={bxConsultKoncon} alt="Un programa de barra de restaurante diseñado por WOA en servicio — Koncon Quemao" kind="half" />
             <figcaption>Programa de barra · diseñado</figcaption>
           </figure>
           <div class="bx-lead-copy">
@@ -259,7 +269,7 @@ const BX_FAQ = [
             <article class="svp-include-item">
               <span class="n">— {s.n}</span>
               <div class="body">
-                <h4>{s.title}</h4>
+                <h3>{s.title}</h3>
                 <p>{s.desc}</p>
               </div>
             </article>
@@ -273,7 +283,7 @@ const BX_FAQ = [
           {BX_FORMATS.map((f) => (
             <article class="bx-format">
               <span class="tag">{f.tag}</span>
-              <h4>{f.title}</h4>
+              <h3>{f.title}</h3>
               <p>{f.desc}</p>
               <div class="meta">Ideal para: <b>{f.best}</b></div>
             </article>
@@ -293,7 +303,7 @@ const BX_FAQ = [
           {BX_STEPS.map((s) => (
             <article class="svp-step">
               <span class="n">— {s.n}</span>
-              <h4>{s.t}</h4>
+              <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
           ))}
@@ -309,7 +319,7 @@ const BX_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
-              Tomas de bar y <span class="it" style="color:var(--crimson)">consultoría</span>.
+              Tomas de bar y <span class="it" style="color:var(--crimson-text)">consultoría</span>.
             </h2>
           </div>
           <div>
@@ -327,12 +337,12 @@ const BX_FAQ = [
     {/* ── CTA + prev/next ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/bx-takeover-crew.jpg" alt="" aria-hidden="true" />
+        <Pic src={bxTakeoverCrew} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Solicite</span>
         <h2 class="display">
-          Tome un <span class="it" style="color:var(--crimson)">salón</span> —<br />o construya el suyo.
+          Tome un <span class="it" style="color:var(--crimson-text)">salón</span> —<br />o construya el suyo.
         </h2>
         <p>
           Llamada de descubrimiento de 30 minutos. Cuéntenos si se trata de una toma de bar

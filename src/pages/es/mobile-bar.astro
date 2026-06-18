@@ -1,5 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pic from '../../components/Pic.astro';
+import mbHeroPuma from '../../assets/img/mb-hero-puma.webp';
+import mbServices from '../../assets/img/mb-services.webp';
+import mbOfficeWhite from '../../assets/img/mb-office-white.jpg';
+import cocktailFoam from '../../assets/img/cocktail-foam.jpg';
 
 // ── Chapter 02 — Make it yours (customizable, NOT a fixed package) ──
 const INCLUDES = [
@@ -86,7 +91,7 @@ const MB_FAQ = [
       </div>
 
       <figure class="mb-hero-media">
-        <img src="/img/mb-hero-puma.webp" alt="Un bartender de WOA atendiendo una barra móvil personalizada en la activación de la tienda insignia de Puma" />
+        <Pic src={mbHeroPuma} alt="Un bartender de WOA atendiendo una barra móvil personalizada en la activación de la tienda insignia de Puma" kind="half" priority />
         <figcaption><span class="mono">[ barra móvil WOA · activación tienda insignia Puma ]</span></figcaption>
       </figure>
     </section>
@@ -175,7 +180,7 @@ const MB_FAQ = [
 
         <div class="mb-setup-spread">
           <figure class="mb-photo-tall">
-            <img src="/img/mb-services.webp" alt="Bartenders de WOA atendiendo una barra móvil en un rooftop con el skyline de Nueva York detrás" loading="lazy" />
+            <Pic src={mbServices} alt="Bartenders de WOA atendiendo una barra móvil en un rooftop con el skyline de Nueva York detrás" kind="portrait" />
             <figcaption><span class="mono">[ barra móvil · rooftop, NYC ]</span></figcaption>
           </figure>
           <div class="mb-setup-copy">
@@ -215,11 +220,11 @@ const MB_FAQ = [
             <article class={'svp-include-item' + (i.core ? ' is-core' : '') + (idx === INCLUDES.length - 1 && INCLUDES.length % 2 === 1 ? ' is-wide' : '')}>
               <span class="n">— {i.n}</span>
               <div class="body">
-                <h4>
+                <h3>
                   {i.title}
                   {i.core && <span class="mb-tag mb-tag-core">el núcleo</span>}
                   {!i.core && <span class="mb-tag">agrega según necesites</span>}
-                </h4>
+                </h3>
                 <p>{i.desc}</p>
               </div>
             </article>
@@ -264,7 +269,7 @@ const MB_FAQ = [
           </div>
 
           <figure class="mb-photo-tall mb-rental-photo">
-            <img src="/img/mb-office-white.jpg" alt="Una barra móvil de WOA entregada y montada, lista para que el anfitrión la maneje" loading="lazy" />
+            <Pic src={mbOfficeWhite} alt="Una barra móvil de WOA entregada y montada, lista para que el anfitrión la maneje" kind="portrait" />
             <figcaption><span class="mono">[ solo barra · entregada y montada ]</span></figcaption>
           </figure>
         </div>
@@ -303,7 +308,7 @@ const MB_FAQ = [
           {STEPS.map((s) => (
             <article class="svp-step">
               <span class="n">— {s.n}</span>
-              <h4>{s.t}</h4>
+              <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
           ))}
@@ -319,7 +324,7 @@ const MB_FAQ = [
             <span class="svp-chapter-num">[ FAQ ]</span>
             <div class="eyebrow" style="margin-top:18px">Preguntas frecuentes</div>
             <h2 class="display h-md" style="margin-top:18px;max-width:14ch">
-              Sobre la <span class="it" style="color:var(--crimson)">experiencia</span>.
+              Sobre la <span class="it" style="color:var(--crimson-text)">experiencia</span>.
             </h2>
           </div>
           <div>
@@ -337,12 +342,12 @@ const MB_FAQ = [
     {/* ── MB_Cta ── */}
     <section class="svp-cta">
       <div class="svp-cta-bg">
-        <img src="/img/cocktail-foam.jpg" alt="" aria-hidden="true" />
+        <Pic src={cocktailFoam} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
         <span class="eyebrow">— Solicite</span>
         <h2 class="display">
-          Construyamos <span class="it" style="color:var(--crimson)">tu</span> barra.
+          Construyamos <span class="it" style="color:var(--crimson-text)">tu</span> barra.
         </h2>
         <p>
           Llamada de descubrimiento de 30 minutos. Escuchamos, compartimos ideas y tendrás

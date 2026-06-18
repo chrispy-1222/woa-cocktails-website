@@ -73,7 +73,7 @@
 @media (max-width:860px){.bx-panel-body{padding:40px 28px 36px}}
 
 .bx-panel-num{
-  font-family:var(--mono);font-size:12px;letter-spacing:0.14em;color:var(--crimson);
+  font-family:var(--mono);font-size:12px;letter-spacing:0.14em;color:var(--crimson-text);
 }
 .bx-panel-kicker{
   font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:0.30em;text-transform:uppercase;
@@ -85,7 +85,7 @@
   color:var(--fg);margin:2px 0 6px;
   text-wrap:balance;
 }
-.bx-panel-title .it{font-style:italic;color:var(--crimson);font-weight:400}
+.bx-panel-title .it{font-style:italic;color:var(--crimson-text);font-weight:400}
 .bx-panel-line{
   color:var(--fg-dim);font-size:15px;line-height:1.65;max-width:42ch;margin:0;
 }
@@ -123,7 +123,7 @@
   font-family:var(--display);font-weight:300;letter-spacing:-0.02em;line-height:0.97;
   font-size:clamp(34px,4.4vw,58px);color:var(--fg);margin:0;
 }
-.bx-hero-plaque-title .it{font-style:italic;color:var(--crimson);font-weight:400}
+.bx-hero-plaque-title .it{font-style:italic;color:var(--crimson-text);font-weight:400}
 .bx-hero-plaque-title .dia{
   display:inline-block;width:10px;height:10px;background:var(--crimson);
   transform:rotate(45deg);margin-left:10px;vertical-align:middle;
@@ -159,7 +159,7 @@
   font-size:clamp(28px,4.2vw,54px);line-height:1.22;letter-spacing:-0.01em;
   max-width:22ch;margin:0 auto;font-weight:300;
 }
-.bx-manifesto .display .it{font-style:italic;color:var(--crimson);font-weight:400}
+.bx-manifesto .display .it{font-style:italic;color:var(--crimson-text);font-weight:400}
 .bx-manifesto .sig{
   margin-top:30px;font-family:var(--mono);font-size:11px;letter-spacing:0.20em;
   text-transform:uppercase;color:var(--fg-mute);
@@ -181,7 +181,7 @@
   font-family:var(--display);font-size:clamp(22px,2.4vw,30px);font-weight:300;
   line-height:1.32;letter-spacing:-0.005em;color:var(--fg);margin:0 0 22px;max-width:30ch;
 }
-.bx-lead-copy .bx-lede .it{font-style:italic;color:var(--crimson)}
+.bx-lead-copy .bx-lede .it{font-style:italic;color:var(--crimson-text)}
 .bx-lead-copy p{color:var(--fg-dim);font-size:15px;line-height:1.74;margin:0 0 16px;max-width:50ch}
 .bx-lead-copy p:last-child{margin-bottom:0}
 .bx-lead-copy b{color:var(--fg);font-weight:500}
@@ -221,8 +221,8 @@
   .bx-point{border-right:none;border-bottom:1px solid var(--line)}
   .bx-point:last-child{border-bottom:none}
 }
-.bx-point .n{font-family:var(--mono);font-size:11px;color:var(--crimson);letter-spacing:0.06em}
-.bx-point h4{
+.bx-point .n{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em}
+.bx-point h3{
   font-family:var(--display);font-size:24px;font-weight:300;letter-spacing:-0.005em;margin:0;color:var(--fg);
 }
 .bx-point p{color:var(--fg-dim);font-size:13.5px;line-height:1.62;margin:0;max-width:34ch}
@@ -270,7 +270,7 @@
 .bx-format .tag{
   font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);
 }
-.bx-format h4{
+.bx-format h3{
   font-family:var(--display);font-size:27px;font-weight:300;letter-spacing:-0.005em;margin:0;color:var(--fg);
 }
 .bx-format p{color:var(--fg-dim);font-size:14px;line-height:1.65;margin:0}
@@ -290,7 +290,7 @@
 /* ── mobile pass ─────────────────────────────────────────── */
 @media (max-width:720px){
   .bx-points .bx-point{padding:24px 22px}
-  .bx-point h4{font-size:20px}
+  .bx-point h3{font-size:20px}
   .bx-format{padding:26px 22px 28px}
-  .bx-format h4{font-size:22px}
+  .bx-format h3{font-size:22px}
 }

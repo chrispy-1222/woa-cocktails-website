@@ -1,0 +1,44 @@
+/* Self-hosted webfonts (latin subset, woff2) — replaces the render-blocking,
+   cross-origin Google Fonts stylesheet. Same three families the design uses:
+   Cormorant Garamond (--display), Outfit (--sans), JetBrains Mono (--mono).
+
+   CLS strategy:
+   - The 3 above-the-fold faces (display 300, display italic 400, body 300) are
+     <link rel=preload>ed in Layout.astro and use font-display:swap → ready on
+     the first frame, paint in the real font.
+   - Every other weight uses font-display:optional → on slow connections it stays
+     in the metric-matched fallback (below) instead of swapping in late and
+     reflowing content-sized layout (the pricing rate-card was the offender).
+   - The metric-matched fallback faces make Georgia/Arial occupy the exact box of
+     Cormorant/Outfit (Capsize-derived), so even the swap faces don't shift. */
+
+/* ── Cormorant Garamond — display ── */
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:300;font-display:swap;src:url("/fonts/cormorant-300.woff2") format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:400;font-display:optional;src:url("/fonts/cormorant-400.woff2") format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:500;font-display:optional;src:url("/fonts/cormorant-500.woff2") format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:300;font-display:optional;src:url("/fonts/cormorant-italic-300.woff2") format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:400;font-display:swap;src:url("/fonts/cormorant-italic-400.woff2") format("woff2")}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500;font-display:optional;src:url("/fonts/cormorant-italic-500.woff2") format("woff2")}
+
+/* ── Outfit — sans / body ── */
+@font-face{font-family:"Outfit";font-style:normal;font-weight:200;font-display:optional;src:url("/fonts/outfit-200.woff2") format("woff2")}
+@font-face{font-family:"Outfit";font-style:normal;font-weight:300;font-display:swap;src:url("/fonts/outfit-300.woff2") format("woff2")}
+@font-face{font-family:"Outfit";font-style:normal;font-weight:400;font-display:optional;src:url("/fonts/outfit-400.woff2") format("woff2")}
+@font-face{font-family:"Outfit";font-style:normal;font-weight:500;font-display:optional;src:url("/fonts/outfit-500.woff2") format("woff2")}
+@font-face{font-family:"Outfit";font-style:normal;font-weight:600;font-display:optional;src:url("/fonts/outfit-600.woff2") format("woff2")}
+
+/* ── JetBrains Mono — mono (tiny decorative labels) ── */
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:300;font-display:optional;src:url("/fonts/jetbrains-mono-300.woff2") format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:optional;src:url("/fonts/jetbrains-mono-400.woff2") format("woff2")}
+
+/* ── Metric-matched fallbacks (Capsize-derived from real font metrics) ── */
+@font-face{
+  font-family:"Cormorant Garamond Fallback";
+  src:local("Georgia");
+  size-adjust:88.38%;ascent-override:104.55%;descent-override:32.47%;line-gap-override:0%;
+}
+@font-face{
+  font-family:"Outfit Fallback";
+  src:local("Arial");
+  size-adjust:99.82%;ascent-override:100.18%;descent-override:26.05%;line-gap-override:0%;
+}

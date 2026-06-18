@@ -119,7 +119,7 @@
   transform:rotate(2deg);
 }
 .fc-back-eyebrow{
-  font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--crimson);
+  font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:var(--crimson-text);
 }
 .fc-back-title{
   font-family:var(--display);font-size:24px;font-weight:300;letter-spacing:-0.005em;
@@ -159,7 +159,7 @@
 .fc-id-events .fc-lg, .fc-id-origin .fc-lg{color:var(--fg)}
 .fc-sm{
   font-family:var(--mono);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--crimson);
+  color:var(--crimson-text);
 }
 
 .fc-word .fc-front{
@@ -176,7 +176,7 @@
 }
 
 .fc-art .fc-front{
-  flex-direction:column;gap:14px;color:var(--crimson);padding:18px 14px;
+  flex-direction:column;gap:14px;color:var(--crimson-text);padding:18px 14px;
   background:var(--bg);
 }
 .fc-art svg{width:80%;height:auto;max-width:160px}
@@ -213,7 +213,7 @@
 .fc.is-active .fc-back-body{
   font-size:15.5px;line-height:1.7;-webkit-line-clamp:unset;overflow:visible;
 }
-.fc.is-active .fc-back-hint{font-size:10.5px;margin-top:24px;color:var(--crimson)}
+.fc.is-active .fc-back-hint{font-size:10.5px;margin-top:24px;color:var(--crimson-text)}
 
 /* ── About page footer (very small) ──────────────────────────────── */
 /* (removed) */
