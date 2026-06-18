@@ -147,7 +147,7 @@ const TESTI = [
       <div class="svc">
         {
           SERVICES.map((s) => (
-            <article class="svc-card" id={s.id}>
+            <a class="svc-card" id={s.id} href={s.href}>
               <div class="svc-thumb">
                 <img src={s.img} alt={s.title.join('') + s.it} loading="lazy" />
                 <span class="svc-num">— {s.n}</span>
@@ -167,7 +167,7 @@ const TESTI = [
                   <span class="arr">Conozca más →</span>
                 </div>
               </div>
-            </article>
+            </a>
           ))
         }
       </div>
@@ -207,8 +207,8 @@ const TESTI = [
           <li>Prensa y activaciones de marca</li>
         </ul>
         <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap">
-          <a href="/es/contact" class="btn btn-solid">Reserve un evento en Miami <span class="arr">→</span></a>
-          <a href="/es/contact" class="btn btn-ghost">Hable con Fabio</a>
+          <a href="/es/contact#inquiry-form" class="btn btn-solid">Reserve un evento en Miami <span class="arr">→</span></a>
+          <a href="/es/contact#schedule" class="btn btn-ghost">Programe una llamada</a>
         </div>
       </div>
     </div>

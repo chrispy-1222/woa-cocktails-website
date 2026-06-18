@@ -53,7 +53,7 @@ const navServices = services.map((s) => ({
       </div>
     </div>
     <a href={L('/about')}>{t(lang, 'nav.about')}</a>
-    <a href={L('/contact')}>{t(lang, 'nav.contact')}</a>
+    <a href={L('/contact#inquiry-form')}>{t(lang, 'nav.contact')}</a>
   </div>
   <div class="nav-right">
     <a href={switchHref} class="nav-lang" aria-label={t(lang, 'lang.switchTo')} title={t(lang, 'lang.switchTo')}>
@@ -103,7 +103,7 @@ const navServices = services.map((s) => ({
     <a href={L('/')}>{t(lang, 'nav.home')}</a>
     <a href={L('/about')}>{t(lang, 'nav.about')}</a>
     <a href={L('/#founders')}>{t(lang, 'nav.founders')}</a>
-    <a href={L('/contact')}>{t(lang, 'nav.contact')}</a>
+    <a href={L('/contact#inquiry-form')}>{t(lang, 'nav.contact')}</a>
     <a href={switchHref} class="drawer-lang">{t(lang, 'lang.switchTo')}</a>
     <div class="nav-drawer-foot">
       <a href={L('/contact')} class="btn btn-solid">
@@ -175,6 +175,11 @@ const navServices = services.map((s) => ({
   };
   svcTrigger?.addEventListener('click', () => setSvc(!svc?.classList.contains('open')));
   svc?.querySelectorAll('.nav-svc-item').forEach((a) => a.addEventListener('click', () => setSvc(false)));
+  // Desktop (fine pointer): open the dropdown on hover.
+  if (svc && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    svc.addEventListener('mouseenter', () => setSvc(true));
+    svc.addEventListener('mouseleave', () => setSvc(false));
+  }
   document.addEventListener('mousedown', (e) => {
     if (svc?.classList.contains('open') && !svc.contains(e.target as Node)) setSvc(false);
   });

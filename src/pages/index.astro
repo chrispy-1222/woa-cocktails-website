@@ -147,7 +147,7 @@ const TESTI = [
       <div class="svc">
         {
           SERVICES.map((s) => (
-            <article class="svc-card" id={s.id}>
+            <a class="svc-card" id={s.id} href={s.href}>
               <div class="svc-thumb">
                 <img src={s.img} alt={s.title.join('') + s.it} loading="lazy" />
                 <span class="svc-num">— {s.n}</span>
@@ -167,7 +167,7 @@ const TESTI = [
                   <span class="arr">Learn more →</span>
                 </div>
               </div>
-            </article>
+            </a>
           ))
         }
       </div>
@@ -207,8 +207,8 @@ const TESTI = [
           <li>Press &amp; brand activations</li>
         </ul>
         <div style="margin-top:40px;display:flex;gap:14px;flex-wrap:wrap">
-          <a href="/contact" class="btn btn-solid">Book a Miami event <span class="arr">→</span></a>
-          <a href="/contact" class="btn btn-ghost">Speak with Fabio</a>
+          <a href="/contact#inquiry-form" class="btn btn-solid">Book a Miami event <span class="arr">→</span></a>
+          <a href="/contact#schedule" class="btn btn-ghost">Set up a time to chat</a>
         </div>
       </div>
     </div>
