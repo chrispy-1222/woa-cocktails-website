@@ -244,7 +244,9 @@ section{position:relative}
 
 @media (max-width:1020px){
   .nav-links{display:none}
-  .nav-burger{display:flex}    /* hamburger appears alongside nav-links hiding */
+  /* NB: .nav-burger is shown below, AFTER its base rule — see end of the
+     hamburger block. Putting display:flex here is overridden by the later
+     base `.nav-burger{display:none}` (equal specificity, later wins). */
 }
 
 .market-pill{
@@ -289,6 +291,10 @@ section{position:relative}
 .nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 .nav-burger.open span:nth-child(2){opacity:0}
 .nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+/* Show the hamburger on tablet/phone. Placed AFTER the base `display:none`
+   above so it actually wins the cascade (this was the bug that hid the entire
+   mobile menu — Services/About/Contact were unreachable). */
+@media (max-width:1020px){.nav-burger{display:flex}}
 
 /* drawer — full-screen sheet sliding down from the top on phones */
 .nav-drawer{
@@ -689,10 +695,12 @@ section{position:relative}
 @media (max-width:720px){
   body{font-size:14.5px}
 
-  /* nav: keep logo + compact Book pill; market pill hidden inline */
-  .nav{padding:12px 18px}
-  .nav-right{gap:8px}
-  .nav-book{display:none}     /* moved into the drawer on phones */
+  /* nav: slim bar — logo + ES/EN toggle + compact Book + hamburger */
+  .nav{padding:12px 16px}
+  .nav-right{gap:7px}
+  .nav-home{display:none}     /* redundant on phones — the logo already links home */
+  .nav-book{display:inline-flex}   /* keep Book Now on the bar */
+  .nav-book .arr{display:none}     /* drop the arrow to save bar width */
   .logo{font-size:18px;letter-spacing:0.36em;padding-left:0.36em}
   .logo .diamond{width:7px;height:7px;margin-left:6px;transform:rotate(45deg) translateY(-3px)}
   /* on phones, lock logo to compact "WOA" — no expand-on-scroll, no room for it */
@@ -702,7 +710,7 @@ section{position:relative}
   .logo:hover .diamond,.logo.peek .diamond{transform:rotate(45deg) translateY(-3px) !important}
 
   .market-pill{display:none}
-  .nav .btn-solid{padding:11px 16px;font-size:10.5px;letter-spacing:0.18em;min-height:42px}
+  .nav .btn-solid{padding:11px 13px;font-size:10px;letter-spacing:0.12em;min-height:42px}
 
   /* section rhythm: tighten the 128px verticals */
   .section-head{padding:72px 0 28px;gap:18px}

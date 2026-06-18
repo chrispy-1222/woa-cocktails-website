@@ -133,9 +133,12 @@ const navServices = services.map((s) => ({
     color: var(--fg-dim) !important;
   }
   @media (max-width: 720px) {
-    /* The pill switcher lives in the drawer on phones to keep the bar uncluttered. */
+    /* Keep EN↔ES one tap away on the bar (compact pill). */
     .nav-right .nav-lang {
-      display: none;
+      padding: 9px 10px;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      line-height: 1;
     }
   }
 </style>
