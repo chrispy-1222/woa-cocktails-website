@@ -304,8 +304,11 @@ section{position:relative}
   -webkit-backdrop-filter:blur(22px) saturate(160%);
   opacity:0;visibility:hidden;
   transition:opacity .35s ease, visibility .35s;
-  display:flex;align-items:center;justify-content:center;
-  padding:80px 28px 32px;
+  /* Top-aligned and clear of the fixed header so the first item (Services)
+     has breathing room instead of tucking up under the logo. */
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:100px 28px 40px;
+  overflow-y:auto;
 }
 .nav-drawer.open{opacity:1;visibility:visible}
 .nav-drawer-inner{
@@ -321,20 +324,36 @@ section{position:relative}
 }
 .nav-drawer-inner > a:hover{color:var(--crimson-text);padding-left:10px}
 
-/* drawer services sub-group */
+/* drawer services — collapsible accordion (tap to expand) */
 .nav-drawer-inner .drawer-group{
-  display:flex;flex-direction:column;
   border-bottom:1px solid var(--line);
-  padding:14px 4px 18px;
 }
-.nav-drawer-inner .drawer-label{
+.drawer-svc-toggle{
+  appearance:none;background:transparent;border:0;cursor:pointer;width:100%;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
   font-family:var(--display);font-size:34px;font-weight:300;letter-spacing:-0.01em;
-  color:var(--fg);margin-bottom:6px;
+  color:var(--fg);padding:14px 4px;text-align:left;
+  transition:color .25s ease;
+}
+.drawer-svc-toggle:hover,
+.drawer-group.open .drawer-svc-toggle{color:var(--crimson-text)}
+.drawer-chev{
+  font-size:18px;line-height:1;color:var(--crimson-text);flex-shrink:0;
+  transition:transform .3s ease;
+}
+.drawer-group.open .drawer-chev{transform:rotate(180deg)}
+.drawer-svc-list{
+  display:flex;flex-direction:column;
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height .35s ease, opacity .3s ease, padding .35s ease;
+}
+.drawer-group.open .drawer-svc-list{
+  max-height:360px;opacity:1;padding:2px 0 14px;
 }
 .nav-drawer-inner .drawer-sub{
   display:flex;align-items:baseline;gap:14px;
-  padding:10px 0 10px 16px;
-  font-family:var(--sans);font-size:14px;letter-spacing:0.02em;
+  padding:11px 0 11px 16px;
+  font-family:var(--sans);font-size:15px;letter-spacing:0.02em;
   color:var(--fg-dim);text-transform:none;
   transition:color .25s, padding-left .25s ease;
   border-bottom:none;border-left:1px solid var(--line);
@@ -696,13 +715,13 @@ section{position:relative}
   body{font-size:14.5px}
 
   /* nav: slim bar — logo + ES/EN toggle + compact Book + hamburger */
-  .nav{padding:12px 16px}
+  .nav{padding:16px 16px}
   .nav-right{gap:7px}
   .nav-home{display:none}     /* redundant on phones — the logo already links home */
   .nav-book{display:inline-flex}   /* keep Book Now on the bar */
   .nav-book .arr{display:none}     /* drop the arrow to save bar width */
-  .logo{font-size:18px;letter-spacing:0.36em;padding-left:0.36em}
-  .logo .diamond{width:7px;height:7px;margin-left:6px;transform:rotate(45deg) translateY(-3px)}
+  .logo{font-size:20px;letter-spacing:0.36em;padding-left:0.36em}
+  .logo .diamond{width:8px;height:8px;margin-left:7px;transform:rotate(45deg) translateY(-3px)}
   /* on phones, lock logo to compact "WOA" — no expand-on-scroll, no room for it */
   .logo .seg .tail,
   .logo .sep{display:none !important}

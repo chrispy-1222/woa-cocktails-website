@@ -89,20 +89,30 @@ const navServices = services.map((s) => ({
 
 <div class="nav-drawer" aria-hidden="true" data-drawer>
   <div class="nav-drawer-inner">
-    <div class="drawer-group">
-      <div class="drawer-label">{t(lang, 'nav.servicesGroup')}</div>
-      {
-        navServices.map((s) => (
-          <a href={s.href} class="drawer-sub">
-            <span class="num">{s.num}</span>
-            {s.label}
-          </a>
-        ))
-      }
+    <div class="drawer-group" data-drawer-svc>
+      <button
+        type="button"
+        class="drawer-svc-toggle"
+        data-drawer-svc-toggle
+        aria-expanded="false"
+        aria-controls="drawer-svc-list"
+      >
+        {t(lang, 'nav.servicesGroup')}
+        <span class="drawer-chev" aria-hidden="true">▾</span>
+      </button>
+      <div class="drawer-svc-list" id="drawer-svc-list">
+        {
+          navServices.map((s) => (
+            <a href={s.href} class="drawer-sub">
+              <span class="num">{s.num}</span>
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
     </div>
     <a href={L('/')}>{t(lang, 'nav.home')}</a>
     <a href={L('/about')}>{t(lang, 'nav.about')}</a>
-    <a href={L('/#founders')}>{t(lang, 'nav.founders')}</a>
     <a href={L('/contact#inquiry-form')}>{t(lang, 'nav.contact')}</a>
     <a href={switchHref} class="drawer-lang">{t(lang, 'lang.switchTo')}</a>
     <div class="nav-drawer-foot">
@@ -150,6 +160,8 @@ const navServices = services.map((s) => ({
   const drawer = document.querySelector<HTMLElement>('[data-drawer]');
   const svc = document.querySelector<HTMLElement>('[data-svc]');
   const svcTrigger = document.querySelector<HTMLButtonElement>('[data-svc-trigger]');
+  const drawerSvc = document.querySelector<HTMLElement>('[data-drawer-svc]');
+  const drawerSvcToggle = document.querySelector<HTMLButtonElement>('[data-drawer-svc-toggle]');
 
   // Scroll state — wordmark expands to "Work · Of · Art ◆" away from the top.
   const onScroll = () => {
@@ -167,9 +179,21 @@ const navServices = services.map((s) => ({
     burger?.setAttribute('aria-expanded', String(open));
     drawer?.setAttribute('aria-hidden', String(!open));
     document.body.style.overflow = open ? 'hidden' : '';
+    // Reset the services accordion to collapsed each time the drawer closes.
+    if (!open) {
+      drawerSvc?.classList.remove('open');
+      drawerSvcToggle?.setAttribute('aria-expanded', 'false');
+    }
   };
   burger?.addEventListener('click', () => setDrawer(!drawer?.classList.contains('open')));
   drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setDrawer(false)));
+
+  // Drawer services accordion — collapsed by default, tap the row to expand.
+  drawerSvcToggle?.addEventListener('click', () => {
+    const open = !drawerSvc?.classList.contains('open');
+    drawerSvc?.classList.toggle('open', open);
+    drawerSvcToggle.setAttribute('aria-expanded', String(open));
+  });
 
   // Services dropdown.
   const setSvc = (open: boolean) => {
