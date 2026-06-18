@@ -6,11 +6,11 @@ import sitemap from '@astrojs/sitemap';
 // Every page is pre-rendered to plain HTML (great SEO); interactivity ships as
 // tiny vanilla <script> islands, so the JS payload stays near zero.
 //
-// NOTE: `site` is the current live domain. When the custom domain (woacocktails.com)
-// is connected in Vercel, change this to https://woacocktails.com so canonical
-// URLs, hreflang alternates, and the sitemap point at the real domain.
+// `site` is the production domain — used for canonical URLs, hreflang alternates,
+// and the sitemap. Apex (woacocktails.com) 308-redirects to www in Vercel, so the
+// canonical host is the www version.
 export default defineConfig({
-  site: 'https://woa-cocktails.vercel.app',
+  site: 'https://www.woacocktails.com',
   trailingSlash: 'ignore',
   build: {
     format: 'directory',
