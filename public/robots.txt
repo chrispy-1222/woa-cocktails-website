@@ -1,0 +1,5 @@
+# WOA Cocktails — allow all crawlers; advertise the sitemap.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.woacocktails.com/sitemap-index.xml

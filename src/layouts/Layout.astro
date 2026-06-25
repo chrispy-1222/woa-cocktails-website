@@ -2,11 +2,12 @@
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import { getLang, alternates } from '../i18n/utils';
+import { getLang, alternates, stripLocale } from '../i18n/utils';
 import type { Lang } from '../i18n/ui';
 // Social-share image. Imported (not a /public URL) so it survives the move to
 // src/assets; `.src` is the hashed, build-emitted path.
 import ogImage from '../assets/img/hero-bridge.jpg';
+import logoImg from '../assets/img/logo.png';
 
 export interface Props {
   title: string;
@@ -36,6 +37,95 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const alt = alternates(Astro.url.pathname, Astro.site);
 const ogLocale = lang === 'es' ? 'es_LA' : 'en_US';
+const ogLocaleAlt = lang === 'es' ? 'en_US' : 'es_LA';
+
+// ── Structured data (JSON-LD) ─────────────────────────────────────────────
+// Organization + WebSite sitewide, plus a BreadcrumbList on inner pages. This
+// is the strongest on-page signal for brand sitelinks and for earning a
+// Spanish-language knowledge result, and it carries no LinkedIn (per brand).
+const origin = Astro.site ? Astro.site.origin : 'https://www.woacocktails.com';
+const logoUrl = new URL(logoImg.src, Astro.site).href;
+const imageUrl = new URL(ogImage.src, Astro.site).href;
+const homeUrl = lang === 'es' ? `${origin}/es/` : `${origin}/`;
+const orgId = `${origin}/#organization`;
+
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Organization',
+    '@id': orgId,
+    name: 'WOA Cocktails',
+    legalName: 'Work of Art',
+    url: `${origin}/`,
+    logo: logoUrl,
+    image: imageUrl,
+    description: defaultDescription[lang],
+    foundingDate: '2020',
+    founder: [
+      { '@type': 'Person', name: 'Hector Taveras' },
+      { '@type': 'Person', name: 'Fabio Perez' },
+    ],
+    areaServed: [
+      { '@type': 'City', name: 'New York City' },
+      { '@type': 'City', name: 'Miami' },
+    ],
+    knowsLanguage: ['en', 'es'],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        telephone: '+1-646-338-6739',
+        email: 'woacocktails@gmail.com',
+        areaServed: 'New York',
+        availableLanguage: ['English', 'Spanish'],
+      },
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer service',
+        telephone: '+1-215-939-0476',
+        email: 'woacocktails@gmail.com',
+        areaServed: 'Miami',
+        availableLanguage: ['English', 'Spanish'],
+      },
+    ],
+    sameAs: [
+      'https://www.instagram.com/woacocktails',
+      'https://www.tiktok.com/@woa.cocktails',
+    ],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${origin}/#website`,
+    url: `${origin}/`,
+    name: 'WOA Cocktails',
+    inLanguage: lang,
+    publisher: { '@id': orgId },
+  },
+];
+
+// Breadcrumb on inner pages — feeds Google's breadcrumb + sitelink rendering.
+// Localized so /es pages emit Spanish trails.
+const base = stripLocale(Astro.url.pathname).replace(/\/$/, '') || '/';
+const routeLabel: Record<string, Record<Lang, string>> = {
+  '/mobile-bar': { en: 'Mobile Bar for Events', es: 'Barra móvil para eventos' },
+  '/brand-experiences': { en: 'Brand & Hospitality Experiences', es: 'Experiencias de marca y hospitalidad' },
+  '/staffing': { en: 'Bartending & Hospitality Staffing', es: 'Personal de bar y hospitalidad' },
+  '/classes': { en: 'Mixology Private Classes', es: 'Clases privadas de coctelería' },
+  '/about': { en: 'About', es: 'Nosotros' },
+  '/contact': { en: 'Contact', es: 'Contacto' },
+  '/pricing': { en: 'Pricing & Packages', es: 'Precios y paquetes' },
+  '/privacy': { en: 'Privacy Policy', es: 'Política de privacidad' },
+  '/terms': { en: 'Terms', es: 'Términos' },
+};
+if (base !== '/' && routeLabel[base]) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: lang === 'es' ? 'Inicio' : 'Home', item: homeUrl },
+      { '@type': 'ListItem', position: 2, name: routeLabel[base][lang], item: canonical },
+    ],
+  });
+}
+const jsonLd = { '@context': 'https://schema.org', '@graph': graph };
 ---
 
 <!doctype html>
@@ -57,8 +147,13 @@ const ogLocale = lang === 'es' ? 'es_LA' : 'en_US';
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlt} />
     <meta property="og:image" content={new URL(ogImage.src, Astro.site).href} />
     <meta name="twitter:card" content="summary_large_image" />
+
+    {/* Structured data — Organization + WebSite (sitewide) and a localized
+        BreadcrumbList on inner pages. Strongest on-page signal for sitelinks. */}
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     {/* Self-hosted fonts (same-origin woff2) — no render-blocking third-party
         request. Preload the display + body weights used above the fold so the

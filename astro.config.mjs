@@ -28,6 +28,21 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: { en: 'en', es: 'es' },
       },
+      serialize(item) {
+        // Stamp lastmod at build time so Google re-crawls and replaces stale
+        // pre-redesign titles still cached from the old Squarespace site
+        // (e.g. /classes was indexed as "RSVP").
+        item.lastmod = new Date().toISOString();
+        // Mirror the on-page hreflang: add an x-default alternate pointing at
+        // the English URL so the sitemap and HTML head agree.
+        if (item.links && item.links.length) {
+          const en = item.links.find((l) => l.lang === 'en');
+          if (en && !item.links.some((l) => l.lang === 'x-default')) {
+            item.links.push({ lang: 'x-default', url: en.url });
+          }
+        }
+        return item;
+      },
     }),
   ],
 });

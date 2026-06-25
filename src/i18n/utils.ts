@@ -33,7 +33,11 @@ export function getLang(pathname: string): Lang {
 export function alternates(pathname: string, site: URL | undefined) {
   const base = stripLocale(pathname);
   const origin = site ? site.origin : '';
-  const abs = (p: string) => origin + (p === '/' ? '/' : p);
+  // Build dir-format URLs WITH a trailing slash so each hreflang/x-default href
+  // byte-matches the page's canonical (…/about/) and the sitemap loc. Google
+  // ignores hreflang alternates that don't exactly match the canonical URL, so a
+  // missing slash here silently breaks the EN↔ES pairing.
+  const abs = (p: string) => origin + (p.endsWith('/') ? p : p + '/');
   return {
     en: abs(localizePath(base, 'en')),
     es: abs(localizePath(base, 'es')),
