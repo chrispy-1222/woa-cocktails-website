@@ -1,0 +1,295 @@
+/* woa-lp-cart.css — Mobile Bar Cart paid landing page.
+   Single-purpose conversion page. Inherits palette + buttons +
+   .eyebrow / .display / .btn from woa-styles.css. Everything here
+   is prefixed .lp- so it never collides with the main site.
+
+   Accent TEXT uses --crimson-text (the AA-contrast token the rest of
+   the site adopted); solid fills / borders / the diamond + dot keep
+   --crimson, exactly like the other ported pages. */
+
+.lp{background:var(--bg);color:var(--fg)}
+
+/* ── minimal nav — logo + ONE cta (no off-page nav) ─────────── */
+.lp-nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 48px;
+  transition:background .4s ease, backdrop-filter .4s ease, border-color .4s ease;
+  border-bottom:1px solid transparent;
+}
+.lp-nav.scrolled{
+  background:rgba(11,9,7,0.42);
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border-bottom-color:var(--line);
+}
+/* header uses the shared animated .logo (woa-styles.css); only the CTA is LP-specific */
+.lp-nav-cta{padding:13px 22px}
+@media (max-width:720px){
+  .lp-nav{padding:13px 18px}
+  .lp-nav-cta{padding:11px 16px;font-size:10.5px;letter-spacing:0.18em;min-height:42px}
+}
+
+/* ── hero — cart photo is the LCP element ──────────────────── */
+.lp-hero{position:relative;min-height:100vh;overflow:hidden;background:#000}
+.lp-hero-bg{position:absolute;inset:0;z-index:0}
+.lp-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+.lp-hero-bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(11,9,7,0.50) 0%, rgba(11,9,7,0.20) 32%, rgba(11,9,7,0.62) 72%, rgba(11,9,7,0.97) 100%),
+    linear-gradient(90deg, rgba(11,9,7,0.72) 0%, rgba(11,9,7,0.30) 52%, rgba(11,9,7,0.05) 100%);
+}
+.lp-hero-inner{
+  position:relative;z-index:1;min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:140px 80px 56px;max-width:1500px;margin:0 auto;
+}
+.lp-hero-eyebrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.lp-hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--crimson);animation:pulse 2.4s ease-in-out infinite}
+.lp-hero h1{
+  font-family:var(--display);font-weight:300;letter-spacing:-0.02em;line-height:0.98;
+  font-size:clamp(48px, 8vw, 116px);margin:0;max-width:15ch;
+}
+.lp-hero h1 em{font-style:italic;font-weight:400;color:var(--crimson-text)}
+.lp-hero-sub{
+  margin:28px 0 0;max-width:54ch;
+  font-size:clamp(16px,1.5vw,19px);line-height:1.6;color:var(--fg-dim);
+}
+.lp-hero-sub b{color:var(--fg);font-weight:500}
+
+/* offer pill above the fold */
+.lp-offer-pill{
+  display:inline-flex;align-items:center;gap:14px;
+  margin-top:30px;padding:11px 20px 11px 14px;
+  border:1px solid var(--amber-soft);
+  background:rgba(210,160,92,0.10);
+  font-size:12px;letter-spacing:0.12em;
+}
+.lp-offer-pill .tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
+  background:var(--crimson);color:var(--fg);padding:6px 10px;
+}
+.lp-offer-pill .txt{color:var(--fg);text-transform:uppercase;letter-spacing:0.16em}
+.lp-offer-pill .txt b{color:var(--amber);font-weight:600}
+
+.lp-hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.lp-hero-area{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  margin-top:44px;padding-top:22px;border-top:1px solid var(--line);
+  font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute);
+}
+.lp-hero-area b{color:var(--fg);font-weight:500;letter-spacing:0.22em}
+.lp-hero-area .sep{color:var(--crimson-text)}
+
+@media (max-width:980px){.lp-hero-inner{padding-left:48px;padding-right:48px}}
+@media (max-width:720px){
+  .lp-hero-inner{padding:120px 22px 40px;justify-content:flex-end}
+  .lp-hero h1{font-size:clamp(40px,12vw,68px)}
+  .lp-hero-sub{font-size:16px;margin-top:22px}
+  .lp-offer-pill{flex-wrap:wrap;gap:10px;margin-top:24px}
+  .lp-hero-cta{margin-top:26px;width:100%}
+  .lp-hero-cta .btn{flex:1 1 auto;justify-content:center;min-height:48px}
+  .lp-hero-area{flex-direction:column;align-items:flex-start;gap:10px}
+}
+
+/* ── shared section frame ──────────────────────────────────── */
+.lp-section{padding:120px 0;border-bottom:1px solid var(--line)}
+.lp-head{max-width:60ch}
+.lp-head .ix{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em}
+.lp-head h2{
+  font-family:var(--display);font-weight:300;letter-spacing:-0.015em;line-height:1.02;
+  font-size:clamp(34px,4.4vw,60px);margin:18px 0 0;
+}
+.lp-head h2 .it{font-style:italic;color:var(--crimson-text)}
+.lp-head p{margin:20px 0 0;color:var(--fg-dim);font-size:16px;line-height:1.7;max-width:46ch}
+@media (max-width:720px){.lp-section{padding:76px 0}}
+
+/* ── offer module (SWAPPABLE — see MobileBarCartLanding offer block) ── */
+.lp-offer{
+  position:relative;overflow:hidden;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(120% 140% at 85% 0%, rgba(197,48,45,0.16), rgba(11,9,7,0) 60%),
+    var(--surface);
+}
+.lp-offer-inner{
+  display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+  padding:88px 0;
+}
+@media (max-width:900px){.lp-offer-inner{grid-template-columns:1fr;gap:36px;padding:64px 0}}
+.lp-offer-free{
+  font-family:var(--display);font-weight:300;letter-spacing:-0.02em;line-height:0.92;
+  font-size:clamp(56px,8vw,104px);
+}
+.lp-offer-free em{font-style:italic;color:var(--amber)}
+.lp-offer-lead{
+  font-size:clamp(18px,1.8vw,22px);color:var(--fg);line-height:1.45;margin:18px 0 0;max-width:30ch;
+}
+.lp-offer-lead b{color:var(--crimson-text);font-weight:600}
+.lp-offer-terms{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line-strong)}
+.lp-offer-terms li{
+  display:flex;align-items:baseline;gap:16px;
+  padding:18px 2px;border-bottom:1px solid var(--line);
+  list-style:none;
+}
+.lp-offer-terms .n{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em;flex-shrink:0}
+.lp-offer-terms .t{font-size:15px;color:var(--fg)}
+.lp-offer-terms .t span{display:block;color:var(--fg-mute);font-size:12.5px;margin-top:3px;letter-spacing:0.01em}
+.lp-offer ul{margin:0;padding:0}
+.lp-offer-fine{margin:22px 0 0;font-size:11px;color:var(--fg-mute);letter-spacing:0.02em;line-height:1.6}
+.lp-offer-cta{margin-top:30px}
+
+/* ── what you get ──────────────────────────────────────────── */
+.lp-get-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:56px}
+@media (max-width:900px){.lp-get-grid{grid-template-columns:1fr;gap:36px}}
+.lp-get-photo{position:relative;overflow:hidden;background:var(--surface);aspect-ratio:4/5}
+.lp-get-photo img{width:100%;height:100%;object-fit:cover}
+.lp-get-photo figcaption{
+  position:absolute;left:20px;bottom:18px;z-index:1;
+  font-family:var(--mono);font-size:10px;letter-spacing:0.06em;color:var(--fg-dim);
+}
+.lp-get-photo::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,9,7,0) 55%,rgba(11,9,7,0.7) 100%);
+}
+.lp-feats{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line)}
+.lp-feat{display:flex;gap:20px;padding:24px 2px;border-bottom:1px solid var(--line)}
+.lp-feat .n{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.06em;flex-shrink:0;padding-top:3px}
+.lp-feat h3{font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:-0.01em;margin:0 0 6px}
+.lp-feat p{margin:0;color:var(--fg-dim);font-size:14.5px;line-height:1.6;max-width:42ch}
+.lp-price{
+  margin-top:28px;padding:24px 26px;
+  border:1px solid var(--amber-soft);
+  background:linear-gradient(180deg, rgba(210,160,92,0.10), rgba(210,160,92,0.02));
+}
+.lp-price-main{display:flex;align-items:baseline;gap:14px}
+.lp-price-main .from{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute)}
+.lp-price-main b{font-family:var(--display);font-weight:300;font-size:54px;letter-spacing:-0.02em;line-height:1;color:var(--amber)}
+.lp-price p{margin:12px 0 0;font-size:13.5px;line-height:1.6;color:var(--fg-dim);max-width:46ch}
+.lp-price p b{color:var(--fg);font-weight:500}
+@media (max-width:720px){.lp-price{padding:20px 20px}.lp-price-main b{font-size:44px}}
+
+.lp-occasions{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:30px;
+}
+.lp-occasions span{
+  border:1px solid var(--line-strong);padding:9px 16px;
+  font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--fg-dim);
+}
+.lp-occasions span b{color:var(--amber);font-weight:500}
+
+/* ── credibility ───────────────────────────────────────────── */
+.lp-cred{background:var(--petrol)}
+.lp-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border-top:1px solid var(--line);border-left:1px solid var(--line);
+  margin-top:48px;
+}
+@media (max-width:560px){.lp-stats{grid-template-columns:1fr}}
+.lp-stat{
+  padding:34px 28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.lp-stat b{display:block;font-family:var(--display);font-size:56px;font-weight:300;letter-spacing:-0.02em;line-height:1;color:var(--fg)}
+.lp-stat span{display:block;margin-top:10px;font-size:10.5px;letter-spacing:0.24em;text-transform:uppercase;color:var(--fg-mute)}
+.lp-testi-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border-left:1px solid var(--line)}
+@media (max-width:820px){.lp-testi-row{grid-template-columns:1fr}}
+.lp-testi{
+  padding:36px 32px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;
+}
+.lp-testi .stars{color:var(--crimson-text);font-size:12px;letter-spacing:0.4em;margin-bottom:18px}
+.lp-testi .body{font-family:var(--display);font-size:21px;line-height:1.42;font-style:italic;font-weight:300;color:var(--fg)}
+.lp-testi .who{margin-top:auto;padding-top:24px;font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute)}
+.lp-testi .who b{display:block;color:var(--fg);font-weight:500;margin-bottom:4px;letter-spacing:0.22em}
+.lp-press{
+  display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  margin-top:40px;padding-top:28px;border-top:1px solid var(--line);
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg-mute);
+}
+.lp-press .amb{color:var(--amber)}
+
+/* ── how it works ──────────────────────────────────────────── */
+.lp-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);margin-top:52px}
+@media (max-width:820px){.lp-steps{grid-template-columns:1fr}}
+.lp-step{padding:36px 32px;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+.lp-step:last-child{border-right:none}
+.lp-step .n{font-family:var(--mono);font-size:11px;color:var(--crimson-text);letter-spacing:0.08em}
+.lp-step h3{font-family:var(--display);font-size:27px;font-weight:400;letter-spacing:-0.01em;margin:18px 0 10px}
+.lp-step p{margin:0;color:var(--fg-dim);font-size:14.5px;line-height:1.65}
+
+/* ── conversion block (the money section) ──────────────────── */
+.lp-book{background:var(--surface);scroll-margin-top:80px}
+.lp-book-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:52px;align-items:start}
+@media (max-width:980px){.lp-book-grid{grid-template-columns:1fr;gap:24px}}
+.lp-panel{border:1px solid var(--line-strong);background:var(--bg);display:flex;flex-direction:column}
+.lp-panel-head{
+  display:flex;align-items:center;gap:12px;
+  padding:18px 22px;border-bottom:1px solid var(--line);
+  font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute);
+}
+.lp-panel-head .mark{color:var(--crimson-text);font-size:13px}
+.lp-panel-head .meta{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:0.04em}
+/* Tally needs a light surface so its default dark text reads */
+.lp-form-surface{background:var(--fg);padding:8px 14px}
+.lp-tally{display:block;width:100%;border:0}
+.lp-calendly{min-width:280px;height:660px}
+.lp-panel-foot{
+  padding:16px 22px;border-top:1px solid var(--line);
+  font-size:12px;color:var(--fg-mute);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.lp-panel-foot b{color:var(--fg-dim);font-weight:500}
+.lp-call-row{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  margin-top:28px;padding:24px 28px;border:1px solid var(--line);background:var(--bg);
+}
+.lp-call-row .lhs .eyebrow{margin-bottom:6px;display:block}
+.lp-call-row .num{font-family:var(--display);font-size:30px;font-weight:300;letter-spacing:-0.01em;color:var(--fg)}
+.lp-call-row .num small{font-family:var(--sans);font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--fg-mute);margin-left:12px}
+
+/* ── service area + faq ────────────────────────────────────── */
+.lp-area-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:start;margin-top:8px}
+@media (max-width:900px){.lp-area-grid{grid-template-columns:1fr;gap:40px}}
+.lp-counties{display:flex;flex-direction:column;gap:0;margin-top:30px;border-top:1px solid var(--line)}
+.lp-county{padding:20px 2px;border-bottom:1px solid var(--line)}
+.lp-county b{font-family:var(--display);font-size:24px;font-weight:400;letter-spacing:-0.01em;color:var(--fg)}
+.lp-county span{display:block;margin-top:5px;color:var(--fg-mute);font-size:13px;line-height:1.5}
+.lp-faq details{border-bottom:1px solid var(--line)}
+.lp-faq summary{
+  list-style:none;cursor:default;padding:22px 0;
+  font-family:var(--display);font-size:20px;font-weight:400;letter-spacing:-0.005em;color:var(--fg);
+  display:flex;justify-content:space-between;align-items:center;gap:18px;
+}
+.lp-faq summary::-webkit-details-marker{display:none}
+.lp-faq summary::after{content:"+";color:var(--crimson-text);font-size:22px;font-weight:300;transition:transform .3s}
+.lp-faq details[open] summary::after{transform:rotate(45deg)}
+.lp-faq .ans{padding:0 0 24px;color:var(--fg-dim);font-size:15px;line-height:1.7;max-width:60ch}
+
+/* footer is the shared site <Footer/> (.foot, styled in woa-styles.css) */
+
+/* ── sticky mobile CTA bar ─────────────────────────────────── */
+.lp-sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:60;
+  display:none;align-items:stretch;gap:0;
+  background:rgba(11,9,7,0.92);
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  border-top:1px solid var(--line-strong);
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
+  gap:10px;
+}
+.lp-sticky a{
+  flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:50px;font-size:11px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;
+}
+.lp-sticky .call{flex:0 0 auto;width:54px;border:1px solid var(--line-strong);color:var(--fg)}
+.lp-sticky .call svg{width:20px;height:20px}
+@media (max-width:820px){.lp-sticky{display:flex}}
+
+/* Where the sticky CTA shows (≤820px), lift the cookie banner above it so the
+   two fixed bars don't overlap. #id beats the component's scoped .class rule. */
+@media (max-width:820px){
+  #cookie-consent{bottom:calc(80px + env(safe-area-inset-bottom,0px))}
+}
+
+/* primary book button = solid crimson; reuse .btn .btn-solid from base */

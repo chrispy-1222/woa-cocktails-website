@@ -1,0 +1,13 @@
+---
+// Paid landing page — Mobile Bar Cart (English). Reached ONLY from the Google
+// paid ad; noindex + standalone (no shared Nav/Footer). See LandingLayout.
+import LandingLayout from '../layouts/LandingLayout.astro';
+import MobileBarCartLanding from '../components/MobileBarCartLanding.astro';
+import { lpCartContent } from '../i18n/lp-cart';
+
+const content = lpCartContent.en;
+---
+
+<LandingLayout lang="en" title={content.meta.title} description={content.meta.description}>
+  <MobileBarCartLanding lang="en" content={content} />
+</LandingLayout>

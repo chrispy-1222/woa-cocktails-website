@@ -24,6 +24,10 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
+      // Keep noindex pages out of the sitemap. The Mobile Bar Cart landing page
+      // (EN + ES) is a paid ad destination marked robots:noindex,nofollow — it
+      // must never be submitted for indexing.
+      filter: (page) => !/\/mobile-bar-cart\/?$/.test(new URL(page).pathname),
       i18n: {
         defaultLocale: 'en',
         locales: { en: 'en', es: 'es' },

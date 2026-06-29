@@ -1,0 +1,228 @@
+---
+// LandingLayout — standalone document shell for the paid Mobile Bar Cart
+// landing page. Deliberately does NOT use the site Layout: this is a
+// single-purpose, noindex conversion page with its own minimal nav + footer
+// (rendered by the page body), no shared Nav/Footer/CookieConsent, and its own
+// tracking surface (GCLID capture + dataLayer conversion events).
+//
+// It still loads the same self-hosted fonts and global stylesheet as the rest
+// of the site, plus the page-specific woa-lp-cart.css.
+import type { Lang } from '../i18n/lp-cart';
+
+export interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    {/* Paid destination only — reached via the Google ad. Do not index. */}
+    <meta name="robots" content="noindex, nofollow" />
+
+    {/* Google Tag Manager — same live container the rest of the site uses, so
+        the conversion events this page pushes (woa_lp_view, woa_lead_submit,
+        woa_calendly_scheduled, woa_call_click) flow into the existing tags. */}
+    <script is:inline>window.dataLayer = window.dataLayer || [];</script>
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-T74DWRHV');</script>
+    {/* End Google Tag Manager */}
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    {/* Self-hosted fonts — preload the three above-the-fold faces, then the
+        full @font-face sheet. Mirrors Layout.astro. */}
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-300.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/cormorant-italic-400.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/outfit-300.woff2" crossorigin />
+    <link rel="stylesheet" href="/styles/woa-fonts.css" />
+
+    <link rel="stylesheet" href="/styles/woa-styles.css" />
+    <link rel="stylesheet" href="/styles/woa-lp-cart.css" />
+  </head>
+  <body>
+    {/* Google Tag Manager (noscript) */}
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T74DWRHV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    {/* End Google Tag Manager (noscript) */}
+
+    <slot />
+
+    {/* ── Tracking surface + deferred embeds (vanilla, no React) ──────────────
+        Ported from woa-lp-cart-app.jsx. The page exposes hooks only; GTM tags
+        and Ads conversions are wired on the GTM side. ─────────────────────── */}
+    <script>
+      // ── GCLID capture ──────────────────────────────────────────────
+      // Read ?gclid= on load, persist it (survives refresh / internal scroll),
+      // and hand it to the Tally embed as a hidden-field prefill so it rides
+      // along with the submission for later offline/qualified-lead import.
+      const GCLID_KEY = 'woa_gclid';
+      function captureGclid(): string {
+        let gclid = '';
+        try {
+          const params = new URLSearchParams(window.location.search);
+          gclid = params.get('gclid') || '';
+          if (gclid) {
+            localStorage.setItem(GCLID_KEY, gclid);
+            localStorage.setItem(GCLID_KEY + '_ts', String(Date.now()));
+          } else {
+            gclid = localStorage.getItem(GCLID_KEY) || '';
+          }
+        } catch (e) { /* storage blocked — degrade gracefully */ }
+        return gclid;
+      }
+      const gclid = captureGclid();
+
+      // ── dataLayer helper ───────────────────────────────────────────
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      const dl = (obj: Record<string, unknown>) => {
+        try { (window as any).dataLayer.push(obj); } catch (e) {}
+      };
+
+      // Page-ready signal so GTM has a consistent entry event.
+      dl({ event: 'woa_lp_view', page: 'mobile_bar_cart', gclid: gclid || undefined });
+
+      // ── Conversion postMessage listeners → dataLayer ───────────────
+      window.addEventListener('message', (e: MessageEvent) => {
+        const d = e.data;
+
+        // Tally: posts a JSON string {"event":"Tally.FormSubmitted", payload:{...}}
+        if (typeof d === 'string' && d.indexOf('Tally.FormSubmitted') !== -1) {
+          let payload: unknown = null;
+          try { payload = JSON.parse(d).payload || null; } catch (_) {}
+          dl({ event: 'woa_lead_submit', form: 'tally_request_quote', gclid: gclid || undefined, tally: payload || undefined });
+          return;
+        }
+        if (d && typeof d === 'object' && (d as any).event === 'Tally.FormSubmitted') {
+          dl({ event: 'woa_lead_submit', form: 'tally_request_quote', gclid: gclid || undefined, tally: (d as any).payload || undefined });
+          return;
+        }
+
+        // Calendly: posts {event:"calendly.event_scheduled", payload:{...}}
+        if (d && typeof d === 'object' && typeof (d as any).event === 'string' && (d as any).event.indexOf('calendly.') === 0) {
+          if ((d as any).event === 'calendly.event_scheduled') {
+            dl({ event: 'woa_calendly_scheduled', gclid: gclid || undefined, calendly: (d as any).payload || undefined });
+          }
+        }
+      });
+
+      // ── Click-to-call tracking ─────────────────────────────────────
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const a = target.closest && target.closest('a[href^="tel:"]');
+        if (a) {
+          dl({ event: 'woa_call_click', number: a.getAttribute('href')!.replace('tel:', ''), source: a.getAttribute('data-cta') || 'tel' });
+        }
+      });
+
+      // ── Nav scroll state ───────────────────────────────────────────
+      // Matches the site nav: the WOA wordmark expands to "Work · Of · Art ◆"
+      // once scrolled away from the top (the .logo also expands on hover via CSS).
+      const nav = document.querySelector('.lp-nav');
+      const logo = nav ? nav.querySelector('.logo') : null;
+      if (nav) {
+        const onScroll = () => {
+          const scrolled = window.scrollY > 30;
+          nav.classList.toggle('scrolled', scrolled);
+          if (logo) logo.classList.toggle('peek', scrolled);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      // ── Smooth-scroll the in-page CTAs to #book (offset for fixed nav) ──
+      document.addEventListener('click', (e) => {
+        const target = e.target as HTMLElement;
+        const a = target.closest && (target.closest('a[href="#book"]') as HTMLAnchorElement | null);
+        if (!a) return;
+        const el = document.getElementById('book');
+        if (!el) return;
+        e.preventDefault();
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' });
+        loadCalendly();
+        loadTally();
+      });
+
+      // ── Deferred embeds: Calendly + Tally ──────────────────────────
+      const CALENDLY_URL = 'https://calendly.com/woacocktails/30min?hide_gdpr_banner=1&background_color=0b0907&text_color=ebe3d2&primary_color=c5302d';
+      function buildTallySrc(g: string): string {
+        const qs = ['alignLeft=1', 'hideTitle=1', 'transparentBackground=1', 'dynamicHeight=1'];
+        if (g) qs.push('gclid=' + encodeURIComponent(g));
+        return 'https://tally.so/embed/2ERkDj?' + qs.join('&');
+      }
+
+      function loadScript(src: string): Promise<void> {
+        return new Promise((resolve) => {
+          const existing = document.querySelector(`script[src="${src}"]`) as HTMLScriptElement | null;
+          if (existing) {
+            if (existing.dataset.loaded === '1') resolve();
+            else existing.addEventListener('load', () => resolve(), { once: true });
+            return;
+          }
+          const s = document.createElement('script');
+          s.src = src;
+          s.async = true;
+          s.addEventListener('load', () => { s.dataset.loaded = '1'; resolve(); }, { once: true });
+          s.addEventListener('error', () => resolve(), { once: true });
+          document.head.appendChild(s);
+        });
+      }
+
+      // Calendly (deferred inline widget).
+      const calWrap = document.querySelector('[data-embed-calendly]') as HTMLElement | null;
+      let calDone = false;
+      function loadCalendly() {
+        if (calDone || !calWrap) return;
+        calDone = true;
+        loadScript('https://assets.calendly.com/assets/external/widget.js').then(() => {
+          const C = (window as any).Calendly;
+          if (C && C.initInlineWidget) C.initInlineWidget({ url: CALENDLY_URL, parentElement: calWrap });
+        });
+      }
+
+      // Tally (deferred). gclid prefill is appended to the embed src.
+      const tally = document.querySelector('iframe.lp-tally') as HTMLIFrameElement | null;
+      let tallyDone = false;
+      function loadTally() {
+        if (tallyDone || !tally) return;
+        tallyDone = true;
+        if (!tally.src) tally.src = buildTallySrc(gclid);
+        loadScript('https://tally.so/widgets/embed.js').then(() => {
+          const T = (window as any).Tally;
+          if (T) T.loadEmbeds();
+        });
+      }
+
+      // Load each embed just before #book scrolls into view.
+      const book = document.getElementById('book');
+      if ('IntersectionObserver' in window && book) {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach((en) => {
+            if (!en.isIntersecting) return;
+            loadCalendly();
+            loadTally();
+            obs.disconnect();
+          });
+        }, { rootMargin: '300px 0px' });
+        io.observe(book);
+      } else {
+        loadCalendly();
+        loadTally();
+      }
+
+      // Deep link (#book) loads its embeds immediately.
+      if (location.hash === '#book') { loadCalendly(); loadTally(); }
+    </script>
+  </body>
+</html>

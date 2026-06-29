@@ -1,0 +1,13 @@
+---
+// Página de aterrizaje de pago — Barra móvil (español). Se llega SOLO desde el
+// anuncio de Google; noindex + independiente (sin Nav/Footer compartidos).
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import MobileBarCartLanding from '../../components/MobileBarCartLanding.astro';
+import { lpCartContent } from '../../i18n/lp-cart';
+
+const content = lpCartContent.es;
+---
+
+<LandingLayout lang="es" title={content.meta.title} description={content.meta.description}>
+  <MobileBarCartLanding lang="es" content={content} />
+</LandingLayout>
