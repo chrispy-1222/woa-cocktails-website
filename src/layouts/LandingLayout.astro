@@ -8,6 +8,8 @@
 // It still loads the same self-hosted fonts and global stylesheet as the rest
 // of the site, plus the page-specific woa-lp-cart.css.
 import type { Lang } from '../i18n/lp-cart';
+// Social-share card — same image the rest of the site uses for OG.
+import ogImg from '../assets/img/hero-bridge.jpg';
 
 export interface Props {
   lang: Lang;
@@ -16,6 +18,12 @@ export interface Props {
 }
 
 const { lang, title, description } = Astro.props;
+
+// Absolute URLs for social tags. Page is noindex (no canonical/hreflang needed),
+// but OG/Twitter make a shared ad link preview cleanly.
+const ogUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(ogImg.src, Astro.site).href;
+const ogLocale = lang === 'es' ? 'es_LA' : 'en_US';
 ---
 
 <!doctype html>
@@ -40,6 +48,18 @@ const { lang, title, description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    {/* Open Graph / Twitter — for shared links (page itself stays noindex). */}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={ogUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     {/* Self-hosted fonts — preload the three above-the-fold faces, then the
         full @font-face sheet. Mirrors Layout.astro. */}

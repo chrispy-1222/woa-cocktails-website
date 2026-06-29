@@ -3,6 +3,7 @@
 // page, rendered from a locale content object so EN and ES stay structurally
 // identical. Ported from woa-lp-cart.jsx (React) → static Astro markup. The
 // tracking surface + deferred Calendly/Tally loaders live in LandingLayout.
+import { getImage } from 'astro:assets';
 import Pic from './Pic.astro';
 import Footer from './Footer.astro';
 import CookieConsent from './CookieConsent.astro';
@@ -20,12 +21,27 @@ const { lang, content: c } = Astro.props;
 const TEL = 'tel:+12159390476';
 const callAria = lang === 'es' ? 'Llamar a WOA' : 'Call WOA';
 const homeHref = localizePath('/', lang);
+
+// Hero = the LCP element. Build the optimized image up front so we can BOTH
+// render it and emit a matching <link rel=preload> (kicks the fetch off during
+// CSS parse instead of after layout → faster LCP for the paid ad). Quality 72
+// is plenty under the dark scrim; extra width steps let phones pick a lighter file.
+const hero = await getImage({
+  src: heroCane,
+  widths: [480, 640, 768, 960],
+  sizes: '100vw',
+  format: 'webp',
+  quality: 72,
+});
 ---
+
+{/* LCP preload — matches the hero <img> below (same getImage result). */}
+<link rel="preload" as="image" href={hero.src} imagesrcset={hero.srcSet.attribute} imagesizes="100vw" fetchpriority="high" />
 
 <div class="lp">
   {/* ── Simplified header: animated WOA logo + ONE cta ── */}
   <nav class="lp-nav" data-nav>
-    <a href={homeHref} class="logo" aria-label="WOA Cocktails — home">
+    <a href={homeHref} class="logo">
       <span class="seg"><span class="cap">W</span><span class="tail">ork</span></span>
       <span class="sep">·</span>
       <span class="seg"><span class="cap">O</span><span class="tail">f</span></span>
@@ -42,7 +58,17 @@ const homeHref = localizePath('/', lang);
     {/* ── Hero — the cart is the hero. LCP = the cart photo. ── */}
     <section class="lp-hero" id="top">
       <div class="lp-hero-bg">
-        <Pic src={heroCane} alt={c.hero.bgAlt} kind="hero" priority />
+        <img
+          src={hero.src}
+          srcset={hero.srcSet.attribute}
+          sizes="100vw"
+          alt={c.hero.bgAlt}
+          width="960"
+          height="1280"
+          fetchpriority="high"
+          decoding="async"
+          loading="eager"
+        />
       </div>
       <div class="lp-hero-inner">
         <div class="lp-hero-eyebrow">

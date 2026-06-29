@@ -68,7 +68,7 @@
 }
 .lp-offer-pill .tag{
   font-family:var(--mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;
-  background:var(--crimson);color:var(--fg);padding:6px 10px;
+  background:var(--crimson);color:#fff;padding:6px 10px;  /* #fff = 5.4:1 on crimson (AA) */
 }
 .lp-offer-pill .txt{color:var(--fg);text-transform:uppercase;letter-spacing:0.16em}
 .lp-offer-pill .txt b{color:var(--amber);font-weight:600}
