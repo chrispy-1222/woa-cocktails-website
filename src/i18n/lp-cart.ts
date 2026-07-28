@@ -184,7 +184,7 @@ const en: LpContent = {
     lead: 'On any 3-hour mobile bar cart booking across South Florida.',
     terms: [
       { n: '01', t: '3-hour minimum booking', sub: 'So we arrive fully staffed and stocked — and you get the full experience.' },
-      { n: '02', t: 'Book by July 31, 2026', sub: 'Reserve your date before the window closes. Event can take place later.' },
+      { n: '02', t: 'Book by August 31, 2026', sub: 'Reserve your date before the window closes. Event can take place later.' },
       { n: '03', t: 'Greater South Florida', sub: 'Miami-Dade · Broward · Palm Beach.' },
     ],
     fine: "Offer applies to the rental of WOA's mobile bar cart with a confirmed 3+ hour booking. Terms to be confirmed — ask us for full details when you inquire.",
@@ -280,7 +280,7 @@ const en: LpContent = {
 
   footer: {
     tagline: 'A luxury hospitality & beverage house. Mobile bar cart experiences across Greater South Florida.',
-    reprise: '◆ First hour free · 3-hour minimum · book by July 31',
+    reprise: '◆ First hour free · 3-hour minimum · book by August 31',
     contact: 'Fabio · Miami · 215-939-0476',
     instagram: 'Instagram',
     tiktok: 'TikTok',
@@ -325,7 +325,7 @@ const es: LpContent = {
     lead: 'En cualquier reserva de barra móvil de 3 horas en el Sur de Florida.',
     terms: [
       { n: '01', t: 'Reserva mínima de 3 horas', sub: 'Así llegamos con el equipo completo y todo abastecido — y usted disfruta la experiencia entera.' },
-      { n: '02', t: 'Reserve antes del 31 de julio de 2026', sub: 'Aparte su fecha antes de que cierre la ventana. El evento puede realizarse después.' },
+      { n: '02', t: 'Reserve antes del 31 de agosto de 2026', sub: 'Aparte su fecha antes de que cierre la ventana. El evento puede realizarse después.' },
       { n: '03', t: 'Gran Sur de Florida', sub: 'Miami-Dade · Broward · Palm Beach.' },
     ],
     fine: 'La oferta aplica al alquiler de la barra móvil de WOA con una reserva confirmada de 3 o más horas. Términos por confirmar — pídanos los detalles completos al consultar.',
@@ -421,7 +421,7 @@ const es: LpContent = {
 
   footer: {
     tagline: 'Una casa de hospitalidad y bebidas de lujo. Experiencias de barra móvil en todo el Gran Sur de Florida.',
-    reprise: '◆ Primera hora gratis · mínimo 3 horas · reserve antes del 31 de julio',
+    reprise: '◆ Primera hora gratis · mínimo 3 horas · reserve antes del 31 de agosto',
     contact: 'Fabio · Miami · 215-939-0476',
     instagram: 'Instagram',
     tiktok: 'TikTok',
