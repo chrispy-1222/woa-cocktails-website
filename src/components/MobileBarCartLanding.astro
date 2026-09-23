@@ -82,13 +82,6 @@ const hero = await getImage({
 
         <p class="lp-hero-sub" set:html={c.hero.sub} />
 
-        {c.offerActive && (
-          <div class="lp-offer-pill">
-            <span class="tag">{c.hero.pillTag}</span>
-            <span class="txt">{c.hero.pillLead}<b>{c.hero.pillEmph}</b>{c.hero.pillTail}</span>
-          </div>
-        )}
-
         <div class="lp-hero-cta">
           <a href="#book" class="btn btn-solid" data-cta="hero">
             {c.cta} <span class="arr">→</span>
@@ -106,37 +99,6 @@ const hero = await getImage({
         </div>
       </div>
     </section>
-
-    {/* ── Offer module (SWAPPABLE) ── */}
-    {c.offerActive && (
-      <section class="lp-offer" id="offer" aria-label="Current offer">
-        <div class="wrap">
-          <div class="lp-offer-inner">
-            <div>
-              <span class="eyebrow amber">{c.offer.eyebrow}</span>
-              <div class="lp-offer-free" style="margin-top:14px">
-                {c.offer.free1}<br /><em>{c.offer.freeEmph}</em>
-              </div>
-              <p class="lp-offer-lead" set:html={c.offer.lead} />
-              <a href="#book" class="btn btn-solid lp-offer-cta" data-cta="offer">
-                {c.cta} <span class="arr">→</span>
-              </a>
-            </div>
-            <div>
-              <ul class="lp-offer-terms">
-                {c.offer.terms.map((t) => (
-                  <li>
-                    <span class="n">{t.n}</span>
-                    <span class="t">{t.t}<span>{t.sub}</span></span>
-                  </li>
-                ))}
-              </ul>
-              <p class="lp-offer-fine">{c.offer.fine}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    )}
 
     {/* ── What you get ── */}
     <section class="lp-section" id="experience">

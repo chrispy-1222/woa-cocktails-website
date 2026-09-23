@@ -2,21 +2,14 @@
 //
 // Kept out of the .astro files so the English and Spanish pages render the
 // SAME markup — only the strings differ. Copy is message-matched to the Google
-// ad (first hour free / 3-hour minimum / South Florida) to protect Quality
-// Score. The offer is a self-contained block: flip `offerActive` to false to
-// drop the promo everywhere (hero pill, offer band, footer reprise) and fall
-// back to the neutral CTA label.
+// ad (3-hour minimum / bartender included / South Florida) to protect Quality
+// Score.
 //
 // Some fields carry inline HTML (marked `… (HTML)`) and are rendered with
 // `set:html` — preserve the <b>/<em> tags and &amp; entities exactly.
 
 export type Lang = 'en' | 'es';
 
-export interface LpTerm {
-  n: string;
-  t: string;
-  sub: string;
-}
 export interface LpItem {
   n: string;
   /** May contain inline HTML (rendered with set:html). */
@@ -41,7 +34,6 @@ export interface LpFaq {
 export interface LpContent {
   meta: { title: string; description: string };
 
-  offerActive: boolean;
   cta: string;
 
   hero: {
@@ -52,23 +44,9 @@ export interface LpContent {
     h1Emph: string;
     /** HTML. */
     sub: string;
-    pillTag: string;
-    pillLead: string;
-    pillEmph: string;
-    pillTail: string;
     call: string;
     /** Each chip is HTML (contains <b>). Rendered with ◆ separators between. */
     area: string[];
-  };
-
-  offer: {
-    eyebrow: string;
-    free1: string;
-    freeEmph: string;
-    /** HTML. */
-    lead: string;
-    terms: LpTerm[];
-    fine: string;
   };
 
   get: {
@@ -138,7 +116,6 @@ export interface LpContent {
 
   footer: {
     tagline: string;
-    reprise: string;
     contact: string;
     instagram: string;
     tiktok: string;
@@ -149,13 +126,12 @@ export interface LpContent {
 
 const en: LpContent = {
   meta: {
-    title: 'Mobile Bar Cart Rental — South Florida · First Hour Free | WOA Cocktails',
+    title: 'Mobile Bar Cart Rental — South Florida | WOA Cocktails',
     description:
-      "WOA's luxury mobile bar cart, a pro bartender and a custom cocktail menu — for weddings, corporate and private events across Miami-Dade, Broward & Palm Beach. First hour free with a 3-hour booking.",
+      "WOA's luxury mobile bar cart, a pro bartender and a custom cocktail menu — for weddings, corporate and private events across Miami-Dade, Broward & Palm Beach. Full-service from $850, 3-hour minimum.",
   },
 
-  offerActive: true,
-  cta: 'Claim your free hour',
+  cta: 'Get your quote',
 
   hero: {
     bgAlt: 'WOA mobile bar cart set up outdoors with two bartenders, fresh garnishes and a custom cocktail menu',
@@ -164,10 +140,6 @@ const en: LpContent = {
     h1Line2Lead: 'rolls up to ',
     h1Emph: 'your event.',
     sub: 'WOA brings the full mobile bar cart, a pro bartender and a custom cocktail menu to weddings, corporate parties and private events across <b>Miami-Dade, Broward &amp; Palm Beach</b>.',
-    pillTag: 'Limited offer',
-    pillLead: 'Your ',
-    pillEmph: 'first hour free',
-    pillTail: ' with a 3-hr booking',
     call: 'Call & book',
     area: [
       '<b>3-hour</b> minimum',
@@ -175,19 +147,6 @@ const en: LpContent = {
       '<b>South Florida</b> · Miami-Dade · Broward · Palm Beach',
       'Full-service <b>from $850</b>',
     ],
-  },
-
-  offer: {
-    eyebrow: '— The offer',
-    free1: 'First hour',
-    freeEmph: 'free.',
-    lead: 'On any 3-hour mobile bar cart booking across South Florida.',
-    terms: [
-      { n: '01', t: '3-hour minimum booking', sub: 'So we arrive fully staffed and stocked — and you get the full experience.' },
-      { n: '02', t: 'Book by August 31, 2026', sub: 'Reserve your date before the window closes. Event can take place later.' },
-      { n: '03', t: 'Greater South Florida', sub: 'Miami-Dade · Broward · Palm Beach.' },
-    ],
-    fine: "Offer applies to the rental of WOA's mobile bar cart with a confirmed 3+ hour booking. Terms to be confirmed — ask us for full details when you inquire.",
   },
 
   get: {
@@ -233,15 +192,15 @@ const en: LpContent = {
     h2It: 'your cart.',
     steps: [
       { n: '01', h: 'Tell us about your event', p: "Date, location, guest count and the vibe you're after. Takes two minutes — by form, call or scheduled chat." },
-      { n: '02', h: 'Get a tailored quote', p: 'We come back fast with a cart package and signature menu built for your event — your free first hour already applied.' },
+      { n: '02', h: 'Get a tailored quote', p: 'We come back fast with a cart package and signature menu built for your event — priced for your date, hours and guest count.' },
       { n: '03', h: 'We roll up &amp; pour', p: 'We deliver, set up and run the bar. You enjoy your event; your guests gather around the cart.' },
     ],
   },
 
   book: {
     ix: '[ 04 / Book the cart ]',
-    h2Lead: 'Lock in your date — ',
-    h2It: 'free hour included.',
+    h2Lead: 'Lock in ',
+    h2It: 'your date.',
     intro: "Send the details and we'll come back with a tailored quote, or grab a time to talk it through. Whichever's easier.",
     quoteHead: 'Request a quote',
     quoteMeta: '~2 min',
@@ -280,7 +239,6 @@ const en: LpContent = {
 
   footer: {
     tagline: 'A luxury hospitality & beverage house. Mobile bar cart experiences across Greater South Florida.',
-    reprise: '◆ First hour free · 3-hour minimum · book by August 31',
     contact: 'Fabio · Miami · 215-939-0476',
     instagram: 'Instagram',
     tiktok: 'TikTok',
@@ -290,13 +248,12 @@ const en: LpContent = {
 
 const es: LpContent = {
   meta: {
-    title: 'Alquiler de barra móvil — Sur de Florida · Primera hora gratis | WOA Cocktails',
+    title: 'Alquiler de barra móvil — Sur de Florida | WOA Cocktails',
     description:
-      'La barra móvil de lujo de WOA, un bartender profesional y un menú de cócteles personalizado — para bodas, eventos corporativos y privados en Miami-Dade, Broward y Palm Beach. Primera hora gratis con una reserva de 3 horas.',
+      'La barra móvil de lujo de WOA, un bartender profesional y un menú de cócteles personalizado — para bodas, eventos corporativos y privados en Miami-Dade, Broward y Palm Beach. Servicio completo desde $850, mínimo 3 horas.',
   },
 
-  offerActive: true,
-  cta: 'Reserve su hora gratis',
+  cta: 'Reciba su cotización',
 
   hero: {
     bgAlt: 'Barra móvil de WOA montada al aire libre con dos bartenders, garnishes frescos y un menú de cócteles personalizado',
@@ -305,10 +262,6 @@ const es: LpContent = {
     h1Line2Lead: 'que llega a ',
     h1Emph: 'su evento.',
     sub: 'WOA lleva la barra móvil completa, un bartender profesional y un menú de cócteles personalizado a bodas, eventos corporativos y privados en <b>Miami-Dade, Broward y Palm Beach</b>.',
-    pillTag: 'Oferta limitada',
-    pillLead: 'Su ',
-    pillEmph: 'primera hora gratis',
-    pillTail: ' con una reserva de 3 h',
     call: 'Llame y reserve',
     area: [
       'Mínimo <b>3 horas</b>',
@@ -316,19 +269,6 @@ const es: LpContent = {
       '<b>Sur de Florida</b> · Miami-Dade · Broward · Palm Beach',
       'Servicio completo <b>desde $850</b>',
     ],
-  },
-
-  offer: {
-    eyebrow: '— La oferta',
-    free1: 'Primera hora',
-    freeEmph: 'gratis.',
-    lead: 'En cualquier reserva de barra móvil de 3 horas en el Sur de Florida.',
-    terms: [
-      { n: '01', t: 'Reserva mínima de 3 horas', sub: 'Así llegamos con el equipo completo y todo abastecido — y usted disfruta la experiencia entera.' },
-      { n: '02', t: 'Reserve antes del 31 de agosto de 2026', sub: 'Aparte su fecha antes de que cierre la ventana. El evento puede realizarse después.' },
-      { n: '03', t: 'Gran Sur de Florida', sub: 'Miami-Dade · Broward · Palm Beach.' },
-    ],
-    fine: 'La oferta aplica al alquiler de la barra móvil de WOA con una reserva confirmada de 3 o más horas. Términos por confirmar — pídanos los detalles completos al consultar.',
   },
 
   get: {
@@ -374,15 +314,15 @@ const es: LpContent = {
     h2It: 'su barra.',
     steps: [
       { n: '01', h: 'Cuéntenos sobre su evento', p: 'Fecha, ubicación, número de invitados y el ambiente que busca. Toma dos minutos — por formulario, llamada o cita agendada.' },
-      { n: '02', h: 'Reciba una cotización a la medida', p: 'Le respondemos rápido con un paquete de barra y un menú de autor creado para su evento — con su primera hora gratis ya aplicada.' },
+      { n: '02', h: 'Reciba una cotización a la medida', p: 'Le respondemos rápido con un paquete de barra y un menú de autor creado para su evento — con el precio según su fecha, las horas y el número de invitados.' },
       { n: '03', h: 'Llegamos y servimos', p: 'Entregamos, montamos y operamos la barra. Usted disfruta su evento; sus invitados se reúnen alrededor de la barra.' },
     ],
   },
 
   book: {
     ix: '[ 04 / Reserve la barra ]',
-    h2Lead: 'Aparte su fecha — ',
-    h2It: 'hora gratis incluida.',
+    h2Lead: 'Aparte ',
+    h2It: 'su fecha.',
     intro: 'Envíenos los detalles y le respondemos con una cotización a la medida, o aparte un horario para conversarlo. Lo que le resulte más fácil.',
     quoteHead: 'Solicite una cotización',
     quoteMeta: '~2 min',
@@ -421,7 +361,6 @@ const es: LpContent = {
 
   footer: {
     tagline: 'Una casa de hospitalidad y bebidas de lujo. Experiencias de barra móvil en todo el Gran Sur de Florida.',
-    reprise: '◆ Primera hora gratis · mínimo 3 horas · reserve antes del 31 de agosto',
     contact: 'Fabio · Miami · 215-939-0476',
     instagram: 'Instagram',
     tiktok: 'TikTok',
