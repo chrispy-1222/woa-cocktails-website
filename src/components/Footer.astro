@@ -45,7 +45,8 @@ const year = new Date().getFullYear();
         <h2>{t(lang, 'footer.house')}</h2>
         <ul>
           <li><a href={L('/#about')}>{t(lang, 'footer.house.about')}</a></li>
-          <li><a href={L('/pricing')}>{t(lang, 'footer.house.pricing')}</a></li>
+          {/* Pricing link removed 2026-10-06 — page archived as src/pages/_pricing.astro
+              until we have real prices. The `footer.house.pricing` i18n key is kept. */}
           <li><a href={L('/#testimonials')}>{t(lang, 'footer.house.testimonials')}</a></li>
           <li><a href={L('/contact')}>{t(lang, 'footer.house.faq')}</a></li>
           <li><a href={L('/contact')}>{t(lang, 'footer.house.contact')}</a></li>

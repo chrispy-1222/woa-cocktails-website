@@ -1,4 +1,31 @@
 ---
+// ─────────────────────────────────────────────────────────────────────
+// ARCHIVED — NOT BUILT, NOT ROUTED, NOT INDEXED.
+//
+// The leading underscore in the filename tells Astro to skip this file,
+// so /pricing no longer exists as a route. The design is preserved here
+// in full so the page can be brought back in minutes once we have real
+// prices.
+//
+// WHY: every dollar figure below is a PLACEHOLDER invented during the
+// original design pass — the client never confirmed pricing. Archived
+// 2026-10-06 at Christian's request so unverified rates aren't public.
+//
+// TO RESTORE:
+//   1. git mv src/pages/_pricing.astro    src/pages/pricing.astro
+//      git mv src/pages/es/_pricing.astro src/pages/es/pricing.astro
+//   2. Update the PACKAGES / ADDONS prices with the real numbers.
+//   3. Re-add the footer link in src/components/Footer.astro
+//      (House column: <li><a href={L('/pricing')}>...</a></li> — the
+//      i18n key `footer.house.pricing` is still in src/i18n/ui.ts).
+//   4. Re-add '/pricing' to routeLabel in src/layouts/Layout.astro
+//      for the breadcrumb JSON-LD.
+//   5. Delete the /pricing and /es/pricing redirects from vercel.json.
+//   6. Fix the minimums contradiction before shipping: the FAQ says
+//      "20 guests / 3-hour minimum" while package 01 says a 4-hour
+//      service window and package 02 says a 4-hour minimum.
+//   The sitemap picks the route back up automatically.
+// ─────────────────────────────────────────────────────────────────────
 import Layout from '../../layouts/Layout.astro';
 
 // ── Packages ─────────────────────────────────────────────────────────
