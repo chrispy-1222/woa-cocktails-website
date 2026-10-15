@@ -5,15 +5,19 @@ import mbHeroPuma from '../assets/img/mb-hero-puma.webp';
 import mbServices from '../assets/img/mb-services.webp';
 import mbOfficeWhite from '../assets/img/mb-office-white.jpg';
 import cocktailFoam from '../assets/img/cocktail-foam.jpg';
+import PriceTag from '../components/PriceTag.astro';
+import { priceFrom } from '../i18n/pricing';
+
+const rentalRange = priceFrom('rentals', 'en');
 
 // ── Chapter 02 — Make it yours (customizable, NOT a fixed package) ──
 const INCLUDES = [
-  { n: '01', core: true, title: 'The mobile bar', desc: 'Our signature bar build — tailored in footprint, finish and styling to your venue. This is the one thing every booking starts with.' },
-  { n: '02', title: 'Professional bartenders', desc: 'Add our experienced, presentation-ready hospitality team — or run the bar with your own staff.' },
-  { n: '03', title: 'Custom cocktail menu', desc: 'A bespoke menu built around your event — featured signatures, classics, low- and zero-proof options.' },
+  { n: '01', core: true, title: 'The mobile bar', desc: 'Our signature bar build: tailored in footprint, finish and styling to your venue. This is the one thing every booking starts with.' },
+  { n: '02', title: 'Professional bartenders', desc: 'Add our experienced, presentation-ready hospitality team, or run the bar with your own staff.' },
+  { n: '03', title: 'Custom cocktail menu', desc: 'A bespoke menu built around your event: featured signatures, classics, low- and zero-proof options.' },
   { n: '04', title: 'Signature cocktail development', desc: 'Original house cocktails created for your event, named to the moment, built to lead the night.' },
   { n: '05', title: 'Premium mixers, garnishes & ice', desc: 'Fresh, sourced ingredients only. House-cut ice, in-season citrus, crafted syrups.' },
-  { n: '06', title: 'Bar tools & glassware', desc: 'Full kit — shakers, jiggers, strainers, fine bar glassware. We can arrive ready, or you bring your own.' },
+  { n: '06', title: 'Bar tools & glassware', desc: 'Full kit: shakers, jiggers, strainers, fine bar glassware. We can arrive ready, or you bring your own.' },
   { n: '07', title: 'Setup, breakdown & handling', desc: 'We arrive early, depart clean. Hosts shouldn\'t think about logistics.' },
 ];
 
@@ -29,8 +33,8 @@ const IDEAL = [
 
 // ── Chapter 05 — Process ──
 const STEPS = [
-  { n: '01', t: 'Discovery call', d: 'A 30-minute consult — date, vision, market, scope. No pressure.' },
-  { n: '02', t: 'Tailored proposal', d: 'Within two business days — bar build, staffing options, menu direction, all-in quote.' },
+  { n: '01', t: 'Discovery call', d: 'A 30-minute consult: date, vision, market, scope. No pressure.' },
+  { n: '02', t: 'Tailored proposal', d: 'Within two business days: bar build, staffing options, menu direction, all-in quote.' },
   { n: '03', t: 'Menu & build', d: 'Tasting (optional). Signature cocktails finalized. Bar build and styling locked.' },
   { n: '04', t: 'Event day', d: 'We arrive early. Set up, host, break down, leave clean. You stay a guest at your own event.' },
 ];
@@ -38,28 +42,28 @@ const STEPS = [
 // ── FAQ ──
 const MB_FAQ = [
   { q: 'How is pricing structured?',
-    a: 'Every event is quoted custom — there are too many variables (guest count, hours, market, bar build, menu complexity, staffing, market) for a flat rate to be honest. After a 30-minute discovery call we send a full proposal within two business days.' },
+    a: 'Every event is quoted custom: there are too many variables (guest count, hours, market, bar build, menu complexity, staffing, market) for a flat rate to be honest. After a 30-minute discovery call we send a full proposal within two business days.' },
   { q: 'Does WOA Cocktails provide alcohol?',
     a: 'WOA Cocktails coordinates and curates the complete beverage experience. We can assist with menu planning, shopping lists, quantities, mixers, garnishes, and all beverage-related details to ensure a seamless service.' },
   { q: 'Can you match the setup with my event theme or aesthetic?',
     a: 'Yes. We can customize the bar setup, menu design, décor, and overall presentation to match your event theme and aesthetic.' },
   { q: 'What is included in the luxury mobile bar?',
-    a: 'The full bar build — front and back-bar setup, glassware, ice well, garnish station, signage if applicable. Our bars come in several footprints; we\'ll spec the right size to your venue and guest count.' },
+    a: 'The full bar build: front and back-bar setup, glassware, ice well, garnish station, signage if applicable. Our bars come in several footprints; we\'ll spec the right size to your venue and guest count.' },
   { q: 'How many guests can WOA serve?',
     a: 'Packages start from a 20-guest minimum and scale to events of 500+. Staffing and bar count scale with guest count to maintain a sub-3-minute service standard at peak.' },
   { q: 'Can you create a signature cocktail for our event?',
-    a: 'Yes — custom signature cocktail development is available as an add-on if needed. We can build around a theme, color palette, name, or even a guest of honor.' },
+    a: 'Yes, custom signature cocktail development is available as an add-on if needed. We can build around a theme, color palette, name, or even a guest of honor.' },
 ];
 ---
 
 <Layout
-  title="Mobile Bar Experience — WOA Cocktails · Luxury Hospitality & Beverage House"
-  description="WOA's full-service mobile bar experience — luxury bar builds, signature cocktail menus, professional bartending staff, executed end-to-end. NYC & Miami."
+  title="Mobile Bar Experience, WOA Cocktails · Luxury Hospitality & Beverage House"
+  description="WOA's full-service mobile bar experience: luxury bar builds, signature cocktail menus, professional bartending staff, executed end-to-end. NYC & Miami."
   styles={['woa-service.css', 'woa-svc-mobilebar.css']}
 >
   <main class="svc-page mb-page">
     {/* ── MB_Hero ── */}
-    <section class="mb-hero" data-screen-label="Mobile Bar — Hero">
+    <section class="mb-hero" data-screen-label="Mobile Bar. Hero">
       <div class="mb-hero-text">
         <div class="mb-hero-kicker">
           <span class="num">01</span>
@@ -71,7 +75,7 @@ const MB_FAQ = [
         </h1>
 
         <p class="mb-hero-lede">
-          A fully built, fully stocked bar — set up wherever you're celebrating.
+          A fully built, fully stocked bar, set up wherever you're celebrating.
           Rent it on its own, or let our team run the whole night.
         </p>
 
@@ -81,11 +85,13 @@ const MB_FAQ = [
           <li><span class="d" />Private events</li>
         </ul>
 
+        <PriceTag service="mobilebar" lang="en" />
+
         <div class="mb-hero-actions">
           <a href="/contact" class="btn btn-solid mb-hero-cta">
             Inquire for your event <span class="arr">→</span>
           </a>
-          <a href="#rental" class="btn btn-ghost">Bar-only rental</a>
+          <a href="/bar-rentals" class="btn btn-ghost">Bar-only rental</a>
         </div>
       </div>
 
@@ -173,7 +179,7 @@ const MB_FAQ = [
         <header class="svp-chapter-head">
           <span class="svp-chapter-num">[ 01 / The Setup ]</span>
           <h2 class="svp-chapter-title">
-            We deliver the bar — <span class="it">set</span> for the moment.
+            We deliver the bar, <span class="it">set</span> for the moment.
           </h2>
         </header>
 
@@ -184,7 +190,7 @@ const MB_FAQ = [
           </figure>
           <div class="mb-setup-copy">
             <p class="mb-lede">
-              Rooftops, lofts, backyards, ballrooms — our mobile bar arrives styled,
+              Rooftops, lofts, backyards, ballrooms: our mobile bar arrives styled,
               stocked and ready to pour. We handle delivery, setup and breakdown, so
               the bar fits the room and the night runs clean.
             </p>
@@ -192,7 +198,7 @@ const MB_FAQ = [
               <span class="qmark">"</span>
               We treat the bar as a stage. Every guest who walks up should feel
               like the only one being served.
-              <span class="sig">— The WOA House</span>
+              <span class="sig">The WOA House</span>
             </div>
           </div>
         </div>
@@ -209,14 +215,14 @@ const MB_FAQ = [
           </h2>
         </header>
         <p class="mb-included-intro">
-          The mobile bar is the centerpiece — everything around it is your call. Want
+          The mobile bar is the centerpiece, everything around it is your call. Want
           just the bar? Done. Want it staffed with professional bartenders and a custom
           menu? We can do that too. Add only what your event needs.
         </p>
         <div class="svp-include">
           {INCLUDES.map((i, idx) => (
             <article class={'svp-include-item' + (i.core ? ' is-core' : '') + (idx === INCLUDES.length - 1 && INCLUDES.length % 2 === 1 ? ' is-wide' : '')}>
-              <span class="n">— {i.n}</span>
+              <span class="n">{i.n}</span>
               <div class="body">
                 <h3>
                   {i.title}
@@ -245,12 +251,12 @@ const MB_FAQ = [
           <div class="mb-rental-copy">
             <p class="mb-lede">
               Just need the bar? We deliver and set up the mobile bar at your
-              venue — and from there, the night is yours to run.
+              venue, and from there, the night is yours to run.
             </p>
             <p class="mb-rental-note">
               You stay in full command. Bring your own bartenders, stock your own
               spirits, and run service exactly the way you want. The bar shows up
-              styled and ready — the rest is your call.
+              styled and ready, the rest is your call.
             </p>
             <ul class="mb-rental-list">
               <li><span class="d" />You choose who staffs it</li>
@@ -258,11 +264,12 @@ const MB_FAQ = [
               <li><span class="d" />You run service your way</li>
             </ul>
             <p class="mb-rental-foot">
-              Change your mind? You can add WOA bartenders, a custom menu, or full
-              service to any rental — at any point.
+              Rentals run <b style="color:var(--fg)">{rentalRange}</b>, set by the build you
+              choose, the date and the venue. Change your mind? You can add WOA
+              bartenders, a custom menu, or full service to any rental, at any point.
             </p>
-            <a href="/contact" class="btn btn-ghost mb-rental-cta">
-              Ask about bar rental <span class="arr">→</span>
+            <a href="/bar-rentals" class="btn btn-ghost mb-rental-cta">
+              See bar rentals <span class="arr">→</span>
             </a>
           </div>
 
@@ -289,7 +296,7 @@ const MB_FAQ = [
           ))}
         </div>
         <p class="mb-ideal-note">
-          From intimate gatherings to large-scale hospitality experiences — rented on
+          From intimate gatherings to large-scale hospitality experiences, rented on
           its own, or run end-to-end by the <b style="color:var(--fg)">WOA team</b>.
         </p>
       </div>
@@ -305,7 +312,7 @@ const MB_FAQ = [
         <div class="svp-steps">
           {STEPS.map((s) => (
             <article class="svp-step">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -343,7 +350,7 @@ const MB_FAQ = [
         <Pic src={cocktailFoam} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Inquire</span>
+        <span class="eyebrow">Inquire</span>
         <h2 class="display">
           Let's build <span class="it" style="color:var(--crimson-text)">your</span> bar.
         </h2>

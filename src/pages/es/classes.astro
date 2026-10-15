@@ -11,6 +11,7 @@ import cocktailBeetPom from '../../assets/img/cocktail-beet-pom.webp';
 import cocktailWoaClassic from '../../assets/img/cocktail-woa-classic.webp';
 import cocktailSunsetMarg from '../../assets/img/cocktail-sunset-marg.webp';
 import svcClass from '../../assets/img/svc-class.jpg';
+import PriceTag from '../../components/PriceTag.astro';
 
 // ── Class formats (4) ──
 const FORMATS = [
@@ -21,10 +22,10 @@ const FORMATS = [
     desc: "Menús de marca, cócteles personalizados, presentación lista para prensa. Diseñado en torno a su lanzamiento.",
     img: classBrand, tag: "Personalizado" },
   { n: "03", title: "Grupos privados",
-    desc: "Cumpleaños, despedidas de soltera, cenas, momentos memorables — y clases personales uno a uno. Vamos a su cocina.",
+    desc: "Cumpleaños, despedidas de soltera, cenas, momentos memorables, y clases personales uno a uno. Vamos a su cocina.",
     img: classGuest, tag: "Íntimo" },
   { n: "04", title: "Grupos de hospitalidad",
-    desc: "Capacitación de personal para restaurantes y bares — técnica, menú, fundamentos de hospitalidad.",
+    desc: "Capacitación de personal para restaurantes y bares: técnica, menú, fundamentos de hospitalidad.",
     img: foundersBar, tag: "Profesional" },
 ];
 
@@ -43,9 +44,9 @@ const C_FAQ = [
   { q: "¿Cuánto dura una clase?",
     a: "Nuestra clase estándar dura 2 horas de principio a fin, y las clases van de 1 a 3 horas según el formato. Los offsites corporativos a menudo agregan una degustación o una cena con maridaje." },
   { q: "¿Quién provee el alcohol y el equipo?",
-    a: "WOA trae el kit completo — herramientas, cristalería, mezcladores, garnishes y tarjetas de recetas para cada invitado. Para los destilados, WOA Cocktails coordina y cura la experiencia de bebidas: ayudamos con la planeación del menú, las listas de compras, las cantidades y todos los detalles relacionados con las bebidas para una clase sin contratiempos. Usted aporta el espacio y las personas." },
+    a: "WOA trae el kit completo: herramientas, cristalería, mezcladores, garnishes y tarjetas de recetas para cada invitado. Para los destilados, WOA Cocktails coordina y cura la experiencia de bebidas. Ayudamos con la planeación del menú, las listas de compras, las cantidades y todos los detalles relacionados con las bebidas para una clase sin contratiempos. Usted aporta el espacio y las personas." },
   { q: "¿Pueden crear un menú temático o de marca?",
-    a: "Sí. Para activaciones de marca o eventos privados creamos cócteles con nombre acordes a la ocasión — invitado de honor, identidad de marca, paleta de colores, la historia que estamos contando. Esto se incluye en las propuestas personalizadas." },
+    a: "Sí. Para activaciones de marca o eventos privados creamos cócteles con nombre acordes a la ocasión: invitado de honor, identidad de marca, paleta de colores, la historia que estamos contando. Esto se incluye en las propuestas personalizadas." },
   { q: "¿Podemos reservar una clase como parte de un evento más grande?",
     a: "A menudo es el formato más sólido. Una clase de 60 minutos para abrir la noche, seguida de un servicio completo de barra móvil WOA durante el resto de la velada. Aplica precio en paquete." },
 ];
@@ -53,7 +54,7 @@ const C_FAQ = [
 
 <Layout
   lang="es"
-  title="Clases Privadas de Coctelería — WOA Cocktails"
+  title="Clases Privadas de Coctelería, WOA Cocktails"
   description="Clases de coctelería prácticas dirigidas por mixólogos profesionales de WOA. Offsites corporativos, team-building, grupos privados, activaciones de marca. Nueva York y Miami."
   styles={['woa-service.css', 'woa-svc-classes.css']}
 >
@@ -63,7 +64,7 @@ const C_FAQ = [
       <div class="wrap c-hero-grid">
         <div class="c-hero-copy">
           <div style="display:flex;justify-content:space-between;margin-bottom:32px">
-            <span class="eyebrow">— Servicio 04 · Práctico</span>
+            <span class="eyebrow">Servicio 04 · Práctico</span>
           </div>
           <span class="svp-hero-rule"></span>
           <h1 class="display h-xl">
@@ -72,15 +73,17 @@ const C_FAQ = [
           </h1>
           <p class="c-hero-lede">
             Clases interactivas de cócteles para offsites corporativos, team-building,
-            activaciones de marca y grupos privados — incluyendo clases personales
-            uno a uno. Un mixólogo profesional de WOA dirige la sala — y usted sale
+            activaciones de marca y grupos privados, incluyendo clases personales
+            uno a uno. Un mixólogo profesional de WOA dirige la sala, y usted sale
             preparando cócteles que de verdad servirá en casa.
           </p>
           <div class="c-hero-marks">
             <span><b>2h</b><small>Duración de la clase</small></span>
-            <span><b>1–60</b><small>Invitados</small></span>
+            <span><b>12–60</b><small>Invitados</small></span>
             <span><b>NYC · MIA</b><small>Vamos a usted</small></span>
           </div>
+
+          <PriceTag service="classes" lang="es" />
         </div>
         <figure class="c-hero-photo">
           <Pic src={classHero} alt="Un mixólogo de WOA dirigiendo una clase práctica de cócteles" kind="half" priority />
@@ -106,7 +109,7 @@ const C_FAQ = [
                 <span class="c-format-tag">{f.tag}</span>
               </figure>
               <div class="c-format-body">
-                <span class="n">— {f.n}</span>
+                <span class="n">{f.n}</span>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
               </div>
@@ -126,7 +129,7 @@ const C_FAQ = [
           </h2>
         </header>
         <p class="c-menu-note">
-          Se muestra un menú de ejemplo — cada clase se diseña según el grupo y la ocasión.
+          Se muestra un menú de ejemplo, cada clase se diseña según el grupo y la ocasión.
           Menús temáticos, activaciones de marca y creaciones de temporada disponibles.
         </p>
         <div class="c-menu-grid">
@@ -156,7 +159,7 @@ const C_FAQ = [
           <div class="c-where-card">
             <div class="ix">01</div>
             <h3>Su oficina</h3>
-            <p>El más reservado. Sala de juntas, cocina, lounge — cualquier superficie plana con electricidad y agua cerca. Nosotros traemos todo lo demás.</p>
+            <p>El más reservado. Sala de juntas, cocina, lounge, cualquier superficie plana con electricidad y agua cerca. Nosotros traemos todo lo demás.</p>
           </div>
           <div class="c-where-card">
             <div class="ix">02</div>
@@ -201,12 +204,12 @@ const C_FAQ = [
         <Pic src={svcClass} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Solicite</span>
+        <span class="eyebrow">Solicite</span>
         <h2 class="display">
           Reserve su <span class="it" style="color:var(--crimson-text)">clase</span>.
         </h2>
         <p>
-          Llamada de exploración de 30 minutos. Definiremos el formato, el menú y la fecha — y
+          Llamada de exploración de 30 minutos. Definiremos el formato, el menú y la fecha, y
           tendrá una propuesta personalizada en su bandeja de entrada en dos días hábiles.
         </p>
         <div class="cta-row">

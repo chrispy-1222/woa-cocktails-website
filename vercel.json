@@ -15,16 +15,6 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
-    },
-    {
-      "source": "/pricing",
-      "destination": "/contact",
-      "permanent": true
-    },
-    {
-      "source": "/es/pricing",
-      "destination": "/es/contact",
-      "permanent": true
     }
   ]
 }

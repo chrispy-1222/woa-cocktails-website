@@ -1,0 +1,13 @@
+---
+// Página pública de precios (español). Mismas cifras que la versión en inglés:
+// ambas se renderizan desde src/i18n/pricing.ts.
+import Layout from '../../layouts/Layout.astro';
+import PricingPage from '../../components/PricingPage.astro';
+import { pricingCopy } from '../../i18n/pricing-copy';
+
+const c = pricingCopy.es;
+---
+
+<Layout lang="es" title={c.meta.title} description={c.meta.description} styles={['woa-pricing.css']}>
+  <PricingPage lang="es" />
+</Layout>

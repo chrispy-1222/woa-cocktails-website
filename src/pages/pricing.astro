@@ -1,0 +1,14 @@
+---
+// Public pricing page (English). Reinstated 2026-10-15 with the figures the
+// client confirmed at the Oct 15 alignment. Every price renders from
+// src/i18n/pricing.ts; see scripts/check-prices.mjs for the build-time guard.
+import Layout from '../layouts/Layout.astro';
+import PricingPage from '../components/PricingPage.astro';
+import { pricingCopy } from '../i18n/pricing-copy';
+
+const c = pricingCopy.en;
+---
+
+<Layout lang="en" title={c.meta.title} description={c.meta.description} styles={['woa-pricing.css']}>
+  <PricingPage lang="en" />
+</Layout>

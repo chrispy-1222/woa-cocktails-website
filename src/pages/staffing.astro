@@ -17,6 +17,7 @@ import galRooftopBartender from '../assets/img/gal-rooftop-bartender.jpg';
 import galRooftopShake from '../assets/img/gal-rooftop-shake.jpg';
 import galRooftopPortrait from '../assets/img/gal-rooftop-portrait.jpg';
 import galRooftopGroup from '../assets/img/gal-rooftop-group.jpg';
+import PriceTag from '../components/PriceTag.astro';
 
 // ── Hero: interactive team rolodex ───────────────────────────────────
 // Real WOA team — names + roles surface as a caption on the front card.
@@ -58,8 +59,8 @@ const ROLES = [
 
 // ── How it works ─────────────────────────────────────────────────────
 const ST_STEPS = [
-  { n: '01', t: 'Discovery call', d: '30 minutes — date, guest count, event style, scope. We assess fit and staffing needs.' },
-  { n: '02', t: 'Tailored team', d: 'Within two business days — proposed team composition, ratios, lead, all-in quote.' },
+  { n: '01', t: 'Discovery call', d: '30 minutes: date, guest count, event style, scope. We assess fit and staffing needs.' },
+  { n: '02', t: 'Tailored team', d: 'Within two business days: proposed team composition, ratios, lead, all-in quote.' },
   { n: '03', t: 'Pre-event briefing', d: 'Captain meets host, walks the venue. Timing, run-of-show, contingencies aligned.' },
   { n: '04', t: 'Event day', d: 'Team arrives uniformed and briefed. We host. You enjoy your own event.' },
 ];
@@ -67,21 +68,21 @@ const ST_STEPS = [
 // ── FAQ ──────────────────────────────────────────────────────────────
 const ST_FAQ = [
   { q: 'Can we book bartenders alone, without the full mobile bar?',
-    a: "Absolutely. Staffing-only is one of our most common bookings — a venue's bar with our team running it, or a private home with our bartenders behind the host's own setup. We staff to the format." },
+    a: "Absolutely. Staffing-only is one of our most common bookings: a venue's bar with our team running it, or a private home with our bartenders behind the host's own setup. We staff to the format." },
   { q: "What's the bartender-to-guest ratio?",
-    a: "It depends heavily on the event — the cocktail menu, guest count, service style and length all change the answer. Rather than quote a flat ratio, we advise on the right staffing for your event on the discovery call, based on exactly what you're hosting." },
+    a: "It depends heavily on the event: the cocktail menu, guest count, service style and length all change the answer. Rather than quote a flat ratio, we advise on the right staffing for your event on the discovery call, based on exactly what you're hosting." },
   { q: 'Do you provide uniforms?',
-    a: 'Yes — a clean, presentation-ready WOA standard by default. We can also custom-uniform the team to match a brand activation, wedding palette, or venue aesthetic on request.' },
+    a: 'Yes: a clean, presentation-ready WOA standard by default. We can also custom-uniform the team to match a brand activation, wedding palette, or venue aesthetic on request.' },
   { q: "What if a staff member doesn't show up?",
-    a: 'It rarely ever happens — our staff is highly professional and shows up prepared. But every event still has a designated Event Lead plus backup and on-call staff ready for emergencies. If a swap is ever needed, it happens behind the scenes; the host never feels it.' },
+    a: 'It rarely ever happens. Our staff is highly professional and shows up prepared. But every event still has a designated Event Lead plus backup and on-call staff ready for emergencies. If a swap is ever needed, it happens behind the scenes; the host never feels it.' },
   { q: 'How far in advance do I need to reach out?',
     a: "For larger events such as weddings, we can book up to a year in advance. We're also flexible with last-minute requests: full-service events can be booked with as little as 3 days' notice, and bartending staff-only services with as little as 24 hours' notice, depending on availability." },
 ];
 ---
 
 <Layout
-  title="Bartending & Hospitality Staffing — WOA Cocktails"
-  description="WOA places experienced bartenders, hosts, captains and event leads — trained in luxury hospitality standards. NYC & Miami."
+  title="Bartending & Hospitality Staffing, WOA Cocktails"
+  description="WOA places experienced bartenders, hosts, captains and event leads, trained in luxury hospitality standards. NYC & Miami."
   styles={['woa-service.css', 'woa-svc-staffing.css']}
 >
   <main class="svc-page st-page">
@@ -90,7 +91,7 @@ const ST_FAQ = [
       <div class="wrap st-hero-grid">
         <div class="st-hero-copy">
           <div style="display:flex;justify-content:space-between;margin-bottom:32px">
-            <span class="eyebrow">— Service 03 · The People</span>
+            <span class="eyebrow">Service 03 · The People</span>
           </div>
           <span class="svp-hero-rule"></span>
           <h1 class="display st-hero-title">
@@ -99,9 +100,11 @@ const ST_FAQ = [
           <p class="st-hero-lede">
             Professional bartending and hospitality staffing for private, corporate
             and luxury events. WOA places <b style="color:var(--fg)">experienced</b> bartenders and
-            hospitality professionals — trained to deliver elevated service,
+            hospitality professionals, trained to deliver elevated service,
             quiet professionalism, and guest-focused warmth.
           </p>
+          <PriceTag service="bartending" lang="en" />
+
           <a href="/contact" class="st-hero-pitch">
             <span class="d"></span>
             <span>Staff your next event <span style="color:var(--crimson-text);margin-left:6px">→</span></span>
@@ -116,7 +119,7 @@ const ST_FAQ = [
           aria-label="WOA hospitality team"
           tabindex="0"
         >
-          <span class="st-rolo-hint">— the team</span>
+          <span class="st-rolo-hint">the team</span>
           <div class="st-rolo-stack">
             {TEAM.map((m, i) => {
               const off = (i - 0 + N) % N;
@@ -127,7 +130,7 @@ const ST_FAQ = [
                   class={'st-rolo-card' + (off === 0 ? ' front' : '')}
                   data-index={i}
                   style={`z-index:${N - off};--off:${Math.min(off, 3)};display:${hidden ? 'none' : 'block'}`}
-                  aria-label={`${m.name} — ${m.role}`}
+                  aria-label={`${m.name}, ${m.role}`}
                   aria-current={off === 0 ? 'true' : 'false'}
                   aria-hidden={hidden ? 'true' : 'false'}
                   tabindex={off === 0 ? 0 : -1}
@@ -181,7 +184,7 @@ const ST_FAQ = [
                 {r.cap && <figcaption style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">{r.cap}</figcaption>}
               </figure>
               <div class="st-role-body">
-                <span class="n">— {r.n}</span>
+                <span class="n">{r.n}</span>
                 <h3>{r.role}</h3>
                 <p>{r.pitch}</p>
               </div>
@@ -202,8 +205,8 @@ const ST_FAQ = [
               <span class="it">WOA Summer Party</span><br />Dumbo House NYC.
             </h2>
             <p style="margin-top:18px;max-width:54ch;color:var(--fg-dim);font-size:15px;line-height:1.7">
-              A WOA-hosted summer rooftop. Full hospitality team — bartenders,
-              hosts and event leads — running an open-bar, sunset-to-late service
+              A WOA-hosted summer rooftop. Full hospitality team: bartenders,
+              hosts and event leads, running an open-bar, sunset-to-late service
               on Dumbo House's roof, framed by the Manhattan skyline.
             </p>
           </div>
@@ -246,7 +249,7 @@ const ST_FAQ = [
         <div class="svp-steps">
           {ST_STEPS.map((s) => (
             <article class="svp-step">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -284,7 +287,7 @@ const ST_FAQ = [
         <Pic src={galRooftopTeam} alt="" kind="bg" aria-hidden="true" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Inquire</span>
+        <span class="eyebrow">Inquire</span>
         <h2 class="display">
           Staff your <span class="it" style="color:var(--crimson-text)">next</span> event.
         </h2>

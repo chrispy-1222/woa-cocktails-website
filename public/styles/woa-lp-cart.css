@@ -36,9 +36,12 @@
 .lp-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
 .lp-hero-bg::after{
   content:"";position:absolute;inset:0;
+  /* Scrim strengthened Oct 2026 for the brighter real-event hero photo: the
+     copy column sits over a sunlit part of the frame, so the left and middle
+     stops carry more density to hold body-text contrast at AA. */
   background:
-    linear-gradient(180deg, rgba(11,9,7,0.50) 0%, rgba(11,9,7,0.20) 32%, rgba(11,9,7,0.62) 72%, rgba(11,9,7,0.97) 100%),
-    linear-gradient(90deg, rgba(11,9,7,0.72) 0%, rgba(11,9,7,0.30) 52%, rgba(11,9,7,0.05) 100%);
+    linear-gradient(180deg, rgba(11,9,7,0.50) 0%, rgba(11,9,7,0.26) 32%, rgba(11,9,7,0.64) 72%, rgba(11,9,7,0.97) 100%),
+    linear-gradient(90deg, rgba(11,9,7,0.78) 0%, rgba(11,9,7,0.60) 30%, rgba(11,9,7,0.30) 60%, rgba(11,9,7,0.06) 100%);
 }
 .lp-hero-inner{
   position:relative;z-index:1;min-height:100vh;
@@ -76,7 +79,7 @@
 .lp-hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
 .lp-hero-area{
   display:flex;align-items:center;gap:18px;flex-wrap:wrap;
-  margin-top:44px;padding-top:22px;border-top:1px solid var(--line);
+  margin-top:30px;padding-top:20px;border-top:1px solid var(--line);
   font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--fg-mute);
 }
 .lp-hero-area b{color:var(--fg);font-weight:500;letter-spacing:0.22em}
@@ -293,3 +296,91 @@
 }
 
 /* primary book button = solid crimson; reuse .btn .btn-solid from base */
+
+/* ─────────────────────────────────────────────────────────────
+   OCT 2026 PASS — promo headline, package inclusions, starting
+   prices and the real-event gallery.
+   ───────────────────────────────────────────────────────── */
+
+/* The offer headline is now a full approved sentence rather than two words,
+   so it needs its own scale. The original .lp-offer-free sizing stays intact
+   for short promo lines. */
+.lp-offer-head{font-size:clamp(34px,4.6vw,64px);line-height:1.04;letter-spacing:-0.015em}
+.lp-offer-sentence{max-width:40ch}
+.lp-offer-pill .txt{text-transform:none;letter-spacing:0.02em;color:var(--fg)}
+
+/* ── Package inclusions ─────────────────────────────────────── */
+.lp-incl{
+  margin-top:30px;padding:24px 26px;
+  border:1px solid var(--line-strong);background:rgba(20,17,14,0.5);
+}
+.lp-incl ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:11px}
+.lp-incl li{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:14.5px;line-height:1.5;color:var(--fg);
+}
+.lp-incl li .d{
+  width:7px;height:7px;background:var(--crimson);transform:rotate(45deg);
+  flex-shrink:0;margin-top:6px;
+}
+.lp-incl-foot{margin:18px 0 0;font-size:12.5px;line-height:1.6;color:var(--fg-mute);max-width:46ch}
+@media (max-width:720px){.lp-incl{padding:20px}}
+
+/* ── Starting prices (all four service lines) ───────────────── */
+.lp-rates{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;
+  border:1px solid var(--line-strong);
+}
+@media (max-width:980px){.lp-rates{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.lp-rates{grid-template-columns:1fr}}
+.lp-rate{
+  padding:28px 24px;display:flex;flex-direction:column;gap:10px;
+  border-right:1px solid var(--line);
+}
+.lp-rate:last-child{border-right:none}
+@media (max-width:980px){
+  .lp-rate:nth-child(2n){border-right:none}
+  .lp-rate:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:560px){
+  .lp-rate{border-right:none;border-bottom:1px solid var(--line)}
+  .lp-rate:last-child{border-bottom:none}
+}
+.lp-rate .name{
+  font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--fg-mute);
+  min-height:2.4em;
+}
+.lp-rate .fig{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.lp-rate .fig b{
+  font-family:var(--display);font-weight:300;font-size:46px;line-height:1;
+  letter-spacing:-0.02em;color:var(--amber);
+}
+.lp-rate .fig .unit{font-family:var(--display);font-style:italic;font-size:20px;color:var(--fg-dim)}
+.lp-rate .cond{
+  font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--crimson-text);
+}
+.lp-rates-foot{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  margin-top:24px;
+}
+.lp-rates-foot p{margin:0;font-size:13px;color:var(--fg-mute);line-height:1.6;max-width:52ch}
+@media (max-width:720px){
+  .lp-rate .fig b{font-size:38px}
+  .lp-rates-foot .btn{width:100%;justify-content:center;min-height:50px}
+}
+
+/* ── Real-event gallery ─────────────────────────────────────── */
+.lp-gallery-sec{background:var(--surface)}
+.lp-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+@media (max-width:900px){.lp-gallery{grid-template-columns:repeat(2,1fr);gap:12px}}
+@media (max-width:520px){.lp-gallery{grid-template-columns:1fr}}
+.lp-shot{margin:0}
+.lp-shot img{
+  width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5;
+  background:var(--surface-2);
+}
+.lp-shot figcaption{
+  margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;
+  color:var(--fg-mute);
+}
