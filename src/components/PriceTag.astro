@@ -1,0 +1,27 @@
+---
+// PriceTag — the starting price for one service, rendered inline on that
+// service's page. Reads src/i18n/pricing.ts so a service page can never show a
+// figure that differs from the pricing page or the paid landing page.
+import { PRICING, type ServiceKey } from '../i18n/pricing';
+import { t, localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+export interface Props {
+  service: ServiceKey;
+  lang: Lang;
+  class?: string;
+}
+
+const { service, lang, class: className } = Astro.props;
+const p = PRICING[service];
+---
+
+<div class:list={['price-tag', className]}>
+  <span class="price-tag-lbl">{t(lang, 'price.starting')}</span>
+  <span class="price-tag-fig">
+    <b>{p.amount}</b>
+    {p.unit && <span class="unit">{p.unit[lang]}</span>}
+  </span>
+  {p.condition && <span class="price-tag-cond">{p.condition[lang]}</span>}
+  <a href={localizePath('/pricing', lang)} class="price-tag-link">{t(lang, 'price.seeAll')} →</a>
+</div>

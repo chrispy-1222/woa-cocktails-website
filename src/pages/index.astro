@@ -10,16 +10,19 @@ import miamiSunset from '../assets/img/miami-sunset.jpg';
 import cocktailHectorMocktail from '../assets/img/cocktail-hector-mocktail.webp';
 import founderFabioPortrait from '../assets/img/founder-fabio-portrait.jpg';
 import cocktailSunsetMarg from '../assets/img/cocktail-sunset-marg.webp';
+import evGrandopeningWoabar from '../assets/img/ev-grandopening-woabar.webp';
+import { priceFrom } from '../i18n/pricing';
 
-// Home services rail (3 of the 4 services are featured here).
+// Home services rail. Four core service lines, each with its starting price
+// pulled from the shared pricing module (src/i18n/pricing.ts).
 const SERVICES = [
   {
     id: 'svc-mobile-bar',
     n: '01', img: heroPour, tag: 'Flagship', href: '/mobile-bar',
     title: ['Full-Service ', 'Mobile Bar'], it: ' Experience',
-    desc: 'Our signature experience. Luxury mobile bars, signature cocktails and a full hospitality team — curated end-to-end for weddings, private events and brand moments.',
+    desc: 'Our signature experience. Luxury mobile bars, signature cocktails and a full hospitality team, curated end-to-end for weddings, private events and brand moments.',
     list: ['Luxury bar setup', 'Signature cocktails', 'Premium mixers & garnish', 'Bartenders & hosts', 'Setup & breakdown'],
-    meta: 'Most booked',
+    meta: priceFrom('mobilebar', 'en'),
   },
   {
     id: 'svc-staffing',
@@ -27,15 +30,23 @@ const SERVICES = [
     title: ['Bartending &', 'Hospitality'], it: ' Staffing',
     desc: 'Experienced bartenders and hospitality professionals trained in elevated, guest-focused service for private, corporate and luxury events.',
     list: ['Bartenders', 'Hosts & captains', 'Barbacks', 'Event leads'],
-    meta: 'By the event',
+    meta: priceFrom('bartending', 'en'),
   },
   {
     id: 'svc-classes',
     n: '03', img: classHero, tag: 'Experiences', href: '/classes',
     title: ['Mixology'], it: ' Classes',
-    desc: 'Interactive cocktail classes that combine entertainment, education and hospitality — led by professional mixologists, hands-on from first shake to final pour.',
+    desc: 'Interactive cocktail classes that combine entertainment, education and hospitality, led by professional mixologists, hands-on from first shake to final pour.',
     list: ['Team building', 'Brand activations', 'Private groups', 'Off-sites'],
-    meta: '1–60 guests',
+    meta: priceFrom('classes', 'en'),
+  },
+  {
+    id: 'svc-bar-rentals',
+    n: '04', img: evGrandopeningWoabar, tag: 'Bar only', href: '/bar-rentals',
+    title: ['Bar'], it: ' Rentals',
+    desc: 'Just the bar. We deliver it, set it up styled and service ready, and collect it after. You stock it, you staff it, you run the night your way.',
+    list: ['Delivery & setup', 'Styled on arrival', 'Pickup included', 'Add staff any time'],
+    meta: priceFrom('rentals', 'en'),
   },
 ];
 
@@ -49,7 +60,7 @@ const MARQUEE_ALL = [...MARQUEE, ...MARQUEE];
 // Real client testimonials — drawn from emails and reviews supplied by Fabio.
 const TESTI = [
   { body: 'WOA Cocktails completely elevated our wedding. The drinks were incredible, the bartenders were professional and friendly, and the mobile bar setup looked stunning. Our guests are still talking about the espresso martinis.', who: 'Wedding', role: 'Private Celebration' },
-  { body: 'Thank you so much for catering our event — the bar service was excellent, and we got really positive feedback, in no small part due to your contributions. We will definitely reach out for future events.', who: 'Nina Sevilla', role: 'Corporate Event' },
+  { body: 'Thank you so much for catering our event. The bar service was excellent, and we got really positive feedback, in no small part due to your contributions. We will definitely reach out for future events.', who: 'Nina Sevilla', role: 'Corporate Event' },
   { body: 'We hired WOA for a corporate event in Miami and they exceeded expectations. The cocktail menu felt custom and elevated, and the staff brought such a great energy to the room.', who: 'Corporate', role: 'Miami' },
   { body: 'The attention to detail was amazing. From the garnishes to the glassware presentation, everything felt luxury and curated. It honestly felt like having a high-end cocktail bar at our house.', who: 'Private Event', role: 'At-Home Celebration' },
   { body: 'Professional, punctual, and genuinely talented bartenders. The signature cocktails were a huge hit and the team handled our 250+ guest event flawlessly.', who: 'Large-Format Event', role: '250+ Guests' },
@@ -57,11 +68,11 @@ const TESTI = [
 ];
 ---
 
-<Layout title="WOA Cocktails — Luxury Hospitality & Beverage House · NYC & Miami">
+<Layout title="WOA Cocktails. Luxury Hospitality & Beverage House · NYC & Miami">
   {/* ── Hero ── */}
   <section class="hero" id="top">
     <div class="hero-bg">
-      <Pic src={heroBridge} alt="WOA Cocktails — luxury mobile bar service" kind="hero" priority />
+      <Pic src={heroBridge} alt="WOA Cocktails, luxury mobile bar service" kind="hero" priority />
     </div>
     <div class="hero-content wrap">
       <div class="hero-top">
@@ -81,7 +92,7 @@ const TESTI = [
           </div>
         </div>
         <aside class="hero-aside">
-          WOA is a full-service luxury hospitality &amp; beverage house —
+          WOA is a full-service luxury hospitality &amp; beverage house,
           crafting elevated mobile bar experiences, cocktail programs and
           curated activations for weddings, corporate events and brand moments
           across <b style="color:var(--fg)">New York</b> and <b style="color:var(--fg)">Miami</b>.
@@ -117,7 +128,7 @@ const TESTI = [
           <Pic src={framedFounders} alt="WOA co-founders Fabio Perez and Hector Taveras behind their bar, in a gilded frame" kind="half" />
         </figure>
         <div class="belt-text">
-          <span class="eyebrow">— The House</span>
+          <span class="eyebrow">The House</span>
           <p class="display" style="margin-top:16px">
             Hospitality is more than serving drinks. It's <span class="it" style="color:var(--crimson-text)">atmosphere</span>,
             <span class="it"> intention</span>, and the quiet choreography that
@@ -125,7 +136,7 @@ const TESTI = [
           </p>
           <p style="margin-top:28px;color:var(--fg-dim);font-size:15px;line-height:1.7;max-width:44ch">
             Founded in 2020 by hospitality professionals Fabio Perez and Hector Taveras,
-            WOA — short for <em>Work of Art</em> — has grown from a pandemic-born
+            WOA, short for <em>Work of Art</em>, has grown from a pandemic-born
             cocktail studio in New York into a full beverage and hospitality house
             now serving Miami.
           </p>
@@ -149,18 +160,18 @@ const TESTI = [
           <div class="eyebrow" style="margin-top:18px">What we do</div>
         </div>
         <h2 class="display h-lg" style="max-width:16ch">
-          Three services, <span class="it" style="color:var(--crimson-text)">one</span> standard.
+          Four services, <span class="it" style="color:var(--crimson-text)">one</span> standard.
         </h2>
       </div>
     </div>
     <div class="wrap" style="padding:0">
-      <div class="svc">
+      <div class="svc cols-4">
         {
           SERVICES.map((s) => (
             <a class="svc-card" id={s.id} href={s.href}>
               <div class="svc-thumb">
                 <Pic src={s.img} alt={s.title.join('') + s.it} kind="card" />
-                <span class="svc-num">— {s.n}</span>
+                <span class="svc-num">{s.n}</span>
                 <span class="svc-tag">{s.tag}</span>
               </div>
               <div class="svc-body">
@@ -201,7 +212,7 @@ const TESTI = [
         <p style="margin-top:24px;color:var(--fg-dim);max-width:44ch;font-size:16px;line-height:1.7">
           With 25 years of combined hospitality experience and hundreds of
           events hosted across New York, WOA Cocktails has officially expanded
-          into Miami — bringing the same elevated service to rooftops, estates, hotels and brand activations
+          into Miami, bringing the same elevated service to rooftops, estates, hotels and brand activations
           from Brickell to Miami Beach.
         </p>
         <ul class="checks">
@@ -250,7 +261,7 @@ const TESTI = [
         </div>
         <div style="padding-top:24px">
           <p class="quote">
-            What began during a pandemic — two friends making cocktails on camera — became a hospitality house. We believe every pour is a posture. Every gathering, a chance to make something feel intentional. Thank you for letting us host you.
+            What began during a pandemic, two friends making cocktails on camera, became a hospitality house. We believe every pour is a posture. Every gathering, a chance to make something feel intentional. Thank you for letting us host you.
           </p>
           <div class="quote-sig">
             <span class="line"></span>
@@ -261,7 +272,7 @@ const TESTI = [
             <div>
               <div class="eyebrow dim">Origin</div>
               <p style="margin-top:10px;color:var(--fg-dim);font-size:14px;line-height:1.7">
-                Founded 2020 in New York during the pandemic — born from cocktail
+                Founded 2020 in New York during the pandemic, born from cocktail
                 tutorials on social, evolved into private deliveries, grew into a
                 full hospitality brand.
               </p>
@@ -270,7 +281,7 @@ const TESTI = [
               <div class="eyebrow dim">Background</div>
               <p style="margin-top:10px;color:var(--fg-dim);font-size:14px;line-height:1.7">
                 Years of luxury hospitality, beverage operations, restaurant
-                leadership and event execution — channeled into one curated house.
+                leadership and event execution, channeled into one curated house.
               </p>
             </div>
           </div>
@@ -317,12 +328,12 @@ const TESTI = [
       <Pic src={cocktailSunsetMarg} alt="" aria-hidden="true" kind="bg" />
     </div>
     <div class="wrap">
-      <div class="eyebrow">— Inquire</div>
+      <div class="eyebrow">Inquire</div>
       <h2 class="display h-xl">
         Let's host <span class="it" style="color:var(--crimson-text)">something</span><br /> unforgettable.
       </h2>
       <p>
-        Tell us about your event — date, market, vision. We'll send a tailored
+        Tell us about your event: date, market, vision. We'll send a tailored
         proposal within two business days.
       </p>
       <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">

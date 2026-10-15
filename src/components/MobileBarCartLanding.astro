@@ -9,7 +9,17 @@ import Footer from './Footer.astro';
 import CookieConsent from './CookieConsent.astro';
 import { localizePath } from '../i18n/utils';
 import type { LpContent, Lang } from '../i18n/lp-cart';
-import heroCane from '../assets/img/mb-wedding-cane.jpg';
+import { priceLines } from '../i18n/pricing';
+import { isPromoLive, promoCopy } from '../i18n/promo';
+// Real event photography delivered Oct 2026. The hero is a live wedding
+// service shot; the gallery below carries setups, service and guests.
+import heroDuo from '../assets/img/ev-wedding-duo.webp';
+import shotBartender from '../assets/img/ev-wedding-bartender.webp';
+import shotMenu from '../assets/img/ev-wedding-menu.webp';
+import shotHappyHour from '../assets/img/ev-happyhour-bar.webp';
+import shotOpening from '../assets/img/ev-opening-team.webp';
+import shotActivation from '../assets/img/ev-activation-mocktails.jpg';
+import shotWine from '../assets/img/ev-opening-wine.webp';
 import heroPuma from '../assets/img/mb-hero-puma.webp';
 
 export interface Props {
@@ -22,12 +32,24 @@ const TEL = 'tel:+12159390476';
 const callAria = lang === 'es' ? 'Llamar a WOA' : 'Call WOA';
 const homeHref = localizePath('/', lang);
 
+// Limited-time offer. One flag in src/i18n/promo.ts drops the band, the hero
+// pill and nothing else; it also expires itself after the book-by date.
+const promoLive = isPromoLive();
+const promo = promoCopy[lang];
+
+// Starting prices for all four service lines, straight from the rate card.
+const rates = priceLines(lang);
+
+// Gallery photography, in the order the captions are written. The hero shot is
+// deliberately not repeated here.
+const shots = [shotBartender, shotMenu, shotHappyHour, shotOpening, shotActivation, shotWine];
+
 // Hero = the LCP element. Build the optimized image up front so we can BOTH
 // render it and emit a matching <link rel=preload> (kicks the fetch off during
 // CSS parse instead of after layout → faster LCP for the paid ad). Quality 72
 // is plenty under the dark scrim; extra width steps let phones pick a lighter file.
 const hero = await getImage({
-  src: heroCane,
+  src: heroDuo,
   widths: [480, 640, 768, 960],
   sizes: '100vw',
   format: 'webp',
@@ -63,8 +85,8 @@ const hero = await getImage({
           srcset={hero.srcSet.attribute}
           sizes="100vw"
           alt={c.hero.bgAlt}
-          width="960"
-          height="1280"
+          width={heroDuo.width}
+          height={heroDuo.height}
           fetchpriority="high"
           decoding="async"
           loading="eager"
@@ -82,13 +104,6 @@ const hero = await getImage({
 
         <p class="lp-hero-sub" set:html={c.hero.sub} />
 
-        <div class="lp-hero-cta">
-          <a href="#book" class="btn btn-solid" data-cta="hero">
-            {c.cta} <span class="arr">→</span>
-          </a>
-          <a href={TEL} class="btn btn-ghost" data-cta="hero-call">{c.hero.call}</a>
-        </div>
-
         <div class="lp-hero-area">
           {c.hero.area.map((chip, i) => (
             <>
@@ -97,8 +112,57 @@ const hero = await getImage({
             </>
           ))}
         </div>
+
+        {promoLive && (
+          <div class="lp-offer-pill">
+            <span class="tag">{promo.pillTag}</span>
+            <span class="txt">{promo.pillText}</span>
+          </div>
+        )}
+
+        <div class="lp-hero-cta">
+          <a href="#book" class="btn btn-solid" data-cta="hero">
+            {c.cta} <span class="arr">→</span>
+          </a>
+          <a href={TEL} class="btn btn-ghost" data-cta="hero-call">{c.hero.call}</a>
+        </div>
+
       </div>
     </section>
+
+    {/* ── Limited-time offer — SWAPPABLE MODULE.
+           Copy, the master switch and the book-by date all live in
+           src/i18n/promo.ts. Set `ACTIVE = false` there to pull it, or let it
+           expire itself after the deadline. Nothing else on the page changes. */}
+    {promoLive && (
+      <section class="lp-offer" id="offer" aria-label={promo.aria}>
+        <div class="wrap">
+          <div class="lp-offer-inner">
+            <div>
+              <span class="eyebrow amber">{promo.eyebrow}</span>
+              <div class="lp-offer-free lp-offer-head" style="margin-top:14px">
+                {promo.headLine1}<br /><em>{promo.headLine2}</em>
+              </div>
+              <p class="lp-offer-lead lp-offer-sentence">{promo.lead}</p>
+              <a href="#book" class="btn btn-solid lp-offer-cta" data-cta="offer">
+                {c.cta} <span class="arr">→</span>
+              </a>
+            </div>
+            <div>
+              <span class="eyebrow dim">{promo.termsLabel}</span>
+              <ul class="lp-offer-terms" style="margin-top:14px">
+                {promo.terms.map((term) => (
+                  <li>
+                    <span class="n">{term.n}</span>
+                    <span class="t">{term.t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
 
     {/* ── What you get ── */}
     <section class="lp-section" id="experience">
@@ -125,6 +189,15 @@ const hero = await getImage({
                 </div>
               ))}
             </div>
+            <div class="lp-incl">
+              <span class="eyebrow dim">{c.get.inclLabel}</span>
+              <ul>
+                {c.get.incl.map((item) => (
+                  <li><span class="d" aria-hidden="true"></span>{item}</li>
+                ))}
+              </ul>
+              <p class="lp-incl-foot">{c.get.inclFoot}</p>
+            </div>
             <div class="lp-price">
               <div class="lp-price-main">
                 <span class="from">{c.get.priceFrom}</span>
@@ -138,6 +211,54 @@ const hero = await getImage({
               ))}
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Starting prices — all four service lines, from the shared rate
+           card (src/i18n/pricing.ts). Identical figures to /pricing. ── */}
+    <section class="lp-section lp-rates-sec" id="prices">
+      <div class="wrap">
+        <div class="lp-head">
+          <div class="ix">{c.prices.ix}</div>
+          <h2>{c.prices.h2Lead}<span class="it">{c.prices.h2It}</span></h2>
+          <p>{c.prices.intro}</p>
+        </div>
+        <div class="lp-rates">
+          {rates.map((r) => (
+            <div class="lp-rate">
+              <span class="name">{r.label}</span>
+              <span class="fig">
+                <b>{r.amount}</b>{r.unitLabel && <span class="unit">{r.unitLabel}</span>}
+              </span>
+              {r.conditionLabel && <span class="cond">{r.conditionLabel}</span>}
+            </div>
+          ))}
+        </div>
+        <div class="lp-rates-foot">
+          <p>{c.prices.note}</p>
+          <a href="#book" class="btn btn-ghost" data-cta="prices">
+            {c.prices.cta} <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* ── Real event photography ── */}
+    <section class="lp-section lp-gallery-sec" id="gallery">
+      <div class="wrap">
+        <div class="lp-head">
+          <div class="ix">{c.gallery.ix}</div>
+          <h2>{c.gallery.h2Lead}<span class="it">{c.gallery.h2It}</span></h2>
+          <p>{c.gallery.intro}</p>
+        </div>
+        <div class="lp-gallery">
+          {c.gallery.shots.map((shot, i) => (
+            <figure class="lp-shot">
+              <Pic src={shots[i]} alt={shot.alt} kind="card" />
+              <figcaption set:html={shot.cap} />
+            </figure>
+          ))}
         </div>
       </div>
     </section>
@@ -189,7 +310,7 @@ const hero = await getImage({
         <div class="lp-steps">
           {c.how.steps.map((s) => (
             <div class="lp-step">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <h3 set:html={s.h} />
               <p>{s.p}</p>
             </div>

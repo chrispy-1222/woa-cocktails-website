@@ -843,3 +843,54 @@ html,body{overflow-x:hidden}
 }
 .marquee-track span.star{color:var(--crimson-text);font-style:normal;transform:rotate(45deg);display:inline-block;width:8px;height:8px;background:var(--crimson);align-self:center}
 @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─────────────────────────────────────────────────────────────
+   PRICE TAG — the starting price on a service page.
+   Rendered by src/components/PriceTag.astro from the shared
+   pricing module, so every surface shows the same figure.
+   ───────────────────────────────────────────────────────── */
+.price-tag{
+  display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+  margin:32px 0 0;padding:16px 20px;
+  border:1px solid var(--line-strong);
+  background:rgba(20,17,14,0.55);
+}
+.price-tag-lbl{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--fg-mute);
+}
+.price-tag-fig{display:inline-flex;align-items:baseline;gap:8px}
+.price-tag-fig b{
+  font-family:var(--display);font-size:38px;font-weight:300;letter-spacing:-0.01em;
+  line-height:1;color:var(--fg);
+}
+.price-tag-fig .unit{
+  font-family:var(--display);font-style:italic;font-size:20px;color:var(--crimson-text);
+}
+.price-tag-cond{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--crimson-text);
+}
+.price-tag-link{
+  margin-left:auto;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim);
+  transition:color .2s ease;
+}
+.price-tag-link:hover{color:var(--fg)}
+@media (max-width:720px){
+  .price-tag{gap:10px;padding:14px 16px}
+  .price-tag-fig b{font-size:32px}
+  .price-tag-link{margin-left:0;width:100%}
+}
+
+/* Four-up services rail (home). Added Oct 2026 when bar rentals became a core
+   service line: 2x2 on desktop so the cards keep their editorial scale, four
+   across only on very wide screens. */
+.svc.cols-4{grid-template-columns:repeat(2,1fr)}
+.svc.cols-4 .svc-card:nth-child(2n){border-right:none}
+@media (min-width:1500px){
+  .svc.cols-4{grid-template-columns:repeat(4,1fr)}
+  .svc.cols-4 .svc-card:nth-child(2n){border-right:1px solid var(--line)}
+  .svc.cols-4 .svc-card:last-child{border-right:none}
+}
+@media (max-width:920px){.svc.cols-4{grid-template-columns:1fr}}

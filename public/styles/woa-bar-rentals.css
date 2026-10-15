@@ -1,0 +1,50 @@
+/* woa-bar-rentals.css — Bar Rentals service page.
+   Layers on top of woa-service.css (svp-* scaffolding). Bar rentals became a
+   core service line in Oct 2026, so this page leads with the public range. */
+
+.br-page .svp-hero-content{min-height:82vh}
+
+.br-lede{
+  color:var(--fg-dim);font-size:17px;line-height:1.7;margin:28px 0 0;max-width:46ch;
+}
+
+/* ── Public range, straight off the rate card ───────────────── */
+.br-price{
+  display:inline-flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  margin-top:32px;padding:16px 22px;
+  border:1px solid var(--line-strong);
+  background:rgba(11,9,7,0.55);
+}
+.br-price .lbl{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--fg-mute);
+}
+.br-price b{
+  font-family:var(--display);font-size:40px;font-weight:300;letter-spacing:-0.01em;
+  line-height:1;color:var(--fg);
+}
+.br-price .to{font-style:italic;color:var(--crimson-text);font-size:30px}
+
+.br-hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+
+.br-note{
+  margin:36px 0 0;max-width:56ch;
+  color:var(--fg-dim);font-size:15px;line-height:1.7;
+}
+
+/* ── Gallery ────────────────────────────────────────────────── */
+.br-shot{position:relative;overflow:hidden;background:var(--surface);margin:0}
+.br-shot img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5}
+.br-shot figcaption{
+  margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;
+  color:var(--fg-mute);
+}
+
+/* ── Mobile pass ────────────────────────────────────────────── */
+@media (max-width:720px){
+  .br-lede{font-size:16px}
+  .br-price{width:100%;justify-content:space-between;padding:14px 18px}
+  .br-price b{font-size:34px}
+  .br-price .to{font-size:26px}
+  .br-hero-cta .btn{justify-content:center;min-height:50px;width:100%}
+}

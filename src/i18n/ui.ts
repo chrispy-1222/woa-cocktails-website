@@ -12,12 +12,14 @@ export const services = [
   { num: '02', path: '/brand-experiences', en: 'Brand & Hospitality Experiences', es: 'Experiencias de marca y hospitalidad' },
   { num: '03', path: '/staffing', en: 'Bartending & Hospitality Staffing', es: 'Personal de bar y hospitalidad' },
   { num: '04', path: '/classes', en: 'Mixology Private Classes', es: 'Clases privadas de coctelería' },
+  { num: '05', path: '/bar-rentals', en: 'Bar Rentals', es: 'Renta de barras' },
 ] as const;
 
 export const ui = {
   en: {
     // Nav
     'nav.services': 'Services',
+    'nav.pricing': 'Pricing',
     'nav.about': 'About',
     'nav.contact': 'Contact',
     'nav.home': 'Home',
@@ -38,6 +40,12 @@ export const ui = {
     'footer.svc.consulting': 'Beverage Consulting',
     'footer.svc.bartenders': 'Bartender Services',
     'footer.svc.classes': 'Mixology Classes',
+    'footer.svc.rentals': 'Bar Rentals',
+
+    // Pricing (figures live in src/i18n/pricing.ts, never here)
+    'price.starting': 'Starting at',
+    'price.seeAll': 'See all pricing',
+    'price.learnMore': 'More about this service',
     'footer.house': 'House',
     'footer.house.about': 'About / Founders',
     'footer.house.pricing': 'Packages & Pricing',
@@ -66,6 +74,7 @@ export const ui = {
   es: {
     // Nav
     'nav.services': 'Servicios',
+    'nav.pricing': 'Precios',
     'nav.about': 'Nosotros',
     'nav.contact': 'Contacto',
     'nav.home': 'Inicio',
@@ -86,6 +95,12 @@ export const ui = {
     'footer.svc.consulting': 'Consultoría de bebidas',
     'footer.svc.bartenders': 'Servicios de bartenders',
     'footer.svc.classes': 'Clases de coctelería',
+    'footer.svc.rentals': 'Renta de barras',
+
+    // Precios (las cifras viven en src/i18n/pricing.ts, nunca aquí)
+    'price.starting': 'Desde',
+    'price.seeAll': 'Ver todos los precios',
+    'price.learnMore': 'Más sobre este servicio',
     'footer.house': 'La Casa',
     'footer.house.about': 'Nosotros / Fundadores',
     'footer.house.pricing': 'Paquetes y precios',

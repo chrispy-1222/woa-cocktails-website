@@ -3,12 +3,13 @@
   "type": "module",
   "version": "1.0.0",
   "private": true,
-  "description": "WOA Cocktails — luxury hospitality & beverage house. NYC & Miami.",
+  "description": "WOA Cocktails: luxury hospitality & beverage house. NYC & Miami.",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/check-prices.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:prices": "node scripts/check-prices.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

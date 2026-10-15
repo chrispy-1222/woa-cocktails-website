@@ -1,0 +1,173 @@
+---
+// PricingPage — the public rate card, rendered from one content object so the
+// English and Spanish pages produce IDENTICAL markup and identical figures.
+//
+// Prices come from src/i18n/pricing.ts (the single source of truth) and copy
+// from src/i18n/pricing-copy.ts. Nothing here hard-codes a dollar amount.
+import { PRICING, priceLines } from '../i18n/pricing';
+import { pricingCopy } from '../i18n/pricing-copy';
+import { t, localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = pricingCopy[lang];
+const L = (path: string) => localizePath(path, lang);
+
+// Price line per service key, in the client's running order.
+const lines = priceLines(lang);
+const price = Object.fromEntries(lines.map((l) => [l.key, l])) as Record<
+  (typeof lines)[number]['key'],
+  (typeof lines)[number]
+>;
+---
+
+<main class="pr-page">
+  {/* ── Hero ── */}
+  <section class="pr-hero">
+    <div class="wrap">
+      <div class="pr-hero-top">
+        <span class="eyebrow">{c.hero.eyebrow}</span>
+        <span class="pr-hero-stamp">{c.hero.stamp}</span>
+      </div>
+      <h1 class="display pr-hero-title">
+        {c.hero.title}<span class="pr-dot">.</span>
+      </h1>
+      <p class="pr-hero-lede">
+        {c.hero.lede}<em>{c.hero.ledeEm}</em>{c.hero.ledeTail}
+      </p>
+
+      {/* Jump nav doubles as the at-a-glance price list. */}
+      <div class="pr-hero-jump cols-4">
+        {c.packages.map((p) => (
+          <a href={`#pkg-${p.n}`} class="pr-jump">
+            <span class="num">{p.n}</span>
+            <span class="lbl">{price[p.key].label}</span>
+            <span class="from">
+              {c.startingLabel}
+              <b>{price[p.key].amount}</b>
+              {price[p.key].unitLabel && <small>{price[p.key].unitLabel}</small>}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── The four services ── */}
+  <section class="pr-packages">
+    <div class="wrap">
+      {c.packages.map((p) => (
+        <article class="pr-pkg" id={`pkg-${p.n}`}>
+          <header class="pr-pkg-head">
+            <div class="lhs">
+              <span class="pr-pkg-n">No. {p.n}</span>
+              <h2 class="pr-pkg-name">{price[p.key].label}</h2>
+              <p class="pr-pkg-sub">{p.sub}</p>
+              <span class="pr-pkg-tag">{p.tag}</span>
+            </div>
+            <div class="rhs">
+              <span class="pr-pkg-from">{c.startingLabel}</span>
+              <span class="pr-pkg-price">{price[p.key].amount}</span>
+              {price[p.key].unitLabel && (
+                <span class="pr-pkg-unit">{price[p.key].unitLabel}</span>
+              )}
+              {price[p.key].conditionLabel && (
+                <span class="pr-pkg-cond">{price[p.key].conditionLabel}</span>
+              )}
+            </div>
+          </header>
+
+          <div class="pr-pkg-body">
+            <div class="pr-pkg-incl">
+              <span class="eyebrow">{c.includedLabel}</span>
+              <ul>
+                {p.includes.map((line) => (
+                  <li>
+                    <span class="bullet" />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <aside class="pr-pkg-aside">
+              <div class="pr-pkg-notes">
+                <span class="eyebrow dim">{c.noteLabel}</span>
+                <p>{p.note}</p>
+              </div>
+              <a href={L(PRICING[p.key].path)} class="link-arrow pr-pkg-learn">
+                {t(lang, 'price.learnMore')} →
+              </a>
+              <a href={L('/contact')} class="btn btn-solid pr-pkg-cta">
+                {p.cta} <span class="arr">→</span>
+              </a>
+            </aside>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  {/* ── Where we serve (local framing: Miami, Miami Beach, Brickell) ── */}
+  <section class="pr-included">
+    <div class="wrap">
+      <header class="pr-section-head">
+        <span class="pr-section-num">{c.area.ix}</span>
+        <h2 class="display pr-section-title">
+          {c.area.title}<span class="it">{c.area.titleIt}</span>
+        </h2>
+      </header>
+      <p class="pr-area-intro">{c.area.intro}</p>
+      <div class="pr-included-grid cols-3">
+        {c.area.markets.map((m) => (
+          <div class="pr-incl-card">
+            <span class="d" />
+            <h3>{m.name}</h3>
+            <p>{m.areas}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── FAQ ── */}
+  <section class="pr-faq">
+    <div class="wrap">
+      <div class="pr-faq-grid">
+        <div>
+          <span class="pr-section-num">{c.faq.ix}</span>
+          <div class="eyebrow" style="margin-top:18px">{c.faq.eyebrow}</div>
+          <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
+            {c.faq.title}<span class="it" style="color:var(--crimson-text)">{c.faq.titleIt}</span>
+          </h2>
+        </div>
+        <div>
+          {c.faq.items.map((f, i) => (
+            <details class="pr-q" open={i === 0}>
+              <summary>{f.q}</summary>
+              <div class="ans">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Final CTA ── */}
+  <section class="pr-cta">
+    <div class="wrap">
+      <span class="eyebrow">{c.cta.eyebrow}</span>
+      <h2 class="display">
+        {c.cta.title}<span class="it" style="color:var(--crimson-text)">{c.cta.titleIt}</span>{lang === 'en' ? ' quote?' : '?'}
+      </h2>
+      <p>{c.cta.body}</p>
+      <div class="pr-cta-row">
+        <a href={L('/contact')} class="btn btn-solid">{c.cta.primary} <span class="arr">→</span></a>
+        <a href={L('/contact')} class="btn btn-ghost">{c.cta.secondary}</a>
+      </div>
+    </div>
+  </section>
+</main>

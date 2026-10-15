@@ -23,7 +23,7 @@ const BX_POINTS = [
 
 // ── CHAPTER 02 — CONSULTING ──────────────────────────────────────────
 const BX_SCOPE = [
-  { n: '01', title: 'Diseño de barra — estético y logístico', desc: 'Diseñamos la barra en sí: su aspecto, distribución y flujo de trabajo. Dónde van los refrigeradores, la estantería y las estaciones, dimensionados y medidos según tu aforo y tu plano. Nosotros la diseñamos y especificamos; tu constructor la construye.' },
+  { n: '01', title: 'Diseño de barra: estético y logístico', desc: 'Diseñamos la barra en sí: su aspecto, distribución y flujo de trabajo. Dónde van los refrigeradores, la estantería y las estaciones, dimensionados y medidos según tu aforo y tu plano. Nosotros la diseñamos y especificamos; tu constructor la construye.' },
   { n: '02', title: 'Desarrollo de carta y cócteles', desc: 'Una carta de autor creada según tu concepto y tus márgenes: costeada, especificada y diseñada para destacar en el salón.' },
   { n: '03', title: 'Capacitación del personal', desc: 'Técnica, velocidad y estándares de hospitalidad. Entrenamos a tu equipo para manejar la barra al estándar WOA.' },
   { n: '04', title: 'Apoyo en la apertura', desc: 'Montaje previo al lanzamiento, niveles de par, pedidos y cobertura del soft opening. Estamos en el piso cuando más importa.' },
@@ -33,7 +33,7 @@ const BX_SCOPE = [
 
 const BX_FORMATS = [
   { tag: 'Medio día / día completo', title: 'La Auditoría',
-    desc: 'Una revisión enfocada de una barra existente — carta, flujo, costos y servicio — con un plan de acción claro y priorizado.',
+    desc: 'Una revisión enfocada de una barra existente, carta, flujo, costos y servicio, con un plan de acción claro y priorizado.',
     best: 'Una barra que necesita una puesta a punto' },
   { tag: 'Varias semanas', title: 'El Programa',
     desc: 'Construcción integral de un programa de barra nuevo o relanzado, desde el diseño hasta un equipo plenamente capacitado.',
@@ -54,7 +54,7 @@ const BX_STEPS = [
 // ── FAQ ──────────────────────────────────────────────────────────────
 const BX_FAQ = [
   { q: '¿Qué es exactamente una toma de bar?',
-    a: 'Para un solo evento —a menudo una sola noche— WOA toma el control de una barra existente. Llevamos nuestro propio equipo, una carta a la medida y los invitados: una lista de invitados WOA curada que sale esa noche y consume en tu local. El espacio es el recipiente; la experiencia —y la gente— es nuestra. Es ideal para pop-ups, noches de marca y colaboraciones con restaurantes.' },
+    a: 'Para un solo evento, a menudo una sola noche, WOA toma el control de una barra existente. Llevamos nuestro propio equipo, una carta a la medida y los invitados: una lista de invitados WOA curada que sale esa noche y consume en tu local. El espacio es el recipiente; la experiencia, y la gente, es nuestra. Es ideal para pop-ups, noches de marca y colaboraciones con restaurantes.' },
   { q: '¿Necesitamos nuestro propio local para una toma de bar?',
     a: 'De cualquier forma. Podemos tomar tu barra, asociarnos con un local que ambos elijamos, o integrar una toma de bar dentro de un evento mayor. Coordinamos directamente con el espacio en logística, licencias y tiempos.' },
   { q: '¿Qué cubre un proyecto de consultoría?',
@@ -68,7 +68,7 @@ const BX_FAQ = [
 
 <Layout
   lang="es"
-  title="Experiencias de Marca y Hospitalidad — WOA Cocktails · Tomas de Bar y Consultoría"
+  title="Experiencias de Marca y Hospitalidad, WOA Cocktails · Tomas de Bar y Consultoría"
   description="Las tomas de bar y la consultoría de barra de WOA: una toma de tu bar por una noche con carta a la medida y equipo completo, o el diseño, la carta y la capacitación detrás de un programa de barra nuevo. Nueva York y Miami."
   styles={['woa-service.css', 'woa-svc-brand.css']}
 >
@@ -81,7 +81,7 @@ const BX_FAQ = [
             <Pic src={bxTakeoverCrew} alt="El equipo de WOA con camisas personalizadas detrás de la barra de un local durante una toma de bar" kind="half" priority />
           </div>
           <div class="bx-panel-body">
-            <span class="bx-panel-num">— 01</span>
+            <span class="bx-panel-num">01</span>
             <span class="bx-panel-kicker">Pop-ups · Noches de marca</span>
             <h2 class="bx-panel-title">Tomas de <span class="it">Bar</span></h2>
             <p class="bx-panel-line">
@@ -97,7 +97,7 @@ const BX_FAQ = [
             <Pic src={bxConsultEmma2} alt="Los fundadores de WOA en un programa de barra de restaurante que diseñaron" kind="half" />
           </div>
           <div class="bx-panel-body">
-            <span class="bx-panel-num">— 02</span>
+            <span class="bx-panel-num">02</span>
             <span class="bx-panel-kicker">Aperturas · Programas de barra</span>
             <h2 class="bx-panel-title">Consultoría de <span class="it">Barra</span></h2>
             <p class="bx-panel-line">
@@ -133,7 +133,7 @@ const BX_FAQ = [
           Danos un concepto y una temporada, y construiremos uno
           que <span class="it">se llene solo</span>.
         </p>
-        <div class="sig">— La Casa WOA · Nueva York y Miami</div>
+        <div class="sig">La Casa WOA · Nueva York y Miami</div>
       </div>
     </section>
 
@@ -150,7 +150,7 @@ const BX_FAQ = [
         <div class="bx-lead">
           <div class="bx-lead-copy">
             <p class="bx-lede">
-              No solo llevamos una barra. Llevamos el <span class="it">espectáculo</span> —
+              No solo llevamos una barra. Llevamos el <span class="it">espectáculo</span>,
               y lo manejamos desde detrás de la tuya.
             </p>
             <p>
@@ -174,7 +174,7 @@ const BX_FAQ = [
         <div class="bx-points">
           {BX_POINTS.map((p) => (
             <article class="bx-point">
-              <span class="n">— {p.n}</span>
+              <span class="n">{p.n}</span>
               <h3>{p.t}</h3>
               <p>{p.d}</p>
             </article>
@@ -245,7 +245,7 @@ const BX_FAQ = [
 
         <div class="bx-lead rev">
           <figure class="bx-lead-photo">
-            <Pic src={bxConsultKoncon} alt="Un programa de barra de restaurante diseñado por WOA en servicio — Koncon Quemao" kind="half" />
+            <Pic src={bxConsultKoncon} alt="Un programa de barra de restaurante diseñado por WOA en servicio. Koncon Quemao" kind="half" />
             <figcaption>Programa de barra · diseñado</figcaption>
           </figure>
           <div class="bx-lead-copy">
@@ -253,7 +253,7 @@ const BX_FAQ = [
               ¿Abriendo una barra, o arreglando una? Construimos el <span class="it">programa</span> detrás de ella.
             </p>
             <p>
-              Nos asociamos con restaurantes, hoteles y locales para diseñar —o elevar—
+              Nos asociamos con restaurantes, hoteles y locales para diseñar, o elevar,
               su barra desde cero: el salón, la carta, el flujo de trabajo, la gente.
             </p>
             <p>
@@ -267,7 +267,7 @@ const BX_FAQ = [
         <div class="svp-include" style="margin-top:clamp(40px,5vw,64px)">
           {BX_SCOPE.map((s) => (
             <article class="svp-include-item">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <div class="body">
                 <h3>{s.title}</h3>
                 <p>{s.desc}</p>
@@ -302,7 +302,7 @@ const BX_FAQ = [
         <div class="svp-steps">
           {BX_STEPS.map((s) => (
             <article class="svp-step">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -340,9 +340,9 @@ const BX_FAQ = [
         <Pic src={bxTakeoverCrew} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Solicite</span>
+        <span class="eyebrow">Solicite</span>
         <h2 class="display">
-          Tome un <span class="it" style="color:var(--crimson-text)">salón</span> —<br />o construya el suyo.
+          Tome un <span class="it" style="color:var(--crimson-text)">salón</span>, <br />o construya el suyo.
         </h2>
         <p>
           Llamada de descubrimiento de 30 minutos. Cuéntenos si se trata de una toma de bar

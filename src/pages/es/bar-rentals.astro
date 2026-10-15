@@ -1,0 +1,12 @@
+---
+// Página de renta de barras (español). Mismas cifras que la versión en inglés.
+import Layout from '../../layouts/Layout.astro';
+import BarRentalsPage from '../../components/BarRentalsPage.astro';
+import { barRentalsCopy } from '../../i18n/bar-rentals-copy';
+
+const c = barRentalsCopy('es');
+---
+
+<Layout lang="es" title={c.meta.title} description={c.meta.description} styles={['woa-service.css', 'woa-bar-rentals.css']}>
+  <BarRentalsPage lang="es" />
+</Layout>

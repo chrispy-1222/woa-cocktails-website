@@ -5,15 +5,19 @@ import mbHeroPuma from '../../assets/img/mb-hero-puma.webp';
 import mbServices from '../../assets/img/mb-services.webp';
 import mbOfficeWhite from '../../assets/img/mb-office-white.jpg';
 import cocktailFoam from '../../assets/img/cocktail-foam.jpg';
+import PriceTag from '../../components/PriceTag.astro';
+import { priceFrom } from '../../i18n/pricing';
+
+const rentalRange = priceFrom('rentals', 'es');
 
 // ── Chapter 02 — Make it yours (customizable, NOT a fixed package) ──
 const INCLUDES = [
-  { n: '01', core: true, title: 'La barra móvil', desc: 'Nuestra barra de autor — adaptada en tamaño, acabado y estilo a tu espacio. Es el punto de partida de toda reserva.' },
-  { n: '02', title: 'Bartenders profesionales', desc: 'Suma nuestro equipo de hospitalidad, experimentado y listo para escena — o maneja la barra con tu propio personal.' },
-  { n: '03', title: 'Menú de cócteles personalizado', desc: 'Un menú a la medida creado en torno a tu evento — cócteles de autor destacados, clásicos y opciones bajas en alcohol y sin alcohol.' },
+  { n: '01', core: true, title: 'La barra móvil', desc: 'Nuestra barra de autor: adaptada en tamaño, acabado y estilo a tu espacio. Es el punto de partida de toda reserva.' },
+  { n: '02', title: 'Bartenders profesionales', desc: 'Suma nuestro equipo de hospitalidad, experimentado y listo para escena, o maneja la barra con tu propio personal.' },
+  { n: '03', title: 'Menú de cócteles personalizado', desc: 'Un menú a la medida creado en torno a tu evento: cócteles de autor destacados, clásicos y opciones bajas en alcohol y sin alcohol.' },
   { n: '04', title: 'Desarrollo de cóctel de autor', desc: 'Cócteles originales de la casa creados para tu evento, bautizados para el momento, diseñados para liderar la noche.' },
   { n: '05', title: 'Mixers, garnishes y hielo premium', desc: 'Solo ingredientes frescos y bien seleccionados. Hielo cortado a mano, cítricos de temporada y jarabes artesanales.' },
-  { n: '06', title: 'Herramientas de bar y cristalería', desc: 'Equipo completo — cocteleras, jiggers, coladores y cristalería fina de bar. Podemos llegar listos, o tú traes lo tuyo.' },
+  { n: '06', title: 'Herramientas de bar y cristalería', desc: 'Equipo completo: cocteleras, jiggers, coladores y cristalería fina de bar. Podemos llegar listos, o tú traes lo tuyo.' },
   { n: '07', title: 'Montaje, desmontaje y logística', desc: 'Llegamos temprano y nos vamos sin dejar rastro. Los anfitriones no deberían pensar en la logística.' },
 ];
 
@@ -29,8 +33,8 @@ const IDEAL = [
 
 // ── Chapter 05 — Process ──
 const STEPS = [
-  { n: '01', t: 'Llamada de descubrimiento', d: 'Una consulta de 30 minutos — fecha, visión, mercado y alcance. Sin presión.' },
-  { n: '02', t: 'Propuesta a la medida', d: 'En un plazo de dos días hábiles — diseño de la barra, opciones de personal, dirección del menú y cotización todo incluido.' },
+  { n: '01', t: 'Llamada de descubrimiento', d: 'Una consulta de 30 minutos: fecha, visión, mercado y alcance. Sin presión.' },
+  { n: '02', t: 'Propuesta a la medida', d: 'En un plazo de dos días hábiles: diseño de la barra, opciones de personal, dirección del menú y cotización todo incluido.' },
   { n: '03', t: 'Menú y montaje', d: 'Degustación (opcional). Cócteles de autor finalizados. Diseño y estilo de la barra confirmados.' },
   { n: '04', t: 'Día del evento', d: 'Llegamos temprano. Montamos, atendemos, desmontamos y nos vamos sin dejar rastro. Tú sigues siendo un invitado en tu propio evento.' },
 ];
@@ -38,29 +42,29 @@ const STEPS = [
 // ── FAQ ──
 const MB_FAQ = [
   { q: '¿Cómo se estructura el precio?',
-    a: 'Cada evento se cotiza a la medida — hay demasiadas variables (número de invitados, horas, mercado, diseño de la barra, complejidad del menú, personal) para que una tarifa fija sea honesta. Después de una llamada de descubrimiento de 30 minutos, enviamos una propuesta completa en un plazo de dos días hábiles.' },
+    a: 'Cada evento se cotiza a la medida: hay demasiadas variables (número de invitados, horas, mercado, diseño de la barra, complejidad del menú, personal) para que una tarifa fija sea honesta. Después de una llamada de descubrimiento de 30 minutos, enviamos una propuesta completa en un plazo de dos días hábiles.' },
   { q: '¿WOA Cocktails provee el alcohol?',
     a: 'WOA Cocktails coordina y cura la experiencia de bebidas completa. Podemos ayudar con la planificación del menú, listas de compras, cantidades, mixers, garnishes y todos los detalles relacionados con las bebidas para garantizar un servicio impecable.' },
   { q: '¿Pueden adaptar el montaje al tema o la estética de mi evento?',
     a: 'Sí. Podemos personalizar el montaje de la barra, el diseño del menú, la decoración y la presentación general para que coincidan con el tema y la estética de tu evento.' },
   { q: '¿Qué incluye la barra móvil de lujo?',
-    a: 'El montaje completo de la barra — front bar y back bar, cristalería, pozo de hielo, estación de garnishes y señalización si aplica. Nuestras barras vienen en varios tamaños; especificamos el tamaño adecuado para tu espacio y número de invitados.' },
+    a: 'El montaje completo de la barra: front bar y back bar, cristalería, pozo de hielo, estación de garnishes y señalización si aplica. Nuestras barras vienen en varios tamaños; especificamos el tamaño adecuado para tu espacio y número de invitados.' },
   { q: '¿A cuántos invitados puede atender WOA?',
     a: 'Los paquetes parten de un mínimo de 20 invitados y escalan a eventos de más de 500. El personal y la cantidad de barras escalan con el número de invitados para mantener un estándar de servicio de menos de 3 minutos en los momentos pico.' },
   { q: '¿Pueden crear un cóctel de autor para nuestro evento?',
-    a: 'Sí — el desarrollo de cócteles de autor personalizados está disponible como complemento si lo necesitas. Podemos crearlo en torno a un tema, una paleta de colores, un nombre o incluso un invitado de honor.' },
+    a: 'Sí, el desarrollo de cócteles de autor personalizados está disponible como complemento si lo necesitas. Podemos crearlo en torno a un tema, una paleta de colores, un nombre o incluso un invitado de honor.' },
 ];
 ---
 
 <Layout
   lang="es"
-  title="Experiencia de barra móvil — WOA Cocktails · Casa de hospitalidad y bebidas de lujo"
-  description="La experiencia de barra móvil con servicio completo de WOA — barras de lujo, menús de cócteles de autor y bartenders profesionales, ejecutados de principio a fin. NYC y Miami."
+  title="Experiencia de barra móvil, WOA Cocktails · Casa de hospitalidad y bebidas de lujo"
+  description="La experiencia de barra móvil con servicio completo de WOA: barras de lujo, menús de cócteles de autor y bartenders profesionales, ejecutados de principio a fin. NYC y Miami."
   styles={['woa-service.css', 'woa-svc-mobilebar.css']}
 >
   <main class="svc-page mb-page">
     {/* ── MB_Hero ── */}
-    <section class="mb-hero" data-screen-label="Mobile Bar — Hero">
+    <section class="mb-hero" data-screen-label="Mobile Bar. Hero">
       <div class="mb-hero-text">
         <div class="mb-hero-kicker">
           <span class="num">01</span>
@@ -72,7 +76,7 @@ const MB_FAQ = [
         </h1>
 
         <p class="mb-hero-lede">
-          Una barra completamente armada y abastecida — montada donde sea que estés
+          Una barra completamente armada y abastecida, montada donde sea que estés
           celebrando. Réntala por su cuenta, o deja que nuestro equipo maneje toda la noche.
         </p>
 
@@ -82,11 +86,13 @@ const MB_FAQ = [
           <li><span class="d" />Eventos privados</li>
         </ul>
 
+        <PriceTag service="mobilebar" lang="es" />
+
         <div class="mb-hero-actions">
           <a href="/es/contact" class="btn btn-solid mb-hero-cta">
             Solicite su evento <span class="arr">→</span>
           </a>
-          <a href="#rental" class="btn btn-ghost">Solo renta de barra</a>
+          <a href="/es/bar-rentals" class="btn btn-ghost">Solo renta de barra</a>
         </div>
       </div>
 
@@ -174,7 +180,7 @@ const MB_FAQ = [
         <header class="svp-chapter-head">
           <span class="svp-chapter-num">[ 01 / El Montaje ]</span>
           <h2 class="svp-chapter-title">
-            Entregamos la barra — <span class="it">lista</span> para el momento.
+            Entregamos la barra, <span class="it">lista</span> para el momento.
           </h2>
         </header>
 
@@ -185,7 +191,7 @@ const MB_FAQ = [
           </figure>
           <div class="mb-setup-copy">
             <p class="mb-lede">
-              Rooftops, lofts, jardines, salones de fiesta — nuestra barra móvil llega
+              Rooftops, lofts, jardines, salones de fiesta, nuestra barra móvil llega
               estilizada, abastecida y lista para servir. Nos encargamos de la entrega, el
               montaje y el desmontaje, para que la barra encaje en el espacio y la noche
               fluya sin tropiezos.
@@ -194,7 +200,7 @@ const MB_FAQ = [
               <span class="qmark">"</span>
               Tratamos la barra como un escenario. Cada invitado que se acerca debe sentir
               que es el único al que estamos atendiendo.
-              <span class="sig">— La Casa WOA</span>
+              <span class="sig">La Casa WOA</span>
             </div>
           </div>
         </div>
@@ -211,14 +217,14 @@ const MB_FAQ = [
           </h2>
         </header>
         <p class="mb-included-intro">
-          La barra móvil es el eje central — todo lo que la rodea lo decides tú. ¿Quieres
+          La barra móvil es el eje central, todo lo que la rodea lo decides tú. ¿Quieres
           solo la barra? Listo. ¿La quieres con bartenders profesionales y un menú
           personalizado? También podemos hacerlo. Agrega únicamente lo que tu evento necesita.
         </p>
         <div class="svp-include">
           {INCLUDES.map((i, idx) => (
             <article class={'svp-include-item' + (i.core ? ' is-core' : '') + (idx === INCLUDES.length - 1 && INCLUDES.length % 2 === 1 ? ' is-wide' : '')}>
-              <span class="n">— {i.n}</span>
+              <span class="n">{i.n}</span>
               <div class="body">
                 <h3>
                   {i.title}
@@ -247,12 +253,12 @@ const MB_FAQ = [
           <div class="mb-rental-copy">
             <p class="mb-lede">
               ¿Solo necesitas la barra? Entregamos y montamos la barra móvil en tu
-              espacio — y de ahí en adelante, la noche es tuya para manejarla.
+              espacio, y de ahí en adelante, la noche es tuya para manejarla.
             </p>
             <p class="mb-rental-note">
               Tú mantienes el control total. Trae tus propios bartenders, abastece tus
               propios licores y maneja el servicio exactamente como quieras. La barra llega
-              estilizada y lista — el resto lo decides tú.
+              estilizada y lista, el resto lo decides tú.
             </p>
             <ul class="mb-rental-list">
               <li><span class="d" />Tú eliges quién la atiende</li>
@@ -260,11 +266,13 @@ const MB_FAQ = [
               <li><span class="d" />Tú manejas el servicio a tu manera</li>
             </ul>
             <p class="mb-rental-foot">
-              ¿Cambias de opinión? Puedes agregar bartenders de WOA, un menú personalizado o
-              servicio completo a cualquier renta — en cualquier momento.
+              Las rentas van <b style="color:var(--fg)">{rentalRange}</b>, según el modelo de
+              barra que elija, la fecha y el venue. ¿Cambia de opinión? Puede agregar
+              bartenders de WOA, un menú personalizado o servicio completo a cualquier
+              renta, en cualquier momento.
             </p>
-            <a href="/es/contact" class="btn btn-ghost mb-rental-cta">
-              Pregunte por la renta de barra <span class="arr">→</span>
+            <a href="/es/bar-rentals" class="btn btn-ghost mb-rental-cta">
+              Ver renta de barras <span class="arr">→</span>
             </a>
           </div>
 
@@ -291,7 +299,7 @@ const MB_FAQ = [
           ))}
         </div>
         <p class="mb-ideal-note">
-          Desde reuniones íntimas hasta experiencias de hospitalidad a gran escala — rentada
+          Desde reuniones íntimas hasta experiencias de hospitalidad a gran escala, rentada
           por su cuenta, o manejada de principio a fin por el <b style="color:var(--fg)">equipo WOA</b>.
         </p>
       </div>
@@ -307,7 +315,7 @@ const MB_FAQ = [
         <div class="svp-steps">
           {STEPS.map((s) => (
             <article class="svp-step">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -345,7 +353,7 @@ const MB_FAQ = [
         <Pic src={cocktailFoam} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Solicite</span>
+        <span class="eyebrow">Solicite</span>
         <h2 class="display">
           Construyamos <span class="it" style="color:var(--crimson-text)">tu</span> barra.
         </h2>

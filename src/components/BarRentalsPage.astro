@@ -1,0 +1,192 @@
+---
+// BarRentalsPage — the Bar Rentals service page body, rendered from one copy
+// object so EN and ES produce identical markup and identical figures.
+// Prices come from src/i18n/pricing.ts via bar-rentals-copy.ts.
+import Pic from './Pic.astro';
+import { barRentalsCopy } from '../i18n/bar-rentals-copy';
+import { PRICING } from '../i18n/pricing';
+import { localizePath } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+import heroBar from '../assets/img/ev-grandopening-woabar.webp';
+import shotDuo from '../assets/img/ev-wedding-duo.webp';
+import shotTeam from '../assets/img/ev-opening-team.webp';
+import shotActivation from '../assets/img/ev-activation-mocktails.jpg';
+import ctaBg from '../assets/img/ev-opening-champagne.jpg';
+
+export interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const c = barRentalsCopy(lang);
+const L = (path: string) => localizePath(path, lang);
+const rentals = PRICING.rentals;
+const shots = [shotDuo, shotTeam, shotActivation];
+---
+
+<main class="svc-page br-page">
+  {/* ── Hero ── */}
+  <section class="svp-hero">
+    <div class="svp-hero-bg">
+      <Pic src={heroBar} alt={c.hero.bgAlt} kind="hero" priority />
+    </div>
+    <div class="wrap svp-hero-content">
+      <div class="svp-hero-top">
+        <span class="eyebrow">{c.hero.eyebrow}</span>
+        <span class="eyebrow dim">{c.hero.metaRight}</span>
+      </div>
+
+      <div class="svp-hero-body">
+        <div>
+          <span class="svp-hero-rule"></span>
+          <h1 class="display h-xl">
+            {c.hero.title1}<br /><em>{c.hero.titleEm}</em>
+          </h1>
+          <p class="br-lede">{c.hero.lede}</p>
+
+          {/* Price, straight off the rate card. */}
+          <div class="br-price">
+            <span class="lbl">{c.hero.priceLabel}</span>
+            <b>{rentals.amount} <span class="to">{rentals.unit?.[lang]}</span></b>
+          </div>
+
+          <div class="br-hero-cta">
+            <a href={L('/contact')} class="btn btn-solid">
+              {c.hero.ctaPrimary} <span class="arr">→</span>
+            </a>
+            <a href={L('/pricing')} class="btn btn-ghost">{c.hero.ctaSecondary}</a>
+          </div>
+        </div>
+        <aside class="svp-hero-aside">{c.hero.aside}</aside>
+      </div>
+
+      <div class="svp-hero-meta">
+        <span>{c.hero.metaLeft}</span>
+        <span>{rentals.name[lang]}</span>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 01 What you get ── */}
+  <section class="svp-chapter">
+    <div class="wrap">
+      <header class="svp-chapter-head">
+        <span class="svp-chapter-num">{c.get.ix}</span>
+        <h2 class="svp-chapter-title">
+          {c.get.title}<span class="it">{c.get.titleIt}</span>
+        </h2>
+      </header>
+      <div class="svp-include">
+        {c.get.items.map((i) => (
+          <article class="svp-include-item">
+            <span class="n">{i.n}</span>
+            <div class="body">
+              <h3>{i.h}</h3>
+              <p>{i.p}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── 02 Ideal for ── */}
+  <section class="svp-chapter">
+    <div class="wrap">
+      <header class="svp-chapter-head">
+        <span class="svp-chapter-num">{c.ideal.ix}</span>
+        <h2 class="svp-chapter-title">
+          {c.ideal.title}<span class="it">{c.ideal.titleIt}</span>
+        </h2>
+      </header>
+      <div class="svp-ideal">
+        {c.ideal.chips.map((chip) => (
+          <span class="svp-ideal-chip"><span class="d" />{chip}</span>
+        ))}
+      </div>
+      <p class="br-note">{c.ideal.note}</p>
+    </div>
+  </section>
+
+  {/* ── 03 How it works ── */}
+  <section class="svp-chapter">
+    <div class="wrap">
+      <header class="svp-chapter-head">
+        <span class="svp-chapter-num">{c.how.ix}</span>
+        <h2 class="svp-chapter-title">
+          {c.how.title}<span class="it">{c.how.titleIt}</span>
+        </h2>
+      </header>
+      <div class="svp-steps">
+        {c.how.steps.map((s) => (
+          <div class="svp-step">
+            <span class="n">{s.n}</span>
+            <h3>{s.t}</h3>
+            <p>{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── 04 Gallery (real event photography) ── */}
+  <section class="svp-chapter">
+    <div class="wrap">
+      <header class="svp-chapter-head">
+        <span class="svp-chapter-num">{c.gallery.ix}</span>
+        <h2 class="svp-chapter-title">
+          {c.gallery.title}<span class="it">{c.gallery.titleIt}</span>
+        </h2>
+      </header>
+      <div class="svp-grid g-3">
+        {c.gallery.shots.map((shot, i) => (
+          <figure class="ph br-shot">
+            <Pic src={shots[i]} alt={shot.alt} kind="half" />
+            <figcaption class="mono">{shot.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── FAQ ── */}
+  <section class="svp-faq">
+    <div class="wrap">
+      <div class="svp-faq-grid">
+        <div>
+          <span class="svp-chapter-num">{c.faq.ix}</span>
+          <div class="eyebrow" style="margin-top:18px">{c.faq.eyebrow}</div>
+          <h2 class="display h-md" style="margin-top:18px;max-width:16ch">
+            {c.faq.title}<span class="it" style="color:var(--crimson-text)">{c.faq.titleIt}</span>
+          </h2>
+        </div>
+        <div>
+          {c.faq.items.map((f, i) => (
+            <details class="svp-q" open={i === 0}>
+              <summary>{f.q}</summary>
+              <div class="ans">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── CTA ── */}
+  <section class="svp-cta">
+    <div class="svp-cta-bg">
+      <Pic src={ctaBg} alt="" aria-hidden="true" kind="bg" />
+    </div>
+    <div class="wrap">
+      <span class="eyebrow">{c.cta.eyebrow}</span>
+      <h2 class="display">
+        {c.cta.title}<span class="it" style="color:var(--crimson-text)">{c.cta.titleIt}</span>
+      </h2>
+      <p>{c.cta.body}</p>
+      <div class="cta-row">
+        <a href={L('/contact')} class="btn btn-solid">{c.cta.primary} <span class="arr">→</span></a>
+        <a href={L('/pricing')} class="btn btn-ghost">{c.cta.secondary}</a>
+      </div>
+    </div>
+  </section>
+</main>

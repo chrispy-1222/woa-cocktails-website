@@ -17,6 +17,7 @@ import galRooftopBartender from '../../assets/img/gal-rooftop-bartender.jpg';
 import galRooftopShake from '../../assets/img/gal-rooftop-shake.jpg';
 import galRooftopPortrait from '../../assets/img/gal-rooftop-portrait.jpg';
 import galRooftopGroup from '../../assets/img/gal-rooftop-group.jpg';
+import PriceTag from '../../components/PriceTag.astro';
 
 // ── Hero: interactive team rolodex ───────────────────────────────────
 // Real WOA team — names + roles surface as a caption on the front card.
@@ -58,8 +59,8 @@ const ROLES = [
 
 // ── How it works ─────────────────────────────────────────────────────
 const ST_STEPS = [
-  { n: '01', t: 'Llamada de descubrimiento', d: '30 minutos — fecha, número de invitados, estilo del evento, alcance. Evaluamos la afinidad y las necesidades de personal.' },
-  { n: '02', t: 'Equipo a la medida', d: 'En dos días hábiles — composición de equipo propuesta, proporciones, líder y cotización todo incluido.' },
+  { n: '01', t: 'Llamada de descubrimiento', d: '30 minutos: fecha, número de invitados, estilo del evento, alcance. Evaluamos la afinidad y las necesidades de personal.' },
+  { n: '02', t: 'Equipo a la medida', d: 'En dos días hábiles: composición de equipo propuesta, proporciones, líder y cotización todo incluido.' },
   { n: '03', t: 'Briefing previo al evento', d: 'El capitán se reúne con el anfitrión y recorre el lugar. Se alinean tiempos, run-of-show y contingencias.' },
   { n: '04', t: 'Día del evento', d: 'El equipo llega uniformado e informado. Nosotros somos los anfitriones. Usted disfruta su propio evento.' },
 ];
@@ -67,13 +68,13 @@ const ST_STEPS = [
 // ── FAQ ──────────────────────────────────────────────────────────────
 const ST_FAQ = [
   { q: '¿Podemos contratar bartenders solos, sin la barra móvil completa?',
-    a: "Por supuesto. El servicio solo de personal es una de nuestras reservas más comunes — la barra de un lugar operada por nuestro equipo, o una casa privada con nuestros bartenders detrás del montaje del propio anfitrión. Dotamos de personal según el formato." },
+    a: "Por supuesto. El servicio solo de personal es una de nuestras reservas más comunes: la barra de un lugar operada por nuestro equipo, o una casa privada con nuestros bartenders detrás del montaje del propio anfitrión. Dotamos de personal según el formato." },
   { q: "¿Cuál es la proporción de bartenders por invitado?",
-    a: "Depende mucho del evento — la carta de cócteles, el número de invitados, el estilo de servicio y la duración cambian la respuesta. En lugar de citar una proporción fija, en la llamada de descubrimiento asesoramos sobre el personal adecuado para su evento, según exactamente lo que vaya a ofrecer." },
+    a: "Depende mucho del evento: la carta de cócteles, el número de invitados, el estilo de servicio y la duración cambian la respuesta. En lugar de citar una proporción fija, en la llamada de descubrimiento asesoramos sobre el personal adecuado para su evento, según exactamente lo que vaya a ofrecer." },
   { q: '¿Proveen uniformes?',
-    a: 'Sí — un estándar WOA limpio y listo para presentación por defecto. También podemos uniformar al equipo a la medida para combinar con una activación de marca, la paleta de una boda o la estética del lugar, a solicitud.' },
+    a: 'Sí, un estándar WOA limpio y listo para presentación por defecto. También podemos uniformar al equipo a la medida para combinar con una activación de marca, la paleta de una boda o la estética del lugar, a solicitud.' },
   { q: "¿Qué pasa si un miembro del personal no se presenta?",
-    a: 'Casi nunca sucede — nuestro personal es altamente profesional y llega preparado. Pero cada evento cuenta con un Líder de evento designado más personal de respaldo y de guardia listo para emergencias. Si alguna vez se necesita un reemplazo, ocurre tras bambalinas; el anfitrión nunca lo nota.' },
+    a: 'Casi nunca sucede. Nuestro personal es altamente profesional y llega preparado. Pero cada evento cuenta con un Líder de evento designado más personal de respaldo y de guardia listo para emergencias. Si alguna vez se necesita un reemplazo, ocurre tras bambalinas; el anfitrión nunca lo nota.' },
   { q: '¿Con cuánta anticipación debo contactarlos?',
     a: "Para eventos más grandes, como bodas, podemos reservar con hasta un año de anticipación. También somos flexibles con solicitudes de último momento: los eventos de servicio completo pueden reservarse con tan solo 3 días de anticipación, y los servicios solo de personal de bartending con tan solo 24 horas de anticipación, según disponibilidad." },
 ];
@@ -81,8 +82,8 @@ const ST_FAQ = [
 
 <Layout
   lang="es"
-  title="Personal de bartending y hospitalidad — WOA Cocktails"
-  description="WOA coloca bartenders, anfitriones, capitanes y líderes de evento experimentados — formados en estándares de hospitalidad de lujo. NYC y Miami."
+  title="Personal de bartending y hospitalidad, WOA Cocktails"
+  description="WOA coloca bartenders, anfitriones, capitanes y líderes de evento experimentados, formados en estándares de hospitalidad de lujo. NYC y Miami."
   styles={['woa-service.css', 'woa-svc-staffing.css']}
 >
   <main class="svc-page st-page">
@@ -91,7 +92,7 @@ const ST_FAQ = [
       <div class="wrap st-hero-grid">
         <div class="st-hero-copy">
           <div style="display:flex;justify-content:space-between;margin-bottom:32px">
-            <span class="eyebrow">— Servicio 03 · La gente</span>
+            <span class="eyebrow">Servicio 03 · La gente</span>
           </div>
           <span class="svp-hero-rule"></span>
           <h1 class="display st-hero-title">
@@ -100,9 +101,11 @@ const ST_FAQ = [
           <p class="st-hero-lede">
             Bartending profesional y dotación de personal de hospitalidad para eventos
             privados, corporativos y de lujo. WOA coloca <b style="color:var(--fg)">bartenders
-            experimentados</b> y profesionales de la hospitalidad — formados para ofrecer
+            experimentados</b> y profesionales de la hospitalidad, formados para ofrecer
             un servicio elevado, profesionalismo discreto y una calidez centrada en el invitado.
           </p>
+          <PriceTag service="bartending" lang="es" />
+
           <a href="/es/contact" class="st-hero-pitch">
             <span class="d"></span>
             <span>Dote de personal su próximo evento <span style="color:var(--crimson-text);margin-left:6px">→</span></span>
@@ -117,7 +120,7 @@ const ST_FAQ = [
           aria-label="Equipo de hospitalidad de WOA"
           tabindex="0"
         >
-          <span class="st-rolo-hint">— el equipo</span>
+          <span class="st-rolo-hint">el equipo</span>
           <div class="st-rolo-stack">
             {TEAM.map((m, i) => {
               const off = (i - 0 + N) % N;
@@ -128,7 +131,7 @@ const ST_FAQ = [
                   class={'st-rolo-card' + (off === 0 ? ' front' : '')}
                   data-index={i}
                   style={`z-index:${N - off};--off:${Math.min(off, 3)};display:${hidden ? 'none' : 'block'}`}
-                  aria-label={`${m.name} — ${m.role}`}
+                  aria-label={`${m.name}, ${m.role}`}
                   aria-current={off === 0 ? 'true' : 'false'}
                   aria-hidden={hidden ? 'true' : 'false'}
                   tabindex={off === 0 ? 0 : -1}
@@ -182,7 +185,7 @@ const ST_FAQ = [
                 {r.cap && <figcaption style="margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--fg-dim)">{r.cap}</figcaption>}
               </figure>
               <div class="st-role-body">
-                <span class="n">— {r.n}</span>
+                <span class="n">{r.n}</span>
                 <h3>{r.role}</h3>
                 <p>{r.pitch}</p>
               </div>
@@ -203,8 +206,8 @@ const ST_FAQ = [
               <span class="it">WOA Summer Party</span><br />Dumbo House NYC.
             </h2>
             <p style="margin-top:18px;max-width:54ch;color:var(--fg-dim);font-size:15px;line-height:1.7">
-              Un rooftop de verano organizado por WOA. Equipo completo de hospitalidad —
-              bartenders, anfitriones y líderes de evento — operando un servicio de barra
+              Un rooftop de verano organizado por WOA. Equipo completo de hospitalidad:
+              bartenders, anfitriones y líderes de evento, operando un servicio de barra
               libre, del atardecer hasta tarde, en la azotea de Dumbo House, enmarcado por
               el horizonte de Manhattan.
             </p>
@@ -248,7 +251,7 @@ const ST_FAQ = [
         <div class="svp-steps">
           {ST_STEPS.map((s) => (
             <article class="svp-step">
-              <span class="n">— {s.n}</span>
+              <span class="n">{s.n}</span>
               <h3>{s.t}</h3>
               <p>{s.d}</p>
             </article>
@@ -286,7 +289,7 @@ const ST_FAQ = [
         <Pic src={galRooftopTeam} alt="" kind="bg" aria-hidden="true" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Solicite</span>
+        <span class="eyebrow">Solicite</span>
         <h2 class="display">
           Dote de personal su <span class="it" style="color:var(--crimson-text)">próximo</span> evento.
         </h2>

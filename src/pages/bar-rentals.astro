@@ -1,0 +1,13 @@
+---
+// Bar Rentals service page (English). Added 2026-10-15: bar rentals is now a
+// core service line alongside bartending, the mobile bar and mixology classes.
+import Layout from '../layouts/Layout.astro';
+import BarRentalsPage from '../components/BarRentalsPage.astro';
+import { barRentalsCopy } from '../i18n/bar-rentals-copy';
+
+const c = barRentalsCopy('en');
+---
+
+<Layout lang="en" title={c.meta.title} description={c.meta.description} styles={['woa-service.css', 'woa-bar-rentals.css']}>
+  <BarRentalsPage lang="en" />
+</Layout>

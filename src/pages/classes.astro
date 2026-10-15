@@ -11,6 +11,7 @@ import cocktailBeetPom from '../assets/img/cocktail-beet-pom.webp';
 import cocktailWoaClassic from '../assets/img/cocktail-woa-classic.webp';
 import cocktailSunsetMarg from '../assets/img/cocktail-sunset-marg.webp';
 import svcClass from '../assets/img/svc-class.jpg';
+import PriceTag from '../components/PriceTag.astro';
 
 // ── Class formats (4) ──
 const FORMATS = [
@@ -21,10 +22,10 @@ const FORMATS = [
     desc: "Branded menus, custom cocktails, press-ready presentation. Built around your launch.",
     img: classBrand, tag: "Custom" },
   { n: "03", title: "Private groups",
-    desc: "Birthdays, bachelorettes, dinner parties, milestone moments — and one-on-one personal classes. We come to your kitchen.",
+    desc: "Birthdays, bachelorettes, dinner parties, milestone moments, and one-on-one personal classes. We come to your kitchen.",
     img: classGuest, tag: "Intimate" },
   { n: "04", title: "Hospitality groups",
-    desc: "Staff training for restaurants and bars — technique, menu, hospitality fundamentals.",
+    desc: "Staff training for restaurants and bars: technique, menu, hospitality fundamentals.",
     img: foundersBar, tag: "Trade" },
 ];
 
@@ -43,16 +44,16 @@ const C_FAQ = [
   { q: "How long does a class run?",
     a: "Our standard class is 2 hours end-to-end, and classes run from 1 to 3 hours depending on the format. Corporate offsites often add a tasting course or pairing dinner." },
   { q: "Who supplies the alcohol and equipment?",
-    a: "WOA brings the full kit — tools, glassware, mixers, garnishes, and recipe cards for every guest. For the spirits, WOA Cocktails coordinates and curates the beverage experience: we assist with menu planning, shopping lists, quantities and all beverage-related details for a seamless class. You supply the room and the people." },
+    a: "WOA brings the full kit: tools, glassware, mixers, garnishes, and recipe cards for every guest. For the spirits, WOA Cocktails coordinates and curates the beverage experience. We assist with menu planning, shopping lists, quantities and all beverage-related details for a seamless class. You supply the room and the people." },
   { q: "Can you build a themed or branded menu?",
-    a: "Yes. For brand activations or private events we build named cocktails to the occasion — guest of honor, brand identity, color palette, story we're telling. This is included in custom proposals." },
+    a: "Yes. For brand activations or private events we build named cocktails to the occasion: guest of honor, brand identity, color palette, story we're telling. This is included in custom proposals." },
   { q: "Can we book a class as part of a larger event?",
     a: "Often the strongest format. A 60-minute class to open the evening, followed by a full WOA mobile bar service for the rest of the night. Bundled pricing applies." },
 ];
 ---
 
 <Layout
-  title="Mixology Private Classes — WOA Cocktails"
+  title="Mixology Private Classes, WOA Cocktails"
   description="Hands-on mixology classes led by professional WOA mixologists. Corporate offsites, team-building, private groups, brand activations. NYC & Miami."
   styles={['woa-service.css', 'woa-svc-classes.css']}
 >
@@ -62,7 +63,7 @@ const C_FAQ = [
       <div class="wrap c-hero-grid">
         <div class="c-hero-copy">
           <div style="display:flex;justify-content:space-between;margin-bottom:32px">
-            <span class="eyebrow">— Service 04 · Hands-On</span>
+            <span class="eyebrow">Service 04 · Hands-On</span>
           </div>
           <span class="svp-hero-rule"></span>
           <h1 class="display h-xl">
@@ -71,15 +72,17 @@ const C_FAQ = [
           </h1>
           <p class="c-hero-lede">
             Interactive cocktail classes for corporate offsites, team-building,
-            brand activations and private groups — including one-on-one personal
-            classes. A professional WOA mixologist leads the room — you walk out
+            brand activations and private groups, including one-on-one personal
+            classes. A professional WOA mixologist leads the room. You walk out
             making cocktails you'll actually serve at home.
           </p>
           <div class="c-hero-marks">
             <span><b>2h</b><small>Class length</small></span>
-            <span><b>1–60</b><small>Guests</small></span>
+            <span><b>12–60</b><small>Guests</small></span>
             <span><b>NYC · MIA</b><small>We come to you</small></span>
           </div>
+
+          <PriceTag service="classes" lang="en" />
         </div>
         <figure class="c-hero-photo">
           <Pic src={classHero} alt="A WOA mixologist leading a hands-on cocktail class" kind="half" priority />
@@ -105,7 +108,7 @@ const C_FAQ = [
                 <span class="c-format-tag">{f.tag}</span>
               </figure>
               <div class="c-format-body">
-                <span class="n">— {f.n}</span>
+                <span class="n">{f.n}</span>
                 <h3>{f.title}</h3>
                 <p>{f.desc}</p>
               </div>
@@ -125,7 +128,7 @@ const C_FAQ = [
           </h2>
         </header>
         <p class="c-menu-note">
-          Sample menu shown — every class is built to the group and the occasion.
+          Sample menu shown, every class is built to the group and the occasion.
           Themed menus, brand activations and seasonal builds available.
         </p>
         <div class="c-menu-grid">
@@ -155,7 +158,7 @@ const C_FAQ = [
           <div class="c-where-card">
             <div class="ix">01</div>
             <h3>Your office</h3>
-            <p>Most booked. Conference room, kitchen, lounge — any flat surface with power and water nearby. We bring everything else.</p>
+            <p>Most booked. Conference room, kitchen, lounge, any flat surface with power and water nearby. We bring everything else.</p>
           </div>
           <div class="c-where-card">
             <div class="ix">02</div>
@@ -200,12 +203,12 @@ const C_FAQ = [
         <Pic src={svcClass} alt="" aria-hidden="true" kind="bg" />
       </div>
       <div class="wrap">
-        <span class="eyebrow">— Inquire</span>
+        <span class="eyebrow">Inquire</span>
         <h2 class="display">
           Book your <span class="it" style="color:var(--crimson-text)">class</span>.
         </h2>
         <p>
-          30-minute discovery call. We'll lock format, menu and date — and have a
+          30-minute discovery call. We'll lock format, menu and date, and have a
           tailored proposal in your inbox within two business days.
         </p>
         <div class="cta-row">
